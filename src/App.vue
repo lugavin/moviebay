@@ -6,7 +6,7 @@
                 <v-layout>
                     <v-toolbar-items>
                         <v-img :src="require('@/assets/logo.png')"
-                               contain class="mr-5" height="48" width="180" max-width="180"/>
+                               contain class="mr-5" height="48"/>
                         <v-btn text to="/home">首页</v-btn>
                         <v-btn text to="/movie">电影</v-btn>
                         <v-btn text to="/tv">连续剧</v-btn>
