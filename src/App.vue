@@ -7,13 +7,10 @@
                     <v-toolbar-items>
                         <v-img :src="require('@/assets/logo.png')"
                                contain class="mr-5" height="48"/>
-                        <v-btn text to="/home">首页</v-btn>
-                        <v-btn text to="/movie">电影</v-btn>
-                        <v-btn text to="/tv">连续剧</v-btn>
-                        <v-btn text to="/variety">综艺</v-btn>
-                        <v-btn text to="/anime">动漫</v-btn>
-                        <v-btn text to="/news">资讯</v-btn>
-                        <v-btn text to="/comments">留言</v-btn>
+                        <v-btn text v-for="(menu, i) in menus"
+                               :key="i" :to="menu.url" class="ml-0 hidden-sm-and-down">
+                            {{ menu.name }}
+                        </v-btn>
                         <v-text-field placeholder="请输入关键字" append-icon="mdi-magnify"
                                       flat hide-details solo-inverted dense
                                       style="max-width: 240px; padding: 5px 15px;"/>
@@ -39,10 +36,12 @@
 <script>
 /**
  * @see https://cn.vuejs.org/v2/api/#name
+ * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
  */
 export default {
     name: 'App',
     data: () => ({
+        menus: require('@/data/menus.json')
     })
 };
 </script>

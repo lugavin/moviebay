@@ -1,0 +1,34 @@
+[
+  {
+    "name": "首页",
+    "url": "/home"
+  },
+  {
+    "name": "电影",
+    "url": "/movie"
+  },
+  {
+    "name": "连续剧",
+    "url": "/tv"
+  },
+  {
+    "name": "综艺",
+    "url": "/variety"
+  },
+  {
+    "name": "动漫",
+    "url": "/anime"
+  },
+  {
+    "name": "资讯",
+    "url": "/news"
+  },
+  {
+    "name": "首页",
+    "url": "/home"
+  },
+  {
+    "name": "留言",
+    "url": "/comments"
+  }
+]
