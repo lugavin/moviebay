@@ -2,7 +2,7 @@
     <v-container>
         <v-layout text-center wrap>
             <v-flex xs12>
-                <v-carousel>
+                <v-carousel hide-delimiters>
                     <v-carousel-item v-for="(color, i) in colors" :key="color">
                         <v-sheet :color="color" height="100%" tile>
                             <v-row class="fill-height" align="center" justify="center">

@@ -26,9 +26,7 @@
             </v-container>
         </v-app-bar>
         <v-content>
-            <v-container>
-                <router-view/>
-            </v-container>
+            <router-view/>
         </v-content>
     </v-app>
 </template>
