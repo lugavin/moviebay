@@ -3,8 +3,7 @@
         <v-flex xs12>
             <v-carousel hide-delimiters height="380">
                 <v-carousel-item v-for="(poster, i) in posters" :key="i"
-                                 :src="require('@/assets/poster/Avengers-Endgame-Slide-1.jpg')">
-                </v-carousel-item>
+                                 :src="poster.src"/>
             </v-carousel>
         </v-flex>
 
@@ -55,16 +54,12 @@ export default {
     data: () => ({
         posters: [
             {
-                "title": "复仇者联盟1",
-                "src": "@/assets/poster/Avengers-Endgame-Slide-1.jpg"
+                "title": "复仇者联盟",
+                "src": require("@/assets/Slide-01.jpg")
             },
             {
-                "title": "复仇者联盟2",
-                "src": "@/assets/poster/Avengers-Endgame-Slide-1.jpg"
-            },
-            {
-                "title": "复仇者联盟3",
-                "src": "@/assets/poster/Avengers-Endgame-Slide-1.jpg"
+                "title": "变形金刚",
+                "src": require("@/assets/Slide-02.jpg")
             }
         ],
         ecosystem: [

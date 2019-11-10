@@ -22,8 +22,8 @@ export default new Router({
      * @see https://router.vuejs.org/guide/advanced/navigation-guards.html#global-guards
      */
     routes: [
-        //{path: '/', redirect: '/home'},
-        {path: '/home', component: () => import('../components/AppContent')},
-        //{path: '/register', component: () => import('../components/account/register')},
+        {path: '/', redirect: '/home'},
+        {path: '/home', component: () => import('@/components/AppContent')},
+        //{path: '/register', component: () => import('@/components/account/register')},
     ]
 });

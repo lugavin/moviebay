@@ -14,7 +14,7 @@
                     </v-toolbar-items>
                     <v-text-field append-icon="mdi-magnify"
                                   flat hide-details single-line
-                                  style="max-width: 300px; margin: 8px;"
+                                  style="max-width: 250px; margin: 8px;"
                                   placeholder="请输入关键字"/>
                     <v-spacer/>
                     <v-toolbar-items>
