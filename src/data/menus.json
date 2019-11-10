@@ -24,6 +24,10 @@
     "url": "/news"
   },
   {
+    "name": "专题",
+    "url": "/topics"
+  },
+  {
     "name": "留言",
     "url": "/comments"
   }
