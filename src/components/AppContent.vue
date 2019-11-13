@@ -11,7 +11,7 @@
                 <v-spacer/>
                 <div class="font-weight-regular">
                     <span class="mr-4">今日更新 {{cards.length}} 部 共 9999999 部</span>
-                    <a href="#" target="_blank" class="v-btn--text">更多</a>
+                    <a href="#" target="_blank">更多</a>
                 </div>
             </v-toolbar>
             <v-container fluid>

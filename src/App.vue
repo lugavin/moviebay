@@ -7,13 +7,14 @@
                     <v-img :src="require('@/assets/logo.png')" height="48" width="135" max-width="135"
                            class="mr-5" contain/>
                     <v-toolbar-items>
-                        <v-btn v-for="(menu, i) in menus" :key="i" :to="menu.url"
-                               class="ml-0 hidden-sm-and-down" text>
-                            {{ menu.name }}
+                        <v-btn v-for="(menu, i) in menus" :key="i" :to="menu.url" text>
+                            {{menu.name}}
                         </v-btn>
                     </v-toolbar-items>
-                    <v-text-field append-icon="mdi-magnify" flat hide-details single-line
-                                  class="mx-4 my-2" label="请输入关键字"/>
+                    <v-row align="center">
+                        <v-text-field append-icon="mdi-magnify" placeholder="Search..."
+                                      hide-details single-line class="mx-4"/>
+                    </v-row>
                     <v-spacer/>
                     <v-toolbar-items>
                         <v-btn text to="/register">注册</v-btn>
@@ -27,18 +28,22 @@
                 <router-view/>
             </v-container>
         </v-content>
+        <v-footer>
+            <span>&copy; 2019</span>
+        </v-footer>
     </v-app>
 </template>
 
 <script>
-    /**
-     * @see https://cn.vuejs.org/v2/api/#name
-     * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
-     */
-    export default {
-        name: 'App',
-        data: () => ({
-            menus: require('@/data/menus.json')
-        })
-    };
+/**
+ * @see https://cn.vuejs.org/v2/api/#name
+ * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
+ * @see https://vuetifyjs.com/zh-Hans/getting-started/pre-made-layouts
+ */
+export default {
+    name: 'App',
+    data: () => ({
+        menus: require('@/data/menus.json')
+    })
+};
 </script>
