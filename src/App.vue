@@ -12,7 +12,7 @@
                         </v-btn>
                     </v-toolbar-items>
                     <v-row align="center">
-                        <v-text-field append-icon="mdi-magnify" placeholder="Search..."
+                        <v-text-field append-icon="mdi-magnify" placeholder="请输入关键字"
                                       hide-details single-line class="mx-4"/>
                     </v-row>
                     <v-spacer/>
@@ -28,8 +28,8 @@
                 <router-view/>
             </v-container>
         </v-content>
-        <v-footer>
-            <span>&copy; 2019</span>
+        <v-footer dark>
+            <div class="mx-auto">&copy; 2015 - 2019</div>
         </v-footer>
     </v-app>
 </template>

@@ -7,11 +7,11 @@
         </v-flex>
         <v-card outlined class="mt-4">
             <v-toolbar dense flat>
-                <v-toolbar-title class="tertiary--text font-weight-light">最新视频</v-toolbar-title>
+                <v-toolbar-title class="title">最新视频</v-toolbar-title>
                 <v-spacer/>
                 <div class="font-weight-regular">
-                    <span class="mr-4">今日更新 {{cards.length}} 部 共 9999999 部</span>
-                    <a href="#" target="_blank">更多</a>
+                    <span class="mr-4">今日更新 {{cards.length}} 部 共 9999876 部</span>
+                    <a href="#" class="v-breadcrumbs__item">更多</a>
                 </div>
             </v-toolbar>
             <v-container fluid>
@@ -21,7 +21,7 @@
                             <v-img :src="card.src" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                                    class="white--text align-end" height="250px"/>
                             <!--<v-card-title v-text="card.title"/>-->
-                            <v-card-subtitle class="pt-2 pb-0" v-text="card.title"/>
+                            <v-card-subtitle class="pt-2 pb-0 subtitle-1" v-text="card.title"/>
                             <v-card-text class="text--primary" v-text="card.updatedAt"/>
                         </v-card>
                     </v-col>
@@ -83,6 +83,12 @@ export default {
             {title: '独立日', src: require('@/assets/Slide-04.jpg')}
         ],
         cards: [
+            {title: '黑夜传说', src: require('@/assets/Card-01.jpg'), updatedAt: '2019-01-01'},
+            {title: '变形金刚', src: require('@/assets/Card-02.jpg'), updatedAt: '2019-01-01'},
+            {title: '黑客帝国', src: require('@/assets/Card-03.jpg'), updatedAt: '2019-01-01'},
+            {title: '泰坦尼克', src: require('@/assets/Card-04.jpg'), updatedAt: '2019-01-01'},
+            {title: '权力的游戏', src: require('@/assets/Card-05.jpg'), updatedAt: '2019-01-01'},
+            {title: '肖生克的救赎', src: require('@/assets/Card-06.jpg'), updatedAt: '2019-01-01'},
             {title: '黑夜传说', src: require('@/assets/Card-01.jpg'), updatedAt: '2019-01-01'},
             {title: '变形金刚', src: require('@/assets/Card-02.jpg'), updatedAt: '2019-01-01'},
             {title: '黑客帝国', src: require('@/assets/Card-03.jpg'), updatedAt: '2019-01-01'},
