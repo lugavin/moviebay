@@ -29,7 +29,7 @@
             </v-container>
         </v-content>
         <v-footer dark>
-            <div class="mx-auto">&copy; 2015 - 2019</div>
+            <div class="mx-auto font-italic">&copy; 2014 - 2019 Gavin Software Inc.</div>
         </v-footer>
     </v-app>
 </template>
