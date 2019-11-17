@@ -3,8 +3,11 @@ import Vuetify from 'vuetify/lib';
 
 Vue.use(Vuetify);
 
+/**
+ * @see https://material.io/resources/
+ */
 export default new Vuetify({
     icons: {
-        iconfont: 'mdi', // default - only for display purposes
+        iconfont: 'md', // fa|md|mdi(default)
     },
 });

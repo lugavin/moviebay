@@ -11,7 +11,7 @@
                 <v-spacer/>
                 <div class="font-italic">
                     <span>今日更新 <em class="red--text text--darken-3">{{cards.length}}</em> 部 共 <em class="red--text text--darken-3">9999876</em> 部</span>
-                    <a href="#" class="ml-4 v-btn v-btn--text grey--text text--darken-3">更多...</a>
+                    <a href="#" target="_blank" class="ml-4 grey--text text--darken-3 v-link">更多...</a>
                 </div>
             </v-toolbar>
             <v-container fluid pt-0>
@@ -24,7 +24,7 @@
                                         <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                              v-if="hover">
                                             <v-btn icon class="white--text">
-                                                <v-icon x-large>mdi-play</v-icon>
+                                                <v-icon x-large>play_circle_outline</v-icon>
                                             </v-btn>
                                         </div>
                                     </v-expand-transition>
@@ -52,12 +52,6 @@ export default {
             {title: '独立日', src: require('@/assets/Slide-04.jpg')}
         ],
         cards: [
-            {title: '黑夜传说', src: require('@/assets/Card-01.jpg'), createdAt: '2019-01-01'},
-            {title: '变形金刚', src: require('@/assets/Card-02.jpg'), createdAt: '2019-01-01'},
-            {title: '黑客帝国', src: require('@/assets/Card-03.jpg'), createdAt: '2019-01-01'},
-            {title: '泰坦尼克', src: require('@/assets/Card-04.jpg'), createdAt: '2019-01-01'},
-            {title: '权力的游戏', src: require('@/assets/Card-05.jpg'), createdAt: '2019-01-01'},
-            {title: '肖申克的救赎', src: require('@/assets/Card-06.jpg'), createdAt: '2019-01-01'},
             {title: '黑夜传说', src: require('@/assets/Card-01.jpg'), createdAt: '2019-01-01'},
             {title: '变形金刚', src: require('@/assets/Card-02.jpg'), createdAt: '2019-01-01'},
             {title: '黑客帝国', src: require('@/assets/Card-03.jpg'), createdAt: '2019-01-01'},

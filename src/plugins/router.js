@@ -24,6 +24,5 @@ export default new Router({
     routes: [
         {path: '/', redirect: '/home'},
         {path: '/home', component: () => import('@/components/AppContent')},
-        //{path: '/register', component: () => import('@/components/account/register')},
     ]
 });
