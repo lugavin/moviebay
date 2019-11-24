@@ -28,7 +28,14 @@
             </v-container>
         </v-content>
         <v-footer dark>
-            <div class="mx-auto font-italic">&copy; 2014 - 2019 Gavin Software Inc.</div>
+            <v-container>
+                <v-layout wrap>
+                    <v-flex xs12 text-center>
+                        <div>免责声明：本站资源来自互联网免费共享，仅供交流学习之用，版权归原作者所有，如有侵权，请联系站长并出示版权证明，本站将在第一时间内处理。</div>
+                        <div>&copy; 2014 - {{ new Date().getFullYear() }} moviebay.top All Rights Reserved. Powered by 影视湾 | 站长邮箱：moviebay@vivaldi.net</div>
+                    </v-flex>
+                </v-layout>
+            </v-container>
         </v-footer>
         <v-dialog  max-width="500px" v-model="showLoginDialog">
             <v-card>
@@ -43,7 +50,7 @@
                     </v-form>
                 </v-card-text>
                 <v-card-text>
-                    <a href="javascript:void(0)" class="grey--text text--darken-3 v-link">忘记密码？</a>
+                    <a href="javascript:void(0)" class="v-link">忘记密码？</a>
                     <a href="javascript:void(0)" class="v-link float-right">注册一个新账号</a>
                 </v-card-text>
             </v-card>
@@ -73,6 +80,13 @@ export default {
 
 <style>
     .v-link {
+        color: #424242 !important;
         text-decoration: none;
+    }
+
+    .v-link:hover,
+    .v-link:focus {
+        color: #337ab7 !important;
+        /*text-decoration: underline;*/
     }
 </style>

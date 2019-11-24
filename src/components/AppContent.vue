@@ -7,19 +7,27 @@
         </v-flex>
         <v-card outlined class="mt-4">
             <v-toolbar dense flat>
-                <v-toolbar-title>最新视频</v-toolbar-title>
+                <h4 class="font-weight-medium">最新视频</h4>
                 <v-spacer/>
-                <div class="font-italic">
-                    <span>今日更新 <em class="red--text text--darken-3">{{cards.length}}</em> 部 共 <em class="red--text text--darken-3">9999876</em> 部</span>
-                    <a href="#" target="_blank" class="ml-4 grey--text text--darken-3 v-link">更多...</a>
-                </div>
+                <ul class="list">
+                    <li class="list-item">
+                        <small>
+                            今日更新 <span class="red--text text--darken-3">{{videos.length}}</span> 部
+                            共 <span class="red--text text--darken-3">9999876</span> 部
+                        </small>
+                        <span class="mx-2"></span>
+                    </li>
+                    <li class="list-item">
+                        <small><a href="#" target="_blank" class="v-link">更多...</a></small>
+                    </li>
+                </ul>
             </v-toolbar>
             <v-container fluid pt-0>
                 <v-row dense>
-                    <v-col v-for="(card, i) in cards" :key="i" cols="2">
+                    <v-col v-for="(video, i) in videos" :key="i" cols="2">
                         <v-hover v-slot:default="{ hover }">
                             <v-card>
-                                <v-img :src="card.src" height="250">
+                                <v-img :src="video.src" height="250">
                                     <v-expand-transition>
                                         <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                              v-if="hover">
@@ -29,9 +37,91 @@
                                         </div>
                                     </v-expand-transition>
                                 </v-img>
-                                <v-card-subtitle class="text-center py-1">
-                                    <div class="subtitle-1">{{card.title}}</div>
-                                    <div class="subtitle-2">{{card.createdAt}}</div>
+                                <v-card-subtitle class="text-center black--text py-1">
+                                    <div class="subtitle-1">{{video.title}}</div>
+                                    <div class="subtitle-2">{{video.createdAt}}</div>
+                                </v-card-subtitle>
+                            </v-card>
+                        </v-hover>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-card>
+        <v-card outlined class="mt-4">
+            <v-toolbar dense flat>
+                <h4 class="font-weight-medium">电影</h4>
+                <v-spacer/>
+                <ul class="list">
+                    <li v-for="genre in films.genre" :key="genre.value" class="list-item">
+                        <small>
+                            <a href="#" target="_blank" class="v-link">{{genre.label}}</a>
+                            <span class="mx-2">/</span>
+                        </small>
+                    </li>
+                    <li class="list-item">
+                        <small><a href="#" target="_blank" class="v-link">更多...</a></small>
+                    </li>
+                </ul>
+            </v-toolbar>
+            <v-container fluid pt-0>
+                <v-row dense>
+                    <v-col v-for="(video, i) in videos" :key="i" cols="2">
+                        <v-hover v-slot:default="{ hover }">
+                            <v-card>
+                                <v-img :src="video.src" height="250">
+                                    <v-expand-transition>
+                                        <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
+                                             v-if="hover">
+                                            <v-btn icon class="white--text">
+                                                <v-icon x-large>play_circle_outline</v-icon>
+                                            </v-btn>
+                                        </div>
+                                    </v-expand-transition>
+                                </v-img>
+                                <v-card-subtitle class="text-center black--text py-1">
+                                    <div class="subtitle-1">{{video.title}}</div>
+                                    <div class="subtitle-2">{{video.createdAt}}</div>
+                                </v-card-subtitle>
+                            </v-card>
+                        </v-hover>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-card>
+        <v-card outlined class="mt-4">
+            <v-toolbar dense flat>
+                <h4 class="font-weight-medium">连续剧</h4>
+                <v-spacer/>
+                <ul class="list">
+                    <li v-for="genre in dramas.genre" :key="genre.value" class="list-item">
+                        <small>
+                            <a href="#" target="_blank" class="v-link">{{genre.label}}</a>
+                            <span class="mx-2">/</span>
+                        </small>
+                    </li>
+                    <li class="list-item">
+                        <small><a href="#" target="_blank" class="v-link">更多...</a></small>
+                    </li>
+                </ul>
+            </v-toolbar>
+            <v-container fluid pt-0>
+                <v-row dense>
+                    <v-col v-for="(video, i) in videos" :key="i" cols="2">
+                        <v-hover v-slot:default="{ hover }">
+                            <v-card>
+                                <v-img :src="video.src" height="250">
+                                    <v-expand-transition>
+                                        <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
+                                             v-if="hover">
+                                            <v-btn icon class="white--text">
+                                                <v-icon x-large>play_circle_outline</v-icon>
+                                            </v-btn>
+                                        </div>
+                                    </v-expand-transition>
+                                </v-img>
+                                <v-card-subtitle class="text-center black--text py-1">
+                                    <div class="subtitle-1">{{video.title}}</div>
+                                    <div class="subtitle-2">{{video.createdAt}}</div>
                                 </v-card-subtitle>
                             </v-card>
                         </v-hover>
@@ -51,14 +141,35 @@ export default {
             {title: '巴霍巴利王', src: require('@/assets/Slide-03.jpg')},
             {title: '独立日', src: require('@/assets/Slide-04.jpg')}
         ],
-        cards: [
+        videos: [
             {title: '黑夜传说', src: require('@/assets/Card-01.jpg'), createdAt: '2019-01-01'},
             {title: '变形金刚', src: require('@/assets/Card-02.jpg'), createdAt: '2019-01-01'},
             {title: '黑客帝国', src: require('@/assets/Card-03.jpg'), createdAt: '2019-01-01'},
             {title: '泰坦尼克', src: require('@/assets/Card-04.jpg'), createdAt: '2019-01-01'},
             {title: '权力的游戏', src: require('@/assets/Card-05.jpg'), createdAt: '2019-01-01'},
             {title: '肖申克的救赎', src: require('@/assets/Card-06.jpg'), createdAt: '2019-01-01'},
-        ]
+        ],
+        films: {
+            genre: [
+                {value: 1, label: '动作片'},
+                {value: 2, label: '喜剧片'},
+                {value: 3, label: '爱情片'},
+                {value: 4, label: '科幻片'},
+                {value: 5, label: '恐怖片'},
+                {value: 6, label: '剧情片'},
+                {value: 7, label: '战争片'},
+                {value: 8, label: '纪录片'},
+            ],
+        },
+        dramas: {
+            genre: [
+                {value: 1, label: '国产剧'},
+                {value: 2, label: '港台剧'},
+                {value: 3, label: '日韩剧'},
+                {value: 4, label: '欧美剧'},
+                {value: 5, label: '其他剧'}
+            ],
+        },
     }),
 };
 </script>
@@ -72,5 +183,16 @@ export default {
         position: absolute;
         align-items: center;
         justify-content: center;
+    }
+
+    ul.list {
+        list-style: none;
+        line-height: 40px;
+        margin-left: 50px;
+    }
+
+    ul.list li.list-item {
+        display: block;
+        float: left;
     }
 </style>
