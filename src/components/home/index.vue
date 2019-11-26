@@ -175,24 +175,24 @@ export default {
 </script>
 
 <style>
-    .v-card--reveal {
-        width: 100%;
-        height: 100%;
-        opacity: .5;
-        bottom: 0;
-        position: absolute;
-        align-items: center;
-        justify-content: center;
-    }
+.v-card--reveal {
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    bottom: 0;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+}
 
-    ul.list {
-        list-style: none;
-        line-height: 40px;
-        margin-left: 50px;
-    }
+ul.list {
+    list-style: none;
+    line-height: 40px;
+    margin-left: 50px;
+}
 
-    ul.list li.list-item {
-        display: block;
-        float: left;
-    }
+ul.list li.list-item {
+    display: block;
+    float: left;
+}
 </style>
