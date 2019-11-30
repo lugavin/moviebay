@@ -7,10 +7,12 @@
         </v-flex>
         <v-card outlined class="mt-4">
             <v-toolbar dense flat>
-                <h4 class="font-weight-medium">最新视频</h4>
+                <h4 class="font-weight-medium">
+                    <a href="#" target="_blank" class="v-link">最新视频</a>
+                </h4>
                 <v-spacer/>
                 <ul class="list">
-                    <li class="list-item">
+                    <li class="hidden-sm-and-down list-item">
                         <small>
                             今日更新 <span class="red--text text--darken-3">{{videos.length}}</span> 部
                             共 <span class="red--text text--darken-3">9999876</span> 部
@@ -24,10 +26,10 @@
             </v-toolbar>
             <v-container fluid pt-0>
                 <v-row dense>
-                    <v-col v-for="(video, i) in videos" :key="i" cols="2">
+                    <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2">
                         <v-hover v-slot:default="{ hover }">
                             <v-card>
-                                <v-img :src="video.src" height="250">
+                                <v-img :src="video.src" max-width="360" max-height="480">
                                     <v-expand-transition>
                                         <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                              v-if="hover">
@@ -49,10 +51,12 @@
         </v-card>
         <v-card outlined class="mt-4">
             <v-toolbar dense flat>
-                <h4 class="font-weight-medium">电影</h4>
+                <h4 class="font-weight-medium">
+                    <a href="#" target="_blank" class="v-link">电影</a>
+                </h4>
                 <v-spacer/>
                 <ul class="list">
-                    <li v-for="genre in films.genre" :key="genre.value" class="list-item">
+                    <li v-for="genre in films.genre" :key="genre.value" class="hidden-sm-and-down list-item">
                         <small>
                             <a href="#" target="_blank" class="v-link">{{genre.label}}</a>
                             <span class="mx-2">/</span>
@@ -65,10 +69,10 @@
             </v-toolbar>
             <v-container fluid pt-0>
                 <v-row dense>
-                    <v-col v-for="(video, i) in videos" :key="i" cols="2">
+                    <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2">
                         <v-hover v-slot:default="{ hover }">
                             <v-card>
-                                <v-img :src="video.src" height="250">
+                                <v-img :src="video.src" max-width="360" max-height="480">
                                     <v-expand-transition>
                                         <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                              v-if="hover">
@@ -90,10 +94,12 @@
         </v-card>
         <v-card outlined class="mt-4">
             <v-toolbar dense flat>
-                <h4 class="font-weight-medium">连续剧</h4>
+                <h4 class="font-weight-medium">
+                    <a href="#" target="_blank" class="v-link">连续剧</a>
+                </h4>
                 <v-spacer/>
                 <ul class="list">
-                    <li v-for="genre in dramas.genre" :key="genre.value" class="list-item">
+                    <li v-for="genre in dramas.genre" :key="genre.value" class="hidden-sm-and-down list-item">
                         <small>
                             <a href="#" target="_blank" class="v-link">{{genre.label}}</a>
                             <span class="mx-2">/</span>
@@ -106,10 +112,10 @@
             </v-toolbar>
             <v-container fluid pt-0>
                 <v-row dense>
-                    <v-col v-for="(video, i) in videos" :key="i" cols="2">
+                    <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2">
                         <v-hover v-slot:default="{ hover }">
                             <v-card>
-                                <v-img :src="video.src" height="250">
+                                <v-img :src="video.src" max-width="360" max-height="480">
                                     <v-expand-transition>
                                         <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                              v-if="hover">
