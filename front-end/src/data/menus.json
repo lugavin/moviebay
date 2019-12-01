@@ -12,16 +12,16 @@
     "url": "/tv"
   },
   {
-    "name": "综艺",
-    "url": "/variety"
-  },
-  {
     "name": "动漫",
     "url": "/anime"
   },
   {
-    "name": "资讯",
-    "url": "/news"
+    "name": "综艺",
+    "url": "/variety"
+  },
+  {
+    "name": "音乐MV",
+    "url": "/mv"
   },
   {
     "name": "留言",

@@ -34,4 +34,31 @@ export default {
     color: #337ab7 !important;
     /*text-decoration: underline;*/
 }
+
+.text-small {
+    font-size: 80%;
+    font-weight: 400;
+}
+
+ul.list {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+    line-height: 40px;
+}
+
+ul.list li.list-item {
+    display: block;
+    float: left;
+}
+
+.v-card--reveal {
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    bottom: 0;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+}
 </style>

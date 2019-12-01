@@ -25,7 +25,7 @@
                 <v-toolbar color="primary" dark flat>
                     <v-toolbar-title>请登录</v-toolbar-title>
                 </v-toolbar>
-                <v-card-text class="pt-5">
+                <v-card-text class="pt-4">
                     <v-form>
                         <v-text-field label="账号" name="username" prepend-icon="person" type="text"/>
                         <v-text-field label="密码" name="password" prepend-icon="lock" type="password"/>

@@ -8,43 +8,43 @@
         <v-card outlined class="mt-4">
             <v-toolbar dense flat>
                 <h4 class="font-weight-medium">
-                    <a href="#" target="_blank" class="v-link">最新视频</a>
+                    <router-link class="v-link" to="/video/list">最新视频</router-link>
                 </h4>
                 <v-spacer/>
-                <ul class="list">
+                <ul class="list text-small">
                     <li class="hidden-sm-and-down list-item">
-                        <small>
-                            今日更新 <span class="red--text text--darken-3">{{videos.length}}</span> 部
-                            共 <span class="red--text text--darken-3">9999876</span> 部
-                        </small>
+                        今日更新 <span class="red--text text--darken-3">{{videos.length}}</span> 部
+                        共 <span class="red--text text--darken-3">9999876</span> 部
                         <span class="mx-2"></span>
                     </li>
                     <li class="list-item">
-                        <small><a href="#" target="_blank" class="v-link">更多...</a></small>
+                        <router-link class="v-link" to="/video/list">更多...</router-link>
                     </li>
                 </ul>
             </v-toolbar>
             <v-container fluid pt-0>
                 <v-row dense>
                     <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2">
-                        <v-hover v-slot:default="{ hover }">
-                            <v-card>
+                        <v-card>
+                            <v-hover v-slot:default="{ hover }">
                                 <v-img :src="video.src" max-width="360" max-height="480">
                                     <v-expand-transition>
                                         <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                              v-if="hover">
-                                            <v-btn icon class="white--text">
+                                            <v-btn icon class="white--text" to="/video/play">
                                                 <v-icon x-large>play_circle_outline</v-icon>
                                             </v-btn>
                                         </div>
                                     </v-expand-transition>
                                 </v-img>
-                                <v-card-subtitle class="text-center black--text py-1">
-                                    <div class="subtitle-1">{{video.title}}</div>
-                                    <div class="subtitle-2">{{video.createdAt}}</div>
-                                </v-card-subtitle>
-                            </v-card>
-                        </v-hover>
+                            </v-hover>
+                            <v-card-subtitle class="text-center py-1">
+                                <div class="subtitle-1">
+                                    <router-link class="v-link" to="/video/detail">{{video.title}}</router-link>
+                                </div>
+                                <div class="subtitle-2">{{video.createdAt}}</div>
+                            </v-card-subtitle>
+                        </v-card>
                     </v-col>
                 </v-row>
             </v-container>
@@ -52,42 +52,42 @@
         <v-card outlined class="mt-4">
             <v-toolbar dense flat>
                 <h4 class="font-weight-medium">
-                    <a href="#" target="_blank" class="v-link">电影</a>
+                    <router-link class="v-link" to="/video/list">电影</router-link>
                 </h4>
                 <v-spacer/>
-                <ul class="list">
+                <ul class="list text-small">
                     <li v-for="genre in films.genre" :key="genre.value" class="hidden-sm-and-down list-item">
-                        <small>
-                            <a href="#" target="_blank" class="v-link">{{genre.label}}</a>
-                            <span class="mx-2">/</span>
-                        </small>
+                        <router-link class="v-link" to="/">{{genre.label}}</router-link>
+                        <span class="mx-2">/</span>
                     </li>
                     <li class="list-item">
-                        <small><a href="#" target="_blank" class="v-link">更多...</a></small>
+                        <router-link class="v-link" to="/video/list">更多...</router-link>
                     </li>
                 </ul>
             </v-toolbar>
             <v-container fluid pt-0>
                 <v-row dense>
                     <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2">
-                        <v-hover v-slot:default="{ hover }">
-                            <v-card>
+                        <v-card>
+                            <v-hover v-slot:default="{ hover }">
                                 <v-img :src="video.src" max-width="360" max-height="480">
                                     <v-expand-transition>
                                         <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                              v-if="hover">
-                                            <v-btn icon class="white--text">
+                                            <v-btn icon class="white--text" to="/video/play">
                                                 <v-icon x-large>play_circle_outline</v-icon>
                                             </v-btn>
                                         </div>
                                     </v-expand-transition>
                                 </v-img>
-                                <v-card-subtitle class="text-center black--text py-1">
-                                    <div class="subtitle-1">{{video.title}}</div>
-                                    <div class="subtitle-2">{{video.createdAt}}</div>
-                                </v-card-subtitle>
-                            </v-card>
-                        </v-hover>
+                            </v-hover>
+                            <v-card-subtitle class="text-center py-1">
+                                <div class="subtitle-1">
+                                    <router-link class="v-link" to="/video/detail">{{video.title}}</router-link>
+                                </div>
+                                <div class="subtitle-2">{{video.createdAt}}</div>
+                            </v-card-subtitle>
+                        </v-card>
                     </v-col>
                 </v-row>
             </v-container>
@@ -95,42 +95,42 @@
         <v-card outlined class="mt-4">
             <v-toolbar dense flat>
                 <h4 class="font-weight-medium">
-                    <a href="#" target="_blank" class="v-link">连续剧</a>
+                    <router-link class="v-link" to="/video/list">连续剧</router-link>
                 </h4>
                 <v-spacer/>
-                <ul class="list">
+                <ul class="list text-small">
                     <li v-for="genre in dramas.genre" :key="genre.value" class="hidden-sm-and-down list-item">
-                        <small>
-                            <a href="#" target="_blank" class="v-link">{{genre.label}}</a>
-                            <span class="mx-2">/</span>
-                        </small>
+                        <router-link class="v-link" to="/">{{genre.label}}</router-link>
+                        <span class="mx-2">/</span>
                     </li>
                     <li class="list-item">
-                        <small><a href="#" target="_blank" class="v-link">更多...</a></small>
+                        <router-link class="v-link" to="/video/list">更多...</router-link>
                     </li>
                 </ul>
             </v-toolbar>
             <v-container fluid pt-0>
                 <v-row dense>
                     <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2">
-                        <v-hover v-slot:default="{ hover }">
-                            <v-card>
+                        <v-card>
+                            <v-hover v-slot:default="{ hover }">
                                 <v-img :src="video.src" max-width="360" max-height="480">
                                     <v-expand-transition>
                                         <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                              v-if="hover">
-                                            <v-btn icon class="white--text">
+                                            <v-btn icon class="white--text" to="/video/play">
                                                 <v-icon x-large>play_circle_outline</v-icon>
                                             </v-btn>
                                         </div>
                                     </v-expand-transition>
                                 </v-img>
-                                <v-card-subtitle class="text-center black--text py-1">
-                                    <div class="subtitle-1">{{video.title}}</div>
-                                    <div class="subtitle-2">{{video.createdAt}}</div>
-                                </v-card-subtitle>
-                            </v-card>
-                        </v-hover>
+                            </v-hover>
+                            <v-card-subtitle class="text-center py-1">
+                                <div class="subtitle-1">
+                                    <router-link class="v-link" to="/video/detail">{{video.title}}</router-link>
+                                </div>
+                                <div class="subtitle-2">{{video.createdAt}}</div>
+                            </v-card-subtitle>
+                        </v-card>
                     </v-col>
                 </v-row>
             </v-container>
@@ -140,6 +140,7 @@
 
 <script>
 export default {
+    name: 'Home',
     data: () => ({
         posters: [
             {title: '复仇者联盟', src: require('@/assets/Slide-01.jpg')},
@@ -179,26 +180,3 @@ export default {
     }),
 };
 </script>
-
-<style>
-.v-card--reveal {
-    width: 100%;
-    height: 100%;
-    opacity: .5;
-    bottom: 0;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-}
-
-ul.list {
-    list-style: none;
-    line-height: 40px;
-    margin-left: 50px;
-}
-
-ul.list li.list-item {
-    display: block;
-    float: left;
-}
-</style>
