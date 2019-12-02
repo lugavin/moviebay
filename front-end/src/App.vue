@@ -23,7 +23,14 @@ export default {
 }
 </script>
 
+<!--
+vue-html-loader and css-loader translates non-root URLs to relative paths.
+In order to treat it like a module path, prefix it with ~
+Ref => https://github.com/vuejs/vue-loader/issues/193
+-->
 <style>
+@import "~material-design-icons/iconfont/material-icons.css";
+
 .v-link {
     color: #424242 !important;
     text-decoration: none;
