@@ -2,8 +2,8 @@
     <v-layout wrap my-2>
         <v-row dense>
             <v-col cols="8">
-                <video id="player" class="video-js vjs-fluid vjs-big-play-left-bottom"
-                       controls preload :poster="video.poster">
+                <video id="vjs-player" class="video-js vjs-fluid vjs-big-play-left-bottom"
+                       controls preload="auto" :poster="video.poster">
                     <source :src="video.url" type="video/mp4"/>
                     <source :src="video.url" type="video/webm"/>
                     <p class="vjs-no-js">
@@ -17,8 +17,12 @@
 </template>
 
 <script>
+import 'video.js/dist/video-js.min.css';
 import videojs from 'video.js';
 
+/**
+ * @see https://docs.videojs.com/tutorial-vue.html
+ */
 export default {
     name: 'VideoPlay',
     data: () => ({
@@ -29,14 +33,12 @@ export default {
         },
     }),
     mounted() {
-        videojs('player');
+        videojs('vjs-player');
     },
 };
 </script>
 
 <style>
-@import "~video.js/dist/video-js.min.css";
-
 .vjs-big-play-left-bottom .vjs-big-play-button {
     top: auto;
     left: 0.5vw;
