@@ -1,13 +1,18 @@
 <template>
     <v-layout wrap my-2>
-        <video id="my-player" class="video-js vjs-big-play-left-bottom" controls preload="auto"
-               :poster="video.poster" data-setup='{}' height="500px">
-            <source :src="video.url" type="video/webm"/>
-            <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-            </p>
-        </video>
+        <v-row dense>
+            <v-col cols="8">
+                <video id="player" class="video-js vjs-fluid vjs-big-play-left-bottom"
+                       controls preload :poster="video.poster">
+                    <source :src="video.url" type="video/mp4"/>
+                    <source :src="video.url" type="video/webm"/>
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                </video>
+            </v-col>
+        </v-row>
     </v-layout>
 </template>
 
@@ -19,12 +24,12 @@ export default {
     data: () => ({
         video: {
             id: '1001',
-            poster: require('@/assets/poster.jpg'),
-            url: require('@/data/001.mp4')
+            poster: require('@/assets/poster.png'),
+            url: require('@/data/001.mp4'),
         },
     }),
     mounted() {
-        videojs('my-player');
+        videojs('player');
     },
 };
 </script>
@@ -34,7 +39,8 @@ export default {
 
 .vjs-big-play-left-bottom .vjs-big-play-button {
     top: auto;
-    bottom: 10px !important;
-    font-size: 2.8em;
+    left: 0.5vw;
+    bottom: 0.5vw;
+    font-size: 1.8vw;
 }
 </style>
