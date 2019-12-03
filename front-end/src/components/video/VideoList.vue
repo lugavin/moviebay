@@ -29,7 +29,7 @@
                             <v-expand-transition>
                                 <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                      v-if="hover">
-                                    <v-btn icon class="white--text" to="/video/play">
+                                    <v-btn icon class="white--text" to="/video/play" target="_blank">
                                         <v-icon x-large>play_circle_outline</v-icon>
                                     </v-btn>
                                 </div>

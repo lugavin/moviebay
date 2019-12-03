@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import 'video.js/dist/video-js.min.css';
 import videojs from 'video.js';
 
 /**
@@ -39,6 +38,8 @@ export default {
 </script>
 
 <style>
+@import "~video.js/dist/video-js.min.css";
+
 .vjs-big-play-left-bottom .vjs-big-play-button {
     top: auto;
     left: 0.5vw;
