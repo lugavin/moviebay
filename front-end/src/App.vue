@@ -8,10 +8,13 @@
 
 <script>
 import { AppHeader, AppMain, AppFooter } from '@/components/layout';
+
 /**
+ * @see https://v15.vuetifyjs.com/zh-Hans/framework/grid
+ * @see https://vuetifyjs.com/zh-Hans/components/grids
+ * @see https://vuetifyjs.com/zh-Hans/getting-started/pre-made-layouts
  * @see https://cn.vuejs.org/v2/api/#name
  * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
- * @see https://vuetifyjs.com/zh-Hans/getting-started/pre-made-layouts
  */
 export default {
     name: 'App',

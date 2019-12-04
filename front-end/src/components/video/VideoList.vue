@@ -1,60 +1,70 @@
 <template>
-    <v-layout wrap my-2>
-        <v-expansion-panels>
-            <v-expansion-panel>
-                <v-expansion-panel-header ripple>
-                    <div>共检索到 <span class="red--text text--darken-3">{{rows}}</span> 条结果</div>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                    <div>
-                        <label>按类型：</label>
-                        <label v-for="genre in genre" :key="genre.value" :for="'genre-'+genre.value" class="mr-4">
-                            <input :id="'genre-'+genre.value" name="genre" type="radio"> {{genre.label}}
-                        </label>
-                    </div>
-                    <div>
-                        <label>按年份：</label>
-                        <label v-for="year in years" :key="year" :for="'year-'+year" class="mr-4">
-                            <input :id="'year-'+year" name="year" type="radio"> {{year}}
-                        </label>
-                    </div>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
-        </v-expansion-panels>
-        <v-row dense class="py-2">
-            <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2" class="py-2">
-                <v-card>
-                    <v-hover v-slot:default="{ hover }">
-                        <v-img :src="video.src" max-width="360" max-height="480">
-                            <v-expand-transition>
-                                <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
-                                     v-if="hover">
-                                    <v-btn icon class="white--text" to="/video/play" target="_blank">
-                                        <v-icon x-large>play_circle_outline</v-icon>
-                                    </v-btn>
-                                </div>
-                            </v-expand-transition>
-                        </v-img>
-                    </v-hover>
-                    <v-card-subtitle class="text-center py-1">
-                        <div class="subtitle-1">
-                            <router-link class="v-link" to="/video/detail">{{video.title}}</router-link>
-                        </div>
-                        <div class="subtitle-2">{{video.createdAt}}</div>
-                    </v-card-subtitle>
-                </v-card>
-            </v-col>
-        </v-row>
-        <v-flex xs12 text-center>
+    <v-row dense>
+        <v-col cols="12">
+            <v-card outlined>
+                <v-toolbar dense flat class="grey lighten-3">
+                    <h4 class="font-weight-medium">共检索到 <span class="red--text text--darken-3">{{rows}}</span> 条结果</h4>
+                    <v-spacer/>
+                    <a class="v-link" @click="expand=!expand">
+                        <small>{{expand?'收起':'展开'}}</small>
+                        <v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
+                    </a>
+                </v-toolbar>
+                <v-container :class="{'d-none': !expand}">
+                    <v-row dense>
+                        <v-col cols="12">
+                            <label>按类型：</label>
+                            <label v-for="genre in genre" :key="genre.value" :for="'genre-'+genre.value" class="mr-4">
+                                <input :id="'genre-'+genre.value" name="genre" type="radio"> {{genre.label}}
+                            </label>
+                        </v-col>
+                        <v-col cols="12">
+                            <label>按年份：</label>
+                            <label v-for="year in years" :key="year" :for="'year-'+year" class="mr-4">
+                                <input :id="'year-'+year" name="year" type="radio"> {{year}}
+                            </label>
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-card>
+        </v-col>
+        <v-col cols="12">
+            <v-row dense>
+                <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2" class="py-2">
+                    <v-card>
+                        <v-hover v-slot:default="{ hover }">
+                            <v-img :src="video.src" max-width="360" max-height="480">
+                                <v-expand-transition>
+                                    <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
+                                         v-if="hover">
+                                        <v-btn icon class="white--text" to="/video/play" target="_blank">
+                                            <v-icon x-large>play_circle_outline</v-icon>
+                                        </v-btn>
+                                    </div>
+                                </v-expand-transition>
+                            </v-img>
+                        </v-hover>
+                        <v-card-text class="text-center py-1">
+                            <div class="subtitle-1">
+                                <router-link class="v-link" to="/video/detail">{{video.title}}</router-link>
+                            </div>
+                            <div class="subtitle-2">{{video.createdAt}}</div>
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-col>
+        <v-col cols="12">
             <v-pagination v-model="page" :length="rows" :total-visible="7"></v-pagination>
-        </v-flex>
-    </v-layout>
+        </v-col>
+    </v-row>
 </template>
 
 <script>
 export default {
     name: 'VideoList',
     data: () => ({
+        expand: false,
         page: 1,
         rows: 15,
         videos: [
