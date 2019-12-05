@@ -3,23 +3,24 @@
     <v-app-bar app flat dense>
         <v-container>
             <v-layout>
-                <v-img :src="require('@/assets/logo.png')" height="48" width="135" max-width="135"
-                       class="mr-5" contain/>
+                <v-toolbar-title>
+                    <v-img :src="require('@/assets/logo.png')" height="48" width="135" max-width="135"
+                           class="mr-4" contain/>
+                </v-toolbar-title>
                 <v-toolbar-items>
                     <v-btn v-for="(menu, i) in menus" :key="i" :to="menu.url" text>
                         {{menu.name}}
                     </v-btn>
-                </v-toolbar-items>
-                <v-row align="center">
                     <v-text-field append-icon="search" placeholder="请输入关键字"
-                                  hide-details single-line class="mx-4"/>
-                </v-row>
+                                  hide-details class="align-center mr-4"/>
+                </v-toolbar-items>
                 <v-spacer/>
                 <v-toolbar-items>
                     <v-btn text @click.stop="login">登录 / 注册</v-btn>
                 </v-toolbar-items>
             </v-layout>
         </v-container>
+        <!-- Login Dialog -->
         <v-dialog max-width="500" v-model="showLoginDialog">
             <v-card>
                 <v-toolbar color="primary" dark flat>

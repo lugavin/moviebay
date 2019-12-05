@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { AppHeader, AppMain, AppFooter } from '@/components/layout';
+import {AppHeader, AppMain, AppFooter} from '@/components/layout';
 
 /**
  * @see https://v15.vuetifyjs.com/zh-Hans/framework/grid
