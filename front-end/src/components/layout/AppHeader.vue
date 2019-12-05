@@ -12,7 +12,7 @@
                         {{menu.name}}
                     </v-btn>
                     <v-text-field append-icon="search" placeholder="请输入关键字"
-                                  hide-details class="align-center ml-4"/>
+                                  hide-details class="align-center mx-4"/>
                 </v-toolbar-items>
                 <v-spacer/>
                 <v-toolbar-items>
