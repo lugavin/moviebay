@@ -1,5 +1,7 @@
 <template>
-    <h3>VideoDetail</h3>
+    <v-container>
+        <h3>VideoDetail</h3>
+    </v-container>
 </template>
 
 <script>

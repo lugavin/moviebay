@@ -4,7 +4,9 @@ import Vuetify from 'vuetify/lib';
 Vue.use(Vuetify);
 
 /**
- * @see https://material.io/resources/
+ * @see https://vuetifyjs.com/zh-Hans/getting-started/pre-made-layouts
+ * @see https://v15.vuetifyjs.com/zh-Hans/framework/grid
+ * @see https://vuetifyjs.com/zh-Hans/components/grids
  */
 export default new Vuetify({
     icons: {

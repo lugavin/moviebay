@@ -1,0 +1,19 @@
+{
+  "movie": [
+    {"value": 1, "label": "动作片"},
+    {"value": 2, "label": "喜剧片"},
+    {"value": 3, "label": "爱情片"},
+    {"value": 4, "label": "科幻片"},
+    {"value": 5, "label": "恐怖片"},
+    {"value": 6, "label": "剧情片"},
+    {"value": 7, "label": "战争片"},
+    {"value": 8, "label": "纪录片"}
+  ],
+  "drama": [
+    {"value": 1, "label": "国产剧"},
+    {"value": 2, "label": "港台剧"},
+    {"value": 3, "label": "日韩剧"},
+    {"value": 4, "label": "欧美剧"},
+    {"value": 5, "label": "其他剧"}
+  ]
+}

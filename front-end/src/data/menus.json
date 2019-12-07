@@ -1,30 +1,9 @@
 [
-  {
-    "name": "首页",
-    "url": "/home"
-  },
-  {
-    "name": "电影",
-    "url": "/movie"
-  },
-  {
-    "name": "连续剧",
-    "url": "/tv"
-  },
-  {
-    "name": "动漫",
-    "url": "/anime"
-  },
-  {
-    "name": "综艺",
-    "url": "/variety"
-  },
-  {
-    "name": "音乐MV",
-    "url": "/mv"
-  },
-  {
-    "name": "留言",
-    "url": "/comments"
-  }
+  {"title": "首页", "url": "/home"},
+  {"title": "电影", "url": "/movies"},
+  {"title": "连续剧", "url": "/dramas"},
+  {"title": "动漫", "url": "/cartoons"},
+  {"title": "综艺", "url": "/shows"},
+  {"title": "音乐MV", "url": "/mv"},
+  {"title": "留言", "url": "/comments"}
 ]

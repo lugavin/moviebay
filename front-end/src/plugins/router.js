@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import {VideoList, VideoDetail, VideoPlay} from '@/components/video';
 
 Vue.use(Router);
 
+/**
+ * @see https://router.vuejs.org/zh/guide/
+ */
 export default new Router({
     /**
      * Router Mode
@@ -25,8 +27,8 @@ export default new Router({
     routes: [
         {path: '/', redirect: '/home'},
         {path: '/home', component: () => import('@/components/home')},
-        {path: '/video/list', component: VideoList},
-        {path: '/video/detail', component: VideoDetail},
-        {path: '/video/play', component: VideoPlay},
+        {path: '/video/list', component: () => import('@/components/video/VideoList')},
+        {path: '/video/detail', component: () => import('@/components/video/VideoDetail')},
+        {path: '/video/play', component: () => import('@/components/video/VideoPlay')},
     ]
 });

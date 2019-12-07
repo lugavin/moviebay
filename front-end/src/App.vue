@@ -1,18 +1,16 @@
 <template>
     <v-app>
         <app-header/>
+        <app-drawer/>
         <app-main/>
         <app-footer/>
     </v-app>
 </template>
 
 <script>
-import {AppHeader, AppMain, AppFooter} from '@/components/layout';
+import {AppHeader, AppDrawer, AppMain, AppFooter} from '@/components/layout';
 
 /**
- * @see https://v15.vuetifyjs.com/zh-Hans/framework/grid
- * @see https://vuetifyjs.com/zh-Hans/components/grids
- * @see https://vuetifyjs.com/zh-Hans/getting-started/pre-made-layouts
  * @see https://cn.vuejs.org/v2/api/#name
  * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
  */
@@ -20,6 +18,7 @@ export default {
     name: 'App',
     components: {
         AppHeader,
+        AppDrawer,
         AppMain,
         AppFooter
     }
@@ -32,7 +31,7 @@ In order to treat it like a module path, prefix it with ~
 Ref => https://github.com/vuejs/vue-loader/issues/193
 -->
 <style>
-@import "~material-design-icons/iconfont/material-icons.css";
+/*@import "~material-design-icons/iconfont/material-icons.css";*/
 
 .v-link {
     color: #424242 !important;
@@ -50,6 +49,7 @@ Ref => https://github.com/vuejs/vue-loader/issues/193
     font-weight: 400;
 }
 
+/*
 ul.list {
     margin: 0 !important;
     padding: 0 !important;
@@ -61,6 +61,7 @@ ul.list li.list-item {
     display: block;
     float: left;
 }
+*/
 
 .v-card--reveal {
     width: 100%;

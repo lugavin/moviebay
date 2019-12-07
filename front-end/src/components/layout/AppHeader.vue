@@ -3,16 +3,12 @@
     <v-app-bar app flat dense>
         <v-container>
             <v-layout>
-                <v-toolbar-title>
-                    <v-img :src="require('@/assets/logo.png')" height="48" width="135" max-width="135"
-                           class="mr-4" contain/>
-                </v-toolbar-title>
-                <v-toolbar-items>
-                    <v-btn v-for="(menu, i) in menus" :key="i" :to="menu.url" text>
-                        {{menu.name}}
-                    </v-btn>
-                    <v-text-field append-icon="search" placeholder="请输入关键字"
-                                  hide-details class="align-center mx-4"/>
+                <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleDrawer"/>
+                <v-img :src="require('@/assets/logo.png')" height="48" width="135" max-width="135" contain/>
+                <v-toolbar-items class="mx-4">
+                    <v-btn v-for="(menu, i) in menus" :key="i" :to="menu.url" v-text="menu.title" text
+                           class="hidden-sm-and-down"/>
+                    <v-text-field append-icon="search" placeholder="Search..." hide-details class="align-center"/>
                 </v-toolbar-items>
                 <v-spacer/>
                 <v-toolbar-items>
@@ -21,7 +17,7 @@
             </v-layout>
         </v-container>
         <!-- Login Dialog -->
-        <v-dialog max-width="500" v-model="showLoginDialog">
+        <v-dialog max-width="500" v-model="loginDialog">
             <v-card>
                 <v-toolbar color="primary" dark flat>
                     <v-toolbar-title>请登录</v-toolbar-title>
@@ -46,13 +42,16 @@
 export default {
     name: 'AppHeader',
     data: () => ({
-        menus: require('@/data/menus.json'),
-        showLoginDialog: false,
+        loginDialog: false,
+        menus: require('@/data/menus.json')
     }),
     methods: {
-        login() {
-            this.showLoginDialog = true;
+        toggleDrawer() {
+            this.$store.commit('toggleDrawer');
         },
+        login() {
+            this.loginDialog = true;
+        }
     }
 };
 </script>
