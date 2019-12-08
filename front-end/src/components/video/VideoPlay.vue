@@ -32,14 +32,14 @@
                     <v-tab>播放列表</v-tab>
                     <v-tab>相关推荐</v-tab>
                     <v-tab-item>
-                        <v-card tile flat dark class="v-card-height">
+                        <v-card tile flat dark class="v-card-fixed-height">
                             <v-card-text>
                                 <v-btn color="primary">1080P</v-btn>
                             </v-card-text>
                         </v-card>
                     </v-tab-item>
                     <v-tab-item>
-                        <v-card tile flat dark class="v-card-height">
+                        <v-card tile flat dark class="v-card-fixed-height">
                             <v-container>
                                 <v-row dense>
                                     <v-col v-for="(video, i) in videos" :key="i" cols="3" md="6">
@@ -113,23 +113,23 @@ export default {
 }
 
 @media only screen and (min-width: 960px) {
-    .v-card-height {
+    .v-card-fixed-height {
         height: 410px;
         overflow: auto;
     }
 
-    ::-webkit-scrollbar {
+    .v-card-fixed-height::-webkit-scrollbar {
         display: none;
     }
 }
 
 @media only screen and (min-width: 1264px) {
-    .v-card-height {
+    .v-card-fixed-height {
         height: 530px;
         overflow: auto;
     }
 
-    ::-webkit-scrollbar {
+    .v-card-fixed-height::-webkit-scrollbar {
         display: none;
     }
 }
