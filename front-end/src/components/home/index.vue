@@ -27,9 +27,9 @@
                     <v-container>
                         <v-row dense>
                             <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2">
-                                <v-card>
+                                <v-card outlined>
                                     <v-hover v-slot:default="{ hover }">
-                                        <v-img :src="require(`@/assets/img/${video.poster}`)" max-width="360" max-height="480">
+                                        <v-img :src="require(`@/assets/img/${video.poster}`)">
                                             <v-expand-transition>
                                                 <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                                      v-if="hover">
@@ -41,10 +41,12 @@
                                         </v-img>
                                     </v-hover>
                                     <v-card-text class="text-center py-1">
-                                        <div class="subtitle-1">
-                                            <router-link class="v-link" to="/video/detail">{{video.title}}</router-link>
-                                        </div>
-                                        <div class="subtitle-2">{{video.createdAt}}</div>
+                                        <p class="mb-0">
+                                            <router-link class="subtitle-1 v-link" to="/video/detail">{{video.title}}</router-link>
+                                        </p>
+                                        <p class="mb-0">
+                                            <span class="subtitle-2">{{video.createdAt}}</span>
+                                        </p>
                                     </v-card-text>
                                 </v-card>
                             </v-col>
@@ -72,9 +74,9 @@
                     <v-container>
                         <v-row dense>
                             <v-col v-for="(video, i) in drama.videos" :key="i" cols="4" md="3" lg="2">
-                                <v-card>
+                                <v-card outlined>
                                     <v-hover v-slot:default="{ hover }">
-                                        <v-img :src="require(`@/assets/img/${video.poster}`)" max-width="360" max-height="480">
+                                        <v-img :src="require(`@/assets/img/${video.poster}`)">
                                             <v-expand-transition>
                                                 <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
                                                      v-if="hover">
@@ -86,10 +88,12 @@
                                         </v-img>
                                     </v-hover>
                                     <v-card-text class="text-center py-1">
-                                        <div class="subtitle-1">
-                                            <router-link class="v-link" to="/video/detail">{{video.title}}</router-link>
-                                        </div>
-                                        <div class="subtitle-2">{{video.createdAt}}</div>
+                                        <p class="mb-0">
+                                            <router-link class="subtitle-1 v-link" to="/video/detail">{{video.title}}</router-link>
+                                        </p>
+                                        <p class="mb-0">
+                                            <span class="subtitle-2">{{video.createdAt}}</span>
+                                        </p>
                                     </v-card-text>
                                 </v-card>
                             </v-col>
