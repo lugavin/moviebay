@@ -3,27 +3,38 @@
         <v-row dense no-gutters>
             <v-col cols="12" md="9">
                 <video id="vjs-player" class="video-js vjs-fluid vjs-styles-custom" controls preload
-                       :poster="video.poster">
-                    <source :src="video.url" type="video/mp4"/>
-                    <source :src="video.url" type="video/webm"/>
+                       :poster="require('@/assets/poster.png')">
+                    <source :src="playUrl" type="video/mp4"/>
+                    <source :src="playUrl" type="video/webm"/>
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a web browser
                         that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                     </p>
                 </video>
                 <v-card tile flat dark>
-                    <v-card-title>少年的你</v-card-title>
+                    <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
-                        8.4 / 2019 / 大陆 / 剧情 / 2048次播放
+                        8.4 / {{video.year}} / {{video.area}} / <label v-for="(item, i) in video.genres" :key="i">{{item.name}}<span v-if="i!==video.genres.length-1"> · </span></label> / 2048次播放
                         <a class="white--text" @click="expand=!expand">
                             详情<v-icon>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
                     </v-card-subtitle>
                     <v-card-text :class="[{'d-none': !expand}]">
-                        <p class="mb-1">导演：曾国祥</p>
-                        <p class="mb-1">主演：周冬雨 / 易烊千玺</p>
-                        <p class="mb-1">类型：剧情 / 爱情 / 犯罪</p>
-                        <p class="mb-1">简介：易烊千玺饰演的...</p>
+                        <p class="my-1">
+                            导演：<label v-for="(item, i) in video.directors" :key="i">{{item.name}}<span v-if="i!==video.directors.length-1"> / </span></label>
+                        </p>
+                        <p class="my-1">
+                            主演：<label v-for="(item, i) in video.actors" :key="i">{{item.name}}<span v-if="i!==video.actors.length-1"> / </span></label>
+                        </p>
+                        <p class="my-1">
+                            类型：<label v-for="(item, i) in video.genres" :key="i">{{item.name}}<span v-if="i!==video.genres.length-1"> / </span></label>
+                        </p>
+                        <p class="my-1">地区：{{video.area}}</p>
+                        <p class="my-1">年份：{{video.year}}</p>
+                        <p class="my-1 pl-10">
+                            <span class="ml-n10">简介：</span>
+                            <span>{{video.intro}}</span>
+                        </p>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -80,18 +91,15 @@ import videojs from 'video.js';
 export default {
     name: 'VideoPlay',
     data: () => ({
-        expand: false,
-        video: {
-            id: '1001',
-            poster: require('@/assets/poster.png'),
-            url: require('@/data/001.mp4'),
-        },
+        playUrl: require('@/data/001.mp4'),
+        video: require('@/data/video.json'),
         videos: require('@/data/videos.json'),
+        expand: false
     }),
     mounted() {
         videojs('vjs-player');
-    },
-};
+    }
+}
 </script>
 
 <style>

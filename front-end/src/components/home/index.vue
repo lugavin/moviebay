@@ -8,7 +8,7 @@
             </v-col>
             <v-col cols="12">
                 <v-card outlined>
-                    <v-toolbar dense flat class="grey lighten-3">
+                    <v-toolbar dense flat class="grey lighten-4">
                         <h4 class="font-weight-medium">
                             <router-link class="v-link" to="/video/list">最新视频</router-link>
                         </h4>
@@ -56,7 +56,7 @@
             </v-col>
             <v-col v-for="(drama, i) in dramas" :key="i" cols="12">
                 <v-card outlined>
-                    <v-toolbar dense flat class="grey lighten-3">
+                    <v-toolbar dense flat class="grey lighten-4">
                         <h4 class="font-weight-medium">
                             <router-link class="v-link" :to="drama.url">{{drama.title}}</router-link>
                         </h4>

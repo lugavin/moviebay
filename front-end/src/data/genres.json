@@ -1,13 +1,13 @@
 {
   "movie": [
-    {"value": 1, "label": "动作片"},
-    {"value": 2, "label": "喜剧片"},
-    {"value": 3, "label": "爱情片"},
-    {"value": 4, "label": "科幻片"},
-    {"value": 5, "label": "恐怖片"},
-    {"value": 6, "label": "剧情片"},
-    {"value": 7, "label": "战争片"},
-    {"value": 8, "label": "纪录片"}
+    {"value": 1, "label": "动作片", "code": "action"},
+    {"value": 2, "label": "喜剧片", "code": "comedy"},
+    {"value": 3, "label": "爱情片", "code": "romance"},
+    {"value": 4, "label": "科幻片", "code": "fantasy"},
+    {"value": 5, "label": "恐怖片", "code": "horror"},
+    {"value": 6, "label": "剧情片", "code": "feature"},
+    {"value": 7, "label": "战争片", "code": "war"},
+    {"value": 8, "label": "纪录片", "code": "documentary"}
   ],
   "drama": [
     {"value": 1, "label": "国产剧"},
