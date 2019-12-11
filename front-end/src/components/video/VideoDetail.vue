@@ -2,9 +2,7 @@
     <v-container>
         <v-row>
             <v-col cols="3">
-                <v-card outlined>
-                    <v-img :src="require(`@/assets/img/${video.poster}`)" max-width="360px" max-height="480px"/>
-                </v-card>
+                <v-img :src="require(`@/assets/img/${video.poster}`)" max-width="360px" max-height="480px"/>
             </v-col>
             <v-col cols="9">
                 <h3>{{video.title}}</h3>
@@ -23,7 +21,7 @@
                     <span class="ml-n12">简介：</span>
                     <span>{{video.intro}}</span>
                 </p>
-                <p class="my-1 body-1 pl-12 mt-5">
+                <p class="my-1 pl-12 mt-5">
                     <v-btn to="/video/play" target="_blank" color="primary">立即播放</v-btn>
                 </p>
             </v-col>

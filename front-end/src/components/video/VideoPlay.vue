@@ -15,19 +15,19 @@
                     <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
                         8.4 / {{video.year}} / {{video.area}} / <label v-for="(item, i) in video.genres" :key="i">{{item.name}}<span v-if="i!==video.genres.length-1"> · </span></label> / 2048次播放
-                        <a class="white--text" @click="expand=!expand">
-                            详情<v-icon>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
+                        <a class="v-link" @click="expand=!expand">
+                            详情<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
                     </v-card-subtitle>
                     <v-card-text :class="[{'d-none': !expand}]">
                         <p class="my-1">
-                            导演：<label v-for="(item, i) in video.directors" :key="i">{{item.name}}<span v-if="i!==video.directors.length-1"> / </span></label>
+                            导演：<label v-for="(item, i) in video.directors" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.directors.length-1"> / </span></label>
                         </p>
                         <p class="my-1">
-                            主演：<label v-for="(item, i) in video.actors" :key="i">{{item.name}}<span v-if="i!==video.actors.length-1"> / </span></label>
+                            主演：<label v-for="(item, i) in video.actors" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.actors.length-1"> / </span></label>
                         </p>
                         <p class="my-1">
-                            类型：<label v-for="(item, i) in video.genres" :key="i">{{item.name}}<span v-if="i!==video.genres.length-1"> / </span></label>
+                            类型：<label v-for="(item, i) in video.genres" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.genres.length-1"> / </span></label>
                         </p>
                         <p class="my-1">地区：{{video.area}}</p>
                         <p class="my-1">年份：{{video.year}}</p>
@@ -91,7 +91,7 @@ import videojs from 'video.js';
 export default {
     name: 'VideoPlay',
     data: () => ({
-        playUrl: require('@/data/001.mp4'),
+        playUrl: 'http://sz-download.weiyun.com/ftn_handler/5aa8ec351338dafc167036d426ade358ab1c035e75f7b6033935d1a7676768d8/许巍 - 完美生活.mp4',
         video: require('@/data/video.json'),
         videos: require('@/data/videos.json'),
         expand: false
@@ -147,7 +147,7 @@ export default {
     }
 
     .v-card-content {
-        height: 410px !important;
+        height: 408px !important;
     }
 }
 
@@ -158,7 +158,7 @@ export default {
     }
 
     .v-card-content {
-        height: 530px !important;
+        height: 528px !important;
     }
 }
 
@@ -169,7 +169,7 @@ export default {
     }
 
     .v-card-content {
-        height: 783px !important;
+        height: 781px !important;
     }
 }
 </style>

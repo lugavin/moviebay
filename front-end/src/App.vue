@@ -34,7 +34,7 @@ Ref => https://github.com/vuejs/vue-loader/issues/193
 /*@import "~material-design-icons/iconfont/material-icons.css";*/
 
 .v-link {
-    color: #424242 !important;
+    color: inherit !important;
     text-decoration: none;
 }
 
