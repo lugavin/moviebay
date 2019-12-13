@@ -29,8 +29,9 @@ jobs:
     # https://cli.vuejs.org/zh/guide/deployment.html#github-pages
     - name: Deploy
       run: |
+        mv dist moviebay
+        mv moviebay dist/moviebay
         cd dist
-        mv ./* moviebay
         git init
         git add -A
         git commit -m 'deploy'
