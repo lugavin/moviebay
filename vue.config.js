@@ -3,5 +3,6 @@ module.exports = {
     transpileDependencies: [
         "vuetify"
     ],
-    publicPath: process.env.NODE_ENV === 'production' ? '/moviebay/' : '/'
+    publicPath: process.env.NODE_ENV === 'production' ? '/moviebay/' : '/',
+    outputDir: 'dist/moviebay'
 };
