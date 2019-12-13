@@ -33,8 +33,7 @@ jobs:
         git init
         git add -A
         git commit -m 'deploy'
-        git push git@github.com:lugavin/lugavin.github.io.git master
-        #git push git@github.com:lugavin/lugavin.github.io.git master:moviebay
+        git push -f git@github.com:lugavin/lugavin.github.io.git master:moviebay
         
     #- name: Deploy
     #  uses: JamesIves/github-pages-deploy-action@releases/v3
