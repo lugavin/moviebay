@@ -2,10 +2,10 @@
     <v-container>
         <v-row dense no-gutters>
             <v-col cols="12" lg="9">
-                <video id="video" class="video-js vjs-fluid vjs-styles-custom" controls preload
+                <video id="player" class="video-js vjs-fluid vjs-styles-custom" controls preload
                        :poster="require('@/assets/poster.png')">
-                    <source :src="playUrl" type="video/mp4"/>
-                    <source :src="playUrl" type="video/webm"/>
+                    <source :src="video.source"/>
+                    <source :src="video.source" type="video/webm"/>
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a web browser
                         that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -88,35 +88,18 @@ import videojs from 'video.js';
 export default {
     name: 'VideoPlay',
     data: () => ({
-        playUrl: 'http://sz-download.weiyun.com/ftn_handler/5aa8ec351338dafc167036d426ade3582f467fb6d8f32833cdc2b74a08514a0e/许巍 - 完美生活.mp4',
         video: require('@/data/video.json'),
         videos: require('@/data/videos.json'),
         expand: false
     }),
     mounted() {
-        videojs('video');
+        videojs('player');
     }
 }
 </script>
 
 <style>
 @import "~video.js/dist/video-js.min.css";
-
-.vjs-styles-custom .vjs-big-play-button {
-    top: auto;
-    left: 10px;
-    bottom: 10px;
-}
-
-.hide-scrollbar {
-    overflow: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
-}
 
 /*
 .scrollbar-outer-container {
@@ -129,6 +112,22 @@ export default {
     overflow-y: scroll;
 }
 */
+
+.hide-scrollbar {
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.vjs-styles-custom .vjs-big-play-button {
+    top: auto;
+    left: 10px;
+    bottom: 10px;
+}
 
 @media only screen and (max-width: 959px) {
     .vjs-styles-custom .vjs-big-play-button {
