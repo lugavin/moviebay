@@ -10,7 +10,7 @@
                 <v-toolbar-items class="ml-4 hidden-sm-and-down">
                     <v-btn v-for="(menu, i) in menus" :key="i" :to="menu.url" v-text="menu.title" text/>
                 </v-toolbar-items>
-                <v-row align="center" class="mx-4" style="max-width: 650px">
+                <v-row align="center" class="mx-4">
                     <v-text-field append-icon="search" placeholder="请输入关键字" hide-details single-line/>
                 </v-row>
                 <v-spacer/>

@@ -1,10 +1,10 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="3">
+            <v-col cols="12" md="3">
                 <v-img :src="require(`@/assets/img/${video.poster}`)" max-width="360px" max-height="480px"/>
             </v-col>
-            <v-col cols="9">
+            <v-col cols="12" md="9">
                 <h3>{{video.title}}</h3>
                 <p class="my-1">
                     导演：<label v-for="(item, i) in video.directors" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.directors.length-1"> / </span></label>
@@ -21,13 +21,13 @@
                     <span class="ml-n12">简介：</span>
                     <span>{{video.intro}}</span>
                 </p>
-                <p class="my-1 pl-12 mt-5">
+                <p class="my-1 pl-12 mt-4">
                     <v-btn to="/video/play" target="_blank" color="primary">立即播放</v-btn>
                 </p>
             </v-col>
         </v-row>
         <v-row>
-            <v-col>
+            <v-col cols="12">
                 <v-card outlined>
                     <v-toolbar dense flat class="grey lighten-4">
                         <h4 class="font-weight-medium">

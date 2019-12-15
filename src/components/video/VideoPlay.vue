@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row dense no-gutters>
-            <v-col cols="12" md="9">
+            <v-col cols="12" lg="9">
                 <video id="vjs-player" class="video-js vjs-fluid vjs-styles-custom" controls preload
                        :poster="require('@/assets/poster.png')">
                     <source :src="playUrl" type="video/mp4"/>
@@ -31,14 +31,11 @@
                         </p>
                         <p class="my-1">地区：{{video.area}}</p>
                         <p class="my-1">年份：{{video.year}}</p>
-                        <p class="my-1 pl-10">
-                            <span class="ml-n10">简介：</span>
-                            <span>{{video.intro}}</span>
-                        </p>
+                        <p class="my-1">简介：{{video.intro}}</p>
                     </v-card-text>
                 </v-card>
             </v-col>
-            <v-col cols="12" md="3">
+            <v-col cols="12" lg="3">
                 <v-tabs dark slider-color="orange darken-1">
                     <v-tab>播放列表</v-tab>
                     <v-tab>相关推荐</v-tab>
@@ -53,7 +50,7 @@
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
                             <v-container>
                                 <v-row dense>
-                                    <v-col v-for="(video, i) in videos" :key="i" cols="3" md="6">
+                                    <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="6">
                                         <v-card flat outlined>
                                             <v-hover v-slot:default="{ hover }">
                                                 <v-img :src="require(`@/assets/img/${video.poster}`)"
@@ -91,7 +88,7 @@ import videojs from 'video.js';
 export default {
     name: 'VideoPlay',
     data: () => ({
-        playUrl: 'http://sz-download.weiyun.com/ftn_handler/5aa8ec351338dafc167036d426ade3587814d54da3a4ce0789ab29d88fe55404/许巍 - 完美生活.mp4',
+        playUrl: require('@/data/mv/许巍 - 完美生活.mp4'),
         video: require('@/data/video.json'),
         videos: require('@/data/videos.json'),
         expand: false
@@ -107,6 +104,18 @@ export default {
 
 .vjs-styles-custom .vjs-big-play-button {
     top: auto;
+    left: 10px;
+    bottom: 10px;
+}
+
+.hide-scrollbar {
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
 }
 
 /*
@@ -121,16 +130,6 @@ export default {
 }
 */
 
-.hide-scrollbar {
-    overflow: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
 @media only screen and (max-width: 959px) {
     .vjs-styles-custom .vjs-big-play-button {
         left: 1vw !important;
@@ -139,24 +138,7 @@ export default {
     }
 }
 
-@media only screen and (min-width: 960px) and (max-width: 1263px) {
-    .vjs-styles-custom .vjs-big-play-button {
-        left: 0.5vw !important;
-        bottom: 0.8vw !important;
-        font-size: 2vw !important;
-    }
-
-    .v-card-content {
-        height: 408px !important;
-    }
-}
-
 @media only screen and (min-width: 1264px) and (max-width: 1903px) {
-    .vjs-styles-custom .vjs-big-play-button {
-        left: 10px;
-        bottom: 10px;
-    }
-
     .v-card-content {
         height: 528px !important;
     }

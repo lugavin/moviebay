@@ -54,7 +54,7 @@
                     </v-container>
                 </v-card>
             </v-col>
-            <v-col v-for="(drama, i) in dramas" :key="i" cols="12">
+            <v-col cols="12" v-for="(drama, i) in dramas" :key="i">
                 <v-card outlined>
                     <v-toolbar dense flat class="grey lighten-4">
                         <h4 class="font-weight-medium">

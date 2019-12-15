@@ -8,23 +8,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>doT</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>doT</title>
 </head>
 <body>
 
 <div id="app"></div>
 
 <template id="tmpl">
-	<h1>{{=it.title}}</h1>
+  <h1>{{=it.title}}</h1>
 </template>
 
 <script src="https://cdn.jsdelivr.net/npm/dot/doT.js"></script>
 <script>
-	var tmpl = document.querySelector('#tmpl').innerHTML;
-	var tmplFn = doT.template(tmpl);
-	document.querySelector('#app').innerHTML = tmplFn({title: 'doT'});
+  var tmpl = document.querySelector('#tmpl').innerHTML;
+  var tmplFn = doT.template(tmpl);
+  document.querySelector('#app').innerHTML = tmplFn({title: 'doT'});
 </script>
 </body>
 </html>
@@ -34,24 +34,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Vue</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Vue</title>
 </head>
 <body>
 
 <div id="app">
-	{{ message }}
+  {{ message }}
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
-	var vm = new Vue({
-		el: '#app',
-		data: {
-			message: 'Vue'
-		}
-	});
+  var vm = new Vue({
+    el: '#app',
+    data: {
+      message: 'Vue'
+    }
+  });
 </script>
 </body>
 </html>

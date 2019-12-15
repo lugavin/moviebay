@@ -10,19 +10,17 @@
                             {{expand?'收起':'展开'}}<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
                     </v-toolbar>
-                    <v-card-text :class="[{'d-none': !expand}]">
-                        <p class="mb-0">
-                            <label>按类型：</label>
-                            <label v-for="genre in genres" :key="genre.value" :for="'genre-'+genre.value">
-                                <input :id="'genre-'+genre.value" name="genre" type="radio"> {{genre.label}}
-                            </label>
-                        </p>
-                        <p class="mb-0">
-                            <label>按年份：</label>
-                            <label v-for="year in years" :key="year" :for="'year-'+year">
-                                <input :id="'year-'+year" name="year" type="radio"> {{year}}
-                            </label>
-                        </p>
+                    <v-card-text :class="[{'d-none': !expand}, 'py-2']">
+                        <v-chip-group v-model="filter.genres" column color="indigo">
+                            <v-chip v-for="genre in genres" :key="genre.value" :value="genre.code" label outlined filter>
+                                {{genre.label}}
+                            </v-chip>
+                        </v-chip-group>
+                        <v-chip-group v-model="filter.sorts" column color="indigo">
+                            <v-chip v-for="sort in sorts" :key="sort.value" :value="sort.value" label outlined filter>
+                                {{sort.label}}
+                            </v-chip>
+                        </v-chip-group>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -67,10 +65,33 @@ export default {
     data: () => ({
         page: 1,
         rows: 15,
+        filter: {
+            genres: [],
+            sorts: []
+        },
+        sorts: [
+            {value: 1, label: '按时间排序'},
+            {value: 2, label: '按人气排序'},
+            {value: 3, label: '按评分排序'}
+        ],
         expand: false,
-        years: require('@/data/years.json'),
         videos: require('@/data/videos.json'),
         genres: require('@/data/genres.json')['movie'],
     }),
 };
 </script>
+
+<style scoped>
+    .tag {
+        cursor: pointer;
+    }
+
+    .active {
+        background: #4b8ccb;
+        color: #fff;
+    }
+
+    input:checked + label {
+        font-weight: bold;
+    }
+</style>
