@@ -88,7 +88,7 @@ import videojs from 'video.js';
 export default {
     name: 'VideoPlay',
     data: () => ({
-        playUrl: require('@/data/mv/许巍 - 完美生活.mp4'),
+        playUrl: 'http://sz-download.weiyun.com/ftn_handler/5aa8ec351338dafc167036d426ade3582f467fb6d8f32833cdc2b74a08514a0e/许巍 - 完美生活.mp4',
         video: require('@/data/video.json'),
         videos: require('@/data/videos.json'),
         expand: false

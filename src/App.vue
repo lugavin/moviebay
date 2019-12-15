@@ -12,7 +12,6 @@ import {AppHeader, AppDrawer, AppMain, AppFooter} from '@/components/layout';
 
 /**
  * @see https://cn.vuejs.org/v2/api/#name
- * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
  */
 export default {
     name: 'App',
@@ -31,7 +30,7 @@ In order to treat it like a module path, prefix it with ~
 Ref => https://github.com/vuejs/vue-loader/issues/193
 -->
 <style>
-/*@import "~material-design-icons/iconfont/material-icons.css";*/
+@import "~material-design-icons/iconfont/material-icons.css";
 
 .v-link {
     color: inherit !important;
