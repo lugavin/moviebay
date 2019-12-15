@@ -2,7 +2,7 @@
     <v-container>
         <v-row dense no-gutters>
             <v-col cols="12" lg="9">
-                <video id="vjs-player" class="video-js vjs-fluid vjs-styles-custom" controls preload
+                <video id="video" class="video-js vjs-fluid vjs-styles-custom" controls preload
                        :poster="require('@/assets/poster.png')">
                     <source :src="playUrl" type="video/mp4"/>
                     <source :src="playUrl" type="video/webm"/>
@@ -94,7 +94,7 @@ export default {
         expand: false
     }),
     mounted() {
-        videojs('vjs-player');
+        videojs('video');
     }
 }
 </script>
