@@ -42,7 +42,7 @@
                     <v-tab-item>
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
                             <v-card-text>
-                                <v-btn color="primary">1080P</v-btn>
+                                <v-btn to="/video/play" color="primary">1080P</v-btn>
                             </v-card-text>
                         </v-card>
                     </v-tab-item>
@@ -51,23 +51,23 @@
                             <v-container>
                                 <v-row dense>
                                     <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="6">
-                                        <v-card flat outlined>
-                                            <v-hover v-slot:default="{ hover }">
-                                                <v-img :src="require(`@/assets/img/${video.poster}`)"
-                                                       class="align-end text-center">
-                                                    <v-expand-transition>
-                                                        <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
-                                                             v-if="hover">
-                                                            <v-btn icon class="white--text" to="/video/play"
-                                                                   target="_blank">
-                                                                <v-icon x-large>play_circle_outline</v-icon>
-                                                            </v-btn>
-                                                        </div>
-                                                    </v-expand-transition>
-                                                    <h4 class="font-weight-medium pa-1">{{video.title}}</h4>
-                                                </v-img>
-                                            </v-hover>
-                                        </v-card>
+                                        <v-lazy>
+                                            <v-card outlined>
+                                                <v-hover v-slot:default="{ hover }">
+                                                    <v-img :src="require(`@/assets/img/${video.poster}`)" class="align-end text-center">
+                                                        <v-expand-transition>
+                                                            <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
+                                                                 v-if="hover">
+                                                                <v-btn icon class="white--text" to="/video/play" target="_blank">
+                                                                    <v-icon x-large>play_circle_outline</v-icon>
+                                                                </v-btn>
+                                                            </div>
+                                                        </v-expand-transition>
+                                                        <h4 class="font-weight-medium pa-1">{{video.title}}</h4>
+                                                    </v-img>
+                                                </v-hover>
+                                            </v-card>
+                                        </v-lazy>
                                     </v-col>
                                 </v-row>
                             </v-container>

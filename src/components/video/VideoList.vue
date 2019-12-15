@@ -27,28 +27,30 @@
             <v-col cols="12">
                 <v-row dense>
                     <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2" class="py-2">
-                        <v-card outlined>
-                            <v-hover v-slot:default="{ hover }">
-                                <v-img :src="require(`@/assets/img/${video.poster}`)">
-                                    <v-expand-transition>
-                                        <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
-                                             v-if="hover">
-                                            <v-btn icon class="white--text" to="/video/play" target="_blank">
-                                                <v-icon x-large>play_circle_outline</v-icon>
-                                            </v-btn>
-                                        </div>
-                                    </v-expand-transition>
-                                </v-img>
-                            </v-hover>
-                            <v-card-text class="text-center py-1">
-                                <p class="mb-0">
-                                    <router-link class="subtitle-1 v-link" to="/video/detail">{{video.title}}</router-link>
-                                </p>
-                                <p class="mb-0">
-                                    <span class="subtitle-2">{{video.createdAt}}</span>
-                                </p>
-                            </v-card-text>
-                        </v-card>
+                        <v-lazy>
+                            <v-card outlined>
+                                <v-hover v-slot:default="{ hover }">
+                                    <v-img :src="require(`@/assets/img/${video.poster}`)">
+                                        <v-expand-transition>
+                                            <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
+                                                 v-if="hover">
+                                                <v-btn icon class="white--text" to="/video/play" target="_blank">
+                                                    <v-icon x-large>play_circle_outline</v-icon>
+                                                </v-btn>
+                                            </div>
+                                        </v-expand-transition>
+                                    </v-img>
+                                </v-hover>
+                                <v-card-text class="text-center py-1">
+                                    <p class="mb-0">
+                                        <router-link class="subtitle-1 v-link" to="/video/detail" v-text="video.title"/>
+                                    </p>
+                                    <p class="mb-0">
+                                        <span class="subtitle-2">{{video.createdAt}}</span>
+                                    </p>
+                                </v-card-text>
+                            </v-card>
+                        </v-lazy>
                     </v-col>
                 </v-row>
             </v-col>
