@@ -15,7 +15,7 @@
                 </v-row>
                 <v-spacer/>
                 <v-toolbar-items>
-                    <v-btn text @click.stop="login">登录 / 注册</v-btn>
+                    <v-btn text @click.stop="loginDialog=true">登录 / 注册</v-btn>
                 </v-toolbar-items>
             </v-layout>
         </v-container>
@@ -51,9 +51,6 @@ export default {
     methods: {
         toggleDrawer() {
             this.$store.commit('toggleDrawer');
-        },
-        login() {
-            this.loginDialog = true;
         }
     }
 };
