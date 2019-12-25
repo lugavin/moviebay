@@ -2,7 +2,7 @@
     <v-container>
         <v-row dense no-gutters>
             <v-col cols="12" lg="9">
-                <video id="player" class="video-js vjs-fluid vjs-styles-custom" controls preload
+                <video id="player" class="video-js vjs-fluid vjs-styles-custom" preload="auto" controls
                        :poster="require('@/assets/poster.png')">
                     <source :src="video.source"/>
                     <source :src="video.source" type="video/webm"/>
