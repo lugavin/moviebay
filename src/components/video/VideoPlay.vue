@@ -3,7 +3,7 @@
         <v-row dense no-gutters>
             <v-col cols="12" lg="9">
                 <video id="player" class="video-js vjs-fluid vjs-styles-custom" preload="auto" controls
-                       :poster="require('@/assets/poster.png')">
+                       :poster="require('@/assets/poster.png')" oncontextmenu="return false">
                     <source :src="video.source"/>
                     <source :src="video.source" type="video/webm"/>
                     <p class="vjs-no-js">
