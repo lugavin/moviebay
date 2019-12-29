@@ -14,7 +14,7 @@
                 <v-card tile flat dark>
                     <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
-                        8.4 / {{video.year}} / {{video.area}} / <label v-for="(item, i) in video.genres" :key="i">{{item.name}}<span v-if="i!==video.genres.length-1"> · </span></label> / 2048次播放
+                        {{rating}} / {{video.year}} / {{video.area}} / <label v-for="(item, i) in video.genres" :key="i">{{item.name}}<span v-if="i!==video.genres.length-1"> · </span></label> / 2048次播放
                         <a class="v-link" @click="expand=!expand">
                             详情<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
@@ -81,6 +81,7 @@
 
 <script>
 import videojs from 'video.js';
+import JSONP from '@/components/util/JSONP';
 
 /**
  * @see https://docs.videojs.com/tutorial-vue.html
@@ -90,11 +91,17 @@ export default {
     data: () => ({
         video: require('@/data/video.json'),
         videos: require('@/data/videos.json'),
-        expand: false
+        expand: false,
+        rating: null,
     }),
     mounted() {
         videojs('player');
-    }
+        JSONP.get('https://api.douban.com/v2/movie/imdb/tt0111161', {
+            apikey: '0df993c66c0c636e29ecbb5344252a4a'
+        }, (res) => {
+            this.rating = res.rating['average'];
+        });
+    },
 }
 </script>
 
