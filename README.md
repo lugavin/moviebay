@@ -1,6 +1,7 @@
 # MovieBay
 
 Atwood's Law: Any application that can be written in JavaScript, will eventually be written in JavaScript.
+
 Ending's Law: Any application that can be compiled to WebAssembly, will be compiled to WebAssembly eventually.
 
 ## Front-end: 
