@@ -11,7 +11,8 @@ Ending's Law: Any application that can be compiled to WebAssembly, will be compi
 - [Vuetify](https://vuetifyjs.com/zh-Hans/getting-started/quick-start)
 
 ## Back-end
+- [TypeScript](http://www.typescriptlang.org/)
+- [GraphQL](https://graphql.cn/learn/)
 - [Nest](https://docs.nestjs.cn/)
 - [TypeORM](https://typeorm.io/)
-- [TypeScript](http://www.typescriptlang.org/)
 - [PostgreSQL](https://www.postgresql.org/)
