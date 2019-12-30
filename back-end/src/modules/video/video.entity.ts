@@ -16,6 +16,7 @@ export class Video {
     year: number;
     lang: string;
     intro: string;
+    status: string;
 
     vodSrc: string;
 
