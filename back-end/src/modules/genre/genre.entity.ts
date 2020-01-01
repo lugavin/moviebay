@@ -7,15 +7,15 @@ export class Genre {
     id: number;
 
     @Column()
-    pid: number;
-
-    @Column()
-    tag: string;
-
-    @Column()
     title: string;
 
+    @Column()
+    value: string;
+
+    @Column()
+    tag: string; // 电影|电视剧|动漫|综艺|音乐MV
+
     @Column('int')
-    sort: number;
+    seq: number;
 
 }

@@ -81,7 +81,7 @@
 
 <script>
 import videojs from 'video.js';
-import JSONP from '@/components/util/JSONP';
+import Base from '@/components/util/Base';
 
 /**
  * @see https://docs.videojs.com/tutorial-vue.html
@@ -96,7 +96,7 @@ export default {
     }),
     mounted() {
         videojs('player');
-        JSONP.get('https://api.douban.com/v2/movie/imdb/tt0111161', {
+        Base.jsonp('https://api.douban.com/v2/movie/imdb/tt0111161', {
             apikey: '0df993c66c0c636e29ecbb5344252a4a'
         }, (res) => {
             this.rating = res.rating['average'];
