@@ -1,5 +1,8 @@
 import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 
+/**
+ * 影视种类
+ */
 @Entity()
 export class Genre {
 
