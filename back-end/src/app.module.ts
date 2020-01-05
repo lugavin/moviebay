@@ -1,7 +1,7 @@
 import {Module} from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
-import {Connection} from "typeorm";
-import {UserModule} from './modules/user/user.module'
+import {Connection} from 'typeorm';
+import * as Modules from './modules';
 
 /**
  * Module: 模块是具有 @Module 装饰器的类(@Module装饰器提供了元数据, Nest用它来组织应用程序结构)
@@ -9,7 +9,7 @@ import {UserModule} from './modules/user/user.module'
  * Provider: 提供者只是一个用 @Injectable 装饰器注释的类
  */
 @Module({
-    imports: [TypeOrmModule.forRoot(), UserModule]
+    imports: [TypeOrmModule.forRoot(), ...Object.values(Modules)]
 })
 export class AppModule {
     constructor(private readonly connection: Connection) {

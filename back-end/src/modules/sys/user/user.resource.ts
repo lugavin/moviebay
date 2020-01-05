@@ -1,8 +1,8 @@
 import {Controller, Get, Post, Put, Delete, Param, Body, UsePipes, ValidationPipe} from '@nestjs/common';
 import {UserService} from './user.service';
-import {UserDto} from "./user.dto";
+import {UserDto} from './user.dto';
 
-@Controller("/users")
+@Controller('/users')
 export class UserResource {
 
     constructor(private readonly userService: UserService) {

@@ -3,7 +3,7 @@ import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 /**
  * 影人条目信息
  */
-@Entity()
+@Entity('cms_celebrity')
 export class Celebrity {
 
     // 条目id
@@ -32,7 +32,7 @@ export class Celebrity {
 
     // 出生地
     @Column()
-    bornPlace: string;
+    birthplace: string;
 
     // 职业
     @Column()
@@ -43,11 +43,11 @@ export class Celebrity {
     constellation: string;
 
     // 影人剧照(最多10张)
-    @Column()
+    @Column({nullable: true})
     photos: string;
 
     // 影人作品(最多5部)
-    @Column()
+    @Column({nullable: true})
     works: string;
 
 }

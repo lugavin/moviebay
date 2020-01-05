@@ -1,7 +1,10 @@
 import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 
-@Entity()
-export class Permission {
+/**
+ * 权限信息
+ */
+@Entity('sys_perm')
+export class Perm {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -24,7 +27,7 @@ export class Permission {
     @Column('int')
     seq: string;
 
-    @Column('bit')
+    @Column({name: 'is_parent', type: 'bit'})
     isParent: boolean;
 
     @Column({nullable: true})
