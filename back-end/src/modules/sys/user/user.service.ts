@@ -39,6 +39,7 @@ export class UserService {
     }
 
     async getUserByName(username: string): Promise<UserEntity> {
+        // TODO 先从缓存中获取, 若获取不到再查数据库
         return this.userRepository
             .createQueryBuilder('u')
             .where('u.username = :username', {username})

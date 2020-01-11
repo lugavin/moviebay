@@ -28,7 +28,7 @@ export class UserResource {
     }
 
     @Get(':uid')
-    @Auth('user:add')
+    @Auth('user:query')
     async getUser(@Param('uid') uid: number): Promise<UserEntity> {
         return this.userService.getUser(uid);
     }

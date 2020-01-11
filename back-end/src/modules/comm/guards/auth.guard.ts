@@ -1,6 +1,6 @@
 import {CanActivate, ExecutionContext, Logger} from '@nestjs/common';
 import {Reflector} from '@nestjs/core';
-import {Constants} from '../constants';
+import {Constants} from '../util/constants';
 import {AuthService} from '../../sys/auth/auth.service';
 
 export class AuthGuard implements CanActivate {
