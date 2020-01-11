@@ -4,7 +4,7 @@ import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
  * 影人条目信息
  */
 @Entity('cms_celebrity')
-export class Celebrity {
+export class CelebrityEntity {
 
     // 条目id
     @PrimaryGeneratedColumn()

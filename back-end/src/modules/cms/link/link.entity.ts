@@ -4,7 +4,7 @@ import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
  * 友情链接
  */
 @Entity('cms_link')
-export class Link {
+export class LinkEntity {
 
     // 自增唯一ID
     @PrimaryGeneratedColumn()

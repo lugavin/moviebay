@@ -4,7 +4,7 @@ import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
  * 评论
  */
 @Entity('cms_comment')
-export class Comment {
+export class CommentEntity {
 
     // 条目id
     @PrimaryGeneratedColumn()

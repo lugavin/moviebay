@@ -4,7 +4,7 @@ import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
  * 权限信息
  */
 @Entity('sys_perm')
-export class Perm {
+export class PermEntity {
 
     @PrimaryGeneratedColumn()
     id: number;

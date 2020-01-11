@@ -1,11 +1,11 @@
 import {Entity, Column, PrimaryGeneratedColumn, JoinTable, ManyToMany} from 'typeorm';
-import {Role} from '../role/role.entity';
+import {RoleEntity} from '../role/role.entity';
 
 /**
  * 用户信息
  */
 @Entity('sys_user')
-export class User {
+export class UserEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -32,7 +32,7 @@ export class User {
     avatar: string;
 
     @Column()
-    activated: string;
+    activated: boolean;
 
     @Column({name: 'activation_key', nullable: true})
     activationKey: string;
@@ -55,11 +55,11 @@ export class User {
     @Column({name: 'updated_by', nullable: true})
     updatedBy: string;
 
-    @ManyToMany(type => Role)
+    @ManyToMany(type => RoleEntity)
     @JoinTable({
         name: 'sys_user_role',
         joinColumn: {name: 'user_id', referencedColumnName: 'id'},
         inverseJoinColumn: {name: 'role_id', referencedColumnName: 'id'}
     })
-    roles: Role[];
+    roles: RoleEntity[];
 }

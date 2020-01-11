@@ -4,7 +4,7 @@ import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
  * 访问次数
  */
 @Entity('cms_visit')
-export class Visit {
+export class VisitEntity {
 
     // 条目id
     @PrimaryGeneratedColumn()

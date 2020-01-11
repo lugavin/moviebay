@@ -6,7 +6,7 @@ import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
  * 最好的做法不是在表追加一列, 去破坏默认的表结构, 而是将数据存在 SYS_USER_META 表中, SYS_USER_META 这个拓展表可以存储每个用户的QQ号码、手机号码、登录后台的主题选项等等
  */
 @Entity('sys_user_meta')
-export class UserMeta {
+export class UserMetaEntity {
 
     // 自增唯一ID
     @PrimaryGeneratedColumn()

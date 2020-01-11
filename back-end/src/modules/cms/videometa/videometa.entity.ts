@@ -1,18 +1,18 @@
 import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 
 /**
- * 评论的元数据
+ * 影视的元数据
  */
-@Entity('cms_comment_meta')
-export class CommentMetaEntity {
+@Entity('cms_video_meta')
+export class VideoMetaEntity {
 
     // 自增唯一ID
     @PrimaryGeneratedColumn()
     id: number;
 
-    // 对应评论ID
-    @Column({name: 'comment_id'})
-    commentId: string;
+    // 对应影视条目ID
+    @Column({name: 'video_id'})
+    videoId: string;
 
     // 键名
     @Column({name: 'meta_key'})

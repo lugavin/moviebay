@@ -4,7 +4,7 @@ import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
  * 字典信息
  */
 @Entity('sys_dict')
-export class Dict {
+export class DictEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
