@@ -7,126 +7,102 @@
                 </v-carousel>
             </v-col>
             <v-col cols="12">
-                <v-card outlined>
-                    <v-toolbar dense flat class="grey lighten-4">
-                        <h4 class="font-weight-medium">
-                            <router-link class="v-link" to="/video/list">最新视频</router-link>
-                        </h4>
-                        <v-spacer/>
-                        <ul class="text-small">
-                            <li class="d-block float-left">
-                                今日更新 <span class="red--text text--darken-3">{{videos.length}}</span> 部
-                                共 <span class="red--text text--darken-3">9999876</span> 部
-                                <span class="mx-2"></span>
-                            </li>
-                            <li class="d-block float-left">
-                                <router-link class="v-link" to="/video/list">更多...</router-link>
-                            </li>
-                        </ul>
-                    </v-toolbar>
-                    <v-container>
-                        <v-row dense>
-                            <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2">
-                                <v-lazy>
-                                    <v-card outlined>
-                                        <v-hover v-slot:default="{ hover }">
-                                            <v-img :src="require(`@/assets/img/${video.poster}`)">
-                                                <v-expand-transition>
-                                                    <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
-                                                         v-if="hover">
-                                                        <v-btn icon class="white--text" to="/video/play" target="_blank">
-                                                            <v-icon x-large>play_circle_outline</v-icon>
-                                                        </v-btn>
-                                                    </div>
-                                                </v-expand-transition>
-                                            </v-img>
-                                        </v-hover>
-                                        <v-card-text class="text-center py-1">
-                                            <p class="mb-0">
-                                                <router-link class="subtitle-1 v-link" to="/video/detail" v-text="video.title"/>
-                                            </p>
-                                            <p class="mb-0">
-                                                <span class="subtitle-2">{{video.createdAt}}</span>
-                                            </p>
-                                        </v-card-text>
-                                    </v-card>
-                                </v-lazy>
-                            </v-col>
-                        </v-row>
-                    </v-container>
-                </v-card>
+                <video-panel v-bind="videoPanel">
+                    <ul class="text-small">
+                        <li class="d-block float-left">
+                            今日更新 <span class="red--text text--darken-3">{{videoPanel.items.length}}</span> 部
+                            共 <span class="red--text text--darken-3">9999876</span> 部
+                            <span class="mx-2"/>
+                        </li>
+                        <li class="d-block float-left">
+                            <router-link class="v-link" :to="videoPanel.url">更多...</router-link>
+                        </li>
+                    </ul>
+                </video-panel>
             </v-col>
-            <v-col cols="12" v-for="(drama, i) in dramas" :key="i">
-                <v-card outlined>
-                    <v-toolbar dense flat class="grey lighten-4">
-                        <h4 class="font-weight-medium">
-                            <router-link class="v-link" :to="drama.url">{{drama.title}}</router-link>
-                        </h4>
-                        <v-spacer/>
-                        <ul class="text-small">
-                            <li class="d-block float-left" v-for="genre in drama.genres" :key="genre.value">
-                                <router-link class="v-link" to="/">{{genre.label}}</router-link>
-                                <span class="mx-2">/</span>
-                            </li>
-                            <li class="d-block float-left">
-                                <router-link class="v-link" :to="drama.url">更多...</router-link>
-                            </li>
-                        </ul>
-                    </v-toolbar>
-                    <v-container>
-                        <v-row dense>
-                            <v-col v-for="(video, i) in drama.videos" :key="i" cols="4" md="3" lg="2">
-                                <v-lazy>
-                                    <v-card outlined>
-                                        <v-hover v-slot:default="{ hover }">
-                                            <v-img :src="require(`@/assets/img/${video.poster}`)">
-                                                <v-expand-transition>
-                                                    <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
-                                                         v-if="hover">
-                                                        <v-btn icon class="white--text" to="/video/play" target="_blank">
-                                                            <v-icon x-large>play_circle_outline</v-icon>
-                                                        </v-btn>
-                                                    </div>
-                                                </v-expand-transition>
-                                            </v-img>
-                                        </v-hover>
-                                        <v-card-text class="text-center py-1">
-                                            <p class="mb-0">
-                                                <router-link class="subtitle-1 v-link" to="/video/detail" v-text="video.title"/>
-                                            </p>
-                                            <p class="mb-0">
-                                                <span class="subtitle-2">{{video.createdAt}}</span>
-                                            </p>
-                                        </v-card-text>
-                                    </v-card>
-                                </v-lazy>
-                            </v-col>
-                        </v-row>
-                    </v-container>
-                </v-card>
+            <v-col cols="12">
+                <video-panel v-bind="moviePanel">
+                    <ul class="text-small">
+                        <li class="d-block float-left" v-for="genre in movieGenres" :key="genre.value">
+                            <router-link class="v-link" to="/">{{genre.label+'片'}}</router-link>
+                            <span class="mx-2">/</span>
+                        </li>
+                        <li class="d-block float-left">
+                            <router-link class="v-link" :to="moviePanel.url">更多...</router-link>
+                        </li>
+                    </ul>
+                </video-panel>
+            </v-col>
+            <v-col cols="12">
+                <video-panel v-bind="tvPanel">
+                    <ul class="text-small">
+                        <li class="d-block float-left" v-for="genre in dramaGenres" :key="genre.value">
+                            <router-link class="v-link" to="/">{{genre.label}}</router-link>
+                            <span class="mx-2">/</span>
+                        </li>
+                        <li class="d-block float-left">
+                            <router-link class="v-link" :to="tvPanel.url">更多...</router-link>
+                        </li>
+                    </ul>
+                </video-panel>
             </v-col>
         </v-row>
     </v-container>
 </template>
 
 <script>
+import VideoPanel from '@/components/shared/VideoPanel';
+import axios from 'axios';
+
 /**
  * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
  */
 export default {
     name: 'Home',
+    components: {VideoPanel},
     data: () => ({
         posters: require('@/data/posters.json'),
-        genres: require('@/data/genres.json'),
-        videos: require('@/data/videos.json'),
+        videoPanel: {
+            title: '最新视频',
+            url: '/video/list',
+            items: require('@/data/videos.json'),
+        },
+        moviePanel: {
+            title: '电影',
+            url: '/video/list',
+            items: require('@/data/videos.json'),
+        },
+        tvPanel: {
+            title: '连续剧',
+            url: '/video/list',
+            items: require('@/data/videos.json'),
+        },
     }),
     computed: {
-        dramas() {
-            return [
-                {title: '电影', url: '/video/list', genres: this.genres['movie'], videos: this.videos},
-                {title: '连续剧', url: '/video/list', genres: this.genres['drama'], videos: this.videos},
-            ];
-        }
+        movieGenres: {
+            set(movieGenres) {
+                this.$store.commit('setData', {movieGenres});
+            },
+            get() {
+                return this.$store.state.movieGenres;
+            },
+        },
+        dramaGenres: {
+            set(dramaGenres) {
+                this.$store.commit('setData', {dramaGenres});
+            },
+            get() {
+                return this.$store.state.dramaGenres;
+            },
+        },
+    },
+    mounted() {
+        axios.get('/api/dicts?tag=MovieGenre').then(res => {
+            this.movieGenres = res.data;
+        });
+        axios.get('/api/dicts?tag=DramaGenre').then(res => {
+            this.dramaGenres = res.data;
+        });
     },
 };
 </script>

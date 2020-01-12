@@ -1,5 +1,7 @@
 import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
+
+
 /**
  * 字典信息
  */
@@ -9,20 +11,20 @@ export class DictEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    pid: number;
-
-    @Column()
-    value: string;
+    //@Column()
+    //pid: number;
 
     @Column()
     label: string;
 
     @Column()
-    tag: string;
+    value: string;
 
-    @Column('int')
-    seq: number;
+    @Column()
+    seq: number; // 排序号
+
+    @Column()
+    tag: string; // 分类标签
 
     @Column()
     remark: string;

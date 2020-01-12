@@ -8,10 +8,13 @@ Vue.use(Vuex);
  */
 export default new Vuex.Store({
     state: {
-        drawer: false, // Hide mobile side menu by default
+        drawer: false, // Hide mobile side menu by default,
+        movieGenres: [],
+        dramaGenres: [],
     },
     mutations: {
+        setData: (state, payload) => Object.assign(state, payload),
         setDrawer: (state, payload) => (state.drawer = payload.drawer),
-        toggleDrawer: state => (state.drawer = !state.drawer)
+        toggleDrawer: state => (state.drawer = !state.drawer),
     }
 });

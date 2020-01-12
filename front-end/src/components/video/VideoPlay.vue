@@ -75,7 +75,7 @@
 
 <script>
 //import Base from '@/components/util/Base';
-import VideoPlayer from '@/components/player/VideoPlayer';
+import VideoPlayer from '@/components/shared/VideoPlayer';
 import axios from 'axios';
 
 /**
@@ -95,7 +95,7 @@ export default {
         videos: require('@/data/videos.json'),
         expand: false,
     }),
-    created() {
+    mounted() {
         //Base.jsonp('https://api.douban.com/v2/movie/imdb/tt0111161', {
         //    apikey: '0df993c66c0c636e29ecbb5344252a4a'
         //}, (res) => {

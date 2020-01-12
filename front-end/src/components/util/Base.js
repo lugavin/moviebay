@@ -6,7 +6,7 @@ function register(namespace) {
     let nsStr = '', codeStr = '';
     for (let [i, v] of nsArr.entries()) {
         nsStr += (i === 0 ? v : '.' + v);
-        codeStr += 'if (typeof(' + nsStr + ') === "undefined") { ' + nsStr + ' = {}; }';
+        codeStr += `if (typeof ${nsStr} === "undefined") { ${nsStr} = {}; }`;
     }
     codeStr && eval(codeStr);
 }
@@ -27,7 +27,8 @@ function jsonp(url, params, callback) {
     }
     // 如果args中仍有元素, 那就是可选参数, 使用以下方法逐个取出
     params = args.length > 0 ? args.shift() : {};
-    Object.assign(params, {callback: 'jsonpCallback'});
+    Object.assign(params, {callback: `_${Date.now()}`});
+    console.info(params);
     const head = document.querySelector('head');
     const script = document.createElement('script');
     script.src = url + (url.indexOf('?') === -1 ? '?' : '&') + encodeURLParams(params);

@@ -1,14 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
-
-export enum VideoType {
-    MOVIE = 'movie',
-    TV = 'tv'
-}
-
-export enum VideoStatus {
-    OFFLINE,
-    ONLINE
-}
+import {VideoStatus, VideoType} from '../../comm/util/constants';
 
 /**
  * 影视条目信息

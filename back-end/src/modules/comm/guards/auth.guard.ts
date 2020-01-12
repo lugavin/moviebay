@@ -1,6 +1,6 @@
 import {CanActivate, ExecutionContext, Logger} from '@nestjs/common';
 import {Reflector} from '@nestjs/core';
-import {Constants} from '../util/constants';
+import {Consts} from '../util/constants';
 import {AuthService} from '../../sys/auth/auth.service';
 
 export class AuthGuard implements CanActivate {
@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
     }
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
-        const perms = this.reflector.get<string[]>(Constants.PERMS_KEY, context.getHandler());
+        const perms = this.reflector.get<string[]>(Consts.PERMS_KEY, context.getHandler());
         if (!perms) { // 匿名访问地址
             return true;
         }
