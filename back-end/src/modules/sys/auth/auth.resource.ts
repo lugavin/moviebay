@@ -1,4 +1,4 @@
-import {Body, Controller, HttpException, HttpStatus, Inject, Post} from '@nestjs/common';
+import {Body, Controller, HttpException, HttpStatus, Ip, Post} from '@nestjs/common';
 import {LoginDto} from './auth.dto';
 import {UserService} from '../user/user.service';
 import BaseUtil from '../../comm/util/base.util';
@@ -12,7 +12,7 @@ export class AuthResource {
     }
 
     @Post('/login')
-    async login(@Body() dto: LoginDto): Promise<string> {
+    async login(@Body() dto: LoginDto, @Ip() clientIp: string): Promise<string> {
         const user = await this.userService.getUserByName(dto.username);
         if (!user) {
             throw new HttpException({message: 'Account was not registered!'}, HttpStatus.NOT_FOUND);
@@ -24,11 +24,9 @@ export class AuthResource {
             throw new HttpException({message: 'Account was not activated!'}, HttpStatus.NOT_FOUND);
         }
         return this.authService.createToken({
+            clientIp,
             uid: String(user.id),
             username: user.username,
-            clientIp: '127.0.0.1',
-            perms: []
         }, 3600);
     }
-
 }

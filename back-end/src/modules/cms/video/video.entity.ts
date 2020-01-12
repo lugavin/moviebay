@@ -56,11 +56,11 @@ export class VideoEntity {
 
     // 导演: [{k:'celebrity_id', v:'celebrity_name'}]
     @Column('jsonb')
-    director: string;
+    directors: string;
 
     // 编剧: [{k:'celebrity_id', v:'celebrity_name'}]
     @Column('jsonb')
-    writer: string;
+    writers: string;
 
     // 演员: [{k:'celebrity_id', v:'celebrity_name'}]
     @Column('jsonb')
@@ -76,7 +76,7 @@ export class VideoEntity {
 
     // 片源
     @Column()
-    resources: string;
+    source: string;
 
     // 关键字
     @Column()
@@ -90,11 +90,13 @@ export class VideoEntity {
     type: VideoType;
 
     // 剧集(tv only): 当前季数/总季数
-    @Column()
+    @Column({nullable: true})
     season: string;
 
-    // IMDB: {id:'tt0111161', rating:9.3}
-    @Column()
-    imdb: string;
+    @Column({name: 'imdb_id', nullable: true})
+    imdbId: string;
+
+    @Column({name: 'imdb_rating', nullable: true})
+    imdbRating: string;
 }
 

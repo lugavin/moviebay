@@ -1,6 +1,6 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {DeleteResult, Repository} from 'typeorm';
+import {DeleteResult, Equal, Repository} from 'typeorm';
 import {UserEntity} from './user.entity';
 import {UserDto} from './user.dto';
 import BaseUtil from '../../comm/util/base.util';
@@ -40,10 +40,9 @@ export class UserService {
 
     async getUserByName(username: string): Promise<UserEntity> {
         // TODO 先从缓存中获取, 若获取不到再查数据库
-        return this.userRepository
-            .createQueryBuilder('u')
-            .where('u.username = :username', {username})
-            .getOne();
+        return this.userRepository.findOne({
+            username: Equal(`${username}`)
+        });
     }
 
 }

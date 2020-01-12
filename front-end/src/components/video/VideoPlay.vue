@@ -1,37 +1,31 @@
 <template>
     <v-container>
-        <v-row dense no-gutters>
+        <v-row dense no-gutters v-if="video">
             <v-col cols="12" lg="9">
-                <video id="player" class="video-js vjs-fluid vjs-styles-custom" preload="auto" controls
-                       :poster="require('@/assets/poster.png')" oncontextmenu="return false">
-                    <source :src="video.source"/>
-                    <source :src="video.source" type="video/webm"/>
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a web browser
-                        that <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                    </p>
-                </video>
+                <video-player :options="opts"></video-player>
                 <v-card tile flat dark>
                     <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
-                        {{rating}} / {{video.year}} / {{video.area}} / <label v-for="(item, i) in video.genres" :key="i">{{item.name}}<span v-if="i!==video.genres.length-1"> · </span></label> / 2048次播放
+                        {{video.imdbRating}} / {{video.year}} / <label v-for="(item, i) in video.countries" :key="item.k">{{item.v}}<span v-if="i!==video.countries.length-1"> · </span></label> / <label v-for="(item, i) in video.genres" :key="item.k">{{item.v}}<span v-if="i!==video.genres.length-1"> · </span></label> / 2048次播放
                         <a class="v-link" @click="expand=!expand">
                             详情<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
                     </v-card-subtitle>
                     <v-card-text :class="[{'d-none': !expand}]">
                         <p class="my-1">
-                            导演：<label v-for="(item, i) in video.directors" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.directors.length-1"> / </span></label>
+                            导演：<label v-for="(item, i) in video.directors" :key="item.k">{{item.v}}<span v-if="i!==video.directors.length-1"> / </span></label>
                         </p>
                         <p class="my-1">
-                            主演：<label v-for="(item, i) in video.actors" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.actors.length-1"> / </span></label>
+                            编剧：<label v-for="(item, i) in video.writers" :key="item.k">{{item.v}}<span v-if="i!==video.writers.length-1"> / </span></label>
                         </p>
                         <p class="my-1">
-                            类型：<label v-for="(item, i) in video.genres" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.genres.length-1"> / </span></label>
+                            主演：<label v-for="(item, i) in video.actors" :key="item.k">{{item.v}}<span v-if="i!==video.actors.length-1"> / </span></label>
                         </p>
-                        <p class="my-1">地区：{{video.area}}</p>
+                        <p class="my-1">
+                            类型：<label v-for="(item, i) in video.genres" :key="item.k">{{item.v}}<span v-if="i!==video.genres.length-1"> / </span></label>
+                        </p>
                         <p class="my-1">年份：{{video.year}}</p>
-                        <p class="my-1">简介：{{video.intro}}</p>
+                        <p class="my-1">简介：{{video.plot}}</p>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -80,84 +74,40 @@
 </template>
 
 <script>
-import videojs from 'video.js';
-import Base from '@/components/util/Base';
+//import Base from '@/components/util/Base';
+import VideoPlayer from '@/components/player/VideoPlayer';
+import axios from 'axios';
 
 /**
  * @see https://docs.videojs.com/tutorial-vue.html
  */
 export default {
     name: 'VideoPlay',
+    components: {VideoPlayer},
     data: () => ({
-        video: require('@/data/video.json'),
+        video: null,
+        opts: {
+            controls: true,
+            preload: 'auto',
+            poster: require('@/assets/poster.png'),
+            sources: null
+        },
         videos: require('@/data/videos.json'),
         expand: false,
-        rating: null,
     }),
-    mounted() {
-        videojs('player');
-        Base.jsonp('https://api.douban.com/v2/movie/imdb/tt0111161', {
-            apikey: '0df993c66c0c636e29ecbb5344252a4a'
-        }, (res) => {
-            this.rating = res.rating['average'];
+    created() {
+        //Base.jsonp('https://api.douban.com/v2/movie/imdb/tt0111161', {
+        //    apikey: '0df993c66c0c636e29ecbb5344252a4a'
+        //}, (res) => {
+        //    console.info(res.rating['average']);
+        //});
+        axios.get('/api/videos/1').then(res => {
+            this.opts.sources = [
+                {src: res.data.source},
+                {src: res.data.source, type: 'video/webm'},
+            ];
+            this.video = res.data;
         });
     },
 }
 </script>
-
-<style>
-@import "~video.js/dist/video-js.min.css";
-
-/*
-.scrollbar-outer-container {
-    overflow: hidden;
-}
-
-.scrollbar-inner-container {
-    margin-right: -18px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
-*/
-
-.hide-scrollbar {
-    overflow: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-.vjs-styles-custom .vjs-big-play-button {
-    top: auto;
-    left: 10px;
-    bottom: 10px;
-}
-
-@media only screen and (max-width: 959px) {
-    .vjs-styles-custom .vjs-big-play-button {
-        left: 1vw !important;
-        bottom: 2vw !important;
-        font-size: 3vw !important;
-    }
-}
-
-@media only screen and (min-width: 1264px) and (max-width: 1903px) {
-    .v-card-content {
-        height: 528px !important;
-    }
-}
-
-@media only screen and (min-width: 1904px) {
-    .vjs-styles-custom .vjs-big-play-button {
-        left: 20px !important;
-        bottom: 20px !important;
-    }
-
-    .v-card-content {
-        height: 781px !important;
-    }
-}
-</style>

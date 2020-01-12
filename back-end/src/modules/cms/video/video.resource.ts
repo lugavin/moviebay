@@ -1,6 +1,5 @@
-import {Body, Controller, Delete, Get, Param, Post, UsePipes, ValidationPipe} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Query} from '@nestjs/common';
 import {DeleteResult} from 'typeorm';
-import {Auth} from '../../comm/decorators/auth.decorator';
 import {VideoService} from './video.service';
 import {VideoEntity} from './video.entity';
 
@@ -11,20 +10,23 @@ export class VideoResource {
     }
 
     @Post()
-    @UsePipes(ValidationPipe)
     async createVideo(@Body() entity: VideoEntity): Promise<VideoEntity> {
         return this.videoService.createVideo(entity);
     }
 
     @Delete(':vid')
-    async deleteVideo(@Param('uid') vid: number): Promise<DeleteResult> {
+    async deleteVideo(@Param('vid') vid: number): Promise<DeleteResult> {
         return this.videoService.deleteVideo(vid);
     }
 
     @Get(':vid')
-    @Auth('video:query')
     async getVideo(@Param('vid') vid: number): Promise<VideoEntity> {
         return this.videoService.getVideo(vid);
+    }
+
+    @Get('/search')
+    async search(@Query('q') keyword: string): Promise<VideoEntity[]> {
+        return this.videoService.search(keyword);
     }
 
 }
