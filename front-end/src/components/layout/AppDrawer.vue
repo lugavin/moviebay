@@ -23,7 +23,7 @@ export default {
                 return this.$store.state.drawer;
             },
             set(drawer) {
-                this.$store.commit('setDrawer', {drawer});
+                this.$store.commit('setData', {drawer});
             }
         }
     }

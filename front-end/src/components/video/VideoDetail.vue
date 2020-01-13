@@ -28,52 +28,37 @@
         </v-row>
         <v-row>
             <v-col cols="12">
-                <v-card outlined>
-                    <v-toolbar dense flat class="grey lighten-4">
-                        <h4 class="font-weight-medium">
-                            <router-link class="v-link" to="/video/list">猜你喜欢</router-link>
-                        </h4>
-                    </v-toolbar>
-                    <v-container>
-                        <v-row dense>
-                            <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2">
-                                <v-card outlined>
-                                    <v-hover v-slot:default="{ hover }">
-                                        <v-img :src="require(`@/assets/img/${video.poster}`)">
-                                            <v-expand-transition>
-                                                <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
-                                                     v-if="hover">
-                                                    <v-btn icon class="white--text" to="/video/play" target="_blank">
-                                                        <v-icon x-large>play_circle_outline</v-icon>
-                                                    </v-btn>
-                                                </div>
-                                            </v-expand-transition>
-                                        </v-img>
-                                    </v-hover>
-                                    <v-card-text class="text-center py-1">
-                                        <p class="mb-0">
-                                            <router-link class="subtitle-1 v-link" to="/video/detail">{{video.title}}</router-link>
-                                        </p>
-                                        <p class="mb-0">
-                                            <span class="subtitle-2">{{video.createdAt}}</span>
-                                        </p>
-                                    </v-card-text>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-container>
-                </v-card>
+                <video-panel v-bind="videoPanel">
+                    <template v-slot:default>
+                        <v-container>
+                            <v-row dense>
+                                <v-col v-for="(item, i) in videoPanel.items" :key="i" cols="4" md="3" lg="2">
+                                    <v-lazy>
+                                        <video-card v-bind="item"/>
+                                    </v-lazy>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </template>
+                </video-panel>
             </v-col>
         </v-row>
     </v-container>
 </template>
 
 <script>
+import VideoPanel from '@/components/shared/VideoPanel';
+import VideoCard from '@/components/shared/VideoCard';
 export default {
     name: 'VideoDetail',
+    components: {VideoPanel, VideoCard},
     data: () => ({
         video: require('@/data/video.json'),
-        videos: require('@/data/videos.json'),
+        videoPanel: {
+            title: '猜你喜欢',
+            url: '/video/list',
+            items: require('@/data/videos.json'),
+        },
     }),
 };
 </script>

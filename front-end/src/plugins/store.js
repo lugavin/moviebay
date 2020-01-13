@@ -14,7 +14,6 @@ export default new Vuex.Store({
     },
     mutations: {
         setData: (state, payload) => Object.assign(state, payload),
-        setDrawer: (state, payload) => (state.drawer = payload.drawer),
         toggleDrawer: state => (state.drawer = !state.drawer),
     }
 });

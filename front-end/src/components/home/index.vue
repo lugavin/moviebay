@@ -8,42 +8,81 @@
             </v-col>
             <v-col cols="12">
                 <video-panel v-bind="videoPanel">
-                    <ul class="text-small">
-                        <li class="d-block float-left">
-                            今日更新 <span class="red--text text--darken-3">{{videoPanel.items.length}}</span> 部
-                            共 <span class="red--text text--darken-3">9999876</span> 部
-                            <span class="mx-2"/>
-                        </li>
-                        <li class="d-block float-left">
-                            <router-link class="v-link" :to="videoPanel.url">更多...</router-link>
-                        </li>
-                    </ul>
+                    <template v-slot:tags>
+                        <ul class="text-small">
+                            <li class="d-block float-left">
+                                今日更新 <span class="red--text text--darken-3">{{videoPanel.items.length}}</span> 部
+                                共 <span class="red--text text--darken-3">9999876</span> 部
+                                <span class="mx-2"/>
+                            </li>
+                            <li class="d-block float-left">
+                                <router-link class="v-link" :to="videoPanel.url">更多...</router-link>
+                            </li>
+                        </ul>
+                    </template>
+                    <template v-slot:default>
+                        <v-container>
+                            <v-row dense>
+                                <v-col v-for="(item, i) in videoPanel.items" :key="i" cols="4" md="3" lg="2">
+                                    <v-lazy>
+                                        <video-card v-bind="item"/>
+                                    </v-lazy>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </template>
                 </video-panel>
             </v-col>
             <v-col cols="12">
                 <video-panel v-bind="moviePanel">
-                    <ul class="text-small">
-                        <li class="d-block float-left" v-for="genre in movieGenres" :key="genre.value">
-                            <router-link class="v-link" to="/">{{genre.label+'片'}}</router-link>
-                            <span class="mx-2">/</span>
-                        </li>
-                        <li class="d-block float-left">
-                            <router-link class="v-link" :to="moviePanel.url">更多...</router-link>
-                        </li>
-                    </ul>
+                    <template v-slot:tags>
+                        <ul class="text-small">
+                            <li class="d-block float-left" v-for="genre in movieGenres" :key="genre.value">
+                                <router-link class="v-link" to="/">{{genre.label+'片'}}</router-link>
+                                <span class="mx-2">/</span>
+                            </li>
+                            <li class="d-block float-left">
+                                <router-link class="v-link" :to="moviePanel.url">更多...</router-link>
+                            </li>
+                        </ul>
+                    </template>
+                    <template v-slot:default>
+                        <v-container>
+                            <v-row dense>
+                                <v-col v-for="(item, i) in moviePanel.items" :key="i" cols="4" md="3" lg="2">
+                                    <v-lazy>
+                                        <video-card v-bind="item"/>
+                                    </v-lazy>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </template>
                 </video-panel>
             </v-col>
             <v-col cols="12">
                 <video-panel v-bind="tvPanel">
-                    <ul class="text-small">
-                        <li class="d-block float-left" v-for="genre in dramaGenres" :key="genre.value">
-                            <router-link class="v-link" to="/">{{genre.label}}</router-link>
-                            <span class="mx-2">/</span>
-                        </li>
-                        <li class="d-block float-left">
-                            <router-link class="v-link" :to="tvPanel.url">更多...</router-link>
-                        </li>
-                    </ul>
+                    <template v-slot:tags>
+                        <ul class="text-small">
+                            <li class="d-block float-left" v-for="genre in dramaGenres" :key="genre.value">
+                                <router-link class="v-link" to="/">{{genre.label}}</router-link>
+                                <span class="mx-2">/</span>
+                            </li>
+                            <li class="d-block float-left">
+                                <router-link class="v-link" :to="tvPanel.url">更多...</router-link>
+                            </li>
+                        </ul>
+                    </template>
+                    <template v-slot:default>
+                        <v-container>
+                            <v-row dense>
+                                <v-col v-for="(item, i) in tvPanel.items" :key="i" cols="4" md="3" lg="2">
+                                    <v-lazy>
+                                        <video-card v-bind="item"/>
+                                    </v-lazy>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </template>
                 </video-panel>
             </v-col>
         </v-row>
@@ -52,6 +91,7 @@
 
 <script>
 import VideoPanel from '@/components/shared/VideoPanel';
+import VideoCard from '@/components/shared/VideoCard';
 import axios from 'axios';
 
 /**
@@ -59,7 +99,7 @@ import axios from 'axios';
  */
 export default {
     name: 'Home',
-    components: {VideoPanel},
+    components: {VideoPanel, VideoCard},
     data: () => ({
         posters: require('@/data/posters.json'),
         videoPanel: {
@@ -97,12 +137,16 @@ export default {
         },
     },
     mounted() {
-        axios.get('/api/dicts?tag=MovieGenre').then(res => {
-            this.movieGenres = res.data;
-        });
-        axios.get('/api/dicts?tag=DramaGenre').then(res => {
-            this.dramaGenres = res.data;
-        });
+        if (this.movieGenres.length < 1) {
+            axios.get('/api/dicts?tag=MovieGenre').then(res => {
+                this.movieGenres = res.data;
+            });
+        }
+        if (this.dramaGenres.length < 1) {
+            axios.get('/api/dicts?tag=DramaGenre').then(res => {
+                this.dramaGenres = res.data;
+            });
+        }
     },
 };
 </script>
