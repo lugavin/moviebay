@@ -9,5 +9,5 @@ import {AuthService} from './modules/sys/auth/auth.service';
     const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
     app.useGlobalInterceptors(new LoggingInterceptor());
     app.useGlobalGuards(new AuthGuard(app.get(Reflector), app.get(AuthService)));
-    await app.listen(process.env.PORT || 3000);
+    await app.listen(process.env.SERVER_PORT);
 })();

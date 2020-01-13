@@ -9,8 +9,8 @@ export class DictResource {
     }
 
     @Post()
-    async createDict(@Body() entity: DictEntity): Promise<DictEntity> {
-        return this.dictService.createDict(entity);
+    async createDict(@Body() entities: DictEntity[]): Promise<DictEntity[]> {
+        return this.dictService.createDict(entities);
     }
 
     @Get()

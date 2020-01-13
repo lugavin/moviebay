@@ -9,8 +9,8 @@ export class DictService {
     constructor(@InjectRepository(DictEntity) private readonly dictRepository: Repository<DictEntity>) {
     }
 
-    async createDict(entity: DictEntity): Promise<DictEntity> {
-        return this.dictRepository.save(entity);
+    async createDict(entities: DictEntity[]): Promise<DictEntity[]> {
+        return this.dictRepository.save(entities);
     }
 
     async getDictByTag(tag: string): Promise<DictEntity[]> {

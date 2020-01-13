@@ -5,11 +5,12 @@
   {"label": "科幻", "tag": "MovieGenre", "remark": "电影分类", "seq": 4, "value": "sci-fi"},
   {"label": "恐怖", "tag": "MovieGenre", "remark": "电影分类", "seq": 5, "value": "horror"},
   {"label": "剧情", "tag": "MovieGenre", "remark": "电影分类", "seq": 6, "value": "drama"},
-  {"label": "战争", "tag": "MovieGenre", "remark": "电影分类", "seq": 7, "value": "war"},
-  {"label": "纪录", "tag": "MovieGenre", "remark": "电影分类", "seq": 8, "value": "documentary"},
+  {"label": "犯罪", "tag": "MovieGenre", "remark": "电影分类", "seq": 7, "value": "crime"},
+  {"label": "战争", "tag": "MovieGenre", "remark": "电影分类", "seq": 8, "value": "war"},
+  {"label": "纪录", "tag": "MovieGenre", "remark": "电影分类", "seq": 9, "value": "documentary"},
   {"label": "国产剧", "tag": "DramaGenre", "remark": "电视剧分类", "seq": 1, "value": "CN"},
   {"label": "港台剧", "tag": "DramaGenre", "remark": "电视剧分类", "seq": 2, "value": "HK-TW"},
   {"label": "日韩剧", "tag": "DramaGenre", "remark": "电视剧分类", "seq": 3, "value": "JP-KR"},
   {"label": "欧美剧", "tag": "DramaGenre", "remark": "电视剧分类", "seq": 4, "value": "US-EUR"},
-  {"label": "其他剧", "tag": "DramaGenre", "remark": "电视剧分类", "seq": 5, "value": "OTHER"},
+  {"label": "其他剧", "tag": "DramaGenre", "remark": "电视剧分类", "seq": 5, "value": "OTHER"}
 ]

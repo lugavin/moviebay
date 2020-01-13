@@ -1,4 +1,4 @@
-import {Body, Controller, HttpException, HttpStatus, Ip, Post} from '@nestjs/common';
+import {Body, Controller, HttpCode, HttpException, HttpStatus, Ip, Post, Res} from '@nestjs/common';
 import {LoginDto} from './auth.dto';
 import {UserService} from '../user/user.service';
 import BaseUtil from '../../comm/util/base.util';
@@ -12,6 +12,7 @@ export class AuthResource {
     }
 
     @Post('/login')
+    @HttpCode(HttpStatus.OK)
     async login(@Body() dto: LoginDto, @Ip() clientIp: string): Promise<string> {
         const user = await this.userService.getUserByName(dto.username);
         if (!user) {
