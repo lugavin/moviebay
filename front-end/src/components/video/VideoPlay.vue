@@ -2,7 +2,7 @@
     <v-container>
         <v-row dense no-gutters v-if="video">
             <v-col cols="12" lg="9">
-                <video-player :options="opts"></video-player>
+                <video-player :options="playerOpts"></video-player>
                 <v-card tile flat dark>
                     <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
@@ -86,7 +86,7 @@ export default {
     components: {VideoPlayer},
     data: () => ({
         video: null,
-        opts: {
+        playerOpts: {
             controls: true,
             preload: 'auto',
             poster: require('@/assets/poster.png'),
@@ -102,7 +102,7 @@ export default {
         //    console.info(res.rating['average']);
         //});
         axios.get('/api/videos/1').then(res => {
-            this.opts.sources = [
+            this.playerOpts.sources = [
                 {src: res.data.source},
                 {src: res.data.source, type: 'video/webm'},
             ];

@@ -83,8 +83,9 @@ export default {
 
 @media only screen and (min-width: 1904px) {
     .vjs-styles-custom .vjs-big-play-button {
-        left: 20px !important;
-        bottom: 20px !important;
+        left: 1vw !important;
+        bottom: 1.5vw !important;
+        font-size: 2vw !important;
     }
 
     .v-card-content {
