@@ -9,4 +9,8 @@ export class CelebrityService {
     constructor(@InjectRepository(CelebrityEntity) private readonly celebrityRepository: Repository<CelebrityEntity>) {
     }
 
+    async createCelebrity(entities: CelebrityEntity[]): Promise<CelebrityEntity[]> {
+        return this.celebrityRepository.save(entities);
+    }
+
 }

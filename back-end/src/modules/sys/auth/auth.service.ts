@@ -8,7 +8,7 @@ export class AuthService {
     constructor(private readonly jwtService: JwtService) {
     }
 
-    async createToken(activeUser: ActiveUser, expiresIn: number): Promise<string> {
+    async createToken(activeUser: ActiveUser, expiresIn: number = parseInt(process.env.JWT_EXPIRES, 10)): Promise<string> {
         return this.jwtService.signAsync(activeUser, {expiresIn});
     }
 

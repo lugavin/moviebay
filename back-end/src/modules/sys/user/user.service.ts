@@ -3,12 +3,15 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Equal, Repository} from 'typeorm';
 import {UserEntity} from './user.entity';
 import {UserDto} from './user.dto';
-import BaseUtil from '../../comm/util/base.util';
+import BaseUtil from '../../shared/util/base.util';
+import {Constants} from '../../shared/util/constants';
+import {RedisClient} from 'redis';
 
 @Injectable()
 export class UserService {
 
-    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {
+    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>,
+                private readonly redisClient: RedisClient) {
     }
 
     async createUser(dto: UserDto): Promise<UserEntity> {
@@ -18,16 +21,20 @@ export class UserService {
             password: BaseUtil.md5Hash(dto.password, salt),
             activated: true,
             createdAt: new Date(),
-            createdBy: 'admin',
+            createdBy: Constants.ACCOUNT,
         }));
     }
 
     async updateUser(uid: number, dto: UserDto): Promise<UserEntity> {
         const user = await this.userRepository.findOne(uid);
         if (!user) {
-            throw new HttpException({message: 'User not found!'}, HttpStatus.NOT_FOUND);
+            throw new HttpException('User not found!', HttpStatus.BAD_REQUEST);
         }
-        return this.userRepository.save(Object.assign(user, {updatedAt: new Date(), updatedBy: 'admin', ...dto}));
+        return this.userRepository.save(Object.assign(user, {
+            updatedAt: new Date(),
+            updatedBy: Constants.ACCOUNT,
+            ...dto
+        }));
     }
 
     async deleteUser(uid: number): Promise<DeleteResult> {
@@ -39,9 +46,18 @@ export class UserService {
     }
 
     async getUserByName(username: string): Promise<UserEntity> {
-        // TODO 先从缓存中获取, 若获取不到再查数据库
-        return this.userRepository.findOne({
-            username: Equal(`${username}`),
+        const redisKey = 'USER';
+        // @ts-ignore
+        return this.redisClient.hgetAsync(redisKey, username).then((res) => {
+            if (!res) {
+                return this.userRepository.findOne({
+                    username: Equal(`${username}`),
+                }).then(user => {
+                    this.redisClient.hset(redisKey, username, JSON.stringify(user));
+                    return user;
+                });
+            }
+            return JSON.parse(res);
         });
     }
 

@@ -3,7 +3,7 @@ import {DeleteResult} from 'typeorm';
 import {UserService} from './user.service';
 import {UserEntity} from './user.entity';
 import {UserDto} from './user.dto';
-import {Auth} from '../../comm/decorators/auth.decorator';
+import {Auth} from '../../shared/decorators/auth.decorator';
 
 @Controller('/users')
 export class UserResource {

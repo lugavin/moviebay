@@ -1,7 +1,5 @@
 import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
-
-
 /**
  * 字典信息
  */

@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn, JoinTable, ManyToMany} from 'typeorm';
+import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {RoleEntity} from '../role/role.entity';
 
 /**
@@ -62,4 +62,5 @@ export class UserEntity {
         inverseJoinColumn: {name: 'role_id', referencedColumnName: 'id'}
     })
     roles: RoleEntity[];
+
 }

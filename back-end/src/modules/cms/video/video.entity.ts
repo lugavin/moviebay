@@ -1,5 +1,5 @@
 import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
-import {VideoStatus, VideoType} from '../../comm/util/constants';
+import {VideoStatus, VideoType} from '../../shared/util/constants';
 
 /**
  * 影视条目信息

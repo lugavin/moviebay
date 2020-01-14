@@ -3,10 +3,10 @@ import {JwtModule} from '@nestjs/jwt';
 import {AuthService} from './auth.service';
 import {AuthResource} from './auth.resource';
 import {UserModule} from '../user/user.module';
-import jwtFactory from '../../../config/jwt.config';
+import {jwtConfigFactory} from '../../../config/config.factory';
 
 @Module({
-    imports: [JwtModule.registerAsync({useFactory: jwtFactory}), UserModule],
+    imports: [JwtModule.registerAsync({useFactory: jwtConfigFactory}), UserModule],
     providers: [AuthService],
     controllers: [AuthResource],
 })
