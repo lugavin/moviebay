@@ -1,7 +1,7 @@
 import {IsNotEmpty} from 'class-validator';
 
 export class ActiveUser {
-    readonly uid: string;
+    readonly uid: number;
     readonly username: string;
     readonly clientIp: string;
 }

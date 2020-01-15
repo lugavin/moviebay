@@ -1,4 +1,5 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {RoleEntity} from '../role/role.entity';
 
 /**
  * 权限信息
@@ -32,5 +33,8 @@ export class PermEntity {
 
     @Column({nullable: true})
     pid: number;
+
+    @ManyToMany(type => RoleEntity, role => role.perms)
+    roles: RoleEntity[];
 
 }

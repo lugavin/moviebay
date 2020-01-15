@@ -15,6 +15,11 @@ export enum DictTag {
     LANGUAGE = 'LANGUAGE',
 }
 
+export enum RedisKey {
+    HKEY_USERS = 'USERS',
+    HKEY_PERMS = 'PERMS',
+}
+
 export const Constants = {
     ACCOUNT: 'system',
     PERMS_KEY: 'perms',

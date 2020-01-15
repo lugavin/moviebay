@@ -9,4 +9,12 @@ export class PermService {
     constructor(@InjectRepository(PermEntity) private readonly permRepository: Repository<PermEntity>) {
     }
 
+    async getPerms(username: string): Promise<PermEntity[]> {
+        return this.permRepository.createQueryBuilder('p')
+            .leftJoin('p.roles', 'r')
+            .leftJoin('r.users', 'u')
+            .where('u.username = :username', {username})
+            .getMany();
+    }
+
 }

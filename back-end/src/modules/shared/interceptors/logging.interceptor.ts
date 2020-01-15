@@ -8,10 +8,9 @@ import {tap} from 'rxjs/operators';
 export class LoggingInterceptor implements NestInterceptor {
 
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-        Logger.debug('Before...');
         const now = Date.now();
         return next.handle()
-            .pipe(tap(() => Logger.debug(`After... ${Date.now() - now}ms`)));
+            .pipe(tap(() => Logger.debug(`请求 ${context.switchToHttp().getRequest().url} 耗时 ${Date.now() - now}ms`, LoggingInterceptor.name)));
     }
 
 }

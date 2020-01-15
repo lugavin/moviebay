@@ -55,7 +55,7 @@ export class UserEntity {
     @Column({name: 'updated_by', nullable: true})
     updatedBy: string;
 
-    @ManyToMany(type => RoleEntity)
+    @ManyToMany(type => RoleEntity, role => role.users)
     @JoinTable({
         name: 'sys_user_role',
         joinColumn: {name: 'user_id', referencedColumnName: 'id'},

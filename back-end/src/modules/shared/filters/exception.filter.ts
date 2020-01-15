@@ -1,4 +1,4 @@
-import {ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus} from '@nestjs/common';
+import {ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, Logger} from '@nestjs/common';
 import {Request, Response} from 'express';
 
 /**
@@ -21,17 +21,16 @@ enum Series {
 export class HttpExceptionFilter implements ExceptionFilter {
 
     catch(error: Error, host: ArgumentsHost) {
-        const retCode = error instanceof HttpException ? error.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
-        const retMsg = error.message;
-        if (Math.floor(retCode / 100) === Series.SERVER_ERROR) {
-            console.error(retCode, retMsg);
+        const status = error instanceof HttpException ? error.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
+        if (Math.floor(status / 100) === Series.SERVER_ERROR) {
+            Logger.error(error.message, error.stack, HttpExceptionFilter.name);
         }
         const context = host.switchToHttp();
         const request = context.getRequest<Request>();
         const response = context.getResponse<Response>();
-        response.status(retCode).json({
-            retCode,
-            retMsg,
+        response.status(status).json({
+            retCode: status,
+            retMsg: error.message,
             path: request.url,
             timestamp: Date.now(),
         });

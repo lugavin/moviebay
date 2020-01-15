@@ -5,13 +5,11 @@ import {UserEntity} from './user.entity';
 import {UserDto} from './user.dto';
 import BaseUtil from '../../shared/util/base.util';
 import {Constants} from '../../shared/util/constants';
-import {RedisClient} from 'redis';
 
 @Injectable()
 export class UserService {
 
-    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>,
-                private readonly redisClient: RedisClient) {
+    constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {
     }
 
     async createUser(dto: UserDto): Promise<UserEntity> {
@@ -46,19 +44,7 @@ export class UserService {
     }
 
     async getUserByName(username: string): Promise<UserEntity> {
-        const redisKey = 'USER';
-        // @ts-ignore
-        return this.redisClient.hgetAsync(redisKey, username).then((res) => {
-            if (!res) {
-                return this.userRepository.findOne({
-                    username: Equal(`${username}`),
-                }).then(user => {
-                    this.redisClient.hset(redisKey, username, JSON.stringify(user));
-                    return user;
-                });
-            }
-            return JSON.parse(res);
-        });
+        return this.userRepository.findOne({username: Equal(`${username}`)});
     }
 
 }

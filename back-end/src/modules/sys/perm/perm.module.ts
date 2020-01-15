@@ -6,6 +6,7 @@ import {PermResource} from './perm.resource';
 
 @Module({
     imports: [TypeOrmModule.forFeature([PermEntity])],
+    exports: [PermService],
     providers: [PermService],
     controllers: [PermResource],
 })

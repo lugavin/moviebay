@@ -1,20 +1,18 @@
 import {Body, Controller, HttpCode, HttpException, HttpStatus, Ip, Post} from '@nestjs/common';
 import {LoginDto} from './auth.dto';
-import {UserService} from '../user/user.service';
-import BaseUtil from '../../shared/util/base.util';
 import {AuthService} from './auth.service';
+import BaseUtil from '../../shared/util/base.util';
 
 @Controller()
 export class AuthResource {
 
-    constructor(private readonly authService: AuthService,
-                private readonly userService: UserService) {
+    constructor(private readonly authService: AuthService) {
     }
 
     @Post('/login')
     @HttpCode(HttpStatus.OK)
     async login(@Body() dto: LoginDto, @Ip() clientIp: string): Promise<string> {
-        const user = await this.userService.getUserByName(dto.username);
+        const user = await this.authService.getUser(dto.username);
         if (!user) {
             throw new HttpException('Account was not registered!', HttpStatus.BAD_REQUEST);
         }
@@ -26,7 +24,7 @@ export class AuthResource {
         }
         return this.authService.createToken({
             clientIp,
-            uid: String(user.id),
+            uid: user.id,
             username: user.username,
         });
     }
