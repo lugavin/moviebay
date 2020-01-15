@@ -24,7 +24,7 @@ export class VideoResource {
         return this.videoService.getVideo(vid);
     }
 
-    @Get('/search')
+    @Get()
     async search(@Query('q') keyword: string): Promise<VideoEntity[]> {
         return this.videoService.search(keyword);
     }

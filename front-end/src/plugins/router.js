@@ -30,5 +30,6 @@ export default new Router({
         {path: '/video/list', component: () => import('@/components/video/VideoList')},
         {path: '/video/detail', component: () => import('@/components/video/VideoDetail')},
         {path: '/video/play', component: () => import('@/components/video/VideoPlay')},
+        {path: '/video/search', component: () => import('@/components/video/VideoSearch')},
     ]
 });

@@ -11,7 +11,14 @@
                     <v-btn v-for="(menu, i) in menus" :key="i" :to="menu.url" v-text="menu.title" text/>
                 </v-toolbar-items>
                 <v-row align="center" class="mx-4">
-                    <v-text-field append-icon="search" placeholder="请输入关键字" hide-details single-line/>
+                    <v-text-field placeholder="请输入关键字" hide-details single-line v-model.trim="keyword">
+                        <template v-slot:append>
+                            <v-btn :to="{path: '/video/search', query: {q: keyword}}" target="_blank"
+                                   :disabled="!keyword"  text icon small >
+                                <v-icon>search</v-icon>
+                            </v-btn>
+                        </template>
+                    </v-text-field>
                 </v-row>
                 <v-spacer/>
                 <v-toolbar-items>
@@ -45,13 +52,14 @@
 export default {
     name: 'AppHeader',
     data: () => ({
+        keyword: '',
         loginDialog: false,
-        menus: require('@/data/menus.json')
+        menus: require('@/data/menus.json'),
     }),
     methods: {
         toggleDrawer() {
             this.$store.commit('toggleDrawer');
-        }
+        },
     }
 };
 </script>
