@@ -38,7 +38,7 @@
                     <template v-slot:tags>
                         <ul class="text-small">
                             <li class="d-block float-left" v-for="genre in movieGenres" :key="genre.value">
-                                <router-link class="v-link" to="/">{{genre.label+'片'}}</router-link>
+                                <router-link class="v-link" to="/">{{genre.label}}</router-link>
                                 <span class="mx-2">/</span>
                             </li>
                             <li class="d-block float-left">
@@ -60,7 +60,7 @@
                 </video-panel>
             </v-col>
             <v-col cols="12">
-                <video-panel v-bind="tvPanel">
+                <video-panel v-bind="dramaPanel">
                     <template v-slot:tags>
                         <ul class="text-small">
                             <li class="d-block float-left" v-for="genre in dramaGenres" :key="genre.value">
@@ -68,14 +68,14 @@
                                 <span class="mx-2">/</span>
                             </li>
                             <li class="d-block float-left">
-                                <router-link class="v-link" :to="tvPanel.url">更多...</router-link>
+                                <router-link class="v-link" :to="dramaPanel.url">更多...</router-link>
                             </li>
                         </ul>
                     </template>
                     <template v-slot:default>
                         <v-container>
                             <v-row dense>
-                                <v-col v-for="(item, i) in tvPanel.items" :key="i" cols="4" md="3" lg="2">
+                                <v-col v-for="(item, i) in dramaPanel.items" :key="i" cols="4" md="3" lg="2">
                                     <v-lazy>
                                         <video-card v-bind="item"/>
                                     </v-lazy>
@@ -109,12 +109,12 @@ export default {
         },
         moviePanel: {
             title: '电影',
-            url: '/video/list',
+            url: '/video/list?type=MOVIE',
             items: require('@/data/videos.json'),
         },
-        tvPanel: {
+        dramaPanel: {
             title: '连续剧',
-            url: '/video/list',
+            url: '/video/list?type=DRAMA',
             items: require('@/data/videos.json'),
         },
     }),
@@ -139,7 +139,7 @@ export default {
     mounted() {
         if (!this.movieGenres.length) {
             axios.get('/api/dicts?tag=MovieGenre').then(res => {
-                this.movieGenres = res.data;
+                this.movieGenres = res.data.map(item => Object.assign(item, {label: item.label + '片'}));
             });
         }
         if (!this.dramaGenres.length) {

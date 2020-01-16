@@ -13,7 +13,7 @@
                     <v-card-text :class="[{'d-none': !expand}, 'py-2']">
                         <v-chip-group v-model="filter.genres" column color="indigo">
                             <v-chip v-for="genre in genres" :key="genre.value" :value="genre.value" label outlined filter>
-                                {{genre.label+'片'}}
+                                {{genre.label}}
                             </v-chip>
                         </v-chip-group>
                         <v-chip-group v-model="filter.sorts" column color="indigo">
@@ -47,6 +47,7 @@ import axios from 'axios';
 export default {
     name: 'VideoList',
     components: {VideoCard},
+    props: ['type'],
     data: () => ({
         page: 1,
         rows: 15,
@@ -54,6 +55,7 @@ export default {
             genres: [],
             sorts: []
         },
+        genres: [],
         sorts: [
             {value: 1, label: '按时间排序'},
             {value: 2, label: '按人气排序'},
@@ -62,22 +64,15 @@ export default {
         expand: false,
         videos: require('@/data/videos.json'),
     }),
-    computed: {
-        genres: {
-            set(movieGenres) {
-                this.$store.commit('setData', {movieGenres});
-            },
-            get() {
-                return this.$store.state.movieGenres;
-            },
-        },
-    },
     mounted() {
-        if (!this.genres.length) {
-            axios.get('/api/dicts?tag=MovieGenre').then(res => {
-                this.genres = res.data;
-            });
-        }
+        const mapper = {
+            MOVIE: 'MovieGenre',
+            DRAMA: 'DramaGenre',
+        };
+        axios.get(`/api/dicts?tag=${mapper[this.type]}`).then(res => {
+            this.genres = mapper[this.type] !== mapper.MOVIE ? res.data
+                : res.data.map(item => Object.assign(item, {label: item.label + '片'}));
+        });
     },
 };
 </script>

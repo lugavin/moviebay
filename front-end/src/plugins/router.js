@@ -20,7 +20,11 @@ export default new Router({
     routes: [
         {path: '/', redirect: '/home'},
         {path: '/home', component: () => import('@/components/home')},
-        {path: '/video/list', component: () => import('@/components/video/VideoList')},
+        {
+            path: '/video/list',
+            component: () => import('@/components/video/VideoList'),
+            props: (route) => ({type: route.query.type}),
+        },
         {
             path: '/video/detail/:vid',
             component: () => import('@/components/video/VideoDetail'),
