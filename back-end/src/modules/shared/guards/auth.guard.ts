@@ -1,6 +1,5 @@
 import {CanActivate, ExecutionContext, Logger} from '@nestjs/common';
 import {Reflector} from '@nestjs/core';
-import {Request} from 'express';
 import {Constants} from '../util/constants';
 import {AuthService} from '../../sys/auth/auth.service';
 import {ActiveUser} from '../../sys/auth/auth.dto';
@@ -16,7 +15,7 @@ export class AuthGuard implements CanActivate {
         if (!perms) { // 匿名访问地址
             return true;
         }
-        const request = context.switchToHttp().getRequest<Request>();
+        const request = context.switchToHttp().getRequest();
         const resolveToken = (bearerToken) => bearerToken && bearerToken.startsWith('Bearer ') ? bearerToken.substring(7) : null;
         const token = resolveToken(request.headers.authorization);
         if (!token) {
@@ -31,12 +30,13 @@ export class AuthGuard implements CanActivate {
             return false;
         }
         //request.user = activeUser;
-        if (perms.length === 0) { // 公共访问地址(登录后无需授权)
+        if (!perms.length) { // 公共访问地址(登录后无需授权)
             return true;
         }
         // 授权访问地址(登录后需要授权)
-        const hasPerm = (user) => perms.every(perm => user.perms.includes(perm));
-        return hasPerm({perms: await this.authService.getPerms(activeUser.username)});
+        const userPerms = await this.authService.getPerms(activeUser.username);
+        const hasPerm = () => perms.every(perm => userPerms.includes(perm));
+        return userPerms && userPerms.length && hasPerm();
     }
 
 }

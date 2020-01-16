@@ -3,7 +3,7 @@ import {DeleteResult} from 'typeorm';
 import {VideoService} from './video.service';
 import {VideoEntity} from './video.entity';
 
-@Controller('/videos')
+@Controller('videos')
 export class VideoResource {
 
     constructor(private readonly videoService: VideoService) {
@@ -24,7 +24,7 @@ export class VideoResource {
         return this.videoService.getVideo(vid);
     }
 
-    @Get()
+    @Get('search')
     async search(@Query('q') keyword: string): Promise<VideoEntity[]> {
         return this.videoService.search(keyword);
     }

@@ -1,28 +1,28 @@
 <template>
     <v-container>
-        <v-row>
+        <v-row v-if="video">
             <v-col cols="12" md="3">
                 <v-img :src="require(`@/assets/img/${video.poster}`)" max-width="360px" max-height="480px"/>
             </v-col>
             <v-col cols="12" md="9">
                 <h3>{{video.title}}</h3>
                 <p class="my-1">
-                    导演：<label v-for="(item, i) in video.directors" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.directors.length-1"> / </span></label>
+                    导演：{{video.directors.map(r=>r.v).join(' / ')}}
                 </p>
                 <p class="my-1">
-                    主演：<label v-for="(item, i) in video.actors" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.actors.length-1"> / </span></label>
+                    主演：{{video.actors.map(r=>r.v).join(' / ')}}
                 </p>
                 <p class="my-1">
-                    类型：<label v-for="(item, i) in video.genres" :key="i"><a href="#" class="v-link">{{item.name}}</a><span v-if="i!==video.genres.length-1"> / </span></label>
+                    类型：{{video.genres.map(r=>r.v).join(' / ')}}
                 </p>
-                <p class="my-1">地区：{{video.area}}</p>
+                <p class="my-1">地区：{{video.countries.map(r=>r.v).join(' / ')}}</p>
                 <p class="my-1">年份：{{video.year}}</p>
                 <p class="my-1 pl-12">
                     <span class="ml-n12">简介：</span>
-                    <span>{{video.intro}}</span>
+                    <span>{{video.plot}}</span>
                 </p>
                 <p class="my-1 pl-12 mt-4">
-                    <v-btn to="/video/play" target="_blank" color="primary">立即播放</v-btn>
+                    <v-btn :to="`/video/play/${video.id}`" target="_blank" color="primary">立即播放</v-btn>
                 </p>
             </v-col>
         </v-row>
@@ -49,16 +49,29 @@
 <script>
 import VideoPanel from '@/components/shared/VideoPanel';
 import VideoCard from '@/components/shared/VideoCard';
+import axios from 'axios';
+
 export default {
     name: 'VideoDetail',
     components: {VideoPanel, VideoCard},
+    props: {
+        vid: {
+            type: [Number, String],
+            required: true
+        },
+    },
     data: () => ({
-        video: require('@/data/video.json'),
+        video: null,
         videoPanel: {
             title: '猜你喜欢',
             url: '/video/list',
             items: require('@/data/videos.json'),
         },
     }),
+    mounted() {
+        axios.get(`/api/videos/${this.vid}`).then(res => {
+            this.video = res.data;
+        });
+    },
 };
 </script>

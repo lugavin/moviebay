@@ -4,7 +4,6 @@ import {DeleteResult, Equal, Repository} from 'typeorm';
 import {UserEntity} from './user.entity';
 import {UserDto} from './user.dto';
 import BaseUtil from '../../shared/util/base.util';
-import {Constants} from '../../shared/util/constants';
 
 @Injectable()
 export class UserService {
@@ -14,12 +13,10 @@ export class UserService {
 
     async createUser(dto: UserDto): Promise<UserEntity> {
         const salt = BaseUtil.randomString();
-        return this.userRepository.save(Object.assign(dto, {
+        return this.userRepository.save(Object.assign(new UserEntity(), dto, {
             salt,
             password: BaseUtil.md5Hash(dto.password, salt),
             activated: true,
-            createdAt: new Date(),
-            createdBy: Constants.ACCOUNT,
         }));
     }
 
@@ -28,11 +25,7 @@ export class UserService {
         if (!user) {
             throw new HttpException('User not found!', HttpStatus.BAD_REQUEST);
         }
-        return this.userRepository.save(Object.assign(user, {
-            updatedAt: new Date(),
-            updatedBy: Constants.ACCOUNT,
-            ...dto
-        }));
+        return this.userRepository.save(Object.assign(user, dto));
     }
 
     async deleteUser(uid: number): Promise<DeleteResult> {

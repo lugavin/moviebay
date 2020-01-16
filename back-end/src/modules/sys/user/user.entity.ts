@@ -1,11 +1,12 @@
 import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {RoleEntity} from '../role/role.entity';
+import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
  * 用户信息
  */
 @Entity('sys_user')
-export class UserEntity {
+export class UserEntity extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -42,18 +43,6 @@ export class UserEntity {
 
     @Column({name: 'reset_date', nullable: true})
     resetDate: Date;
-
-    @Column({name: 'created_at'})
-    createdAt: Date;
-
-    @Column({name: 'created_by'})
-    createdBy: string;
-
-    @Column({name: 'updated_at', nullable: true})
-    updatedAt: Date;
-
-    @Column({name: 'updated_by', nullable: true})
-    updatedBy: string;
 
     @ManyToMany(type => RoleEntity, role => role.users)
     @JoinTable({

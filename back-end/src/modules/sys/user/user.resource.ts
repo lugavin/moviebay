@@ -5,7 +5,7 @@ import {UserEntity} from './user.entity';
 import {UserDto} from './user.dto';
 import {Auth} from '../../shared/decorators/auth.decorator';
 
-@Controller('/users')
+@Controller('users')
 export class UserResource {
 
     constructor(private readonly userService: UserService) {
@@ -28,7 +28,7 @@ export class UserResource {
     }
 
     @Get(':uid')
-    @Auth()
+    @Auth('user:query')
     async getUser(@Param('uid') uid: number): Promise<UserEntity> {
         return this.userService.getUser(uid);
     }

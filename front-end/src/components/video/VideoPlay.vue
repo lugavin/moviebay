@@ -6,23 +6,23 @@
                 <v-card tile flat dark>
                     <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
-                        {{video.imdbRating}} / {{video.year}} / <label v-for="(item, i) in video.countries" :key="item.k">{{item.v}}<span v-if="i!==video.countries.length-1"> · </span></label> / <label v-for="(item, i) in video.genres" :key="item.k">{{item.v}}<span v-if="i!==video.genres.length-1"> · </span></label> / 2048次播放
+                        {{video.imdbRating}} / {{video.year}} / {{video.countries.map(r=>r.v).join(' · ')}} / {{video.genres.map(r=>r.v).join(' · ')}} / 2048次播放
                         <a class="v-link" @click="expand=!expand">
                             详情<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
                     </v-card-subtitle>
                     <v-card-text :class="[{'d-none': !expand}]">
                         <p class="my-1">
-                            导演：<label v-for="(item, i) in video.directors" :key="item.k">{{item.v}}<span v-if="i!==video.directors.length-1"> / </span></label>
+                            导演：{{video.directors.map(r=>r.v).join(' / ')}}
                         </p>
                         <p class="my-1">
-                            编剧：<label v-for="(item, i) in video.writers" :key="item.k">{{item.v}}<span v-if="i!==video.writers.length-1"> / </span></label>
+                            编剧：{{video.writers.map(r=>r.v).join(' / ')}}
                         </p>
                         <p class="my-1">
-                            主演：<label v-for="(item, i) in video.actors" :key="item.k">{{item.v}}<span v-if="i!==video.actors.length-1"> / </span></label>
+                            主演：{{video.actors.map(r=>r.v).join(' / ')}}
                         </p>
                         <p class="my-1">
-                            类型：<label v-for="(item, i) in video.genres" :key="item.k">{{item.v}}<span v-if="i!==video.genres.length-1"> / </span></label>
+                            类型：{{video.genres.map(r=>r.v).join(' / ')}}
                         </p>
                         <p class="my-1">年份：{{video.year}}</p>
                         <p class="my-1">简介：{{video.plot}}</p>
@@ -36,7 +36,7 @@
                     <v-tab-item>
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
                             <v-card-text>
-                                <v-btn to="/video/play" color="primary">1080P</v-btn>
+                                <v-btn :to="`/video/play/${video.id}`" color="primary">1080P</v-btn>
                             </v-card-text>
                         </v-card>
                     </v-tab-item>
@@ -84,6 +84,12 @@ import axios from 'axios';
 export default {
     name: 'VideoPlay',
     components: {VideoPlayer},
+    props: {
+        vid: {
+            type: [Number, String],
+            required: true
+        },
+    },
     data: () => ({
         video: null,
         playerOpts: {
@@ -101,7 +107,7 @@ export default {
         //}, (res) => {
         //    console.info(res.rating['average']);
         //});
-        axios.get('/api/videos/1').then(res => {
+        axios.get(`/api/videos/${this.vid}`).then(res => {
             this.playerOpts.sources = [
                 {src: res.data.source},
                 {src: res.data.source, type: 'video/webm'},

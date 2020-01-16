@@ -24,14 +24,21 @@ import axios from 'axios';
 export default {
     name: 'VideoSearch',
     components: {VideoCard},
+    props: {
+        keyword: {
+            type: String,
+            required: true
+        },
+    },
     data: () => ({
         page: 1,
         rows: 15,
         videos: [],
     }),
     mounted() {
-        axios.get(`/api/videos?q=${this.$route.query.q}`).then(res => {
+        axios.get(`/api/videos/search?q=${this.keyword}`).then(res => {
             this.videos = res.data.map(item => ({
+                vid: item.id,
                 poster: item.poster,
                 title: item.title,
                 subtitle: item.createdAt,

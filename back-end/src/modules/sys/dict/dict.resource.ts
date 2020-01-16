@@ -2,7 +2,7 @@ import {Controller, Get, Post, Body, Query} from '@nestjs/common';
 import {DictService} from './dict.service';
 import {DictEntity} from './dict.entity';
 
-@Controller('/dicts')
+@Controller('dicts')
 export class DictResource {
 
     constructor(private readonly dictService: DictService) {

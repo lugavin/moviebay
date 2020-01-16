@@ -1,10 +1,11 @@
 import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
  * 评论
  */
 @Entity('cms_comment')
-export class CommentEntity {
+export class CommentEntity extends BaseEntity {
 
     // 条目id
     @PrimaryGeneratedColumn()
@@ -41,17 +42,5 @@ export class CommentEntity {
     // 评论是否被批准
     @Column()
     approved: boolean;
-
-    @Column({name: 'created_at'})
-    createdAt: Date;
-
-    @Column({name: 'created_by'})
-    createdBy: string;
-
-    @Column({name: 'updated_at', nullable: true})
-    updatedAt: Date;
-
-    @Column({name: 'updated_by', nullable: true})
-    updatedBy: string;
 
 }

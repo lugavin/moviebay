@@ -1,5 +1,4 @@
 import {ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, Logger} from '@nestjs/common';
-import {Request, Response} from 'express';
 
 /**
  * Enumeration of HTTP status series.
@@ -26,12 +25,17 @@ export class HttpExceptionFilter implements ExceptionFilter {
             Logger.error(error.message, error.stack, HttpExceptionFilter.name);
         }
         const context = host.switchToHttp();
-        const request = context.getRequest<Request>();
-        const response = context.getResponse<Response>();
-        response.status(status).json({
+        const response = context.getResponse();
+        //const request = context.getRequest();
+        //response.status(status).json({ // For Express
+        //    retCode: status,
+        //    retMsg: error.message,
+        //    path: request.url,
+        //    timestamp: Date.now(),
+        //});
+        response.code(status).send({ // For Fastify
             retCode: status,
             retMsg: error.message,
-            path: request.url,
             timestamp: Date.now(),
         });
     }

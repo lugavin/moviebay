@@ -29,7 +29,9 @@ export class AuthService {
         return this.redisClient.hgetAsync(RedisKey.HKEY_USERS, username).then(res => {
             if (!res) {
                 return this.userService.getUserByName(username).then(entity => {
-                    this.redisClient.hset(RedisKey.HKEY_USERS, username, JSON.stringify(entity));
+                    if (entity) {
+                        this.redisClient.hset(RedisKey.HKEY_USERS, username, JSON.stringify(entity));
+                    }
                     return entity;
                 });
             }
@@ -42,9 +44,12 @@ export class AuthService {
         return this.redisClient.hgetAsync(RedisKey.HKEY_PERMS, username).then(res => {
             if (!res) {
                 return this.permService.getPerms(username).then(entities => {
-                    const perms = entities.map(entity => entity.code);
-                    this.redisClient.hset(RedisKey.HKEY_PERMS, username, JSON.stringify(perms));
-                    return perms;
+                    if (entities && entities.length > 0) {
+                        const perms = entities.map(entity => entity.code);
+                        this.redisClient.hset(RedisKey.HKEY_PERMS, username, JSON.stringify(perms));
+                        return perms;
+                    }
+                    return [];
                 });
             }
             return JSON.parse(res);

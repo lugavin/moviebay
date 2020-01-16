@@ -13,8 +13,7 @@
                 <v-row align="center" class="mx-4">
                     <v-text-field placeholder="请输入关键字" hide-details single-line v-model.trim="keyword">
                         <template v-slot:append>
-                            <v-btn :to="{path: '/video/search', query: {q: keyword}}" target="_blank"
-                                   :disabled="!keyword"  text icon small >
+                            <v-btn text icon small :to="`/video/search?q=${keyword}`" :disabled="!keyword" target="_blank">
                                 <v-icon>search</v-icon>
                             </v-btn>
                         </template>

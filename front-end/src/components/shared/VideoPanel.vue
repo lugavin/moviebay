@@ -18,8 +18,14 @@
 export default {
     name: 'VideoPanel',
     props: {
-        url: String,
-        title: String,
+        url: {
+            type: String,
+            required: true
+        },
+        title: {
+            type: String,
+            required: true
+        },
     },
 }
 </script>

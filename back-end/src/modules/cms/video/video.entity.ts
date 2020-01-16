@@ -1,5 +1,6 @@
-import {Entity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
 import {VideoStatus, VideoType} from '../../shared/util/constants';
+import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
  * 影视条目信息
@@ -7,7 +8,7 @@ import {VideoStatus, VideoType} from '../../shared/util/constants';
  * @see https://api.douban.com/v2/movie/imdb/tt0111161?apikey=0df993c66c0c636e29ecbb5344252a4a
  */
 @Entity('cms_video')
-export class VideoEntity {
+export class VideoEntity extends BaseEntity {
 
     // 条目id
     @PrimaryGeneratedColumn()
@@ -61,9 +62,15 @@ export class VideoEntity {
     @Column()
     plot: string;
 
-    // 海报: {thumb:'', slide:''}
+    // 海报
     @Column()
     poster: string;
+
+    @Column({name: 'poster_thumb', nullable: true})
+    posterThumb: string;
+
+    @Column({name: 'poster_slide', nullable: true})
+    posterSlide: string;
 
     // 片源
     @Column()
@@ -89,5 +96,6 @@ export class VideoEntity {
 
     @Column({name: 'imdb_rating', nullable: true})
     imdbRating: string;
+
 }
 

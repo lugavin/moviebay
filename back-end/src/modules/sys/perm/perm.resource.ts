@@ -1,7 +1,7 @@
 import {Controller} from '@nestjs/common';
 import {PermService} from './perm.service';
 
-@Controller()
+@Controller('perms')
 export class PermResource {
 
     constructor(private readonly permService: PermService) {

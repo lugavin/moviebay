@@ -1,10 +1,11 @@
 import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
  * 友情链接
  */
 @Entity('cms_link')
-export class LinkEntity {
+export class LinkEntity extends BaseEntity {
 
     // 自增唯一ID
     @PrimaryGeneratedColumn()
@@ -38,15 +39,4 @@ export class LinkEntity {
     @Column()
     rss: string;
 
-    @Column({name: 'created_at'})
-    createdAt: Date;
-
-    @Column({name: 'created_by'})
-    createdBy: string;
-
-    @Column({name: 'updated_at', nullable: true})
-    updatedAt: Date;
-
-    @Column({name: 'updated_by', nullable: true})
-    updatedBy: string;
 }

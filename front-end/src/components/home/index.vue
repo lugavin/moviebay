@@ -137,12 +137,12 @@ export default {
         },
     },
     mounted() {
-        if (this.movieGenres.length < 1) {
+        if (!this.movieGenres.length) {
             axios.get('/api/dicts?tag=MovieGenre').then(res => {
                 this.movieGenres = res.data;
             });
         }
-        if (this.dramaGenres.length < 1) {
+        if (!this.dramaGenres.length) {
             axios.get('/api/dicts?tag=DramaGenre').then(res => {
                 this.dramaGenres = res.data;
             });

@@ -2,7 +2,6 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Like, Repository} from 'typeorm';
 import {VideoEntity} from './video.entity';
-import {Constants} from '../../shared/util/constants';
 
 @Injectable()
 export class VideoService {
@@ -11,10 +10,8 @@ export class VideoService {
     }
 
     async createVideo(entity: VideoEntity): Promise<VideoEntity> {
-        return this.videoRepository.save(Object.assign(entity, {
-            createdAt: new Date(),
-            createdBy: Constants.ACCOUNT,
-        }));
+        // 不是 new VideoEntity() 则 @BeforeInsert() 不起作用
+        return this.videoRepository.save(Object.assign(new VideoEntity(), entity));
     }
 
     async deleteVideo(vid: number): Promise<DeleteResult> {

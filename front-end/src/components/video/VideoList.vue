@@ -73,7 +73,7 @@ export default {
         },
     },
     mounted() {
-        if (this.genres.length < 1) {
+        if (!this.genres.length) {
             axios.get('/api/dicts?tag=MovieGenre').then(res => {
                 this.genres = res.data;
             });
@@ -81,18 +81,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-    .tag {
-        cursor: pointer;
-    }
-
-    .active {
-        background: #4b8ccb;
-        color: #fff;
-    }
-
-    input:checked + label {
-        font-weight: bold;
-    }
-</style>
