@@ -2,7 +2,7 @@ import {CanActivate, ExecutionContext, Logger} from '@nestjs/common';
 import {Reflector} from '@nestjs/core';
 import {Constants} from '../util/constants';
 import {AuthService} from '../../sys/auth/auth.service';
-import {ActiveUser} from '../../sys/auth/auth.dto';
+import {ActiveUser} from '../../sys/auth/dto/activeuser';
 
 export class AuthGuard implements CanActivate {
 
@@ -29,7 +29,7 @@ export class AuthGuard implements CanActivate {
             Logger.error('Verify token failed!', e, AuthGuard.name);
             return false;
         }
-        //request.user = activeUser;
+        // request.user = activeUser;
         if (!perms.length) { // 公共访问地址(登录后无需授权)
             return true;
         }

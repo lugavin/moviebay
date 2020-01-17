@@ -34,7 +34,11 @@ export class VideoEntity extends BaseEntity {
     @Column()
     runtime: number;
 
-    // 制片国家: [{k:'dict_country_id', v:'dict_country_val'}]
+    // 片源: [{k:'720P', v:'video_link'}]
+    @Column('jsonb')
+    sources: string;
+
+    // 地区: [{k:'dict_country_id', v:'dict_country_val'}]
     @Column('jsonb')
     countries: string;
 
@@ -42,7 +46,7 @@ export class VideoEntity extends BaseEntity {
     @Column('jsonb')
     languages: string;
 
-    // 影片类型: [{k:'dict_genre_id', v:'dict_genre_val'}]
+    // 类型: [{k:'dict_genre_id', v:'dict_genre_val'}]
     @Column('jsonb')
     genres: string;
 
@@ -54,7 +58,7 @@ export class VideoEntity extends BaseEntity {
     @Column('jsonb')
     writers: string;
 
-    // 演员: [{k:'celebrity_id', v:'celebrity_name'}]
+    // 主演: [{k:'celebrity_id', v:'celebrity_name'}]
     @Column('jsonb')
     actors: string;
 
@@ -72,10 +76,6 @@ export class VideoEntity extends BaseEntity {
     @Column({name: 'poster_slide', nullable: true})
     posterSlide: string;
 
-    // 片源
-    @Column()
-    source: string;
-
     // 关键字
     @Column()
     keywords: string;
@@ -91,11 +91,8 @@ export class VideoEntity extends BaseEntity {
     @Column({nullable: true})
     season: string;
 
+    // 评分&播放次数字段经常发生变化, 挪到VideoMeta表维护
     @Column({name: 'imdb_id', nullable: true})
     imdbId: string;
 
-    @Column({name: 'imdb_rating', nullable: true})
-    imdbRating: string;
-
 }
-

@@ -4,20 +4,20 @@ export enum VideoStatus {
 }
 
 export enum VideoType {
-    MOVIE = 'MOVIE',
-    TV = 'TV'
+    MOVIE = 'movie',
+    TV = 'tv',
 }
 
 export enum DictTag {
-    MOVIE_GENRE = 'MOVIE_GENRE',
-    DRAMA_GENRE = 'DRAMA_GENRE',
-    COUNTRY = 'COUNTRY',
-    LANGUAGE = 'LANGUAGE',
+    MOVIE_GENRE = 'movie-genre',
+    DRAMA_GENRE = 'drama-genre',
+    COUNTRY = 'country',   // https://zh.wikipedia.org/wiki/ISO_3166-1
+    LANGUAGE = 'language', // https://zh.wikipedia.org/wiki/ISO_639-1
 }
 
 export enum RedisKey {
-    HKEY_USERS = 'USERS',
-    HKEY_PERMS = 'PERMS',
+    HKEY_USERS = 'users',
+    HKEY_PERMS = 'perms',
 }
 
 export enum Formatter {

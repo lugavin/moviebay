@@ -66,11 +66,11 @@ export default {
     }),
     mounted() {
         const mapper = {
-            MOVIE: 'MovieGenre',
-            DRAMA: 'DramaGenre',
+            movie: 'movie-genre',
+            drama: 'drama-genre',
         };
         axios.get(`/api/dicts?tag=${mapper[this.type]}`).then(res => {
-            this.genres = mapper[this.type] !== mapper.MOVIE ? res.data
+            this.genres = mapper[this.type] !== mapper.movie ? res.data
                 : res.data.map(item => Object.assign(item, {label: item.label + '片'}));
         });
     },

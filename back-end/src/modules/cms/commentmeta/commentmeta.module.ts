@@ -6,7 +6,7 @@ import {CommentMetaService} from './commentmeta.service';
 @Module({
     imports: [TypeOrmModule.forFeature([CommentMetaEntity])],
     exports: [CommentMetaService],
-    providers: [CommentMetaService]
+    providers: [CommentMetaService],
 })
 export class CommentMetaModule {
 }

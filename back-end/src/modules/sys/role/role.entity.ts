@@ -27,7 +27,7 @@ export class RoleEntity {
     @JoinTable({
         name: 'sys_role_perm',
         joinColumn: {name: 'role_id', referencedColumnName: 'id'},
-        inverseJoinColumn: {name: 'perm_id', referencedColumnName: 'id'}
+        inverseJoinColumn: {name: 'perm_id', referencedColumnName: 'id'},
     })
     perms: PermEntity[];
 

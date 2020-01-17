@@ -1,12 +1,12 @@
 <template>
-    <v-container>
-        <v-row dense no-gutters v-if="video">
+    <v-container v-if="video">
+        <v-row dense no-gutters>
             <v-col cols="12" lg="9">
                 <video-player :options="playerOpts"></video-player>
                 <v-card tile flat dark>
                     <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
-                        {{video.imdbRating}} / {{video.year}} / {{video.countries.map(r=>r.v).join(' · ')}} / {{video.genres.map(r=>r.v).join(' · ')}} / 2048次播放
+                        {{imdbRating}} / {{video.year}} / {{video.countries.map(r=>r.v).join(' · ')}} / {{video.genres.map(r=>r.v).join(' · ')}}
                         <a class="v-link" @click="expand=!expand">
                             详情<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
@@ -21,10 +21,7 @@
                         <p class="my-1">
                             主演：{{video.actors.map(r=>r.v).join(' / ')}}
                         </p>
-                        <p class="my-1">
-                            类型：{{video.genres.map(r=>r.v).join(' / ')}}
-                        </p>
-                        <p class="my-1">年份：{{video.year}}</p>
+                        <p class="my-1">语言：{{video.languages.map(r=>r.v).join(' / ')}}</p>
                         <p class="my-1">简介：{{video.plot}}</p>
                     </v-card-text>
                 </v-card>
@@ -36,7 +33,8 @@
                     <v-tab-item>
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
                             <v-card-text>
-                                <v-btn :to="`/video/play/${video.id}`" color="primary">1080P</v-btn>
+                                <v-btn v-for="(source, i) in video.sources" :key="i" v-text="source.k" color="primary"
+                                       :to="`/video/play/${video.id}?resolution=${source.k}`"/>
                             </v-card-text>
                         </v-card>
                     </v-tab-item>
@@ -47,19 +45,9 @@
                                     <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="6">
                                         <v-lazy>
                                             <v-card outlined>
-                                                <v-hover v-slot:default="{ hover }">
-                                                    <v-img :src="require(`@/assets/img/${video.poster}`)" class="align-end text-center">
-                                                        <v-expand-transition>
-                                                            <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal"
-                                                                 v-if="hover">
-                                                                <v-btn icon class="white--text" to="/video/play" target="_blank">
-                                                                    <v-icon x-large>play_circle_outline</v-icon>
-                                                                </v-btn>
-                                                            </div>
-                                                        </v-expand-transition>
-                                                        <h4 class="font-weight-medium pa-1">{{video.title}}</h4>
-                                                    </v-img>
-                                                </v-hover>
+                                                <video-poster v-bind="{src: video.poster, vid}">
+                                                    <h4 class="font-weight-medium pa-1">{{video.title}}</h4>
+                                                </video-poster>
                                             </v-card>
                                         </v-lazy>
                                     </v-col>
@@ -74,8 +62,9 @@
 </template>
 
 <script>
-//import Base from '@/components/util/Base';
+import Base from '@/components/util/Base';
 import VideoPlayer from '@/components/shared/VideoPlayer';
+import VideoPoster from '@/components/shared/VideoPoster';
 import axios from 'axios';
 
 /**
@@ -83,7 +72,7 @@ import axios from 'axios';
  */
 export default {
     name: 'VideoPlay',
-    components: {VideoPlayer},
+    components: {VideoPlayer, VideoPoster},
     props: {
         vid: {
             type: [Number, String],
@@ -92,27 +81,32 @@ export default {
     },
     data: () => ({
         video: null,
+        imdbRating: null,
         playerOpts: {
             controls: true,
             preload: 'auto',
             poster: require('@/assets/poster.png'),
-            sources: null
+            sources: null,
         },
         videos: require('@/data/videos.json'),
         expand: false,
+        playTimes: 0, // TODO 播放次数待实现
     }),
     mounted() {
-        //Base.jsonp('https://api.douban.com/v2/movie/imdb/tt0111161', {
-        //    apikey: '0df993c66c0c636e29ecbb5344252a4a'
-        //}, (res) => {
-        //    console.info(res.rating['average']);
-        //});
         axios.get(`/api/videos/${this.vid}`).then(res => {
-            this.playerOpts.sources = [
-                {src: res.data.source},
-                {src: res.data.source, type: 'video/webm'},
-            ];
+            const sources = res.data.sources;
+            if (sources.length) {
+                this.playerOpts.sources = [
+                    {src: sources[0].v},
+                    {src: sources[0].v, type: 'video/webm'},
+                ];
+            }
             this.video = res.data;
+            Base.jsonp(`https://api.douban.com/v2/movie/imdb/${this.video.imdbId}`, {
+                apikey: '0df993c66c0c636e29ecbb5344252a4a'
+            }, (res) => {
+                this.imdbRating = res.rating['average'];
+            });
         });
     },
 }

@@ -7,7 +7,7 @@ import {VideoResource} from './video.resource';
 @Module({
     imports: [TypeOrmModule.forFeature([VideoEntity])],
     providers: [VideoService],
-    controllers: [VideoResource]
+    controllers: [VideoResource],
 })
 export class VideoModule {
 }

@@ -10,7 +10,7 @@ Ending's Law: Any application that can be compiled to WebAssembly, will be compi
 - [Vue-Router](https://router.vuejs.org/zh/)
 - [Vuetify](https://vuetifyjs.com/zh-Hans/getting-started/quick-start)
 
-> 后续版本将使用轻量级应用框架 [Nuxt](https://zh.nuxtjs.org/) 来简化配置
+> 后续版本将使用轻量级应用框架 [Nuxt](https://zh.nuxtjs.org/) 来实现网页静态化
 
 ## Back-end
 - [Nest](https://docs.nestjs.cn/)

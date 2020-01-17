@@ -9,8 +9,8 @@ export class DictEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    //@Column()
-    //pid: number;
+    // @Column()
+    // pid: number;
 
     @Column()
     label: string;

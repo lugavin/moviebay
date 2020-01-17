@@ -8,7 +8,7 @@ enum Series {
     SUCCESSFUL = 2,
     REDIRECTION = 3,
     CLIENT_ERROR = 4,
-    SERVER_ERROR = 5
+    SERVER_ERROR = 5,
 }
 
 /**
@@ -26,13 +26,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
         }
         const context = host.switchToHttp();
         const response = context.getResponse();
-        //const request = context.getRequest();
-        //response.status(status).json({ // For Express
-        //    retCode: status,
-        //    retMsg: error.message,
-        //    path: request.url,
-        //    timestamp: Date.now(),
-        //});
+        // const request = context.getRequest();
+        // response.status(status).json({ // For Express
+        //     retCode: status,
+        //     retMsg: error.message,
+        //     path: request.url,
+        //     timestamp: Date.now(),
+        // });
         response.code(status).send({ // For Fastify
             retCode: status,
             retMsg: error.message,

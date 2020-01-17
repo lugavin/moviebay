@@ -7,7 +7,7 @@ import {VisitResource} from './visit.resource';
 @Module({
     imports: [TypeOrmModule.forFeature([VisitEntity])],
     providers: [VisitService],
-    controllers: [VisitResource]
+    controllers: [VisitResource],
 })
 export class VisitModule {
 }

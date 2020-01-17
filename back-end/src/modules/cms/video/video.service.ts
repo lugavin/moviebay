@@ -9,9 +9,9 @@ export class VideoService {
     constructor(@InjectRepository(VideoEntity) private readonly videoRepository: Repository<VideoEntity>) {
     }
 
-    async createVideo(entity: VideoEntity): Promise<VideoEntity> {
-        // 不是 new VideoEntity() 则 @BeforeInsert() 不起作用
-        return this.videoRepository.save(Object.assign(new VideoEntity(), entity));
+    async createVideo(entities: VideoEntity[]): Promise<VideoEntity[]> {
+        // 直接调用 repository.save(entities) 会导致 @BeforeInsert() 不起作用
+        return this.videoRepository.save(entities.map(entity => Object.assign(new VideoEntity(), entity)));
     }
 
     async deleteVideo(vid: number): Promise<DeleteResult> {

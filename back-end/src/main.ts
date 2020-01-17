@@ -9,7 +9,7 @@ import {LoggingInterceptor} from './modules/shared/interceptors/logging.intercep
 (async function bootstrap() {
     const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
     app.useGlobalInterceptors(new LoggingInterceptor(), new ClassSerializerInterceptor(app.get(Reflector)));
-    //app.useGlobalFilters(new HttpExceptionFilter());
+    // app.useGlobalFilters(new HttpExceptionFilter());
     app.useGlobalGuards(new AuthGuard(app.get(Reflector), app.get(AuthService)));
     await app.listen(process.env.SERVER_PORT);
 })();

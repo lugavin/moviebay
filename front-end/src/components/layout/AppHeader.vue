@@ -8,7 +8,7 @@
                     <v-img :src="require('@/assets/logo.png')" height="48" width="135" max-width="135" contain/>
                 </v-toolbar-items>
                 <v-toolbar-items class="ml-4 hidden-sm-and-down">
-                    <v-btn v-for="(menu, i) in menus" :key="i" :to="menu.url" v-text="menu.title" text/>
+                    <v-btn text v-for="(menu, i) in menus" :key="i" :to="menu.url" v-text="menu.name"/>
                 </v-toolbar-items>
                 <v-row align="center" class="mx-4">
                     <v-text-field placeholder="请输入关键字" hide-details single-line v-model.trim="keyword">

@@ -10,9 +10,9 @@ import {redisConfigFactory} from '../../../config/config.factory';
         useFactory: () => {
             Bluebird.promisifyAll(Redis);
             return Redis.createClient(redisConfigFactory());
-        }
+        },
     }],
-    exports: [Redis.RedisClient]
+    exports: [Redis.RedisClient],
 })
 export class RedisModule {
 }

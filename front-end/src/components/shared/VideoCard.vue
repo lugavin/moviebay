@@ -1,16 +1,6 @@
 <template>
     <v-card outlined>
-        <v-hover v-slot:default="{ hover }">
-            <v-img :src="require(`@/assets/img/${poster}`)">
-                <v-expand-transition>
-                    <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal" v-if="hover">
-                        <v-btn icon class="white--text" :to="`/video/play/${vid}`" target="_blank">
-                            <v-icon x-large>play_circle_outline</v-icon>
-                        </v-btn>
-                    </div>
-                </v-expand-transition>
-            </v-img>
-        </v-hover>
+        <video-poster v-bind="{src: poster, vid}"/>
         <v-card-text class="text-center py-1">
             <p class="mb-0">
                 <router-link class="subtitle-1 v-link" :to="`/video/detail/${vid}`" v-text="title"/>
@@ -23,8 +13,11 @@
 </template>
 
 <script>
+import VideoPoster from '@/components/shared/VideoPoster';
+
 export default {
     name: 'VideoCard',
+    components: {VideoPoster},
     props: {
         vid: {
             type: [Number, String],

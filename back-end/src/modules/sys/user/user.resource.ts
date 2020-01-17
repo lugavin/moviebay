@@ -2,7 +2,7 @@ import {Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPip
 import {DeleteResult} from 'typeorm';
 import {UserService} from './user.service';
 import {UserEntity} from './user.entity';
-import {UserDto} from './user.dto';
+import {UserDto} from './dto/user.dto';
 import {Auth} from '../../shared/decorators/auth.decorator';
 
 @Controller('users')

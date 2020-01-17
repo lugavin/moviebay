@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt';
 import {RedisClient} from 'redis';
 import {RedisKey} from '../../shared/util/constants';
-import {ActiveUser} from './auth.dto';
+import {ActiveUser} from './dto/activeuser';
 import {UserEntity} from '../user/user.entity';
 import {UserService} from '../user/user.service';
 import {PermService} from '../perm/perm.service';

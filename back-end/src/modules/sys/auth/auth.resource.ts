@@ -1,5 +1,5 @@
 import {Body, Controller, HttpCode, HttpException, HttpStatus, Ip, Post} from '@nestjs/common';
-import {LoginDto} from './auth.dto';
+import {LoginDto} from './dto/login.dto';
 import {AuthService} from './auth.service';
 import BaseUtil from '../../shared/util/base.util';
 
@@ -16,7 +16,7 @@ export class AuthResource {
         if (!user) {
             throw new HttpException('Account was not registered!', HttpStatus.BAD_REQUEST);
         }
-        if (BaseUtil.md5Hash(dto.password, user.salt) != user.password) {
+        if (BaseUtil.md5Hash(dto.password, user.salt) !== user.password) {
             throw new HttpException('Incorrect password!', HttpStatus.BAD_REQUEST);
         }
         if (!user.activated) {

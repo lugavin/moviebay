@@ -7,7 +7,7 @@ import {LinkResource} from './link.resource';
 @Module({
     imports: [TypeOrmModule.forFeature([LinkEntity])],
     providers: [LinkService],
-    controllers: [LinkResource]
+    controllers: [LinkResource],
 })
 export class LinkModule {
 }

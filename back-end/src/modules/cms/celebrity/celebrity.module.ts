@@ -7,7 +7,7 @@ import {CelebrityResource} from './celebrity.resource';
 @Module({
     imports: [TypeOrmModule.forFeature([CelebrityEntity])],
     providers: [CelebrityService],
-    controllers: [CelebrityResource]
+    controllers: [CelebrityResource],
 })
 export class CelebrityModule {
 }

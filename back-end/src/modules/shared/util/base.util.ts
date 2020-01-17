@@ -12,5 +12,5 @@ export default {
     },
     md5Hash(source: string, salt: string): string {
         return crypto.createHash('md5').update(salt + source).digest('hex');
-    }
+    },
 };

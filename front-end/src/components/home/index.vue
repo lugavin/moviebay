@@ -38,7 +38,7 @@
                     <template v-slot:tags>
                         <ul class="text-small">
                             <li class="d-block float-left" v-for="genre in movieGenres" :key="genre.value">
-                                <router-link class="v-link" to="/">{{genre.label}}</router-link>
+                                <router-link class="v-link" :to="`/video/list?type=movie&genre=${genre.value}`">{{genre.label}}</router-link>
                                 <span class="mx-2">/</span>
                             </li>
                             <li class="d-block float-left">
@@ -64,7 +64,7 @@
                     <template v-slot:tags>
                         <ul class="text-small">
                             <li class="d-block float-left" v-for="genre in dramaGenres" :key="genre.value">
-                                <router-link class="v-link" to="/">{{genre.label}}</router-link>
+                                <router-link class="v-link" :to="`/video/list?type=drama&genre=${genre.value}`">{{genre.label}}</router-link>
                                 <span class="mx-2">/</span>
                             </li>
                             <li class="d-block float-left">
@@ -109,12 +109,12 @@ export default {
         },
         moviePanel: {
             title: '电影',
-            url: '/video/list?type=MOVIE',
+            url: '/video/list?type=movie',
             items: require('@/data/videos.json'),
         },
         dramaPanel: {
             title: '连续剧',
-            url: '/video/list?type=DRAMA',
+            url: '/video/list?type=drama',
             items: require('@/data/videos.json'),
         },
     }),
@@ -138,12 +138,12 @@ export default {
     },
     mounted() {
         if (!this.movieGenres.length) {
-            axios.get('/api/dicts?tag=MovieGenre').then(res => {
+            axios.get('/api/dicts?tag=movie-genre').then(res => {
                 this.movieGenres = res.data.map(item => Object.assign(item, {label: item.label + '片'}));
             });
         }
         if (!this.dramaGenres.length) {
-            axios.get('/api/dicts?tag=DramaGenre').then(res => {
+            axios.get('/api/dicts?tag=drama-genre').then(res => {
                 this.dramaGenres = res.data;
             });
         }

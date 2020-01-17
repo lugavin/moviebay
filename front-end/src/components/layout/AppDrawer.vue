@@ -2,9 +2,9 @@
     <!-- Mobile Side Menu -->
     <v-navigation-drawer app temporary v-model="drawer">
         <v-list>
-            <v-list-item v-for="(menu, i) in menus" :key="i" :to="menu.url" link>
+            <v-list-item link v-for="(menu, i) in menus" :key="i" :to="menu.url">
                 <v-list-item-content>
-                    <v-list-item-title>{{ menu.title }}</v-list-item-title>
+                    <v-list-item-title>{{ menu.name }}</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
         </v-list>

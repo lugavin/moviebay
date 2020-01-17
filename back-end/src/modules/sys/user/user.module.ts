@@ -8,7 +8,7 @@ import {UserResource} from './user.resource';
     imports: [TypeOrmModule.forFeature([UserEntity])],
     exports: [UserService],
     providers: [UserService],
-    controllers: [UserResource]
+    controllers: [UserResource],
 })
 export class UserModule {
 }
