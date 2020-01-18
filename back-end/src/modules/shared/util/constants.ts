@@ -1,9 +1,9 @@
-export enum VideoStatus {
+export enum VodStatus {
     OFFLINE,
     ONLINE,
 }
 
-export enum VideoType {
+export enum VodType {
     MOVIE = 'movie',
     TV = 'tv',
 }

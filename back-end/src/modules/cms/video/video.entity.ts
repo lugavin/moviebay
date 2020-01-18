@@ -1,5 +1,5 @@
 import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
-import {VideoStatus, VideoType} from '../../shared/util/constants';
+import {VodStatus, VodType} from '../../shared/util/constants';
 import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
@@ -18,6 +18,10 @@ export class VideoEntity extends BaseEntity {
     @Column()
     title: string;
 
+    // 关键字
+    @Column()
+    keywords: string;
+
     // 等级
     @Column()
     rated: string;
@@ -34,33 +38,37 @@ export class VideoEntity extends BaseEntity {
     @Column()
     runtime: number;
 
-    // 片源: [{k:'720P', v:'video_link'}]
-    @Column('jsonb')
-    sources: string;
+    // 版本
+    // @Column()
+    // version: string;
 
-    // 地区: [{k:'dict_country_id', v:'dict_country_val'}]
+    // 片源: [{k:'720P', v:'play_url'}]
     @Column('jsonb')
-    countries: string;
+    sources: string[];
 
-    // 语言: [{k:'dict_language_id', v:'dict_language_val'}]
+    // 类型: [{k:'drama', v:'剧情'}]
     @Column('jsonb')
-    languages: string;
+    genres: string[];
 
-    // 类型: [{k:'dict_genre_id', v:'dict_genre_val'}]
-    @Column('jsonb')
-    genres: string;
+    // 地区
+    @Column('varchar', {array: true})
+    countries: string[];
 
-    // 导演: [{k:'celebrity_id', v:'celebrity_name'}]
-    @Column('jsonb')
-    directors: string;
+    // 语言
+    @Column('varchar', {array: true})
+    languages: string[];
 
-    // 编剧: [{k:'celebrity_id', v:'celebrity_name'}]
-    @Column('jsonb')
-    writers: string;
+    // 导演
+    @Column('varchar', {array: true})
+    directors: string[];
 
-    // 主演: [{k:'celebrity_id', v:'celebrity_name'}]
-    @Column('jsonb')
-    actors: string;
+    // 编剧
+    @Column('varchar', {array: true})
+    writers: string[];
+
+    // 主演
+    @Column('varchar', {array: true})
+    actors: string[];
 
     // 故事情节
     @Column()
@@ -76,16 +84,12 @@ export class VideoEntity extends BaseEntity {
     @Column({name: 'poster_slide', nullable: true})
     posterSlide: string;
 
-    // 关键字
-    @Column()
-    keywords: string;
-
     // 状态(上线|下线)
     @Column()
-    status: VideoStatus;
+    status: VodStatus;
 
     @Column()
-    type: VideoType;
+    type: VodType;
 
     // 剧集(tv only): 当前季数/总季数
     @Column({nullable: true})

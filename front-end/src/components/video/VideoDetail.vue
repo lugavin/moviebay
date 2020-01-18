@@ -7,19 +7,19 @@
             <v-col cols="12" md="9">
                 <h3>{{video.title}}</h3>
                 <p class="my-1">
-                    导演：{{video.directors.map(r=>r.v).join(' / ')}}
+                    导演：{{video.directors.join(' / ')}}
                 </p>
                 <p class="my-1">
-                    编剧：{{video.writers.map(r=>r.v).join(' / ')}}
+                    编剧：{{video.writers.join(' / ')}}
                 </p>
                 <p class="my-1">
-                    主演：{{video.actors.map(r=>r.v).join(' / ')}}
+                    主演：{{video.actors.join(' / ')}}
                 </p>
                 <p class="my-1">
                     类型：{{video.genres.map(r=>r.v).join(' / ')}}
                 </p>
-                <p class="my-1">地区：{{video.countries.map(r=>r.v).join(' / ')}}</p>
-                <p class="my-1">语言：{{video.languages.map(r=>r.v).join(' / ')}}</p>
+                <p class="my-1">地区：{{video.countries.join(' / ')}}</p>
+                <p class="my-1">语言：{{video.languages.join(' / ')}}</p>
                 <p class="my-1">年份：{{video.year}}</p>
                 <p class="my-1 pl-12">
                     <span class="ml-n12">简介：</span>
