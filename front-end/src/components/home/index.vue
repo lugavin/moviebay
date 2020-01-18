@@ -16,7 +16,7 @@
                                 <span class="mx-2"/>
                             </li>
                             <li class="d-block float-left">
-                                <router-link class="v-link" :to="videoPanel.url">更多...</router-link>
+                                <router-link class="v-link" to="/video/list">更多...</router-link>
                             </li>
                         </ul>
                     </template>
@@ -24,9 +24,7 @@
                         <v-container>
                             <v-row dense>
                                 <v-col v-for="(item, i) in videoPanel.items" :key="i" cols="4" md="3" lg="2">
-                                    <v-lazy>
-                                        <video-card v-bind="item"/>
-                                    </v-lazy>
+                                    <video-card v-bind="item"/>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -42,7 +40,7 @@
                                 <span class="mx-2">/</span>
                             </li>
                             <li class="d-block float-left">
-                                <router-link class="v-link" :to="moviePanel.url">更多...</router-link>
+                                <router-link class="v-link" to="/video/list?type=movie">更多...</router-link>
                             </li>
                         </ul>
                     </template>
@@ -50,9 +48,7 @@
                         <v-container>
                             <v-row dense>
                                 <v-col v-for="(item, i) in moviePanel.items" :key="i" cols="4" md="3" lg="2">
-                                    <v-lazy>
-                                        <video-card v-bind="item"/>
-                                    </v-lazy>
+                                    <video-card v-bind="item"/>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -68,7 +64,7 @@
                                 <span class="mx-2">/</span>
                             </li>
                             <li class="d-block float-left">
-                                <router-link class="v-link" :to="dramaPanel.url">更多...</router-link>
+                                <router-link class="v-link" to="/video/list?type=drama">更多...</router-link>
                             </li>
                         </ul>
                     </template>
@@ -76,9 +72,7 @@
                         <v-container>
                             <v-row dense>
                                 <v-col v-for="(item, i) in dramaPanel.items" :key="i" cols="4" md="3" lg="2">
-                                    <v-lazy>
-                                        <video-card v-bind="item"/>
-                                    </v-lazy>
+                                    <video-card v-bind="item"/>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -104,17 +98,14 @@ export default {
         posters: require('@/data/posters.json'),
         videoPanel: {
             title: '最新视频',
-            url: '/video/list',
             items: require('@/data/videos.json'),
         },
         moviePanel: {
             title: '电影',
-            url: '/video/list?type=movie',
             items: require('@/data/videos.json'),
         },
         dramaPanel: {
             title: '连续剧',
-            url: '/video/list?type=drama',
             items: require('@/data/videos.json'),
         },
     }),

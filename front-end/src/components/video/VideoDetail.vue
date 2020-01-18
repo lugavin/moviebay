@@ -68,7 +68,6 @@ export default {
         video: null,
         videoPanel: {
             title: '猜你喜欢',
-            url: '/video/list',
             items: require('@/data/videos.json'),
         },
     }),

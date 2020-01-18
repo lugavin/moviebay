@@ -1,9 +1,7 @@
 <template>
     <v-card outlined>
         <v-toolbar dense flat class="grey lighten-4">
-            <h4 class="font-weight-medium">
-                <router-link class="v-link" :to="url">{{title}}</router-link>
-            </h4>
+            <h4 class="font-weight-medium">{{title}}</h4>
             <v-spacer/>
             <slot name="tags"/>
         </v-toolbar>
@@ -18,10 +16,6 @@
 export default {
     name: 'VideoPanel',
     props: {
-        url: {
-            type: String,
-            required: true
-        },
         title: {
             type: String,
             required: true

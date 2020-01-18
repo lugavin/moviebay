@@ -1,40 +1,26 @@
 <template>
-    <v-card outlined>
-        <video-poster v-bind="{src: poster, vid}"/>
-        <v-card-text class="text-center py-1">
-            <p class="mb-0">
-                <router-link class="subtitle-1 v-link" :to="`/video/detail/${vid}`" v-text="title"/>
-            </p>
-            <p class="mb-0">
-                <span class="subtitle-2" v-text="subtitle"/>
-            </p>
-        </v-card-text>
-    </v-card>
+    <v-lazy>
+        <v-card outlined>
+            <slot>
+                <video-card-poster v-bind="{vid, poster}"/>
+                <video-card-title v-bind="{vid, title, subtitle}"/>
+            </slot>
+        </v-card>
+    </v-lazy>
 </template>
 
 <script>
-import VideoPoster from '@/components/shared/VideoPoster';
+import VideoCardPoster from '@/components/shared/VideoCardPoster';
+import VideoCardTitle from '@/components/shared/VideoCardTitle';
 
 export default {
     name: 'VideoCard',
-    components: {VideoPoster},
+    components: {VideoCardPoster, VideoCardTitle},
     props: {
-        vid: {
-            type: [Number, String],
-            required: true
-        },
-        poster: {
-            type: String,
-            required: true
-        },
-        title: {
-            type: String,
-            required: true
-        },
-        subtitle: {
-            type: String,
-            required: true
-        },
+        vid: [Number, String],
+        poster: String,
+        title: String,
+        subtitle: String,
     },
 }
 </script>

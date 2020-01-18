@@ -2,7 +2,7 @@
     <v-container v-if="video">
         <v-row dense no-gutters>
             <v-col cols="12" lg="9">
-                <video-player :options="playerOpts"></video-player>
+                <video-player :options="playerOpts"/>
                 <v-card tile flat dark>
                     <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
@@ -43,13 +43,11 @@
                             <v-container>
                                 <v-row dense>
                                     <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="6">
-                                        <v-lazy>
-                                            <v-card outlined>
-                                                <video-poster v-bind="{src: video.poster, vid}">
-                                                    <h4 class="font-weight-medium pa-1">{{video.title}}</h4>
-                                                </video-poster>
-                                            </v-card>
-                                        </v-lazy>
+                                        <video-card>
+                                            <video-card-poster v-bind="video">
+                                                <h4 class="font-weight-medium pa-1">{{video.title}}</h4>
+                                            </video-card-poster>
+                                        </video-card>
                                     </v-col>
                                 </v-row>
                             </v-container>
@@ -64,7 +62,8 @@
 <script>
 import Base from '@/components/util/Base';
 import VideoPlayer from '@/components/shared/VideoPlayer';
-import VideoPoster from '@/components/shared/VideoPoster';
+import VideoCard from '@/components/shared/VideoCard';
+import VideoCardPoster from '@/components/shared/VideoCardPoster';
 import axios from 'axios';
 
 /**
@@ -72,7 +71,7 @@ import axios from 'axios';
  */
 export default {
     name: 'VideoPlay',
-    components: {VideoPlayer, VideoPoster},
+    components: {VideoPlayer, VideoCard, VideoCardPoster},
     props: {
         vid: {
             type: [Number, String],

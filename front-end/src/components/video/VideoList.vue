@@ -27,9 +27,7 @@
             <v-col cols="12">
                 <v-row dense>
                     <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="2" class="py-2">
-                        <v-lazy>
-                            <video-card v-bind="video"/>
-                        </v-lazy>
+                        <video-card v-bind="video"/>
                     </v-col>
                 </v-row>
             </v-col>
