@@ -1,4 +1,4 @@
-import {CallHandler, ExecutionContext, Logger, NestInterceptor,} from '@nestjs/common';
+import {CallHandler, ExecutionContext, Logger, NestInterceptor} from '@nestjs/common';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 

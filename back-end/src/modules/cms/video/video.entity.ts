@@ -10,17 +10,19 @@ import {BaseEntity} from '../../shared/entity/base.entity';
 @Entity('cms_video')
 export class VideoEntity extends BaseEntity {
 
-    // 条目id
     @PrimaryGeneratedColumn()
     id: number;
 
-    // 片名
-    @Column()
+    @Column({name: 'imdb_id', nullable: false})
+    imdbId: string;
+
+    // 译名
+    @Column({nullable: false})
     title: string;
 
-    // 关键字
-    @Column()
-    keywords: string;
+    // 原名
+    @Column({name: 'original_title'})
+    originalTitle: string;
 
     // 等级
     @Column()
@@ -38,19 +40,15 @@ export class VideoEntity extends BaseEntity {
     @Column()
     runtime: number;
 
-    // 版本
-    // @Column()
-    // version: string;
+    // 片源
+    @Column()
+    src: string;
 
-    // 片源: [{k:'720P', v:'play_url'}]
+    // 影片类型: [{k:'dict_genre_id', v:'dict_genre_val'}]
     @Column('jsonb')
-    sources: string[];
+    genres: string;
 
-    // 类型: [{k:'drama', v:'剧情'}]
-    @Column('jsonb')
-    genres: string[];
-
-    // 地区
+    // 制片国家
     @Column('varchar', {array: true})
     countries: string[];
 
@@ -66,7 +64,7 @@ export class VideoEntity extends BaseEntity {
     @Column('varchar', {array: true})
     writers: string[];
 
-    // 主演
+    // 演员
     @Column('varchar', {array: true})
     actors: string[];
 
@@ -90,13 +88,5 @@ export class VideoEntity extends BaseEntity {
 
     @Column()
     type: VodType;
-
-    // 剧集(tv only): 当前季数/总季数
-    @Column({nullable: true})
-    season: string;
-
-    // 评分&播放次数字段经常发生变化, 挪到VideoMeta表维护
-    @Column({name: 'imdb_id', nullable: true})
-    imdbId: string;
 
 }

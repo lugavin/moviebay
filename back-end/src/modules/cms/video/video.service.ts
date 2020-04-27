@@ -2,6 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Like, Repository} from 'typeorm';
 import {VideoEntity} from './video.entity';
+import { VodStatus } from '../../shared/util/constants';
 
 @Injectable()
 export class VideoService {
@@ -11,7 +12,7 @@ export class VideoService {
 
     async createVideo(entities: VideoEntity[]): Promise<VideoEntity[]> {
         // 直接调用 repository.save(entities) 会导致 @BeforeInsert() 不起作用
-        return this.videoRepository.save(entities.map(entity => Object.assign(new VideoEntity(), entity)));
+        return this.videoRepository.save(entities.map(entity => Object.assign(new VideoEntity(), entity, {status: VodStatus.ONLINE})));
     }
 
     async deleteVideo(vid: number): Promise<DeleteResult> {
@@ -24,7 +25,7 @@ export class VideoService {
 
     async search(keyword: string): Promise<VideoEntity[]> {
         return this.videoRepository.find({
-            keywords: Like(`%${keyword}%`)
+            title: Like(`%${keyword}%`),
         });
     }
 
