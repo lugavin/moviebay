@@ -17,6 +17,7 @@ export class DictService {
         return this.dictRepository.find({
             where: {tag: Equal(`${tag}`)},
             order: {seq: 'ASC'},
+            cache: true,
         });
     }
 

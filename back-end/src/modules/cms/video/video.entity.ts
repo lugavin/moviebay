@@ -13,20 +13,16 @@ export class VideoEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({name: 'imdb_id', nullable: false})
+    @Column({name: 'imdb_id'})
     imdbId: string;
 
     // 译名
-    @Column({nullable: false})
+    @Column()
     title: string;
 
     // 原名
     @Column({name: 'original_title'})
     originalTitle: string;
-
-    // 等级
-    @Column()
-    rated: string;
 
     // 年代
     @Column()
@@ -40,9 +36,20 @@ export class VideoEntity extends BaseEntity {
     @Column()
     runtime: number;
 
+    // 等级
+    @Column()
+    rated: string;
+
+    // 状态(上线|下线)
+    @Column()
+    status: VodStatus;
+
+    @Column()
+    type: VodType;
+
     // 片源: {k:'720P', v:'play_url'}
     @Column('jsonb')
-    sources: string;
+    src: string;
 
     // 影片类型
     @Column('varchar', {array: true})
@@ -69,7 +76,7 @@ export class VideoEntity extends BaseEntity {
     actors: string[];
 
     // 故事情节
-    @Column()
+    @Column('text')
     plot: string;
 
     // 海报
@@ -81,12 +88,5 @@ export class VideoEntity extends BaseEntity {
 
     @Column({name: 'poster_slide', nullable: true})
     posterSlide: string;
-
-    // 状态(上线|下线)
-    @Column()
-    status: VodStatus;
-
-    @Column()
-    type: VodType;
 
 }

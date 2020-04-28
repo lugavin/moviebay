@@ -1,31 +1,31 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { BaseEntity } from '../../shared/entity/base.entity';
+import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {BaseEntity} from '../../shared/entity/base.entity';
 
 @Entity('cms_episode')
 export class EpisodeEntity extends BaseEntity {
 
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryGeneratedColumn()
+    id: number;
 
-  @Column({ name: 'imdb_id', nullable: false })
-  imdbId: string;
+    @Column({name: 'imdb_id'})
+    imdbId: string;
 
-  @Column({ nullable: false })
-  name: string;
+    @Column()
+    name: string;
 
-  @Column({ nullable: false })
-  src: string;
+    @Column()
+    src: string;
 
-  @Column({ nullable: false })
-  season: number;
+    @Column()
+    season: number;
 
-  @Column({ nullable: false })
-  episode: number;
+    @Column()
+    episode: number;
 
-  @Column({ name: 'release_season' })
-  releaseSeason: number;
+    @Column({name: 'release_season'})
+    releaseSeason: number;
 
-  @Column({ name: 'release_episode' })
-  releaseEpisode: number;
+    @Column({name: 'release_episode'})
+    releaseEpisode: number;
 
 }

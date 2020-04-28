@@ -2,7 +2,7 @@ import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Like, Repository} from 'typeorm';
 import {VideoEntity} from './video.entity';
-import { VodStatus } from '../../shared/util/constants';
+import {VodStatus} from '../../shared/util/constants';
 
 @Injectable()
 export class VideoService {
@@ -25,7 +25,10 @@ export class VideoService {
 
     async search(keyword: string): Promise<VideoEntity[]> {
         return this.videoRepository.find({
-            title: Like(`%${keyword}%`),
+            where: [
+                {title: Like(`%${keyword}%`)},
+                {originalTitle: Like(`%${keyword}%`)},
+            ],
         });
     }
 
