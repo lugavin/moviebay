@@ -7,11 +7,13 @@
     "year": 1994,
     "released": "1994-10-14",
     "runtime": 142,
-    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EUGTvTy3RRJJicO49I3nAVQBM-t1Q2L5DgE0npTU6w3yHg",
-    "genres": [
-      {"k": "drama", "v": "剧情"},
-      {"k": "crime", "v": "犯罪"}
+    "sources": [
+      {
+        "k": "720P",
+        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EUGTvTy3RRJJicO49I3nAVQBM-t1Q2L5DgE0npTU6w3yHg"
+      }
     ],
+    "genres": ["drama", "crime"],
     "countries": ["美国"],
     "languages": ["英语"],
     "directors": ["弗兰克·德拉邦特"],
@@ -29,12 +31,13 @@
     "year": 2015,
     "released": "2015-07-31",
     "runtime": 163,
-    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EZDpIZ7y5wpMqG0eeNvtcyQB89cNq8sEwcEnlKIbnoobkA",
-    "genres": [
-      {"k": "drama", "v": "剧情"},
-      {"k": "crime", "v": "犯罪"},
-      {"k": "mystery", "v": "悬疑"}
+    "sources": [
+      {
+        "k": "720P",
+        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EZDpIZ7y5wpMqG0eeNvtcyQB89cNq8sEwcEnlKIbnoobkA"
+      }
     ],
+    "genres": ["drama", "crime", "mystery"],
     "countries": ["印度"],
     "languages": ["印地语"],
     "directors": ["尼西卡特·卡马特"],

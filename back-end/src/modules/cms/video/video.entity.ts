@@ -40,13 +40,13 @@ export class VideoEntity extends BaseEntity {
     @Column()
     runtime: number;
 
-    // 片源
-    @Column()
-    src: string;
-
-    // 影片类型: [{k:'dict_genre_id', v:'dict_genre_val'}]
+    // 片源: {k:'720P', v:'play_url'}
     @Column('jsonb')
-    genres: string;
+    sources: string;
+
+    // 影片类型
+    @Column('varchar', {array: true})
+    genres: string[];
 
     // 制片国家
     @Column('varchar', {array: true})
