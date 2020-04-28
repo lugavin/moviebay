@@ -51,6 +51,10 @@ export class VideoEntity extends BaseEntity {
     @Column('jsonb')
     src: string;
 
+    // 分辨率标签: ['HD', '720P']
+    // @Column('varchar', {array: true})
+    // tags: string[];
+
     // 影片类型
     @Column('varchar', {array: true})
     genres: string[];
@@ -74,6 +78,10 @@ export class VideoEntity extends BaseEntity {
     // 演员
     @Column('varchar', {array: true})
     actors: string[];
+
+    // 字幕
+    @Column('varchar', {array: true, nullable: true})
+    subtitles: string[];
 
     // 故事情节
     @Column('text')
