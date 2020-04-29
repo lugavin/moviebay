@@ -4,4 +4,5 @@ export {CommentMetaModule} from './commentmeta/commentmeta.module';
 export {LinkModule} from './link/link.module';
 export {VideoModule} from './video/video.module';
 export {VideoMetaModule} from './videometa/videometa.module';
+export {EpisodeModule} from './episode/episode.module';
 export {VisitModule} from './visit/visit.module';

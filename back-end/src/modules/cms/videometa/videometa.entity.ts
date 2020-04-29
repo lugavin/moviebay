@@ -11,8 +11,8 @@ export class VideoMetaEntity {
     id: number;
 
     // 对应影视条目ID
-    @Column({name: 'video_id'})
-    videoId: string;
+    @Column({name: 'vod_id'})
+    vodId: string;
 
     // 键名
     @Column({name: 'meta_key'})

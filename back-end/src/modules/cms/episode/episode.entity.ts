@@ -1,6 +1,9 @@
 import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 import {BaseEntity} from '../../shared/entity/base.entity';
 
+/**
+ * 影视剧集
+ */
 @Entity('cms_episode')
 export class EpisodeEntity extends BaseEntity {
 
