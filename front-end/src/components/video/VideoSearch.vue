@@ -11,7 +11,7 @@
                 </v-row>
             </v-col>
             <v-col cols="12">
-                <v-pagination v-model="page" :length="rows" :total-visible="7"></v-pagination>
+                <v-pagination v-model="page" :length="rows" :total-visible="7"/>
             </v-col>
         </v-row>
     </v-container>

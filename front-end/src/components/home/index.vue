@@ -35,8 +35,8 @@
                 <video-panel v-bind="moviePanel">
                     <template v-slot:tags>
                         <ul class="text-small">
-                            <li class="d-block float-left" v-for="genre in movieGenres" :key="genre.value">
-                                <router-link class="v-link" :to="`/video/list?type=movie&genre=${genre.value}`">{{genre.label}}</router-link>
+                            <li class="d-block float-left" v-for="(v, k) in movieGenres" :key="k">
+                                <router-link class="v-link" :to="`/video/list?type=movie&genre=${k}`">{{v}}</router-link>
                                 <span class="mx-2">/</span>
                             </li>
                             <li class="d-block float-left">
@@ -59,8 +59,8 @@
                 <video-panel v-bind="dramaPanel">
                     <template v-slot:tags>
                         <ul class="text-small">
-                            <li class="d-block float-left" v-for="genre in dramaGenres" :key="genre.value">
-                                <router-link class="v-link" :to="`/video/list?type=drama&genre=${genre.value}`">{{genre.label}}</router-link>
+                            <li class="d-block float-left" v-for="(v, k) in dramaGenres" :key="k">
+                                <router-link class="v-link" :to="`/video/list?type=drama&genre=${k}`">{{v}}</router-link>
                                 <span class="mx-2">/</span>
                             </li>
                             <li class="d-block float-left">
@@ -84,60 +84,37 @@
 </template>
 
 <script>
+import {mapState} from 'vuex';
+import {DICT_TYPES} from '@/plugins/store-types';
 import VideoPanel from '@/components/shared/VideoPanel';
 import VideoCard from '@/components/shared/VideoCard';
-import axios from 'axios';
 
 /**
  * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
  */
 export default {
     name: 'Home',
-    components: {VideoPanel, VideoCard},
+    components: { VideoPanel, VideoCard },
     data: () => ({
         posters: require('@/data/posters.json'),
         videoPanel: {
             title: '最新视频',
-            items: require('@/data/videos.json'),
+            items: require('@/data/videos.json')
         },
         moviePanel: {
             title: '电影',
-            items: require('@/data/videos.json'),
+            items: require('@/data/videos.json')
         },
         dramaPanel: {
             title: '连续剧',
-            items: require('@/data/videos.json'),
-        },
+            items: require('@/data/videos.json')
+        }
     }),
     computed: {
-        movieGenres: {
-            set(movieGenres) {
-                this.$store.commit('setData', {movieGenres});
-            },
-            get() {
-                return this.$store.state.movieGenres;
-            },
-        },
-        dramaGenres: {
-            set(dramaGenres) {
-                this.$store.commit('setData', {dramaGenres});
-            },
-            get() {
-                return this.$store.state.dramaGenres;
-            },
-        },
-    },
-    mounted() {
-        if (!this.movieGenres.length) {
-            axios.get('/api/dicts?tag=movie-genre').then(res => {
-                this.movieGenres = res.data.map(item => Object.assign(item, {label: item.label + '片'}));
-            });
-        }
-        if (!this.dramaGenres.length) {
-            axios.get('/api/dicts?tag=drama-genre').then(res => {
-                this.dramaGenres = res.data;
-            });
-        }
-    },
+        ...mapState({
+            movieGenres: state => state[DICT_TYPES.MOVIE_GENRE],
+            dramaGenres: state => state[DICT_TYPES.DRAMA_GENRE]
+        })
+    }
 };
 </script>

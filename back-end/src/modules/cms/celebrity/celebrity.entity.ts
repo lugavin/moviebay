@@ -1,10 +1,11 @@
 import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
  * 影人条目信息
  */
 @Entity('cms_celebrity')
-export class CelebrityEntity {
+export class CelebrityEntity extends BaseEntity {
 
     // 条目id
     @PrimaryGeneratedColumn()

@@ -1,11 +1,12 @@
 import {Column, Entity, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {RoleEntity} from '../role/role.entity';
+import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
  * 权限信息
  */
 @Entity('sys_perm')
-export class PermEntity {
+export class PermEntity extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;

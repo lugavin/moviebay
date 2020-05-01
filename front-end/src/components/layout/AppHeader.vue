@@ -48,17 +48,19 @@
 </template>
 
 <script>
+import { MUTATION_TYPES } from '@/plugins/store-types';
+
 export default {
     name: 'AppHeader',
     data: () => ({
         keyword: '',
         loginDialog: false,
-        menus: require('@/data/menus.json'),
+        menus: require('@/data/menus.json')
     }),
     methods: {
         toggleDrawer() {
-            this.$store.commit('toggleDrawer');
-        },
+            this.$store.commit(MUTATION_TYPES.TOGGLE_DRAWER);
+        }
     }
 };
 </script>

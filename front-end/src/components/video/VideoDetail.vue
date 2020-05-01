@@ -16,7 +16,7 @@
                     主演：{{video.actors.join(' / ')}}
                 </p>
                 <p class="my-1">
-                    类型：{{video.genres.map(r=>r.v).join(' / ')}}
+                    类型：{{video.genres.map(v=>movieGenres[v]).join(' / ')}}
                 </p>
                 <p class="my-1">地区：{{video.countries.join(' / ')}}</p>
                 <p class="my-1">语言：{{video.languages.join(' / ')}}</p>
@@ -51,9 +51,11 @@
 </template>
 
 <script>
+import axios from 'axios';
+import {mapState} from 'vuex';
+import {DICT_TYPES} from '@/plugins/store-types';
 import VideoPanel from '@/components/shared/VideoPanel';
 import VideoCard from '@/components/shared/VideoCard';
-import axios from 'axios';
 
 export default {
     name: 'VideoDetail',
@@ -71,6 +73,12 @@ export default {
             items: require('@/data/videos.json'),
         },
     }),
+    computed: {
+        ...mapState({
+            movieGenres: state => state[DICT_TYPES.MOVIE_GENRE],
+            dramaGenres: state => state[DICT_TYPES.DRAMA_GENRE]
+        })
+    },
     mounted() {
         axios.get(`/api/videos/${this.vid}`).then(res => {
             this.video = res.data;

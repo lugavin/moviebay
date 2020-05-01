@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import axios from 'axios';
+import {DICT_TYPES, ACTION_TYPES, MUTATION_TYPES} from './store-types';
 
 Vue.use(Vuex);
 
@@ -9,11 +11,25 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         drawer: false, // Hide mobile side menu by default,
-        movieGenres: [],
-        dramaGenres: [],
+        [DICT_TYPES.MOVIE_GENRE]: {},
+        [DICT_TYPES.DRAMA_GENRE]: {}
     },
     mutations: {
-        setData: (state, payload) => Object.assign(state, payload),
-        toggleDrawer: state => (state.drawer = !state.drawer),
+        [MUTATION_TYPES.SET_DATA]: (state, payload) => Object.assign(state, payload),
+        [MUTATION_TYPES.TOGGLE_DRAWER]: state => (state.drawer = !state.drawer)
+    },
+    actions: {
+        [ACTION_TYPES.GET_DICT]: ({ commit }, tags) => {
+            const params = tags.map(tag => `tags=${tag}`).join('&');
+            return axios.get(`/api/dicts?${params}`).then(res => {
+                const payload = res.data.reduce((pre, curr) => {
+                    pre[curr.tag] = pre[curr.tag] || {};
+                    pre[curr.tag][curr.value] = curr.label;
+                    return pre;
+                }, {});
+                commit(MUTATION_TYPES.SET_DATA, payload);
+                return payload;
+            });
+        }
     }
 });

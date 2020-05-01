@@ -1,10 +1,11 @@
 import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
  * 字典信息
  */
 @Entity('sys_dict')
-export class DictEntity {
+export class DictEntity extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;

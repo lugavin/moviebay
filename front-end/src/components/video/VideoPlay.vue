@@ -6,7 +6,7 @@
                 <v-card tile flat dark>
                     <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
-                        {{imdbRating}} / {{video.year}} / {{video.countries.join(' · ')}} / {{video.genres.map(r=>r.v).join(' · ')}}
+                        {{imdbRating}} / {{video.year}} / {{video.countries.join(' · ')}} / {{video.genres.map(k=>genres[k]).join(' · ')}}
                         <a class="v-link" @click="expand=!expand">
                             详情<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
@@ -33,9 +33,8 @@
                     <v-tab-item>
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
                             <v-card-text>
-                                <v-btn v-for="(source, i) in video.sources" :key="i"
-                                       :to="`/video/play/${video.id}?version=${source.k}`" color="primary">
-                                    {{source.k}}
+                                <v-btn v-for="{k} in video.src" :key="k" :to="`/video/play/${video.id}?tags=${k}`" color="primary">
+                                    {{k}}
                                 </v-btn>
                             </v-card-text>
                         </v-card>
@@ -62,11 +61,13 @@
 </template>
 
 <script>
+import axios from 'axios';
+import {mapState} from 'vuex';
+import {DICT_TYPES} from '@/plugins/store-types';
 import Base from '@/components/util/Base';
 import VideoPlayer from '@/components/shared/VideoPlayer';
 import VideoCard from '@/components/shared/VideoCard';
 import VideoCardPoster from '@/components/shared/VideoCardPoster';
-import axios from 'axios';
 
 /**
  * @see https://docs.videojs.com/tutorial-vue.html
@@ -93,13 +94,27 @@ export default {
         expand: false,
         playTimes: 0, // TODO 播放次数待实现
     }),
+    computed: {
+        ...mapState({
+            genres(state) {
+                switch (this.video.type) {
+                    case 'movie':
+                        return state[DICT_TYPES.MOVIE_GENRE];
+                    case 'drama':
+                        return state[DICT_TYPES.DRAMA_GENRE];
+                    default:
+                        return [];
+                }
+            }
+        })
+    },
     mounted() {
         axios.get(`/api/videos/${this.vid}`).then(res => {
-            const sources = res.data.sources;
-            if (sources.length) {
+            const src = res.data.src;
+            if (src.length) {
                 this.playerOpts.sources = [
-                    {src: sources[0].v},
-                    {src: sources[0].v, type: 'video/webm'},
+                    {src: src[0].v},
+                    {src: src[0].v, type: 'video/webm'},
                 ];
             }
             this.video = res.data;

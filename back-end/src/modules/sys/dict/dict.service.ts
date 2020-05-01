@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {Equal, Repository} from 'typeorm';
+import {Repository, In} from 'typeorm';
 import {DictEntity} from './dict.entity';
 
 @Injectable()
@@ -10,14 +10,15 @@ export class DictService {
     }
 
     async createDict(entities: DictEntity[]): Promise<DictEntity[]> {
-        return this.dictRepository.save(entities);
+        // 直接调用 repository.save(entities) 会导致 @BeforeInsert() 不起作用
+        return this.dictRepository.save(entities.map(entity => Object.assign(new DictEntity(), entity)));
     }
 
-    async getDictByTag(tag: string): Promise<DictEntity[]> {
+    async getDictByTag(tags: string[]): Promise<DictEntity[]> {
         return this.dictRepository.find({
-            where: {tag: Equal(`${tag}`)},
-            order: {seq: 'ASC'},
-            cache: true,
+            where: {tag: In(tags)},
+            order: {tag: 'ASC', seq: 'ASC'},
+            cache: true
         });
     }
 

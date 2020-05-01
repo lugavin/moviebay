@@ -12,13 +12,11 @@
                     </v-toolbar>
                     <v-card-text :class="[{'d-none': !expand}, 'py-2']">
                         <v-chip-group v-model="filter.genres" column color="indigo">
-                            <v-chip v-for="genre in genres" :key="genre.value" :value="genre.value" label outlined filter>
-                                {{genre.label}}
-                            </v-chip>
+                            <v-chip v-for="(v, k) in genres" :key="k" :value="k" label outlined filter>{{v}}</v-chip>
                         </v-chip-group>
                         <v-chip-group v-model="filter.sorts" column color="indigo">
-                            <v-chip v-for="sort in sorts" :key="sort.value" :value="sort.value" label outlined filter>
-                                {{sort.label}}
+                            <v-chip v-for="{value, label} in sorts" :key="value" :value="value" label outlined filter>
+                                {{label}}
                             </v-chip>
                         </v-chip-group>
                     </v-card-text>
@@ -32,19 +30,20 @@
                 </v-row>
             </v-col>
             <v-col cols="12">
-                <v-pagination v-model="page" :length="rows" :total-visible="7"></v-pagination>
+                <v-pagination v-model="page" :length="rows" :total-visible="7"/>
             </v-col>
         </v-row>
     </v-container>
 </template>
 
 <script>
+import {mapState} from 'vuex';
+import {DICT_TYPES} from '@/plugins/store-types';
 import VideoCard from '@/components/shared/VideoCard';
-import axios from 'axios';
 
 export default {
     name: 'VideoList',
-    components: {VideoCard},
+    components: { VideoCard },
     props: ['type'],
     data: () => ({
         page: 1,
@@ -53,24 +52,27 @@ export default {
             genres: [],
             sorts: []
         },
-        genres: [],
         sorts: [
-            {value: 1, label: '按时间排序'},
-            {value: 2, label: '按人气排序'},
-            {value: 3, label: '按评分排序'}
+            { value: 1, label: '按时间排序' },
+            { value: 2, label: '按人气排序' },
+            { value: 3, label: '按评分排序' }
         ],
         expand: false,
-        videos: require('@/data/videos.json'),
+        videos: require('@/data/videos.json')
     }),
-    mounted() {
-        const mapper = {
-            movie: 'movie-genre',
-            drama: 'drama-genre',
-        };
-        axios.get(`/api/dicts?tag=${mapper[this.type]}`).then(res => {
-            this.genres = mapper[this.type] !== mapper.movie ? res.data
-                : res.data.map(item => Object.assign(item, {label: item.label + '片'}));
-        });
-    },
+    computed: {
+        ...mapState({
+            genres(state) {
+                switch (this.type) {
+                    case 'movie':
+                        return state[DICT_TYPES.MOVIE_GENRE];
+                    case 'drama':
+                        return state[DICT_TYPES.DRAMA_GENRE];
+                    default:
+                        return [];
+                }
+            }
+        })
+    }
 };
 </script>

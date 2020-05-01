@@ -14,8 +14,8 @@ export class DictResource {
     }
 
     @Get()
-    async getDict(@Query('tag')  tag: string): Promise<DictEntity[]> {
-        return this.dictService.getDictByTag(tag);
+    async getDict(@Query('tags')  tags: string[]): Promise<DictEntity[]> {
+        return this.dictService.getDictByTag(tags);
     }
 
 }
