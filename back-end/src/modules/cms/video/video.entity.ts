@@ -1,5 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
-import {VodStatus, VodType} from '../../shared/util/constants';
+import {Entity, Index, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {VodStatus, VodType} from '../../shared/util/enums';
 import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
@@ -13,16 +13,20 @@ export class VideoEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({name: 'imdb_id'})
-    imdbId: string;
+    // 原名
+    @Index()
+    @Column()
+    name: string;
 
     // 译名
+    @Index()
     @Column()
     title: string;
 
-    // 原名
-    @Column({name: 'original_title'})
-    originalTitle: string;
+    // 又名(also known as)
+    @Index()
+    @Column('varchar', {array: true})
+    aka: string[];
 
     // 年代
     @Column()
@@ -35,10 +39,6 @@ export class VideoEntity extends BaseEntity {
     // 片长
     @Column()
     runtime: number;
-
-    // 等级
-    @Column()
-    rated: string;
 
     // 状态(上线|下线)
     @Column()
@@ -91,10 +91,13 @@ export class VideoEntity extends BaseEntity {
     @Column()
     poster: string;
 
-    @Column({name: 'poster_thumb', nullable: true})
+    @Column({name: 'poster_thumb'})
     posterThumb: string;
 
     @Column({name: 'poster_slide', nullable: true})
     posterSlide: string;
+
+    @Column({name: 'imdb_id'})
+    imdbId: string;
 
 }

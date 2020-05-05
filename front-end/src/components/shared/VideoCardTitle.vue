@@ -24,8 +24,8 @@ export default {
         subtitle: {
             type: String,
             required: true
-        },
-    },
+        }
+    }
 };
 </script>
 

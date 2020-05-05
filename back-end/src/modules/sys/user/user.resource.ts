@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, Post, Put, UsePipes, ValidationPipe} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {DeleteResult} from 'typeorm';
 import {UserService} from './user.service';
 import {UserEntity} from './user.entity';
@@ -12,7 +12,6 @@ export class UserResource {
     } // same as constructor(@Inject(UserService) userService: UserService)
 
     @Post()
-    @UsePipes(ValidationPipe)
     async createUser(@Body() dto: UserDto): Promise<UserEntity> {
         return this.userService.createUser(dto);
     }

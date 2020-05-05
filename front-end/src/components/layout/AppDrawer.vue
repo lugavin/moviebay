@@ -25,7 +25,7 @@ export default {
                 return this.$store.state.drawer;
             },
             set(drawer) {
-                this.$store.commit(MUTATION_TYPES.SET_DATA, { drawer });
+                this.$store.commit(MUTATION_TYPES.SET_STATE, { drawer });
             }
         }
     }

@@ -1,17 +1,15 @@
-import {Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Index, Column, PrimaryGeneratedColumn} from 'typeorm';
 import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
  * 字典信息
  */
 @Entity('sys_dict')
+@Index(['value', 'tag'], {unique: true})
 export class DictEntity extends BaseEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
-
-    // @Column()
-    // pid: number;
 
     @Column()
     label: string;

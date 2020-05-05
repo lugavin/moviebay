@@ -1,18 +1,14 @@
 import {BeforeInsert, BeforeUpdate, Column} from 'typeorm';
-import {Transform} from 'class-transformer';
-import {dateTransform} from './transform';
-import {Constants} from '../util/constants';
+import Consts from '../util/consts';
 
 export class BaseEntity {
 
-    @Transform(dateTransform)
     @Column({name: 'created_at'})
     createdAt: Date;
 
     @Column({name: 'created_by'})
     createdBy: string;
 
-    @Transform(dateTransform)
     @Column({name: 'updated_at', nullable: true})
     updatedAt: Date;
 
@@ -22,13 +18,13 @@ export class BaseEntity {
     @BeforeInsert()
     beforeInsert() {
         this.createdAt = new Date();
-        this.createdBy = Constants.ACCOUNT;
+        this.createdBy = Consts.ACCOUNT;
     }
 
     @BeforeUpdate()
     beforeUpdate() {
         this.updatedAt = new Date();
-        this.updatedBy = Constants.ACCOUNT;
+        this.updatedBy = Consts.ACCOUNT;
     }
 
 }

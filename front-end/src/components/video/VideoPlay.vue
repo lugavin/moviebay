@@ -63,8 +63,8 @@
 <script>
 import axios from 'axios';
 import {mapState} from 'vuex';
+import {jsonp} from '@/components/util/base';
 import {DICT_TYPES} from '@/plugins/store-types';
-import Base from '@/components/util/Base';
 import VideoPlayer from '@/components/shared/VideoPlayer';
 import VideoCard from '@/components/shared/VideoCard';
 import VideoCardPoster from '@/components/shared/VideoCardPoster';
@@ -79,20 +79,20 @@ export default {
         vid: {
             type: [Number, String],
             required: true
-        },
+        }
     },
     data: () => ({
         video: null,
-        imdbRating: null,
+        imdbRating: 0,
         playerOpts: {
             controls: true,
             preload: 'auto',
             poster: require('@/assets/poster.png'),
-            sources: null,
+            sources: null
         },
         videos: require('@/data/videos.json'),
         expand: false,
-        playTimes: 0, // TODO 播放次数待实现
+        playTimes: 0 // TODO 播放次数待实现
     }),
     computed: {
         ...mapState({
@@ -114,16 +114,16 @@ export default {
             if (src.length) {
                 this.playerOpts.sources = [
                     {src: src[0].v},
-                    {src: src[0].v, type: 'video/webm'},
+                    {src: src[0].v, type: 'video/webm'}
                 ];
             }
             this.video = res.data;
-            Base.jsonp(`https://api.douban.com/v2/movie/imdb/${this.video.imdbId}`, {
+            jsonp(`https://api.douban.com/v2/movie/imdb/${this.video.imdbId}`, {
                 apikey: '0df993c66c0c636e29ecbb5344252a4a'
             }, (res) => {
                 this.imdbRating = res.rating['average'];
             });
         });
-    },
+    }
 }
 </script>

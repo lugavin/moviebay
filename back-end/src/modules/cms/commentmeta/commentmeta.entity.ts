@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, Index} from 'typeorm';
 
 /**
  * 评论的元数据
@@ -11,10 +11,12 @@ export class CommentMetaEntity {
     id: number;
 
     // 对应评论ID
+    @Index()
     @Column({name: 'comment_id'})
     commentId: string;
 
     // 键名
+    @Index()
     @Column({name: 'meta_key'})
     metaKey: string;
 

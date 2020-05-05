@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, Index} from 'typeorm';
 import {BaseEntity} from '../../shared/entity/base.entity';
 
 /**
@@ -12,6 +12,7 @@ export class CelebrityEntity extends BaseEntity {
     id: number;
 
     // 影人名字
+    @Index()
     @Column()
     name: string;
 

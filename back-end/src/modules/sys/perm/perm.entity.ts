@@ -11,7 +11,7 @@ export class PermEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({unique: true})
     code: string;
 
     @Column()

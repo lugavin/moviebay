@@ -1,4 +1,4 @@
-import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, Index, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {RoleEntity} from '../role/role.entity';
 import {BaseEntity} from '../../shared/entity/base.entity';
 
@@ -11,7 +11,7 @@ export class UserEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({unique: true})
     username: string;
 
     @Column()

@@ -1,7 +1,7 @@
 /**
  * @param {string} namespace
  */
-function register(namespace) {
+export function register(namespace) {
     let nsArr = namespace.split('.');
     let nsStr = '', codeStr = '';
     for (let [i, v] of nsArr.entries()) {
@@ -16,7 +16,7 @@ function register(namespace) {
  * @param {object?} params
  * @param {function} callback
  */
-function jsonp(url, params, callback) {
+export function jsonp(url, params, callback) {
     // arguments是类似数组的对象而并不是真正意义上的Javascript数组
     let args = Array.prototype.slice.call(arguments);
     // 移除数组中的第一个元素并返回该元素
@@ -43,7 +43,7 @@ function jsonp(url, params, callback) {
  * @param {array|object} params
  * @returns {string}
  */
-function encodeURLParams(params) {
+export function encodeURLParams(params) {
     const parts = [];
 
     const add = (key, value) => {
@@ -89,7 +89,7 @@ function encodeURLParams(params) {
  * @returns {object}
  * @see https://github.com/jupiterjs/jquerymx/blob/master/lang/string/deparam/deparam.js
  */
-function decodeURLParams(serializedParams) {
+export function decodeURLParams(serializedParams) {
     let digitTest = /^\d+$/,
         keyBreaker = /([^[\]]+)|(\[\])/g,
         plus = /\+/g,
@@ -108,7 +108,7 @@ function decodeURLParams(serializedParams) {
 
         // if we find foo=1+1=2
         if (pair.length !== 2) {
-            pair = [pair[0], pair.slice(1).join('=')]
+            pair = [pair[0], pair.slice(1).join('=')];
         }
 
         let key = decodeURIComponent(pair[0].replace(plus, ' ')),
@@ -119,23 +119,16 @@ function decodeURLParams(serializedParams) {
             let part = parts[j];
             if (!current[part]) {
                 // if what we are pointing to looks like an array
-                current[part] = digitTest.test(parts[j + 1]) || parts[j + 1] === '[]' ? [] : {}
+                current[part] = digitTest.test(parts[j + 1]) || parts[j + 1] === '[]' ? [] : {};
             }
             current = current[part];
         }
         let lastPart = parts[parts.length - 1];
         if (lastPart === '[]') {
-            current.push(value)
+            current.push(value);
         } else {
             current[lastPart] = value;
         }
     }
     return data;
 }
-
-export default {
-    register,
-    jsonp,
-    encodeURLParams,
-    decodeURLParams
-};

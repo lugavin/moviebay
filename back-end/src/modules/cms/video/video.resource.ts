@@ -1,7 +1,9 @@
-import {Body, Controller, Delete, Get, Param, Post, Query} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query} from '@nestjs/common';
 import {DeleteResult} from 'typeorm';
 import {VideoService} from './video.service';
 import {VideoEntity} from './video.entity';
+import {PageResponse} from '../../shared/page/page.response';
+import {VideoDto} from './dto/video.dto';
 
 @Controller('videos')
 export class VideoResource {
@@ -25,8 +27,17 @@ export class VideoResource {
     }
 
     @Get('search')
-    async search(@Query('q') keyword: string): Promise<VideoEntity[]> {
-        return this.videoService.search(keyword);
+    async search(@Query('page', ParseIntPipe) page: number,
+                 @Query('pageSize', ParseIntPipe) pageSize: number,
+                 @Query('q') keyword: string): Promise<PageResponse<VideoEntity>> {
+        return this.videoService.search(page, pageSize, keyword);
+    }
+
+    @Get()
+    async getPage(@Query('page', ParseIntPipe) page: number,
+                  @Query('pageSize', ParseIntPipe) pageSize: number,
+                  @Query() params: VideoDto): Promise<PageResponse<VideoEntity>> {
+        return this.videoService.getPage(page, pageSize, params);
     }
 
 }

@@ -25,8 +25,3 @@ export enum Formatter {
     TIME = 'HH:mm:ss',
     DATETIME = 'YYYY-MM-DD HH:mm:ss',
 }
-
-export const Constants = {
-    ACCOUNT: 'system',
-    PERMS_KEY: 'perms'
-};

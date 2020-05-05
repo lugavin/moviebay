@@ -11,7 +11,7 @@
                 </v-row>
             </v-col>
             <v-col cols="12">
-                <v-pagination v-model="page" :length="rows" :total-visible="7"/>
+                <v-pagination v-model="page" :length="totalPages" :total-visible="7" @input="getPage"/>
             </v-col>
         </v-row>
     </v-container>
@@ -19,7 +19,9 @@
 
 <script>
 import VideoCard from '@/components/shared/VideoCard';
+import {Formatter} from '@/components/util/consts';
 import axios from 'axios';
+import * as dayjs from 'dayjs';
 
 export default {
     name: 'VideoSearch',
@@ -28,22 +30,36 @@ export default {
         keyword: {
             type: String,
             required: true
-        },
+        }
     },
     data: () => ({
         page: 1,
-        rows: 15,
-        videos: [],
+        pageSize: 12,
+        totalPages: 0,
+        videos: []
     }),
-    mounted() {
-        axios.get(`/api/videos/search?q=${this.keyword}`).then(res => {
-            this.videos = res.data.map(item => ({
-                vid: item.id,
-                poster: item.poster,
-                title: item.title,
-                subtitle: item.createdAt,
-            }));
-        });
+    methods: {
+        getPage(page) {
+            axios.get('/api/videos/search', {
+                params: {
+                    page,
+                    pageSize: this.pageSize,
+                    q: this.keyword
+                }
+            }).then(res => {
+                this.totalPages = res.data.totalPages;
+                this.videos = res.data.items.map(item => ({
+                    vid: item.id,
+                    poster: item.poster,
+                    posterThumb: item.posterThumb,
+                    title: item.title,
+                    subtitle: dayjs(item.createdAt).format(Formatter.DATE)
+                }));
+            });
+        }
     },
+    mounted() {
+        this.getPage(this.page);
+    }
 };
 </script>

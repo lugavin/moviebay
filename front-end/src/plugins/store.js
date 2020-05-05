@@ -15,19 +15,21 @@ export default new Vuex.Store({
         [DICT_TYPES.DRAMA_GENRE]: {}
     },
     mutations: {
-        [MUTATION_TYPES.SET_DATA]: (state, payload) => Object.assign(state, payload),
+        [MUTATION_TYPES.SET_STATE]: (state, payload) => Object.assign(state, payload),
         [MUTATION_TYPES.TOGGLE_DRAWER]: state => (state.drawer = !state.drawer)
     },
     actions: {
-        [ACTION_TYPES.GET_DICT]: ({ commit }, tags) => {
-            const params = tags.map(tag => `tags=${tag}`).join('&');
-            return axios.get(`/api/dicts?${params}`).then(res => {
+        [ACTION_TYPES.GET_DICT]: ({commit}, tags) => {
+            return axios.get('/api/dicts', {
+                params: {tags},
+                paramsSerializer: params => params.tags.map(tag => `tags=${tag}`).join('&')
+            }).then(res => {
                 const payload = res.data.reduce((pre, curr) => {
                     pre[curr.tag] = pre[curr.tag] || {};
                     pre[curr.tag][curr.value] = curr.label;
                     return pre;
                 }, {});
-                commit(MUTATION_TYPES.SET_DATA, payload);
+                commit(MUTATION_TYPES.SET_STATE, payload);
                 return payload;
             });
         }

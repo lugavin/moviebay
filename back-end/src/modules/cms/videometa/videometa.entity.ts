@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, Index} from 'typeorm';
 
 /**
  * 影视的元数据
@@ -11,6 +11,7 @@ export class VideoMetaEntity {
     id: number;
 
     // 对应影视条目ID
+    @Index()
     @Column({name: 'vod_id'})
     vodId: string;
 

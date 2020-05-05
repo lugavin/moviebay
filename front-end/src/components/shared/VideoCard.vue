@@ -2,7 +2,7 @@
     <v-lazy>
         <v-card outlined>
             <slot>
-                <video-card-poster v-bind="{vid, poster}"/>
+                <video-card-poster v-bind="{vid, poster, posterThumb}"/>
                 <video-card-title v-bind="{vid, title, subtitle}"/>
             </slot>
         </v-card>
@@ -19,8 +19,9 @@ export default {
     props: {
         vid: [Number, String],
         poster: String,
+        posterThumb: String,
         title: String,
-        subtitle: String,
-    },
-}
+        subtitle: String
+    }
+};
 </script>

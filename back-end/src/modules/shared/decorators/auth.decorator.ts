@@ -1,5 +1,5 @@
 import {SetMetadata} from '@nestjs/common';
-import {Constants} from '../util/constants';
+import Consts from '../util/consts';
 
 /**
  * ``` ts
@@ -8,4 +8,4 @@ import {Constants} from '../util/constants';
  *
  * @see https://docs.nestjs.com/custom-decorators
  */
-export const Auth = (...perms: string[]) => SetMetadata(Constants.PERMS_KEY, perms);
+export const Auth = (...perms: string[]) => SetMetadata(Consts.PERMS_KEY, perms);

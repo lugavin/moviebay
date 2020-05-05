@@ -8,6 +8,6 @@ export const ACTION_TYPES = {
 };
 
 export const MUTATION_TYPES = {
-    SET_DATA: 'setData',
+    SET_STATE: 'setState',
     TOGGLE_DRAWER: 'toggleDrawer'
 };

@@ -10,9 +10,6 @@ export class EpisodeEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({name: 'imdb_id'})
-    imdbId: string;
-
     @Column()
     name: string;
 
@@ -30,5 +27,8 @@ export class EpisodeEntity extends BaseEntity {
 
     @Column({name: 'release_episode'})
     releaseEpisode: number;
+
+    @Column({name: 'imdb_id'})
+    imdbId: string;
 
 }

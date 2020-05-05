@@ -3,6 +3,14 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
+const pathMap = {
+    movies: 'movie',
+    dramas: 'drama',
+    cartoons: 'cartoon',
+    shows: 'show',
+    mv: 'mv'
+};
+
 /**
  * Router Mode
  * - hash: 即URL中的#符号(此hash不是密码学中的散列运算), 比如 http://localhost/#/home 的hash值为#/home,
@@ -21,9 +29,9 @@ export default new Router({
         {path: '/', redirect: '/home'},
         {path: '/home', component: () => import('@/components/home')},
         {
-            path: '/video/list',
+            path: `/(${Object.keys(pathMap).join('|')})`,
             component: () => import('@/components/video/VideoList'),
-            props: (route) => ({type: route.query.type}),
+            props: (route) => ({type: pathMap[route.params.pathMatch]})
         },
         {
             path: '/video/detail/:vid',

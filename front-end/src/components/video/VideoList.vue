@@ -7,7 +7,7 @@
                         <h4 class="font-weight-medium">共检索到 <span class="red--text text--darken-3">{{rows}}</span> 条结果</h4>
                         <v-spacer/>
                         <a class="v-link text-small" @click="expand=!expand">
-                            {{expand?'收起':'展开'}}<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
+                            筛选<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
                     </v-toolbar>
                     <v-card-text :class="[{'d-none': !expand}, 'py-2']">
@@ -43,7 +43,7 @@ import VideoCard from '@/components/shared/VideoCard';
 
 export default {
     name: 'VideoList',
-    components: { VideoCard },
+    components: {VideoCard},
     props: ['type'],
     data: () => ({
         page: 1,
@@ -53,9 +53,9 @@ export default {
             sorts: []
         },
         sorts: [
-            { value: 1, label: '按时间排序' },
-            { value: 2, label: '按人气排序' },
-            { value: 3, label: '按评分排序' }
+            {value: 1, label: '按时间排序'},
+            {value: 2, label: '按人气排序'},
+            {value: 3, label: '按评分排序'}
         ],
         expand: false,
         videos: require('@/data/videos.json')

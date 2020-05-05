@@ -2,7 +2,7 @@
     <v-container>
         <v-row v-if="video">
             <v-col cols="12" md="3">
-                <v-img :src="require(`@/assets/img/${video.poster}`)" max-width="360px" max-height="480px"/>
+                <v-img :src="video.poster" :lazy-src="video.posterThumb" max-width="360" max-height="480"/>
             </v-col>
             <v-col cols="12" md="9">
                 <h3>{{video.title}}</h3>
@@ -64,14 +64,14 @@ export default {
         vid: {
             type: [Number, String],
             required: true
-        },
+        }
     },
     data: () => ({
         video: null,
         videoPanel: {
             title: '猜你喜欢',
-            items: require('@/data/videos.json'),
-        },
+            items: require('@/data/videos.json')
+        }
     }),
     computed: {
         ...mapState({
@@ -83,6 +83,6 @@ export default {
         axios.get(`/api/videos/${this.vid}`).then(res => {
             this.video = res.data;
         });
-    },
+    }
 };
 </script>

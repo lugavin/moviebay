@@ -15,23 +15,23 @@ export default {
     props: {
         options: {
             type: Object,
-            required: true,
-        },
+            required: true
+        }
     },
     data() {
         return {
             player: null
-        }
+        };
     },
     mounted() {
-        this.player = videojs(this.$refs.player, this.options, function () {
+        this.player = videojs(this.$refs.player, this.options, function() {
             console.info('The Player is ready...');
         });
     },
     beforeDestroy() {
         this.player && this.player.dispose();
     }
-}
+};
 </script>
 
 <style>

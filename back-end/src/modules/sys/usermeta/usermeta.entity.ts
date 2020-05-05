@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, Index} from 'typeorm';
 
 /**
  * 用户元数据信息
@@ -13,10 +13,12 @@ export class UserMetaEntity {
     id: number;
 
     // 对应用户ID
+    @Index()
     @Column({name: 'user_id'})
     userId: string;
 
     // 键名
+    @Index()
     @Column({name: 'meta_key'})
     metaKey: string;
 
