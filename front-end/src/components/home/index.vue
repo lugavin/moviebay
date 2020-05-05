@@ -18,7 +18,7 @@
                                 <span class="mx-2"/>
                             </li>
                             <li class="d-block float-left">
-                                <router-link class="v-link" to="/video/list">更多...</router-link>
+                                <router-link class="v-link" to="/videos">更多...</router-link>
                             </li>
                         </ul>
                     </template>

@@ -90,7 +90,7 @@ export default {
             poster: require('@/assets/poster.png'),
             sources: null
         },
-        videos: require('@/data/videos.json'),
+        videos: [],
         expand: false,
         playTimes: 0 // TODO 播放次数待实现
     }),

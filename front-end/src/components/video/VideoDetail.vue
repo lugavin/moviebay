@@ -54,8 +54,10 @@
 import axios from 'axios';
 import {mapState} from 'vuex';
 import {DICT_TYPES} from '@/plugins/store-types';
+import {Formatter} from '@/components/util/consts';
 import VideoPanel from '@/components/shared/VideoPanel';
 import VideoCard from '@/components/shared/VideoCard';
+import * as dayjs from 'dayjs';
 
 export default {
     name: 'VideoDetail',
@@ -70,7 +72,7 @@ export default {
         video: null,
         videoPanel: {
             title: '猜你喜欢',
-            items: require('@/data/videos.json')
+            items: []
         }
     }),
     computed: {
@@ -82,6 +84,24 @@ export default {
     mounted() {
         axios.get(`/api/videos/${this.vid}`).then(res => {
             this.video = res.data;
+            return this.video;
+        }).then(vod => {
+            const dataMapper = items => items.map(item => ({
+                vid: item.id,
+                poster: item.poster,
+                posterThumb: item.posterThumb,
+                title: item.title,
+                subtitle: dayjs(item.createdAt).format(Formatter.DATE)
+            }));
+            axios.get('/api/videos', {
+                params: {
+                    page: 1,
+                    pageSize: 12,
+                    type: vod.type
+                }
+            }).then(res => {
+                this.videoPanel.items = dataMapper(res.data.items);
+            });
         });
     }
 };

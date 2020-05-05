@@ -4,7 +4,7 @@
             <v-col cols="12">
                 <v-card outlined>
                     <v-toolbar dense flat class="grey lighten-3">
-                        <h4 class="font-weight-medium">共检索到 <span class="red--text text--darken-3">{{rows}}</span> 条结果</h4>
+                        <h4 class="font-weight-medium">共检索到 <span class="red--text text--darken-3">{{totalItems}}</span> 条结果</h4>
                         <v-spacer/>
                         <a class="v-link text-small" @click="expand=!expand">
                             筛选<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
@@ -30,7 +30,7 @@
                 </v-row>
             </v-col>
             <v-col cols="12">
-                <v-pagination v-model="page" :length="rows" :total-visible="7"/>
+                <v-pagination v-model="page" :length="totalPages" :total-visible="7" @input="getPage"/>
             </v-col>
         </v-row>
     </v-container>
@@ -39,7 +39,10 @@
 <script>
 import {mapState} from 'vuex';
 import {DICT_TYPES} from '@/plugins/store-types';
+import {Formatter} from '@/components/util/consts';
 import VideoCard from '@/components/shared/VideoCard';
+import axios from 'axios';
+import * as dayjs from 'dayjs';
 
 export default {
     name: 'VideoList',
@@ -47,7 +50,9 @@ export default {
     props: ['type'],
     data: () => ({
         page: 1,
-        rows: 15,
+        pageSize: 12,
+        totalItems: 0,
+        totalPages: 0,
         filter: {
             genres: [],
             sorts: []
@@ -58,7 +63,7 @@ export default {
             {value: 3, label: '按评分排序'}
         ],
         expand: false,
-        videos: require('@/data/videos.json')
+        videos: []
     }),
     computed: {
         ...mapState({
@@ -73,6 +78,31 @@ export default {
                 }
             }
         })
+    },
+    methods: {
+        getPage(page) {
+            const params = {
+                page,
+                pageSize: this.pageSize
+            };
+            if (this.type) {
+                Object.assign(params, {type: this.type});
+            }
+            axios.get('/api/videos', {params}).then(res => {
+                this.totalItems = res.data.totalItems;
+                this.totalPages = res.data.totalPages;
+                this.videos = res.data.items.map(item => ({
+                    vid: item.id,
+                    poster: item.poster,
+                    posterThumb: item.posterThumb,
+                    title: item.title,
+                    subtitle: dayjs(item.createdAt).format(Formatter.DATE)
+                }));
+            });
+        }
+    },
+    mounted() {
+        this.getPage(this.page);
     }
 };
 </script>
