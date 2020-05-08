@@ -24,7 +24,6 @@ export class VideoEntity extends BaseEntity {
     title: string;
 
     // 又名(also known as)
-    @Index()
     @Column('varchar', {array: true})
     aka: string[];
 
@@ -47,13 +46,13 @@ export class VideoEntity extends BaseEntity {
     @Column()
     type: VodType;
 
-    // 片源: {k:'720P', v:'play_url'}
-    @Column('jsonb')
+    // 片源
+    @Column()
     src: string;
 
     // 分辨率标签: ['HD', '720P']
-    // @Column('varchar', {array: true})
-    // tags: string[];
+    @Column('varchar', {array: true})
+    tags: string[];
 
     // 影片类型
     @Column('varchar', {array: true})

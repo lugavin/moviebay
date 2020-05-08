@@ -33,8 +33,8 @@
                     <v-tab-item>
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
                             <v-card-text>
-                                <v-btn v-for="{k} in video.src" :key="k" :to="`/video/play/${video.id}?tags=${k}`" color="primary">
-                                    {{k}}
+                                <v-btn v-for="tag in video.tags" :key="tag" :to="`/video/play/${video.id}?tags=${tag}`" color="primary mx-2">
+                                    {{tag}}
                                 </v-btn>
                             </v-card-text>
                         </v-card>
@@ -65,9 +65,11 @@ import axios from 'axios';
 import {mapState} from 'vuex';
 import {jsonp} from '@/components/util/base';
 import {DICT_TYPES} from '@/plugins/store-types';
+import {Formatter} from '@/components/util/consts';
 import VideoPlayer from '@/components/shared/VideoPlayer';
 import VideoCard from '@/components/shared/VideoCard';
 import VideoCardPoster from '@/components/shared/VideoCardPoster';
+import * as dayjs from 'dayjs';
 
 /**
  * @see https://docs.videojs.com/tutorial-vue.html
@@ -110,18 +112,34 @@ export default {
     },
     mounted() {
         axios.get(`/api/videos/${this.vid}`).then(res => {
-            const src = res.data.src;
-            if (src.length) {
-                this.playerOpts.sources = [
-                    {src: src[0].v},
-                    {src: src[0].v, type: 'video/webm'}
-                ];
-            }
             this.video = res.data;
+            const src = this.video.src;
+            this.playerOpts.sources = [
+                {src},
+                {src, type: 'video/webm'}
+            ];
             jsonp(`https://api.douban.com/v2/movie/imdb/${this.video.imdbId}`, {
                 apikey: '0df993c66c0c636e29ecbb5344252a4a'
             }, (res) => {
                 this.imdbRating = res.rating['average'];
+            });
+            return this.video;
+        }).then(vod => {
+            const dataMapper = items => items.map(item => ({
+                vid: item.id,
+                poster: item.poster,
+                posterThumb: item.posterThumb,
+                title: item.title,
+                subtitle: dayjs(item.createdAt).format(Formatter.DATE)
+            }));
+            axios.get('/api/videos', {
+                params: {
+                    page: 1,
+                    pageSize: 12,
+                    type: vod.type
+                }
+            }).then(res => {
+                this.videos = dataMapper(res.data.items);
             });
         });
     }

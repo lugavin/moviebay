@@ -7,12 +7,8 @@
     "released": 19941014,
     "runtime": 142,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EeEkdno_jrBLg14yKTZLitcBfO9J3RpYEW6jYlIR5AqFNg"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EeEkdno_jrBLg14yKTZLitcBfO9J3RpYEW6jYlIR5AqFNg",
+    "tags": ["720P", "HD"],
     "genres": ["drama", "crime"],
     "countries": ["美国"],
     "languages": ["英语"],
@@ -33,12 +29,8 @@
     "released": 20150731,
     "runtime": 163,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EXCHMOc9WnFOg4KA9zJ4YGYBkGC9fnRW6hP391gYWjnddQ"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EXCHMOc9WnFOg4KA9zJ4YGYBkGC9fnRW6hP391gYWjnddQ",
+    "tags": ["720P", "HD"],
     "genres": ["drama", "crime", "mystery"],
     "countries": ["印度"],
     "languages": ["印地语"],
@@ -59,12 +51,8 @@
     "released": 20101028,
     "runtime": 42,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EW_kWieUAH5LiDeqjzYR44sB6BuVlT7vvc5xR9dfjWEoJA"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EW_kWieUAH5LiDeqjzYR44sB6BuVlT7vvc5xR9dfjWEoJA",
+    "tags": ["720P", "HD"],
     "genres": ["drama", "comedy"],
     "countries": ["中国大陆"],
     "languages": ["汉语普通话"],
@@ -85,12 +73,8 @@
     "released": 20091113,
     "runtime": 158,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EYQ62UNTXLhEixCbbjrqxFoB909TmLSz7ZSXGlkPUds2og"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EYQ62UNTXLhEixCbbjrqxFoB909TmLSz7ZSXGlkPUds2og",
+    "tags": ["720P", "HD"],
     "genres": ["action", "fantasy", "disaster", "adventure"],
     "countries": ["美国", "加拿大"],
     "languages": ["英语"],
@@ -111,12 +95,8 @@
     "released": 20091225,
     "runtime": 171,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=ET3FxMdb1-5BtL1yJst9FpAB-CpQOe646Cv0nClrHDh6uw"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=ET3FxMdb1-5BtL1yJst9FpAB-CpQOe646Cv0nClrHDh6uw",
+    "tags": ["720P", "HD"],
     "genres": ["drama", "comedy", "romance"],
     "countries": ["印度"],
     "languages": ["印地语"],
@@ -137,12 +117,8 @@
     "released": 19870718,
     "runtime": 98,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EaSHtQLfBHBHnTGWAUtyYK4B_Vw60p0A5XF8cgVJzaMt9Q"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EaSHtQLfBHBHnTGWAUtyYK4B_Vw60p0A5XF8cgVJzaMt9Q",
+    "tags": ["720P", "HD"],
     "genres": ["action", "romance"],
     "countries": ["中国香港"],
     "languages": ["粤语"],
@@ -163,12 +139,8 @@
     "released": 19900713,
     "runtime": 104,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=Ecdjwy-Z9j5JmJUEMYLs_UABQ8Ei5yku3LYM3Xw5GP2N9Q"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=Ecdjwy-Z9j5JmJUEMYLs_UABQ8Ei5yku3LYM3Xw5GP2N9Q",
+    "tags": ["720P", "HD"],
     "genres": ["action", "romance"],
     "countries": ["中国香港"],
     "languages": ["粤语"],
@@ -189,12 +161,8 @@
     "released": 19910718,
     "runtime": 109,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=Ef0xjsKAf8RLiMdqAuKk7lwBucYbivqArpmz-j-07eH6sA"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=Ef0xjsKAf8RLiMdqAuKk7lwBucYbivqArpmz-j-07eH6sA",
+    "tags": ["720P", "HD"],
     "genres": ["action", "romance"],
     "countries": ["中国香港"],
     "languages": ["粤语"],
@@ -215,12 +183,8 @@
     "released": 20010615,
     "runtime": 100,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EZFV4PIJoXhHkaFQuDDFNoIBeUX3jz2l9VpK4qv3Iwn-7g"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EZFV4PIJoXhHkaFQuDDFNoIBeUX3jz2l9VpK4qv3Iwn-7g",
+    "tags": ["720P", "HD"],
     "genres": ["action", "adventure"],
     "countries": ["美国", "英国", "德国", "日本"],
     "languages": ["英语"],
@@ -241,12 +205,8 @@
     "released": 20030721,
     "runtime": 117,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=ESgQO9tcQvlIlMXJdvfeFLMBGG_s_sIW0fjJI6sNOb-m3Q"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=ESgQO9tcQvlIlMXJdvfeFLMBGG_s_sIW0fjJI6sNOb-m3Q",
+    "tags": ["720P", "HD"],
     "genres": ["action", "adventure"],
     "countries": ["美国", "英国", "德国", "日本"],
     "languages": ["英语"],
@@ -267,12 +227,8 @@
     "released": 20180316,
     "runtime": 118,
     "type": "movie",
-    "src": [
-      {
-        "k": "720P",
-        "v": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EdxfeMQlKn9CuhO2aptmA04Bim-RZuyi8y0OQ-HdTnvGOQ"
-      }
-    ],
+    "src": "https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EdxfeMQlKn9CuhO2aptmA04Bim-RZuyi8y0OQ-HdTnvGOQ",
+    "tags": ["720P", "HD"],
     "genres": ["action", "adventure"],
     "countries": ["美国"],
     "languages": ["英语"],

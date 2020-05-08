@@ -23,7 +23,7 @@ const pathMap = {
  * @see https://developer.mozilla.org/zh-CN/docs/Web/API/History
  */
 export default new Router({
-    mode: 'hash',
+    mode: 'history',
     linkActiveClass: 'active',
     routes: [
         {path: '/', redirect: '/home'},
