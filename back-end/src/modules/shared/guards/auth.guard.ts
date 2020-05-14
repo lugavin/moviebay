@@ -1,7 +1,7 @@
 import {CanActivate, ExecutionContext, Logger} from '@nestjs/common';
 import {Reflector} from '@nestjs/core';
 import {AuthService} from '../../sys/auth/auth.service';
-import {ActiveUser} from '../../sys/auth/dto/activeuser';
+import {Subject} from '../../sys/auth/dto/subject';
 import Consts from '../util/consts';
 
 export class AuthGuard implements CanActivate {
@@ -22,9 +22,9 @@ export class AuthGuard implements CanActivate {
             Logger.warn('Unauthorized!', AuthGuard.name);
             return false;
         }
-        let activeUser: ActiveUser;
+        let subject: Subject;
         try {
-            activeUser = await this.authService.verifyToken(token);
+            subject = await this.authService.verifyAccessToken(token);
         } catch (e) {
             Logger.error('Verify token failed!', e, AuthGuard.name);
             return false;
@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate {
             return true;
         }
         // 授权访问地址(登录后需要授权)
-        const userPerms = await this.authService.getPerms(activeUser.username);
+        const userPerms = await this.authService.getPerms(subject.username);
         const hasPerm = () => perms.every(perm => userPerms.includes(perm));
         return userPerms && userPerms.length && hasPerm();
     }

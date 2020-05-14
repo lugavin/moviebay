@@ -1,5 +1,5 @@
 [
-  {"name": "首页", "url": "/home"},
+  {"name": "首页", "url": "/"},
   {"name": "电影", "url": "/movies"},
   {"name": "连续剧", "url": "/dramas"},
   {"name": "动漫", "url": "/cartoons"},

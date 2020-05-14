@@ -5,11 +5,13 @@ import {AuthResource} from './auth.resource';
 import {UserModule} from '../user/user.module';
 import {PermModule} from '../perm/perm.module';
 import {jwtConfigFactory} from '../../../config/config.factory';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import {AuthEntity} from './auth.entity';
 
 @Module({
-    imports: [JwtModule.registerAsync({useFactory: jwtConfigFactory}), UserModule, PermModule],
+    imports: [TypeOrmModule.forFeature([AuthEntity]), JwtModule.registerAsync({useFactory: jwtConfigFactory}), UserModule, PermModule],
     providers: [AuthService],
-    controllers: [AuthResource],
+    controllers: [AuthResource]
 })
 export class AuthModule {
 }

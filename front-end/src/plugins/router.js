@@ -26,8 +26,10 @@ export default new Router({
     mode: 'history',
     linkActiveClass: 'active',
     routes: [
-        {path: '/', redirect: '/home'},
-        {path: '/home', component: () => import('@/components/home')},
+        {
+            path: '/',
+            component: () => import('@/components/home')
+        },
         {
             path: `/(${Object.keys(pathMap).join('|')})`,
             component: () => import('@/components/video/VideoList'),
