@@ -1,4 +1,4 @@
-import {Body, Controller, HttpCode, HttpException, HttpStatus, Ip, Param, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpCode, HttpException, HttpStatus, Ip, Param, Post} from '@nestjs/common';
 import {LoginDto} from './dto/login.dto';
 import {AuthService} from './auth.service';
 import BaseUtil from '../../shared/util/base.util';
@@ -31,15 +31,15 @@ export class AuthResource {
         });
     }
 
-    @Post('/token')
+    @Get('/token/:username/:refreshToken')
     @HttpCode(HttpStatus.OK)
-    async getAccessToken(@Param('refreshToken') refreshToken: string,
+    async getAccessToken(@Ip() clientip: string,
                          @Param('username') username: string,
-                         @Ip() clientip: string): Promise<string> {
+                         @Param('refreshToken') refreshToken: string): Promise<string> {
         return this.authService.getAccessToken(refreshToken, {username, clientip});
     }
 
-    @Post('/token/reject')
+    @Delete('/token/reject/:refreshToken')
     @HttpCode(HttpStatus.NO_CONTENT)
     async rejectRefreshToken(@Param('refreshToken') refreshToken: string): Promise<DeleteResult> {
         return this.authService.rejectRefreshToken(refreshToken);
