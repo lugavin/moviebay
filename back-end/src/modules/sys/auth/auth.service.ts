@@ -12,6 +12,7 @@ import {Equal, Repository} from 'typeorm';
 import {AuthEntity} from './auth.entity';
 import BaseUtil from '../../shared/util/base.util';
 import {DeleteResult} from 'typeorm/query-builder/result/DeleteResult';
+import dayjs = require('dayjs');
 
 /**
  * @see <a href="https://solidgeargroup.com/en/refresh-token-with-jwt-authentication-node-js/">Refresh token with JWT authentication in Node.js</a>
@@ -28,10 +29,14 @@ export class AuthService {
 
     async createToken(subject: Subject, expiresIn: number = parseInt(process.env.JWT_EXPIRES, 10)): Promise<TokenDto> {
         return this.jwtService.signAsync(subject, {expiresIn}).then(accessToken => {
+            const createdAt: Date = new Date();
+            const expiredAt: Date = dayjs(createdAt).add(expiresIn, 'second').toDate();
             const refreshToken: string = BaseUtil.randomString(); // TODO 不可重复
             return this.authRepository.save({
                 openid: subject.username,
-                refreshToken
+                refreshToken,
+                createdAt,
+                expiredAt
             }).then(() => ({accessToken, refreshToken, expiresIn}));
         });
     }
@@ -41,8 +46,9 @@ export class AuthService {
     }
 
     async getAccessToken(refreshToken: string, subject: Subject, expiresIn: number = parseInt(process.env.JWT_EXPIRES, 10)): Promise<string> {
+        // 在生成新的 Access Token 之前, 需要检查用户是否被禁用或者 Refresh Token 是否已被加入黑名单
         return this.authRepository.findOne({refreshToken: Equal(`${refreshToken}`)}).then(entity => {
-            if (entity && entity.openid === subject.username) {
+            if (entity && entity.openid === subject.username && dayjs(entity.expiredAt).isAfter(new Date())) {
                 return this.jwtService.signAsync(subject, {expiresIn});
             }
             throw new HttpException('The refresh token has expired!', HttpStatus.UNAUTHORIZED);

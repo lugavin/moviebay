@@ -1,8 +1,7 @@
-import {Entity, Index, Column, PrimaryGeneratedColumn} from 'typeorm';
-import {BaseEntity} from '../../shared/entity/base.entity';
+import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity('sys_auth')
-export class AuthEntity extends BaseEntity {
+export class AuthEntity {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -12,5 +11,11 @@ export class AuthEntity extends BaseEntity {
 
     @Column({name: 'refresh_token', unique: true})
     refreshToken: string;
+
+    @Column({name: 'created_at'})
+    createdAt: Date;
+
+    @Column({name: 'expired_at'})
+    expiredAt: Date;
 
 }

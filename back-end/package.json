@@ -34,7 +34,8 @@
     "redis": "2.8.0",
     "bluebird": "3.7.2",
     "pg": "7.16.0",
-    "typeorm": "0.2.22"
+    "typeorm": "0.2.22",
+    "dayjs": "1.8.19"
   },
   "devDependencies": {
     "@nestjs/cli": "6.14.0",
