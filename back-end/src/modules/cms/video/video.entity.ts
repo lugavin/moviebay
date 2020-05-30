@@ -1,6 +1,5 @@
 import {Entity, Index, Column, PrimaryGeneratedColumn} from 'typeorm';
-import {VodStatus, VodType} from '../../shared/util/enums';
-import {BaseEntity} from '../../shared/entity/base.entity';
+import {BaseEntity, VodStatus, VodType} from '../../../shared';
 
 /**
  * 影视条目信息

@@ -1,6 +1,6 @@
 import {Column, Entity, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {RoleEntity} from '../role/role.entity';
-import {BaseEntity} from '../../shared/entity/base.entity';
+import {BaseEntity} from '../../../shared';
 
 /**
  * 权限信息

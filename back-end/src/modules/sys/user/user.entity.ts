@@ -1,6 +1,6 @@
-import {Column, Entity, Index, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {RoleEntity} from '../role/role.entity';
-import {BaseEntity} from '../../shared/entity/base.entity';
+import {BaseEntity} from '../../../shared';
 
 /**
  * 用户信息
@@ -48,7 +48,7 @@ export class UserEntity extends BaseEntity {
     @JoinTable({
         name: 'sys_user_role',
         joinColumn: {name: 'user_id', referencedColumnName: 'id'},
-        inverseJoinColumn: {name: 'role_id', referencedColumnName: 'id'},
+        inverseJoinColumn: {name: 'role_id', referencedColumnName: 'id'}
     })
     roles: RoleEntity[];
 

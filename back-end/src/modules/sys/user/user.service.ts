@@ -3,7 +3,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Equal, Repository} from 'typeorm';
 import {UserEntity} from './user.entity';
 import {UserDto} from './dto/user.dto';
-import BaseUtil from '../../shared/util/base.util';
+import {BaseUtil} from '../../../shared';
 
 @Injectable()
 export class UserService {
@@ -16,7 +16,7 @@ export class UserService {
         return this.userRepository.save(Object.assign(new UserEntity(), dto, {
             salt,
             password: BaseUtil.md5Hash(dto.password, salt),
-            activated: true,
+            activated: true
         }));
     }
 
@@ -37,7 +37,11 @@ export class UserService {
     }
 
     async getUserByName(username: string): Promise<UserEntity> {
-        return this.userRepository.findOne({username: Equal(`${username}`)});
+        // 这种写法无法获取到关联对象角色列表
+        // return this.userRepository.findOne({username: Equal(`${username}`)});
+        return this.userRepository.createQueryBuilder('u')
+            .leftJoinAndSelect('u.roles', 'r', 'u.username = :username', {username})
+            .getOne();
     }
 
 }

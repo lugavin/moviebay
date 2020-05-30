@@ -1,7 +1,7 @@
 import {Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable} from 'typeorm';
 import {PermEntity} from '../perm/perm.entity';
 import {UserEntity} from '../user/user.entity';
-import {BaseEntity} from '../../shared/entity/base.entity';
+import {BaseEntity} from '../../../shared';
 
 /**
  * 角色信息

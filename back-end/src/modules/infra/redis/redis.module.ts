@@ -1,7 +1,7 @@
-import {Global, Module} from '@nestjs/common';
 import * as Redis from 'redis';
 import * as Bluebird from 'bluebird';
-import {redisConfigFactory} from '../../../config/config.factory';
+import {Global, Module} from '@nestjs/common';
+import {redisConfigFactory} from './redis.config';
 
 @Global()
 @Module({
@@ -10,9 +10,9 @@ import {redisConfigFactory} from '../../../config/config.factory';
         useFactory: () => {
             Bluebird.promisifyAll(Redis);
             return Redis.createClient(redisConfigFactory());
-        },
+        }
     }],
-    exports: [Redis.RedisClient],
+    exports: [Redis.RedisClient]
 })
 export class RedisModule {
 }

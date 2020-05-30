@@ -1,5 +1,5 @@
 import {BeforeInsert, BeforeUpdate, Column} from 'typeorm';
-import Consts from '../util/consts';
+import {Consts} from '../util';
 
 export class BaseEntity {
 

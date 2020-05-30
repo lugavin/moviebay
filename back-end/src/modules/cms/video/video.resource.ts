@@ -2,8 +2,8 @@ import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Query} from '@
 import {DeleteResult} from 'typeorm';
 import {VideoService} from './video.service';
 import {VideoEntity} from './video.entity';
-import {PageResponse} from '../../shared/page/page.response';
 import {VideoDto} from './dto/video.dto';
+import {PageRes} from '../../../shared';
 
 @Controller('videos')
 export class VideoResource {
@@ -29,14 +29,14 @@ export class VideoResource {
     @Get('search')
     async search(@Query('page', ParseIntPipe) page: number,
                  @Query('pageSize', ParseIntPipe) pageSize: number,
-                 @Query('q') keyword: string): Promise<PageResponse<VideoEntity>> {
+                 @Query('q') keyword: string): Promise<PageRes<VideoEntity>> {
         return this.videoService.search(page, pageSize, keyword);
     }
 
     @Get()
     async getPage(@Query('page', ParseIntPipe) page: number,
                   @Query('pageSize', ParseIntPipe) pageSize: number,
-                  @Query() params: VideoDto): Promise<PageResponse<VideoEntity>> {
+                  @Query() params: VideoDto): Promise<PageRes<VideoEntity>> {
         return this.videoService.getPage(page, pageSize, params);
     }
 

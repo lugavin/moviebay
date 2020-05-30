@@ -3,8 +3,8 @@ import {ClassSerializerInterceptor, ValidationPipe} from '@nestjs/common';
 import {FastifyAdapter, NestFastifyApplication} from '@nestjs/platform-fastify';
 import {AppModule} from './app.module';
 import {AuthService} from './modules/sys/auth/auth.service';
-import {AuthGuard} from './modules/shared/guards/auth.guard';
-import {LoggingInterceptor} from './modules/shared/interceptors/logging.interceptor';
+import {AuthGuard} from './shared';
+import {LoggingInterceptor} from './shared';
 
 (async function bootstrap() {
     const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());

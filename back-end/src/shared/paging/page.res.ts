@@ -1,4 +1,4 @@
-export class PageResponse<T> {
+export class PageRes<T> {
 
     readonly totalPages: number;
     readonly offset: number;
