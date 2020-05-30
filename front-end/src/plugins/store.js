@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+import {API} from '@/components/util/consts';
 import {DICT_TYPES, ACTION_TYPES, MUTATION_TYPES} from './store-types';
 
 Vue.use(Vuex);
@@ -20,7 +21,7 @@ export default new Vuex.Store({
     },
     actions: {
         [ACTION_TYPES.GET_DICT]: ({commit}, tags) => {
-            return axios.get('/api/dicts', {
+            return axios.get(API.dicts, {
                 params: {tags},
                 paramsSerializer: params => params.tags.map(tag => `tags=${tag}`).join('&')
             }).then(res => {

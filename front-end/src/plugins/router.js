@@ -3,13 +3,18 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const pathMap = {
+const RouterType = {
     movies: 'movie',
     dramas: 'drama',
     cartoons: 'cartoon',
     shows: 'show',
     mv: 'mv'
 };
+
+const TypeRouter = Object.keys(RouterType).reduce((obj, key) => {
+    obj[RouterType[key]] = key;
+    return obj;
+}, {});
 
 /**
  * Router Mode
@@ -31,24 +36,29 @@ export default new Router({
             component: () => import('@/components/home')
         },
         {
-            path: `/(${Object.keys(pathMap).join('|')})`,
+            path: `/(${Object.keys(RouterType).join('|')})`,
             component: () => import('@/components/video/VideoList'),
-            props: (route) => ({type: pathMap[route.params.pathMatch]})
+            props: (route) => ({type: RouterType[route.params.pathMatch]})
+        },
+        {
+            path: `/(${Object.keys(TypeRouter).join('|')})/more`,
+            component: () => import('@/components/video/VideoList'),
+            props: (route) => ({type: route.params.pathMatch})
         },
         {
             path: '/video/detail/:vid',
             component: () => import('@/components/video/VideoDetail'),
-            props: true, // 如果props被设置为true, 那么route.params将会被设置为组件属性
+            props: true // 如果props被设置为true, 那么route.params将会被设置为组件属性
         },
         {
             path: '/video/play/:vid',
             component: () => import('@/components/video/VideoPlay'),
-            props: true,
+            props: true
         },
         {
             path: '/video/search',
             component: () => import('@/components/video/VideoSearch'),
-            props: (route) => ({keyword: route.query.q}),
-        },
+            props: (route) => ({keyword: route.query.q})
+        }
     ]
 });

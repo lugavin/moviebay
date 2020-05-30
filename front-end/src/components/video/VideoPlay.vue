@@ -65,10 +65,8 @@ import axios from 'axios';
 import {mapState} from 'vuex';
 import {jsonp} from '@/components/util/base';
 import {DICT_TYPES} from '@/plugins/store-types';
-import {Formatter} from '@/components/util/consts';
-import VideoPlayer from '@/components/shared/VideoPlayer';
-import VideoCard from '@/components/shared/VideoCard';
-import VideoCardPoster from '@/components/shared/VideoCardPoster';
+import {Formatter, Paging, API} from '@/components/util/consts';
+import {VideoCard, VideoCardPoster, VideoPlayer} from '@/components/shared';
 import * as dayjs from 'dayjs';
 
 /**
@@ -76,7 +74,7 @@ import * as dayjs from 'dayjs';
  */
 export default {
     name: 'VideoPlay',
-    components: {VideoPlayer, VideoCard, VideoCardPoster},
+    components: {VideoCard, VideoCardPoster, VideoPlayer},
     props: {
         vid: {
             type: [Number, String],
@@ -111,7 +109,7 @@ export default {
         })
     },
     mounted() {
-        axios.get(`/api/videos/${this.vid}`).then(res => {
+        axios.get(`${API.videos}/${this.vid}`).then(res => {
             this.video = res.data;
             const src = this.video.src;
             this.playerOpts.sources = [
@@ -125,21 +123,19 @@ export default {
             });
             return this.video;
         }).then(vod => {
-            const dataMapper = items => items.map(item => ({
-                vid: item.id,
-                poster: item.poster,
-                posterThumb: item.posterThumb,
-                title: item.title,
-                subtitle: dayjs(item.createdAt).format(Formatter.DATE)
-            }));
-            axios.get('/api/videos', {
-                params: {
-                    page: 1,
-                    pageSize: 12,
-                    type: vod.type
-                }
-            }).then(res => {
-                this.videos = dataMapper(res.data.items);
+            const params = {
+                page: Paging.page,
+                pageSize: Paging.pageSize,
+                type: vod.type
+            };
+            axios.get(API.videos, {params}).then(res => {
+                this.videos = res.data.items.map(item => ({
+                    vid: item.id,
+                    poster: item.poster,
+                    posterThumb: item.posterThumb,
+                    title: item.title,
+                    subtitle: dayjs(item.createdAt).format(Formatter.DATE)
+                }));
             });
         });
     }

@@ -1,5 +1,5 @@
-import store from '@/plugins/store';
-import router from '@/plugins/router';
-import vuetify from '@/plugins/vuetify';
+import store from './store';
+import router from './router';
+import vuetify from './vuetify';
 
 export {store, router, vuetify};

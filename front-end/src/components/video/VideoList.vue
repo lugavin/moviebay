@@ -39,8 +39,8 @@
 <script>
 import {mapState} from 'vuex';
 import {DICT_TYPES} from '@/plugins/store-types';
-import {Formatter} from '@/components/util/consts';
-import VideoCard from '@/components/shared/VideoCard';
+import {Formatter, Paging, API} from '@/components/util/consts';
+import {VideoCard} from '@/components/shared';
 import axios from 'axios';
 import * as dayjs from 'dayjs';
 
@@ -49,8 +49,8 @@ export default {
     components: {VideoCard},
     props: ['type'],
     data: () => ({
-        page: 1,
-        pageSize: 12,
+        page: Paging.page,
+        pageSize: Paging.pageSize,
         totalItems: 0,
         totalPages: 0,
         filter: {
@@ -88,7 +88,7 @@ export default {
             if (this.type) {
                 Object.assign(params, {type: this.type});
             }
-            axios.get('/api/videos', {params}).then(res => {
+            axios.get(API.videos, {params}).then(res => {
                 this.totalItems = res.data.totalItems;
                 this.totalPages = res.data.totalPages;
                 this.videos = res.data.items.map(item => ({

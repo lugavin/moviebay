@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import VideoCard from '@/components/shared/VideoCard';
-import {Formatter} from '@/components/util/consts';
+import {VideoCard} from '@/components/shared';
+import {Formatter, Paging, API} from '@/components/util/consts';
 import axios from 'axios';
 import * as dayjs from 'dayjs';
 
@@ -33,14 +33,14 @@ export default {
         }
     },
     data: () => ({
-        page: 1,
-        pageSize: 12,
+        page: Paging.page,
+        pageSize: Paging.pageSize,
         totalPages: 0,
         videos: []
     }),
     methods: {
         getPage(page) {
-            axios.get('/api/videos/search', {
+            axios.get(`${API.videos}/search`, {
                 params: {
                     page,
                     pageSize: this.pageSize,

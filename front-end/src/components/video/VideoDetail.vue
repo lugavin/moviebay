@@ -1,50 +1,38 @@
 <template>
-    <v-container>
-        <v-row v-if="video">
+    <v-container v-if="vod">
+        <v-row>
             <v-col cols="12" md="3">
-                <v-img :src="video.poster" :lazy-src="video.posterThumb" max-width="360" max-height="480"/>
+                <v-img :src="vod.poster" :lazy-src="vod.posterThumb" max-width="360" max-height="480"/>
             </v-col>
             <v-col cols="12" md="9">
-                <h3>{{video.title}}</h3>
+                <h3>{{vod.title}}</h3>
                 <p class="my-1">
-                    导演：{{video.directors.join(' / ')}}
+                    导演：{{vod.directors.join(' / ')}}
                 </p>
                 <p class="my-1">
-                    编剧：{{video.writers.join(' / ')}}
+                    编剧：{{vod.writers.join(' / ')}}
                 </p>
                 <p class="my-1">
-                    主演：{{video.actors.join(' / ')}}
+                    主演：{{vod.actors.join(' / ')}}
                 </p>
                 <p class="my-1">
-                    类型：{{video.genres.map(v=>movieGenres[v]).join(' / ')}}
+                    类型：{{vod.genres.map(v=>movieGenres[v]).join(' / ')}}
                 </p>
-                <p class="my-1">地区：{{video.countries.join(' / ')}}</p>
-                <p class="my-1">语言：{{video.languages.join(' / ')}}</p>
-                <p class="my-1">年份：{{video.year}}</p>
+                <p class="my-1">地区：{{vod.countries.join(' / ')}}</p>
+                <p class="my-1">语言：{{vod.languages.join(' / ')}}</p>
+                <p class="my-1">年份：{{vod.year}}</p>
                 <p class="my-1 pl-12">
                     <span class="ml-n12">简介：</span>
-                    <span>{{video.plot}}</span>
+                    <span>{{vod.plot}}</span>
                 </p>
                 <p class="my-1 pl-12 mt-4">
-                    <v-btn :to="`/video/play/${video.id}`" target="_blank" color="primary">立即播放</v-btn>
+                    <v-btn :to="`/video/play/${vod.id}`" target="_blank" color="primary">立即播放</v-btn>
                 </p>
             </v-col>
         </v-row>
         <v-row>
             <v-col cols="12">
-                <video-panel v-bind="videoPanel">
-                    <template v-slot:default>
-                        <v-container>
-                            <v-row dense>
-                                <v-col v-for="(item, i) in videoPanel.items" :key="i" cols="4" md="3" lg="2">
-                                    <v-lazy>
-                                        <video-card v-bind="item"/>
-                                    </v-lazy>
-                                </v-col>
-                            </v-row>
-                        </v-container>
-                    </template>
-                </video-panel>
+                <video-panel v-bind="{title: '猜你喜欢', type: vod.type}"/>
             </v-col>
         </v-row>
     </v-container>
@@ -54,14 +42,12 @@
 import axios from 'axios';
 import {mapState} from 'vuex';
 import {DICT_TYPES} from '@/plugins/store-types';
-import {Formatter} from '@/components/util/consts';
-import VideoPanel from '@/components/shared/VideoPanel';
-import VideoCard from '@/components/shared/VideoCard';
-import * as dayjs from 'dayjs';
+import {API} from '@/components/util/consts';
+import {VideoPanel} from '@/components/shared';
 
 export default {
     name: 'VideoDetail',
-    components: {VideoPanel, VideoCard},
+    components: {VideoPanel},
     props: {
         vid: {
             type: [Number, String],
@@ -69,11 +55,7 @@ export default {
         }
     },
     data: () => ({
-        video: null,
-        videoPanel: {
-            title: '猜你喜欢',
-            items: []
-        }
+        vod: null
     }),
     computed: {
         ...mapState({
@@ -82,26 +64,8 @@ export default {
         })
     },
     mounted() {
-        axios.get(`/api/videos/${this.vid}`).then(res => {
-            this.video = res.data;
-            return this.video;
-        }).then(vod => {
-            const dataMapper = items => items.map(item => ({
-                vid: item.id,
-                poster: item.poster,
-                posterThumb: item.posterThumb,
-                title: item.title,
-                subtitle: dayjs(item.createdAt).format(Formatter.DATE)
-            }));
-            axios.get('/api/videos', {
-                params: {
-                    page: 1,
-                    pageSize: 12,
-                    type: vod.type
-                }
-            }).then(res => {
-                this.videoPanel.items = dataMapper(res.data.items);
-            });
+        axios.get(`${API.videos}/${this.vid}`).then(res => {
+            this.vod = res.data;
         });
     }
 };
