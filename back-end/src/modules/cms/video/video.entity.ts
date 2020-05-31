@@ -27,19 +27,19 @@ export class VideoEntity extends BaseEntity {
     aka: string[];
 
     // 年代
-    @Column()
+    @Column('int4')
     year: number;
 
     // 发布日期
-    @Column()
-    released: Date;
+    @Column('int8')
+    released: number;
 
     // 片长
-    @Column()
+    @Column('int4')
     runtime: number;
 
     // 状态(上线|下线)
-    @Column()
+    @Column('bit')
     status: VodStatus;
 
     @Column()
@@ -98,4 +98,6 @@ export class VideoEntity extends BaseEntity {
     @Column({name: 'imdb_id'})
     imdbId: string;
 
+    @Column('numeric', {name: 'imdb_rating', precision: 2, scale: 1})
+    imdbRating: number;
 }

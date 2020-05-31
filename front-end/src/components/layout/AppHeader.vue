@@ -13,7 +13,8 @@
                 <v-row align="center" class="mx-4">
                     <v-text-field placeholder="请输入关键字" hide-details single-line v-model.trim="keyword">
                         <template v-slot:append>
-                            <v-btn text icon small :to="`/video/search?q=${keyword}`" :disabled="!keyword" target="_blank">
+                            <v-btn text icon small :to="`/video/search?q=${keyword}`" :disabled="!keyword"
+                                   target="_blank">
                                 <v-icon>search</v-icon>
                             </v-btn>
                         </template>
@@ -33,9 +34,9 @@
                 </v-toolbar>
                 <v-card-text class="pt-4">
                     <v-form>
-                        <v-text-field label="账号" name="username" prepend-icon="person" type="text"/>
-                        <v-text-field label="密码" name="password" prepend-icon="lock" type="password"/>
-                        <v-btn block color="primary">登录</v-btn>
+                        <v-text-field label="账号" v-model="username" prepend-icon="person" type="text"/>
+                        <v-text-field label="密码" v-model="password" prepend-icon="lock" type="password"/>
+                        <v-btn block color="primary" @click="login">登录</v-btn>
                     </v-form>
                 </v-card-text>
                 <v-card-text>
@@ -48,18 +49,33 @@
 </template>
 
 <script>
-import { MUTATION_TYPES } from '@/plugins/store-types';
+import axios from 'axios';
+import {API} from '@/components/util/consts';
+import {MUTATION_TYPES} from '@/plugins/store-types';
 
 export default {
     name: 'AppHeader',
     data: () => ({
+        menus: require('@/data/menus.json'),
         keyword: '',
         loginDialog: false,
-        menus: require('@/data/menus.json')
+        username: null,
+        password: null
     }),
     methods: {
         toggleDrawer() {
             this.$store.commit(MUTATION_TYPES.TOGGLE_DRAWER);
+        },
+        login() {
+            axios.post(API.login, {
+                username: this.username,
+                password: this.password
+            }).then(res => {
+                let {accessToken, refreshToken} = res.data;
+                console.info(accessToken, refreshToken);
+            }).catch(err => {
+                console.log('catch', err);
+            });
         }
     }
 };

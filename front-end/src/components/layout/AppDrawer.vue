@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { MUTATION_TYPES } from '@/plugins/store-types';
+import {MUTATION_TYPES} from '@/plugins/store-types';
 
 export default {
     name: 'AppDrawer',
@@ -25,7 +25,7 @@ export default {
                 return this.$store.state.drawer;
             },
             set(drawer) {
-                this.$store.commit(MUTATION_TYPES.SET_STATE, { drawer });
+                this.$store.commit(MUTATION_TYPES.SET_STATE, {drawer});
             }
         }
     }

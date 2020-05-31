@@ -1,6 +1,6 @@
 <template>
     <v-hover v-slot:default="{ hover }">
-        <v-img :src="poster" :lazy-src="posterThumb" class="align-end text-center" height="255">
+        <v-img :src="poster" :lazy-src="posterThumb" class="align-end text-center">
             <v-expand-transition>
                 <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal" v-if="hover">
                     <v-btn icon class="white--text" :to="`/video/play/${vid}`" target="_blank">

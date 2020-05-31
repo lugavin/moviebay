@@ -1,4 +1,5 @@
 export const API = {
+    login: '/api/login',
     videos: '/api/videos',
     dicts: '/api/dicts'
 };

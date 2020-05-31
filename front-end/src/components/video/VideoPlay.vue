@@ -6,7 +6,7 @@
                 <v-card tile flat dark>
                     <v-card-title>{{video.title}}</v-card-title>
                     <v-card-subtitle class="py-2">
-                        {{imdbRating}} / {{video.year}} / {{video.countries.join(' · ')}} / {{video.genres.map(k=>genres[k]).join(' · ')}}
+                        {{video.imdbRating}} / {{video.year}} / {{video.countries.join(' · ')}} / {{video.genres.map(k=>genres[k]).join(' · ')}}
                         <a class="v-link" @click="expand=!expand">
                             详情<v-icon small>{{expand?'keyboard_arrow_up':'keyboard_arrow_down'}}</v-icon>
                         </a>
@@ -63,7 +63,6 @@
 <script>
 import axios from 'axios';
 import {mapState} from 'vuex';
-import {jsonp} from '@/components/util/base';
 import {DICT_TYPES} from '@/plugins/store-types';
 import {Formatter, Paging, API} from '@/components/util/consts';
 import {VideoCard, VideoCardPoster, VideoPlayer} from '@/components/shared';
@@ -83,14 +82,13 @@ export default {
     },
     data: () => ({
         video: null,
-        imdbRating: 0,
+        videos: [],
         playerOpts: {
             controls: true,
             preload: 'auto',
             poster: require('@/assets/poster.png'),
             sources: null
         },
-        videos: [],
         expand: false,
         playTimes: 0 // TODO 播放次数待实现
     }),
@@ -112,15 +110,7 @@ export default {
         axios.get(`${API.videos}/${this.vid}`).then(res => {
             this.video = res.data;
             const src = this.video.src;
-            this.playerOpts.sources = [
-                {src},
-                {src, type: 'video/webm'}
-            ];
-            jsonp(`https://api.douban.com/v2/movie/imdb/${this.video.imdbId}`, {
-                apikey: '0df993c66c0c636e29ecbb5344252a4a'
-            }, (res) => {
-                this.imdbRating = res.rating['average'];
-            });
+            this.playerOpts.sources = [{src}, {src, type: 'video/webm'}];
             return this.video;
         }).then(vod => {
             const params = {
