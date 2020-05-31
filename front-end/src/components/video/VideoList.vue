@@ -11,10 +11,12 @@
                         </a>
                     </v-toolbar>
                     <v-card-text :class="[{'d-none': !expand}, 'py-2']">
-                        <v-chip-group v-model="filter.genres" column color="indigo">
-                            <v-chip v-for="(v, k) in genres" :key="k" :value="k" label outlined filter>{{v}}</v-chip>
+                        <v-chip-group column color="indigo" v-model="filter.genre" @change="getPage">
+                            <v-chip v-for="(v, k) in genres" :key="k" :value="k" label outlined filter>
+                                {{v}}
+                            </v-chip>
                         </v-chip-group>
-                        <v-chip-group v-model="filter.sorts" column color="indigo">
+                        <v-chip-group column color="indigo" v-model="filter.sort" @change="getPage">
                             <v-chip v-for="{value, label} in sorts" :key="value" :value="value" label outlined filter>
                                 {{label}}
                             </v-chip>
@@ -30,40 +32,41 @@
                 </v-row>
             </v-col>
             <v-col cols="12">
-                <v-pagination v-model="page" :length="totalPages" :total-visible="7" @input="getPage"/>
+                <v-pagination v-model="paging.page" :length="totalPages" :total-visible="7" @input="getPage"/>
             </v-col>
         </v-row>
     </v-container>
 </template>
 
 <script>
-import {mapState} from 'vuex';
-import {DICT_TYPES} from '@/plugins/store-types';
-import {Formatter, Paging, API} from '@/components/util/consts';
-import {VideoCard} from '@/components/shared';
 import axios from 'axios';
 import * as dayjs from 'dayjs';
+import {mapState} from 'vuex';
+import {DICT_TYPES} from '@/plugins/store-types';
+import {VideoCard} from '@/components/shared';
+import {Formatter, Paging, API} from '@/components/util/consts';
 
 export default {
     name: 'VideoList',
     components: {VideoCard},
     props: ['type'],
     data: () => ({
-        page: Paging.page,
-        pageSize: Paging.pageSize,
+        paging: {
+            page: Paging.page,
+            pageSize: Paging.pageSize
+        },
         totalItems: 0,
         totalPages: 0,
-        filter: {
-            genres: [],
-            sorts: []
-        },
-        sorts: [
-            {value: 1, label: '按时间排序'},
-            {value: 2, label: '按人气排序'},
-            {value: 3, label: '按评分排序'}
-        ],
         expand: false,
-        videos: []
+        videos: [],
+        sorts: [
+            {label: '按时间排序', value: 'released'},
+            {label: '按评分排序', value: 'imdb_rating'}
+        ],
+        filter: {
+            genre: null,
+            sort: null
+        }
     }),
     computed: {
         ...mapState({
@@ -80,14 +83,8 @@ export default {
         })
     },
     methods: {
-        getPage(page) {
-            const params = {
-                page,
-                pageSize: this.pageSize
-            };
-            if (this.type) {
-                Object.assign(params, {type: this.type});
-            }
+        getPage() {
+            const params = Object.assign({type: this.type}, this.paging, this.filter);
             axios.get(API.videos, {params}).then(res => {
                 this.totalItems = res.data.totalItems;
                 this.totalPages = res.data.totalPages;
@@ -102,7 +99,7 @@ export default {
         }
     },
     mounted() {
-        this.getPage(this.page);
+        this.getPage();
     }
 };
 </script>

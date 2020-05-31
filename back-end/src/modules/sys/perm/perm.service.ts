@@ -11,7 +11,8 @@ export class PermService {
 
     async getPerms(role: string): Promise<PermEntity[]> {
         return this.permRepository.createQueryBuilder('p')
-            .leftJoin('p.roles', 'r', 'r.code = :role', {role})
+            .leftJoin('p.roles', 'r')
+            .where('r.code = :role', {role})
             .getMany();
     }
 

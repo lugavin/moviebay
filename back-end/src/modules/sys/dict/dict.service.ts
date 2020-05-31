@@ -17,7 +17,7 @@ export class DictService {
     async getDictByTag(tags: string[]): Promise<DictEntity[]> {
         return this.dictRepository.find({
             where: {tag: In(tags)},
-            order: {tag: 'ASC', seq: 'ASC'},
+            order: {tag: 1, seq: 1},
             cache: true
         });
     }

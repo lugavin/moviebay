@@ -1,7 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {DeleteResult, Equal, Like, Repository} from 'typeorm';
-import {ObjectLiteral} from 'typeorm/common/ObjectLiteral';
+import {DeleteResult, Like, Repository} from 'typeorm';
 import {VideoEntity} from './video.entity';
 import {VideoDto} from './dto/video.dto';
 import {PageRes, VodStatus} from '../../../shared';
@@ -38,23 +37,18 @@ export class VideoService {
     }
 
     async getPage(page: number, pageSize: number, params: VideoDto): Promise<PageRes<VideoEntity>> {
-        return this.videoRepository.findAndCount({
-            where: VideoService.resolveParams(params),
-            skip: (page - 1) * pageSize,
-            take: pageSize,
-            order: {createdAt: -1}
-        }).then(res => new PageRes<VideoEntity>(page, pageSize, res[0], res[1]));
-    }
-
-    private static resolveParams(params: VideoDto): ObjectLiteral {
-        const res = {};
+        const queryBuilder = this.videoRepository.createQueryBuilder();
         if (params.type) {
-            Object.assign(res, {type: Equal(params.type)});
+            queryBuilder.where('type = :type', {type: params.type});
         }
         if (params.genre) {
-            Object.assign(res, {genre: Equal(params.genre)});
+            queryBuilder.andWhere(':genre = ANY(genres)', {genre: params.genre});
         }
-        return res;
+        return queryBuilder.skip((page - 1) * pageSize)
+            .take(pageSize)
+            .orderBy(!params.sort ? {created_at: 'DESC'} : {[params.sort]: 'DESC'})
+            .getManyAndCount()
+            .then(res => new PageRes<VideoEntity>(page, pageSize, res[0], res[1]));
     }
 
 }
