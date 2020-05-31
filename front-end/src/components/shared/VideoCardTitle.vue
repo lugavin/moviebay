@@ -1,11 +1,9 @@
 <template>
     <v-card-text class="text-center py-1">
-        <p class="mb-0">
-            <router-link class="subtitle-1 v-link" :to="`/video/detail/${vid}`" v-text="title"/>
+        <p class="mb-0 subtitle-1 v-card--title">
+            <router-link class="v-link" :to="`/video/detail/${vid}`" :title="title" v-text="title"/>
         </p>
-        <p class="mb-0">
-            <span class="subtitle-2" v-text="subtitle"/>
-        </p>
+        <p class="mb-0 subtitle-2" v-text="subtitle"/>
     </v-card-text>
 </template>
 
@@ -29,3 +27,10 @@ export default {
 };
 </script>
 
+<style>
+.v-card--title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+</style>

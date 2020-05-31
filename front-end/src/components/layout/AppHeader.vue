@@ -5,7 +5,7 @@
             <v-layout>
                 <v-app-bar-nav-icon class="hidden-md-and-up" @click="toggleDrawer"/>
                 <v-toolbar-items>
-                    <v-img :src="require('@/assets/logo.png')" height="48" width="135" max-width="135" contain/>
+                    <v-img :src="logo" height="48" width="135" max-width="135" contain/>
                 </v-toolbar-items>
                 <v-toolbar-items class="ml-4 hidden-sm-and-down">
                     <v-btn text v-for="(menu, i) in menus" :key="i" :to="menu.url" v-text="menu.name"/>
@@ -13,8 +13,7 @@
                 <v-row align="center" class="mx-4">
                     <v-text-field placeholder="请输入关键字" hide-details single-line v-model.trim="keyword">
                         <template v-slot:append>
-                            <v-btn text icon small :to="`/video/search?q=${keyword}`" :disabled="!keyword"
-                                   target="_blank">
+                            <v-btn text icon small :to="`/video/search?q=${keyword}`" :disabled="!keyword" target="_blank">
                                 <v-icon>search</v-icon>
                             </v-btn>
                         </template>
@@ -57,6 +56,7 @@ export default {
     name: 'AppHeader',
     data: () => ({
         menus: require('@/data/menus.json'),
+        logo: require('@/assets/logo.png'),
         keyword: '',
         loginDialog: false,
         username: null,
