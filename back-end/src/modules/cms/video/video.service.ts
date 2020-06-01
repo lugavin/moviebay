@@ -17,7 +17,7 @@ export class VideoService {
     }
 
     async deleteVideo(vid: number): Promise<DeleteResult> {
-        return this.videoRepository.delete({id: vid});
+        return this.videoRepository.delete(vid);
     }
 
     async getVideo(vid: number): Promise<VideoEntity> {

@@ -45,9 +45,7 @@
                                 <v-row dense>
                                     <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="6">
                                         <video-card>
-                                            <video-card-poster v-bind="video">
-                                                <h4 class="font-weight-medium pa-1">{{video.title}}</h4>
-                                            </video-card-poster>
+                                            <video-card-poster v-bind="video" :title="video.title"/>
                                         </video-card>
                                     </v-col>
                                 </v-row>

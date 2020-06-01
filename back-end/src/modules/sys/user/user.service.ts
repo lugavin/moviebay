@@ -29,7 +29,7 @@ export class UserService {
     }
 
     async deleteUser(uid: number): Promise<DeleteResult> {
-        return this.userRepository.delete({id: uid});
+        return this.userRepository.delete(uid);
     }
 
     async getUser(uid: number): Promise<UserEntity> {
