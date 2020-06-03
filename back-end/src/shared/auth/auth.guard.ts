@@ -1,9 +1,14 @@
-import {CanActivate, ExecutionContext, Logger} from '@nestjs/common';
+import {CanActivate, ExecutionContext, UnauthorizedException} from '@nestjs/common';
 import {Reflector} from '@nestjs/core';
 import {AuthSubject} from './auth.subject';
 import {Consts} from '../util';
 import {AuthService} from '../../modules/sys/auth/auth.service';
 
+/**
+ * Note that behind the scenes, when a guard returns false, the framework throws a ForbiddenException.
+ * If you want to return a different error response, you should throw your own specific exception(For example: throw new UnauthorizedException()).
+ * @see https://docs.nestjs.com/guards
+ */
 export class AuthGuard implements CanActivate {
 
     constructor(private readonly reflector: Reflector,
@@ -18,22 +23,19 @@ export class AuthGuard implements CanActivate {
         const req = context.switchToHttp().getRequest();
         const token = AuthGuard.resolveToken(req.headers.authorization);
         if (!token) {
-            Logger.warn('Unauthorized!', AuthGuard.name);
-            return false;
+            throw new UnauthorizedException('Unauthorized!');
         }
         let subject: AuthSubject;
         try {
             subject = await this.authService.verifyAccessToken(token);
         } catch (e) {
-            Logger.error('Verify token failed!', e, AuthGuard.name);
-            return false;
+            throw new UnauthorizedException('Verify token failed!');
         }
         req.user = subject;
         if (!perms.length) { // 公共访问地址(登录后无需授权)
             return true;
         }
-        // 授权访问地址(登录后需要授权)
-        return this.hasPerms(subject.roles, perms);
+        return this.hasPerms(subject.roles, perms); // 授权访问地址(登录后需要授权)
     }
 
     private static resolveToken(bearerToken: string): string {

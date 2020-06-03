@@ -70,11 +70,12 @@ export default {
             axios.post(API.login, {
                 username: this.username,
                 password: this.password
-            }).then(res => {
+            }).then(res => { // 登录成功
                 let {accessToken, refreshToken} = res.data;
                 console.info(accessToken, refreshToken);
-            }).catch(err => {
-                console.log('catch', err);
+            }).catch(err => { // 登录失败
+                let {statusCode, message} = err.response.data;
+                console.info(statusCode, message);
             });
         }
     }
