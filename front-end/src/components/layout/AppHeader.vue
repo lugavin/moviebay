@@ -36,8 +36,8 @@
                         <strong>Failed to sign in!</strong> Please check your credentials and try again.
                     </v-alert>
                     <v-form>
-                        <v-text-field label="账号" v-model="username" prepend-icon="person" type="text"/>
-                        <v-text-field label="密码" v-model="password" prepend-icon="lock" type="password"/>
+                        <v-text-field label="账号" v-model="formData.username" prepend-icon="person" type="text"/>
+                        <v-text-field label="密码" v-model="formData.password" prepend-icon="lock" type="password"/>
                         <v-btn block color="primary" @click="login">登录</v-btn>
                     </v-form>
                 </v-card-text>
@@ -64,18 +64,17 @@ export default {
         rememberMe: false,
         loginDialog: false,
         authError: null,
-        username: null,
-        password: null
+        formData: {
+            username: null,
+            password: null
+        }
     }),
     methods: {
         toggleDrawer() {
             this.$store.commit(MUTATION_TYPES.TOGGLE_DRAWER);
         },
         login() {
-            axios.post(API.login, {
-                username: this.username,
-                password: this.password
-            }).then(res => {
+            axios.post(API.login, this.formData).then(res => {
                 let {accessToken, refreshToken} = res.data;
                 if (this.rememberMe) {
                     localStorage.setItem('accessToken', accessToken);
