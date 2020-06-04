@@ -31,7 +31,10 @@
                 <v-toolbar color="primary" dark flat>
                     <v-toolbar-title>请登录</v-toolbar-title>
                 </v-toolbar>
-                <v-card-text class="pt-4">
+                <v-card-text class="mt-4">
+                    <v-alert v-if="authError">
+                        <strong>Failed to sign in!</strong> Please check your credentials and try again.
+                    </v-alert>
                     <v-form>
                         <v-text-field label="账号" v-model="username" prepend-icon="person" type="text"/>
                         <v-text-field label="密码" v-model="password" prepend-icon="lock" type="password"/>
@@ -58,7 +61,9 @@ export default {
         menus: require('@/data/menus.json'),
         logo: require('@/assets/logo.png'),
         keyword: '',
+        rememberMe: false,
         loginDialog: false,
+        authError: null,
         username: null,
         password: null
     }),
@@ -70,12 +75,19 @@ export default {
             axios.post(API.login, {
                 username: this.username,
                 password: this.password
-            }).then(res => { // 登录成功
+            }).then(res => {
                 let {accessToken, refreshToken} = res.data;
-                console.info(accessToken, refreshToken);
-            }).catch(err => { // 登录失败
-                let {statusCode, message} = err.response.data;
-                console.info(statusCode, message);
+                if (this.rememberMe) {
+                    localStorage.setItem('accessToken', accessToken);
+                    localStorage.setItem('refreshToken', refreshToken);
+                } else {
+                    sessionStorage.setItem('accessToken', accessToken);
+                    sessionStorage.setItem('refreshToken', refreshToken);
+                }
+                this.authError = false;
+                this.loginDialog = false;
+            }).catch(() => {
+                this.authError = true;
             });
         }
     }

@@ -59,6 +59,11 @@ export default new Router({
             path: '/video/search',
             component: () => import('@/components/video/VideoSearch'),
             props: (route) => ({keyword: route.query.q})
-        }
+        },
+        // {
+        //     path: '/admin/user',
+        //     component: () => import('@/components/user'),
+        //     meta: {roles: [Authority.ADMIN]}
+        // }
     ]
 });
