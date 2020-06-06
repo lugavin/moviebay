@@ -21,73 +21,33 @@
                 </v-row>
                 <v-spacer/>
                 <v-toolbar-items>
-                    <v-btn text @click.stop="loginDialog=true">登录 / 注册</v-btn>
+                    <v-btn text @click.stop="activeDialog=true">登录 / 注册</v-btn>
                 </v-toolbar-items>
             </v-layout>
         </v-container>
         <!-- Login Dialog -->
-        <v-dialog max-width="500" v-model="loginDialog">
-            <v-card>
-                <v-toolbar color="primary" dark flat>
-                    <v-toolbar-title>请登录</v-toolbar-title>
-                </v-toolbar>
-                <v-card-text class="mt-4">
-                    <v-alert v-if="authError">
-                        <strong>Failed to sign in!</strong> Please check your credentials and try again.
-                    </v-alert>
-                    <v-form>
-                        <v-text-field label="账号" v-model="formData.username" prepend-icon="person" type="text"/>
-                        <v-text-field label="密码" v-model="formData.password" prepend-icon="lock" type="password"/>
-                        <v-btn block color="primary" @click="login">登录</v-btn>
-                    </v-form>
-                </v-card-text>
-                <v-card-text>
-                    <a href="javascript:void(0)" class="v-link">忘记密码？</a>
-                    <a href="javascript:void(0)" class="v-link float-right">注册一个新账号</a>
-                </v-card-text>
-            </v-card>
-        </v-dialog>
+        <template v-if="activeDialog">
+            <login-dialog @dismiss="activeDialog=false"/>
+        </template>
     </v-app-bar>
 </template>
 
 <script>
-import axios from 'axios';
-import {API} from '@/components/util/consts';
+import {LoginDialog} from '@/components/account';
 import {MUTATION_TYPES} from '@/plugins/store-types';
 
 export default {
     name: 'AppHeader',
+    components: {LoginDialog},
     data: () => ({
         menus: require('@/data/menus.json'),
         logo: require('@/assets/logo.png'),
-        keyword: '',
-        rememberMe: false,
-        loginDialog: false,
-        authError: null,
-        formData: {
-            username: null,
-            password: null
-        }
+        activeDialog: false,
+        keyword: null
     }),
     methods: {
         toggleDrawer() {
             this.$store.commit(MUTATION_TYPES.TOGGLE_DRAWER);
-        },
-        login() {
-            axios.post(API.login, this.formData).then(res => {
-                let {accessToken, refreshToken} = res.data;
-                if (this.rememberMe) {
-                    localStorage.setItem('accessToken', accessToken);
-                    localStorage.setItem('refreshToken', refreshToken);
-                } else {
-                    sessionStorage.setItem('accessToken', accessToken);
-                    sessionStorage.setItem('refreshToken', refreshToken);
-                }
-                this.authError = false;
-                this.loginDialog = false;
-            }).catch(() => {
-                this.authError = true;
-            });
         }
     }
 };

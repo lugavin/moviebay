@@ -18,7 +18,7 @@
 <script>
 import * as dayjs from 'dayjs';
 import axios from 'axios';
-import VideoCard from '@/components/shared/VideoCard';
+import VideoCard from './VideoCard';
 import {Formatter, Paging, API} from '@/components/util/consts';
 
 /**

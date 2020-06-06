@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import VideoCardPoster from '@/components/shared/VideoCardPoster';
-import VideoCardTitle from '@/components/shared/VideoCardTitle';
+import VideoCardPoster from './VideoCardPoster';
+import VideoCardTitle from './VideoCardTitle';
 
 export default {
     name: 'VideoCard',
