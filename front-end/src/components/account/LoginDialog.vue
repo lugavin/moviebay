@@ -8,7 +8,7 @@
                 <v-alert type="error" outlined v-if="authFail">
                     <strong>登录失败！</strong> 请检查您的登录信息然后重试。
                 </v-alert>
-                <v-form v-on:submit.prevent="login()">
+                <v-form v-on:submit.prevent="login">
                     <v-text-field label="账号" v-model="formData.username" prepend-icon="person" type="text"/>
                     <v-text-field label="密码" v-model="formData.password" prepend-icon="lock" type="password"/>
                     <!-- 腾讯验证码 -->

@@ -1,4 +1,5 @@
-import {Entity, Index, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Index, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn} from 'typeorm';
+import {EpisodeEntity} from '../episode/episode.entity';
 import {BaseEntity, VodStatus, VodType} from '../../../shared';
 
 /**
@@ -78,8 +79,8 @@ export class VideoEntity extends BaseEntity {
     actors: string[];
 
     // 字幕
-    @Column('varchar', {array: true, nullable: true})
-    subtitles: string[];
+    // @Column('varchar', {array: true, nullable: true})
+    // subtitles: string[];
 
     // 故事情节
     @Column('text')
@@ -92,12 +93,13 @@ export class VideoEntity extends BaseEntity {
     @Column({name: 'poster_thumb'})
     posterThumb: string;
 
-    @Column({name: 'poster_slide', nullable: true})
-    posterSlide: string;
-
     @Column({name: 'imdb_id'})
     imdbId: string;
 
     @Column('numeric', {name: 'imdb_rating', precision: 2, scale: 1})
     imdbRating: number;
+
+    @OneToOne(() => EpisodeEntity)
+    @JoinColumn({name: 'latest_episode_id'})
+    latestEpisode: EpisodeEntity;
 }

@@ -1,0 +1,57 @@
+{
+  "id": 3487,
+  "tmdb_id": 89905,
+  "title": "Normal People",
+  "original_title": "Normal People",
+  "poster": "\/eduNpinFqPZEZ3MqdWDH7JwgnPe.jpg",
+  "media_type": "tv",
+  "rating": "1",
+  "released": 1587911627,
+  "src": null,
+  "subtitles": null,
+  "fp_name": null,
+  "created_at": "2020-06-03 14:33:58",
+  "updated_at": "2020-06-03 14:34:38",
+  "last_seen_at": "2020-06-03 14:34:38",
+  "backdrop": "\/fzWcuKTNo4QjSAPWKegtsYqCXyc.jpg",
+  "slug": "normal-people",
+  "youtube_key": "UmjBAjsLMms",
+  "imdb_id": "tt9059760",
+  "overview": "Marianne and Connell weave in and out of each other\u2019s lives in this exploration of sex, power and the desire to love and be loved. Adaptation of Sally Rooney\u2019s best-selling novel.",
+  "tmdb_rating": "9.1",
+  "imdb_rating": "8.7",
+  "watchlist": 0,
+  "refreshed_at": null,
+  "homepage": "https:\/\/www.bbc.co.uk\/programmes\/p089g8rs",
+  "released_timestamp": "2020-04-26 14:33:47",
+  "startDate": "2020-04-26",
+  "genre": [
+    {
+      "id": 18,
+      "name": "Drama",
+      "pivot": {
+        "item_id": 3487,
+        "genre_id": 18
+      }
+    }
+  ],
+  "latest_episode": {
+    "id": 16924,
+    "tmdb_id": 89905,
+    "name": "Episode 1",
+    "season_number": 1,
+    "season_tmdb_id": 125160,
+    "episode_number": 1,
+    "episode_tmdb_id": 2207548,
+    "seen": 0,
+    "src": null,
+    "subtitles": null,
+    "fp_name": null,
+    "created_at": "2020-06-03 14:33:58",
+    "updated_at": "2020-06-03 14:33:58",
+    "release_episode": 1587911638,
+    "release_season": 1587911638,
+    "release_episode_human_format": null,
+    "startDate": "2020-04-26"
+  }
+}

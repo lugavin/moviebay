@@ -26,9 +26,7 @@
             </v-layout>
         </v-container>
         <!-- Login Dialog -->
-        <template v-if="activeDialog">
-            <login-dialog @dismiss="activeDialog=false"/>
-        </template>
+        <login-dialog @dismiss="activeDialog=false" v-if="activeDialog"/>
     </v-app-bar>
 </template>
 
