@@ -92,7 +92,7 @@ export default {
                     vid: item.id,
                     poster: item.poster,
                     posterThumb: item.posterThumb,
-                    title: item.title,
+                    title: item.altTitle,
                     subtitle: dayjs(item.createdAt).format(Formatter.DATE)
                 }));
             });

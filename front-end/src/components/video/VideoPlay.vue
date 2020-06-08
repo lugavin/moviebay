@@ -4,7 +4,7 @@
             <v-col cols="12" lg="9">
                 <video-player :options="playerOpts"/>
                 <v-card tile flat dark>
-                    <v-card-title>{{video.title}}</v-card-title>
+                    <v-card-title>{{video.altTitle}}</v-card-title>
                     <v-card-subtitle class="py-2">
                         {{video.imdbRating}} / {{video.year}} / {{video.countries.join(' · ')}} / {{video.genres.map(k=>genres[k]).join(' · ')}}
                         <a class="v-link" @click="expand=!expand">
@@ -121,7 +121,7 @@ export default {
                     vid: item.id,
                     poster: item.poster,
                     posterThumb: item.posterThumb,
-                    title: item.title,
+                    title: item.altTitle,
                     subtitle: dayjs(item.createdAt).format(Formatter.DATE)
                 }));
             });

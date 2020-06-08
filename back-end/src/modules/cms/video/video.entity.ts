@@ -95,6 +95,7 @@ export class VideoEntity extends BaseEntity {
     @Column({name: 'poster_thumb'})
     posterThumb: string;
 
+    @Index({unique: true})
     @Column({name: 'imdb_id'})
     imdbId: string;
 

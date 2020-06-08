@@ -5,7 +5,7 @@
                 <v-img :src="vod.poster" :lazy-src="vod.posterThumb" max-width="360" max-height="480"/>
             </v-col>
             <v-col cols="12" md="9">
-                <h3>{{vod.title}}</h3>
+                <h3>{{vod.altTitle}}</h3>
                 <p class="my-1">
                     导演：{{vod.directors.join(' / ')}}
                 </p>
