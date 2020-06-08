@@ -16,16 +16,16 @@ export class VideoEntity extends BaseEntity {
     // 原名
     @Index()
     @Column()
-    name: string;
+    title: string;
 
     // 译名
     @Index()
-    @Column()
-    title: string;
+    @Column({name: 'alt_title'})
+    altTitle: string;
 
     // 又名(also known as)
-    @Column('varchar', {array: true})
-    aka: string[];
+    @Column('varchar', {name: 'aka_title', array: true})
+    akaTitle: string[];
 
     // 年代
     @Column('int4')
@@ -43,6 +43,7 @@ export class VideoEntity extends BaseEntity {
     @Column('bit')
     status: VodStatus;
 
+    // 类型
     @Column()
     type: VodType;
 
@@ -90,6 +91,7 @@ export class VideoEntity extends BaseEntity {
     @Column()
     poster: string;
 
+    // 海报缩略图
     @Column({name: 'poster_thumb'})
     posterThumb: string;
 

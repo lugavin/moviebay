@@ -4,6 +4,7 @@ import {BaseEntity} from '../../../shared';
 /**
  * 影视剧集
  * @see https://github.com/devfake/flox
+ * @see http://www.omdbapi.com/?apikey=34625b5a&t=Game%20of%20Thrones&season=1
  */
 @Entity('cms_episode')
 export class EpisodeEntity extends BaseEntity {
@@ -15,22 +16,24 @@ export class EpisodeEntity extends BaseEntity {
     imdbId: string;
 
     @Column()
-    src: string;
+    title: string;
 
     @Column()
-    name: string;
+    src: string;
 
+    // 当前季数
     @Column()
     season: number;
 
+    // 当前集数
     @Column()
     episode: number;
 
-    @Column({name: 'release_season'})
-    releaseSeason: number;
+    @Column()
+    seasons: number;
 
-    @Column({name: 'release_episode'})
-    releaseEpisode: number;
+    @Column()
+    episodes: number;
 
     // @Column('varchar', {array: true, nullable: true})
     // subtitles: string[];

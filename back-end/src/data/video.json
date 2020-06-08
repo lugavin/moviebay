@@ -1,8 +1,8 @@
 [
   {
-    "name": "The Shawshank Redemption",
-    "title": "肖申克的救赎",
-    "aka": ["月黑高飞(港)", "刺激1995(台)"],
+    "title": "The Shawshank Redemption",
+    "altTitle": "肖申克的救赎",
+    "akaTitle": ["月黑高飞(港)", "刺激1995(台)"],
     "year": 1994,
     "released": 19941014,
     "runtime": 142,
@@ -22,9 +22,9 @@
     "imdbRating": 9.3
   },
   {
-    "name": "Drishyam",
-    "title": "误杀瞒天记",
-    "aka": ["视觉", "瞒天过海"],
+    "title": "Drishyam",
+    "altTitle": "误杀瞒天记",
+    "akaTitle": ["视觉", "瞒天过海"],
     "year": 2015,
     "released": 20150731,
     "runtime": 163,
@@ -44,9 +44,9 @@
     "imdbRating": 8.2
   },
   {
-    "name": "老男孩",
     "title": "老男孩",
-    "aka": ["11度青春之《老男孩》", "The bright eleven - Old Boys"],
+    "altTitle": "老男孩",
+    "akaTitle": ["11度青春之《老男孩》", "The bright eleven - Old Boys"],
     "year": 2010,
     "released": 20101028,
     "runtime": 42,
@@ -66,9 +66,9 @@
     "imdbRating": 7.8
   },
   {
-    "name": "2012",
     "title": "2012",
-    "aka": ["2012末日预言(港)", "2012世界末日", "2012地球毁灭"],
+    "altTitle": "2012",
+    "akaTitle": ["2012末日预言(港)", "2012世界末日", "2012地球毁灭"],
     "year": 2009,
     "released": 20091113,
     "runtime": 158,
@@ -88,9 +88,9 @@
     "imdbRating": 5.8
   },
   {
-    "name": "3 Idiots",
-    "title": "三傻大闹宝莱坞",
-    "aka": ["三个白痴", "Three Idiots"],
+    "title": "3 Idiots",
+    "altTitle": "三傻大闹宝莱坞",
+    "akaTitle": ["三个白痴", "Three Idiots"],
     "year": 2009,
     "released": 20091225,
     "runtime": 171,
@@ -110,9 +110,9 @@
     "imdbRating": 8.4
   },
   {
-    "name": "倩女幽魂",
     "title": "倩女幽魂",
-    "aka": ["倩女幽魂：妖魔道", "A Chinese Ghost Story"],
+    "altTitle": "倩女幽魂",
+    "akaTitle": ["倩女幽魂：妖魔道", "A Chinese Ghost Story"],
     "year": 1987,
     "released": 19870718,
     "runtime": 98,
@@ -132,9 +132,9 @@
     "imdbRating": 7.5
   },
   {
-    "name": "倩女幽魂II 人間道",
-    "title": "倩女幽魂2：人间道",
-    "aka": ["倩女幽魂2", "A Chinese Ghost Story II"],
+    "title": "倩女幽魂II 人間道",
+    "altTitle": "倩女幽魂2：人间道",
+    "akaTitle": ["倩女幽魂2", "A Chinese Ghost Story II"],
     "year": 1990,
     "released": 19900713,
     "runtime": 104,
@@ -154,9 +154,9 @@
     "imdbRating": 7.0
   },
   {
-    "name": "倩女幽魂Ⅲ 道道道",
-    "title": "倩女幽魂3：道道道",
-    "aka": ["倩女幽魂3", "A Chinese Ghost Story III"],
+    "title": "倩女幽魂Ⅲ 道道道",
+    "altTitle": "倩女幽魂3：道道道",
+    "akaTitle": ["倩女幽魂3", "A Chinese Ghost Story III"],
     "year": 1991,
     "released": 19910718,
     "runtime": 109,
@@ -176,9 +176,9 @@
     "imdbRating": 6.7
   },
   {
-    "name": "Lara Croft: Tomb Raider",
-    "title": "古墓丽影",
-    "aka": ["古墓奇兵", "盗墓者罗拉"],
+    "title": "Lara Croft: Tomb Raider",
+    "altTitle": "古墓丽影",
+    "akaTitle": ["古墓奇兵", "盗墓者罗拉"],
     "year": 2001,
     "released": 20010615,
     "runtime": 100,
@@ -198,9 +198,9 @@
     "imdbRating": 5.8
   },
   {
-    "name": "Lara Croft Tomb Raider: The Cradle of Life",
-    "title": "古墓丽影2",
-    "aka": ["古墓奇兵：风起云涌", "盗墓者罗拉：生命之匙"],
+    "title": "Lara Croft Tomb Raider: The Cradle of Life",
+    "altTitle": "古墓丽影2",
+    "akaTitle": ["古墓奇兵：风起云涌", "盗墓者罗拉：生命之匙"],
     "year": 2003,
     "released": 20030721,
     "runtime": 117,
@@ -220,9 +220,9 @@
     "imdbRating": 5.5
   },
   {
-    "name": "Tomb Raider",
-    "title": "古墓丽影：源起之战",
-    "aka": ["新古墓丽影"],
+    "title": "Tomb Raider",
+    "altTitle": "古墓丽影：源起之战",
+    "akaTitle": ["新古墓丽影"],
     "year": 2018,
     "released": 20180316,
     "runtime": 118,
@@ -242,9 +242,9 @@
     "imdbRating": 6.3
   },
   {
-    "name": "唐伯虎點秋香",
-    "title": "唐伯虎点秋香",
-    "aka": ["Flirting Scholar"],
+    "title": "唐伯虎點秋香",
+    "altTitle": "唐伯虎点秋香",
+    "akaTitle": ["Flirting Scholar"],
     "year": 1993,
     "released": 19930701,
     "runtime": 102,
@@ -264,9 +264,9 @@
     "imdbRating": 7.6
   },
   {
-    "name": "National Treasure",
-    "title": "国家宝藏",
-    "aka": ["惊天夺宝"],
+    "title": "National Treasure",
+    "altTitle": "国家宝藏",
+    "akaTitle": ["惊天夺宝"],
     "year": 2004,
     "released": 20041119,
     "runtime": 131,
@@ -286,9 +286,9 @@
     "imdbRating": 6.8
   },
   {
-    "name": "National Treasure: Book of Secrets",
-    "title": "国家宝藏2",
-    "aka": ["国家宝藏2：秘密之书", "惊天夺宝：世纪秘册"],
+    "title": "National Treasure: Book of Secrets",
+    "altTitle": "国家宝藏2",
+    "akaTitle": ["国家宝藏2：秘密之书", "惊天夺宝：世纪秘册"],
     "year": 2007,
     "released": 20071221,
     "runtime": 124,
@@ -308,9 +308,9 @@
     "imdbRating": 6.5
   },
   {
-    "name": "The Core",
-    "title": "地心抢险记",
-    "aka": ["地心末日", "地心浩劫", "地心毁灭"],
+    "title": "The Core",
+    "altTitle": "地心抢险记",
+    "akaTitle": ["地心末日", "地心浩劫", "地心毁灭"],
     "year": 2003,
     "released": 20030328,
     "runtime": 135,
@@ -330,9 +330,9 @@
     "imdbRating": 5.5
   },
   {
-    "name": "夏洛特烦恼",
     "title": "夏洛特烦恼",
-    "aka": ["Goodbye Mr. Loser"],
+    "altTitle": "夏洛特烦恼",
+    "akaTitle": ["Goodbye Mr. Loser"],
     "year": 2015,
     "released": 20150930,
     "runtime": 104,
@@ -352,9 +352,9 @@
     "imdbRating": 6.7
   },
   {
-    "name": "Indiana Jones and the Raiders of the Lost Ark",
-    "title": "夺宝奇兵",
-    "aka": ["夺宝奇兵：法柜奇兵"],
+    "title": "Indiana Jones and the Raiders of the Lost Ark",
+    "altTitle": "夺宝奇兵",
+    "akaTitle": ["夺宝奇兵：法柜奇兵"],
     "year": 1981,
     "released": 19810612,
     "runtime": 115,
@@ -374,9 +374,9 @@
     "imdbRating": 8.4
   },
   {
-    "name": "Indiana Jones and the Temple of Doom",
-    "title": "夺宝奇兵2",
-    "aka": ["夺宝奇兵2：魔域奇兵"],
+    "title": "Indiana Jones and the Temple of Doom",
+    "altTitle": "夺宝奇兵2",
+    "akaTitle": ["夺宝奇兵2：魔域奇兵"],
     "year": 1984,
     "released": 19840523,
     "runtime": 118,
@@ -396,9 +396,9 @@
     "imdbRating": 7.6
   },
   {
-    "name": "Indiana Jones and the Last Crusade",
-    "title": "夺宝奇兵3",
-    "aka": ["夺宝奇兵3：圣战奇兵"],
+    "title": "Indiana Jones and the Last Crusade",
+    "altTitle": "夺宝奇兵3",
+    "akaTitle": ["夺宝奇兵3：圣战奇兵"],
     "year": 1989,
     "released": 19890524,
     "runtime": 127,
@@ -418,9 +418,9 @@
     "imdbRating": 8.2
   },
   {
-    "name": "Indiana Jones and the Kingdom of the Crystal Skull",
-    "title": "夺宝奇兵4",
-    "aka": ["夺宝奇兵4：水晶骷髅王国"],
+    "title": "Indiana Jones and the Kingdom of the Crystal Skull",
+    "altTitle": "夺宝奇兵4",
+    "akaTitle": ["夺宝奇兵4：水晶骷髅王国"],
     "year": 2008,
     "released": 20080522,
     "runtime": 122,
