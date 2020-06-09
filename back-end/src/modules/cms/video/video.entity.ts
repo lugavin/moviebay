@@ -1,5 +1,4 @@
-import {Entity, Index, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn} from 'typeorm';
-import {EpisodeEntity} from '../episode/episode.entity';
+import {Column, Entity, Index, PrimaryGeneratedColumn} from 'typeorm';
 import {BaseEntity, VodStatus, VodType} from '../../../shared';
 
 /**
@@ -48,7 +47,7 @@ export class VideoEntity extends BaseEntity {
     type: VodType;
 
     // 片源
-    @Column()
+    @Column({nullable: true})
     src: string;
 
     // 分辨率标签: ['HD', '720P']
@@ -102,7 +101,4 @@ export class VideoEntity extends BaseEntity {
     @Column('numeric', {name: 'imdb_rating', precision: 2, scale: 1})
     imdbRating: number;
 
-    @OneToOne(() => EpisodeEntity)
-    @JoinColumn({name: 'latest_episode_id'})
-    latestEpisode: EpisodeEntity;
 }

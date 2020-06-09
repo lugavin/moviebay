@@ -38,10 +38,6 @@ export class AuthGuard implements CanActivate {
         return this.hasPerms(subject.roles, perms); // 授权访问地址(登录后需要授权)
     }
 
-    private static resolveToken(bearerToken: string): string {
-        return bearerToken && bearerToken.startsWith('Bearer ') ? bearerToken.substring(7) : null;
-    }
-
     private async hasPerms(roles: string[], perms: string[]): Promise<boolean> {
         for (const role of roles) {
             const userPerms: string[] = await this.authService.getPerms(role);
@@ -52,4 +48,7 @@ export class AuthGuard implements CanActivate {
         return false;
     }
 
+    private static resolveToken(bearerToken: string): string {
+        return bearerToken && bearerToken.startsWith('Bearer ') ? bearerToken.substring(7) : null;
+    }
 }

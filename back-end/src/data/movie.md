@@ -125,9 +125,9 @@ https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_lay
 
 [
   {
-    "name": "별에서 온 그대",
-    "title": "来自星星的你",
-    "aka": ["You Who Came from the Stars"],
+    "title": "별에서 온 그대",
+    "altTitle": "来自星星的你",
+    "akaTitle": ["My Love from the Star"],
     "year": 2013,
     "released": 20131218,
     "runtime": 60,
@@ -141,33 +141,14 @@ https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_lay
     "writers": ["朴智恩"],
     "actors": ["金秀贤", "全智贤", "朴海镇", "刘仁娜"],
     "plot": "17世纪初，不明飞行物出现在朝鲜上空，由此开启了一段绵亘四百年的传奇因缘。时间来到当代，当年来到地球的外星人以大学教授都敏俊（金秀贤 饰）的身份生活在韩国的普通人中间。还有三个月一枚彗星即将接近地球，届时这个在地球上滞留了四百年的外星人将得以返回故土。只不过，在此之前他总会想起初来之时遇见的少女徐宜花（金贤秀 饰），也渴望再见到12年前救过的一个小女孩。敏俊与颇受人诟病的国民偶像千颂伊（全智贤 饰）比邻而居，而且后者又是他所在大学的学生。最初的交流并不顺畅，但敏俊很快发现这个女孩和他竟有着如此深的渊源。总经千百年，他们的缘分从未断过。在几度轮回过后，男与女再度相逢……",
-    "poster": "https://wx2.sbimg.cn/2020/06/07/you-who-came-from-the-stars-2013.md.jpg",
-    "posterThumb": "https://wx2.sbimg.cn/2020/06/07/you-who-came-from-the-stars-2013.th.jpg",
+    "poster": "https://wx2.sbimg.cn/2020/06/07/my-love-from-the-star-2013.md.jpg",
+    "posterThumb": "https://wx2.sbimg.cn/2020/06/07/my-love-from-the-star-2013.th.jpg",
     "imdbId": "tt3469052",
     "imdbRating": 8.3
   }
 ]
 
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EbEZd6x0Fh5HsbFIxCFSWG0BHF7cPS36DoiNMtlJ8CjrJw
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EbJZ6bYNg5BEixLVTJXbM-cB7o6wkCxeJJ403ipQ2FO3Kw
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EawAF-88f_9JvjAWAVPajc8BMqNLbMvYED57ojXSBgoakg
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EVvpqj9WT5xLr96_htYhk90Bjge3TU-km3m705rrMzpRhg
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=ESqvGcwPkIBBvjxYHKdy9WEBRAXdbf6jIz3D9hz3pIYVlg
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EZkKhm4Y5hJAiIqPufbN0pkBAeD6xZQ6k7KDWdSgp-cw0w
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=ERDh5mJnKiRKhf1rjXBz-WcBqxdxnBykrhvxhRATEdb5tg
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EfAkbVRa9YdCn2EOVC45N2YBAELfbgr0jrhakpoz1LVS0w
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EZr-Zz7ATYtNtJcG-QeCMugBehuN4krql2aGTucj1Prjww
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=Ec4REGxOtndJlnZGzg2_tMwB0ago6KyXXdvMaQbEO8EXLw
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EdwenyWGKUxPgsRo4SEIvZMB6x0_HPfyf5RZC51VcaKE1w
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=ESj4NVLFAJ5CrJiYgEdn5FIBsG8fUuBbItaHOaK78TZTgw
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EU9NHH7q-D1DmaRB1OBREUkB9E2jx_h5FJ5ku95OKtvfyg
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=Ed1yHvrEbYtCs4iXfk4OyHIBUcm9Nj1W1_xexQdNJCuSOA
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EelY1RXQ5i5Bh6yemfsyp4oBw4gRLNbstRl96fGU2L9lcg
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EasCZdsZEnNAu8R0meEq8HsBjFQyAyE5XHyocGYxF2aJxA
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EYZVcLmsboNIre8QUT2WZVcBwXW4FEpa4_8opWmgES9i4A
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=Ef96BVAsuYlImT4317WaRaEBxkNe1UeuJk5ByAyZZMfCmg
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=ERNxHYvPSpBOmlHVmHCszyQBWi6YYIN_U53IIW2MkLRNIw
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=ERYi7Y6N2PVBrks-EphGZZkB6ZijbrQ2w9yXHoJj5yMTJA
-https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EbiXS-PI271LpNWmHowY_0gBUQL5pa696vnVuKDWLaXe4A
 
+
+    
 
