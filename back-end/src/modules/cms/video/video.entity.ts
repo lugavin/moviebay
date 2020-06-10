@@ -1,4 +1,5 @@
-import {Column, Entity, Index, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, Index, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {EpisodeEntity} from '../episode/episode.entity';
 import {BaseEntity, VodStatus, VodType} from '../../../shared';
 
 /**
@@ -100,5 +101,9 @@ export class VideoEntity extends BaseEntity {
 
     @Column('numeric', {name: 'imdb_rating', precision: 2, scale: 1})
     imdbRating: number;
+
+    // @OneToOne(() => EpisodeEntity)
+    // @JoinColumn({name: 'latest_episode_id'})
+    // latestEpisode: EpisodeEntity;
 
 }

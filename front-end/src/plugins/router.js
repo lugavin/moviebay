@@ -5,7 +5,7 @@ Vue.use(Router);
 
 const RouterType = {
     movies: 'movie',
-    dramas: 'drama',
+    series: 'series',
     cartoons: 'cartoon',
     shows: 'show',
     mv: 'mv'

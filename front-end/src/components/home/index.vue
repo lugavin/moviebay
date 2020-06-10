@@ -12,7 +12,7 @@
                 <video-panel v-bind="{title: '电影', type: 'movie'}"/>
             </v-col>
             <v-col cols="12">
-                <video-panel v-bind="{title: '连续剧', type: 'drama'}"/>
+                <video-panel v-bind="{title: '连续剧', type: 'series'}"/>
             </v-col>
         </v-row>
     </v-container>

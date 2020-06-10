@@ -5,12 +5,12 @@ export enum VodStatus {
 
 export enum VodType {
     MOVIE = 'movie',
-    TV = 'tv',
+    SERIES = 'series',
 }
 
 export enum DictTag {
     MOVIE_GENRE = 'movie-genre',
-    DRAMA_GENRE = 'drama-genre',
+    SERIES_GENRE = 'series-genre',
     COUNTRY = 'country',   // https://zh.wikipedia.org/wiki/ISO_3166-1
     LANGUAGE = 'language', // https://zh.wikipedia.org/wiki/ISO_639-1
 }

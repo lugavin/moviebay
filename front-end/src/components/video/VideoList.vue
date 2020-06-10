@@ -68,14 +68,19 @@ export default {
             sort: null
         }
     }),
+    watch: {
+        type() {
+            this.getPage();
+        }
+    },
     computed: {
         ...mapState({
             genres(state) {
                 switch (this.type) {
                     case 'movie':
                         return state[DICT_TYPES.MOVIE_GENRE];
-                    case 'drama':
-                        return state[DICT_TYPES.DRAMA_GENRE];
+                    case 'series':
+                        return state[DICT_TYPES.SERIES_GENRE];
                     default:
                         return [];
                 }

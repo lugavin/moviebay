@@ -120,35 +120,3 @@ https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_lay
 
 [黑客帝国3].The.Matrix.Revolutions.2003.720p.x264.AAC-HDMB
 https://diskapp-my.sharepoint.com/personal/moviebay_diskapp_onmicrosoft_com/_layouts/15/download.aspx?share=EXx2YiCGIFNNldr-K6620qIBIRPt53u9CgY8rqamr65wbw
-
-
-
-[
-  {
-    "title": "별에서 온 그대",
-    "altTitle": "来自星星的你",
-    "akaTitle": ["My Love from the Star"],
-    "year": 2013,
-    "released": 20131218,
-    "runtime": 60,
-    "type": "tv",
-    "src": "",
-    "tags": ["720P", "HD"],
-    "genres": ["romance"],
-    "countries": ["韩国"],
-    "languages": ["韩语"],
-    "directors": ["张太维"],
-    "writers": ["朴智恩"],
-    "actors": ["金秀贤", "全智贤", "朴海镇", "刘仁娜"],
-    "plot": "17世纪初，不明飞行物出现在朝鲜上空，由此开启了一段绵亘四百年的传奇因缘。时间来到当代，当年来到地球的外星人以大学教授都敏俊（金秀贤 饰）的身份生活在韩国的普通人中间。还有三个月一枚彗星即将接近地球，届时这个在地球上滞留了四百年的外星人将得以返回故土。只不过，在此之前他总会想起初来之时遇见的少女徐宜花（金贤秀 饰），也渴望再见到12年前救过的一个小女孩。敏俊与颇受人诟病的国民偶像千颂伊（全智贤 饰）比邻而居，而且后者又是他所在大学的学生。最初的交流并不顺畅，但敏俊很快发现这个女孩和他竟有着如此深的渊源。总经千百年，他们的缘分从未断过。在几度轮回过后，男与女再度相逢……",
-    "poster": "https://wx2.sbimg.cn/2020/06/07/my-love-from-the-star-2013.md.jpg",
-    "posterThumb": "https://wx2.sbimg.cn/2020/06/07/my-love-from-the-star-2013.th.jpg",
-    "imdbId": "tt3469052",
-    "imdbRating": 8.3
-  }
-]
-
-
-
-    
-

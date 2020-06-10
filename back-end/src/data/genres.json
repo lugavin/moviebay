@@ -12,9 +12,9 @@
   {"label": "战争", "value": "war", "tag": "movie-genre", "remark": "电影分类", "seq": 11},
   {"label": "纪录", "value": "documentary", "tag": "movie-genre", "remark": "电影分类", "seq": 12},
   {"label": "情色", "value": "erotic", "tag": "movie-genre", "remark": "电影分类", "seq": 13},
-  {"label": "国产", "value": "CN", "tag": "drama-genre", "remark": "电视剧分类", "seq": 1},
-  {"label": "港台", "value": "HK-TW", "tag": "drama-genre", "remark": "电视剧分类", "seq": 2},
-  {"label": "日韩", "value": "JP-KR", "tag": "drama-genre", "remark": "电视剧分类", "seq": 3},
-  {"label": "欧美", "value": "US-EU", "tag": "drama-genre", "remark": "电视剧分类", "seq": 4},
-  {"label": "其他", "value": "OTHER", "tag": "drama-genre", "remark": "电视剧分类", "seq": 5}
+  {"label": "国产", "value": "CN", "tag": "series-genre", "remark": "电视剧分类", "seq": 1},
+  {"label": "港台", "value": "HK-TW", "tag": "series-genre", "remark": "电视剧分类", "seq": 2},
+  {"label": "日韩", "value": "JP-KR", "tag": "series-genre", "remark": "电视剧分类", "seq": 3},
+  {"label": "欧美", "value": "US-EU", "tag": "series-genre", "remark": "电视剧分类", "seq": 4},
+  {"label": "其他", "value": "OTHER", "tag": "series-genre", "remark": "电视剧分类", "seq": 5}
 ]

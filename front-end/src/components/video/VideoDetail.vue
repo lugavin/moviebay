@@ -60,7 +60,7 @@ export default {
     computed: {
         ...mapState({
             movieGenres: state => state[DICT_TYPES.MOVIE_GENRE],
-            dramaGenres: state => state[DICT_TYPES.DRAMA_GENRE]
+            seriesGenres: state => state[DICT_TYPES.SERIES_GENRE]
         })
     },
     mounted() {
