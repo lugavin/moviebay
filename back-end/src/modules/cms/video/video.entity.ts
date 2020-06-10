@@ -104,6 +104,6 @@ export class VideoEntity extends BaseEntity {
 
     // @OneToOne(() => EpisodeEntity)
     // @JoinColumn({name: 'latest_episode_id'})
-    // latestEpisode: EpisodeEntity;
+    latestEpisode: EpisodeEntity;
 
 }

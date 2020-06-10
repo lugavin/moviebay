@@ -37,8 +37,13 @@ export class UserService {
     }
 
     async getUserByName(username: string): Promise<UserEntity> {
-        // 这种写法无法获取到关联对象角色列表
-        // return this.userRepository.findOne({username: Equal(`${username}`)});
+        // return this.userRepository.findOne({
+        //     join: {
+        //         alias: 'u',
+        //         leftJoinAndSelect: {r: 'u.roles'}
+        //     },
+        //     where: {username: Equal(`${username}`)}
+        // });
         return this.userRepository.createQueryBuilder('u')
             .leftJoinAndSelect('u.roles', 'r')
             .where('u.username = :username', {username})
