@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {DeleteResult, Like, Repository} from 'typeorm';
+import {DeleteResult, Equal, Like, Repository} from 'typeorm';
 import {VideoEntity} from './video.entity';
 import {VideoDto} from './dto/video.dto';
 import {PageRes, VodStatus} from '../../../shared';
@@ -21,7 +21,18 @@ export class VideoService {
     }
 
     async getVideo(vid: number): Promise<VideoEntity> {
-        return this.videoRepository.findOne(vid);
+        return this.videoRepository.findOne(vid, {
+            join: {
+                alias: 'v',
+                leftJoinAndSelect: {
+                    latestEpisode: 'v.latestEpisode'
+                }
+            }
+        });
+    }
+
+    async getVideoByImdbId(imdbId: string): Promise<VideoEntity> {
+        return this.videoRepository.findOne({imdbId: Equal(`${imdbId}`)});
     }
 
     async search(page: number, pageSize: number, keyword: string): Promise<PageRes<VideoEntity>> {

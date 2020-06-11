@@ -102,8 +102,8 @@ export class VideoEntity extends BaseEntity {
     @Column('numeric', {name: 'imdb_rating', precision: 2, scale: 1})
     imdbRating: number;
 
-    // @OneToOne(() => EpisodeEntity)
-    // @JoinColumn({name: 'latest_episode_id'})
+    @OneToOne(() => EpisodeEntity)
+    @JoinColumn({name: 'latest_episode_id'})
     latestEpisode: EpisodeEntity;
 
 }

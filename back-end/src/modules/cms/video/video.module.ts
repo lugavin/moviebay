@@ -6,6 +6,7 @@ import {VideoResource} from './video.resource';
 
 @Module({
     imports: [TypeOrmModule.forFeature([VideoEntity])],
+    exports: [VideoService],
     providers: [VideoService],
     controllers: [VideoResource],
 })
