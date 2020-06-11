@@ -1,9 +1,11 @@
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {DeleteResult, Equal, Like, Repository} from 'typeorm';
+import {DeleteResult, Like, Repository} from 'typeorm';
 import {VideoEntity} from './video.entity';
 import {VideoDto} from './dto/video.dto';
 import {PageRes, VodStatus} from '../../../shared';
+import {EpisodeEntity} from '../episode/episode.entity';
+import {UpdateResult} from 'typeorm/query-builder/result/UpdateResult';
 
 @Injectable()
 export class VideoService {
@@ -31,8 +33,8 @@ export class VideoService {
         });
     }
 
-    async getVideoByImdbId(imdbId: string): Promise<VideoEntity> {
-        return this.videoRepository.findOne({imdbId: Equal(`${imdbId}`)});
+    async updateLatestEpisode(imdbId: string, latestEpisode: EpisodeEntity): Promise<UpdateResult> {
+        return this.videoRepository.update({imdbId}, {latestEpisode});
     }
 
     async search(page: number, pageSize: number, keyword: string): Promise<PageRes<VideoEntity>> {

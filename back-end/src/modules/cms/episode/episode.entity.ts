@@ -18,22 +18,25 @@ export class EpisodeEntity extends BaseEntity {
     @Column()
     title: string;
 
-    @Column()
-    src: string;
-
     // 当前季数
     @Column()
     season: number;
+
+    // 总季数
+    @Column()
+    seasons: number;
 
     // 当前集数
     @Column()
     episode: number;
 
-    @Column()
-    seasons: number;
-
+    // 当前季集数
     @Column()
     episodes: number;
+
+    // 片源: [{k:'onedrive', v:'onedrive_link', {k:'baidudisk', v:'baidudisk_link'}]
+    @Column('jsonb')
+    sources: string;
 
     // @Column('varchar', {array: true, nullable: true})
     // subtitles: string[];

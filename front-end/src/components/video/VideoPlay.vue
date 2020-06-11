@@ -33,8 +33,8 @@
                     <v-tab-item>
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
                             <v-card-text>
-                                <v-btn v-for="tag in video.tags" :key="tag" :to="`/video/play/${video.id}?tags=${tag}`" color="primary mx-2">
-                                    {{tag}}
+                                <v-btn :to="`/video/play/${video.id}?tag=${video.tag}`" color="primary mx-2">
+                                    {{video.tag}}
                                 </v-btn>
                             </v-card-text>
                         </v-card>
@@ -107,8 +107,13 @@ export default {
     mounted() {
         axios.get(`${API.videos}/${this.vid}`).then(res => {
             this.video = res.data;
-            const src = this.video.src;
-            this.playerOpts.sources = [{src}, {src, type: 'video/webm'}];
+            const sources = this.video.sources;
+            if (sources.length) {
+                this.playerOpts.sources = [
+                    {src: sources[0].v},
+                    {src: sources[0].v, type: 'video/webm'}
+                ];
+            }
             return this.video;
         }).then(vod => {
             const params = {

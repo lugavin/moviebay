@@ -39,21 +39,21 @@ export class VideoEntity extends BaseEntity {
     @Column('int4')
     runtime: number;
 
-    // 状态(上线|下线)
-    @Column('bit')
-    status: VodStatus;
+    // 分辨率标签
+    @Column()
+    tag: string;
 
     // 类型
     @Column()
     type: VodType;
 
-    // 片源
-    @Column({nullable: true})
-    src: string;
+    // 状态(上线|下线)
+    @Column('bit')
+    status: VodStatus;
 
-    // 分辨率标签: ['HD', '720P']
-    @Column('varchar', {array: true})
-    tags: string[];
+    // 片源: [{k:'onedrive', v:'onedrive_link', {k:'baidudisk', v:'baidudisk_link'}]
+    @Column('jsonb', {nullable: true})
+    sources: string;
 
     // 影片类型
     @Column('varchar', {array: true})

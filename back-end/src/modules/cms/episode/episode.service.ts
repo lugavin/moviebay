@@ -12,18 +12,11 @@ export class EpisodeService {
     }
 
     async createEpisode(entities: EpisodeEntity[]): Promise<EpisodeEntity[]> {
-        // 直接调用 repository.save(entities) 会导致 @BeforeInsert() 不起作用
-        return this.episodeRepository.save(entities.map(entity => Object.assign(new EpisodeEntity(), entity))).then(episodes => {
-            this.episodeRepository.createQueryBuilder()
-                .orderBy({episode: 'DESC'})
-                .take(1)
-                .getOne()
-                .then(lastEpisode => {
-                    this.videoService.getVideoByImdbId(lastEpisode.imdbId).then(video => {
-                        video.latestEpisode = lastEpisode;
-                        this.videoService.createVideo([video]);
-                    });
-                });
+        const episodes: EpisodeEntity[] = entities.sort((e1, e2) => e1.episode - e2.episode)
+            .map(entity => Object.assign(new EpisodeEntity(), entity));
+        return this.episodeRepository.save(episodes).then(() => {
+            const lastEpisode: EpisodeEntity = episodes[episodes.length - 1];
+            this.videoService.updateLatestEpisode(lastEpisode.imdbId, lastEpisode);
             return episodes;
         });
     }
