@@ -23,14 +23,7 @@ export class VideoService {
     }
 
     async getVideo(vid: number): Promise<VideoEntity> {
-        return this.videoRepository.findOne(vid, {
-            join: {
-                alias: 'v',
-                leftJoinAndSelect: {
-                    latestEpisode: 'v.latestEpisode'
-                }
-            }
-        });
+        return this.videoRepository.findOne(vid, {relations: ['latestEpisode']});
     }
 
     async updateLatestEpisode(imdbId: string, latestEpisode: EpisodeEntity): Promise<UpdateResult> {
@@ -45,7 +38,7 @@ export class VideoService {
             ],
             skip: (page - 1) * pageSize,
             take: pageSize,
-            order: {createdAt: -1}
+            order: {createdAt: -1},
         }).then(res => new PageRes<VideoEntity>(page, pageSize, res[0], res[1]));
     }
 
