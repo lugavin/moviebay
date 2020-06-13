@@ -15,13 +15,13 @@ export class HttpExceptionFilter implements ExceptionFilter {
             Logger.error(error.message, error.stack, HttpExceptionFilter.name);
         }
         const context = host.switchToHttp();
-        const response = context.getResponse();
-        const request = context.getRequest();
-        response.code(status).send({
+        const req = context.getRequest();
+        const res = context.getResponse();
+        res.code(status).send({
             retCode: status,
             retMsg: error.message,
             timestamp: Date.now(),
-            path: request.url
+            path: req.url
         });
     }
 

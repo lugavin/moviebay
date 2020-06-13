@@ -27,7 +27,7 @@ export class AuthResource {
         if (!user.activated) {
             throw new HttpException('Account was not activated!', HttpStatus.BAD_REQUEST);
         }
-        const roles: string[] = user.roles.map(e => e.code);
+        const roles: string[] = user.roles.map(r => r.code);
         return this.authService.createToken({
             username: user.username,
             clientip,

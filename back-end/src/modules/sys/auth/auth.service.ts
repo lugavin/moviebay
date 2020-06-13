@@ -65,7 +65,7 @@ export class AuthService {
             if (!res) {
                 return this.permService.getPermsByRole(role).then(entities => {
                     if (entities && entities.length > 0) {
-                        const perms = entities.map(entity => entity.code);
+                        const perms: string[] = entities.map(entity => entity.code);
                         this.redisClient.hset(RedisKey.HKEY_PERMS, role, JSON.stringify(perms));
                         return perms;
                     }

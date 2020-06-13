@@ -1,11 +1,6 @@
-import {Logger} from '@nestjs/common';
-
 export const serverConfigFactory = () => ({
     host: process.env.SERVER_HOST,
-    port: parseInt(process.env.SERVER_PORT, 10),
-    callback() {
-        Logger.log(`App running at => http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/`);
-    }
+    port: parseInt(process.env.SERVER_PORT, 10)
 });
 
 export const redisConfigFactory = () => ({

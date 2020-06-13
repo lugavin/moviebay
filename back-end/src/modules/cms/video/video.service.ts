@@ -38,7 +38,7 @@ export class VideoService {
             ],
             skip: (page - 1) * pageSize,
             take: pageSize,
-            order: {createdAt: -1},
+            order: {createdAt: -1}
         }).then(res => new PageRes<VideoEntity>(page, pageSize, res[0], res[1]));
     }
 

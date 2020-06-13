@@ -10,7 +10,7 @@ export class CelebrityService {
     }
 
     async createCelebrity(entities: CelebrityEntity[]): Promise<CelebrityEntity[]> {
-        return this.celebrityRepository.save(entities);
+        return this.celebrityRepository.save(entities.map(entity => Object.assign(new CelebrityEntity(), entity)));
     }
 
 }
