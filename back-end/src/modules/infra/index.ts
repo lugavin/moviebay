@@ -1,1 +1,1 @@
-export {RedisModule} from './redis/redis.module';
+export {RedisModule} from './redis.module';

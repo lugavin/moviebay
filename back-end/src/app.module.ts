@@ -1,6 +1,5 @@
 import {Module} from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
-import {Connection} from 'typeorm';
 import * as Modules from './modules';
 
 /**
@@ -9,9 +8,7 @@ import * as Modules from './modules';
  * Provider: 提供者只是一个用 @Injectable 装饰器注释的类
  */
 @Module({
-    imports: [TypeOrmModule.forRoot(), ...Object.values(Modules)],
+    imports: [TypeOrmModule.forRoot(), ...Object.values(Modules)]
 })
 export class AppModule {
-    constructor(private readonly connection: Connection) {
-    }
 }

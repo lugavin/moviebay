@@ -16,17 +16,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
         }
         const context = host.switchToHttp();
         const response = context.getResponse();
-        // const request = context.getRequest();
-        // response.status(status).json({ // For Express
-        //     retCode: status,
-        //     retMsg: error.message,
-        //     path: request.url,
-        //     timestamp: Date.now(),
-        // });
-        response.code(status).send({ // For Fastify
+        const request = context.getRequest();
+        response.code(status).send({
             retCode: status,
             retMsg: error.message,
-            timestamp: Date.now()
+            timestamp: Date.now(),
+            path: request.url
         });
     }
 

@@ -7,7 +7,7 @@ import {CommentResource} from './comment.resource';
 @Module({
     imports: [TypeOrmModule.forFeature([CommentEntity])],
     providers: [CommentService],
-    controllers: [CommentResource],
+    controllers: [CommentResource]
 })
 export class CommentModule {
 }

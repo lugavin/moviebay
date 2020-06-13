@@ -1,6 +1,6 @@
 import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
-import {DeleteResult, Equal, Repository} from 'typeorm';
+import {DeleteResult, Repository} from 'typeorm';
 import {UserEntity} from './user.entity';
 import {UserDto} from './dto/user.dto';
 import {BaseUtil} from '../../../shared';
@@ -37,10 +37,10 @@ export class UserService {
     }
 
     async getUserByName(username: string): Promise<UserEntity> {
-        return this.userRepository.findOne({
-            relations: ['roles'],
-            where: {username: Equal(`${username}`)}
-        });
+        return this.userRepository.createQueryBuilder('u')
+            .leftJoinAndSelect('u.roles', 'r')
+            .where('u.username = :username', {username})
+            .getOne();
     }
 
 }

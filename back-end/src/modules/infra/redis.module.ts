@@ -1,7 +1,7 @@
 import * as Redis from 'redis';
 import * as Bluebird from 'bluebird';
 import {Global, Module} from '@nestjs/common';
-import {redisConfigFactory} from './redis.config';
+import {redisConfigFactory} from '../../config';
 
 @Global()
 @Module({
