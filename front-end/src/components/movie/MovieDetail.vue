@@ -16,7 +16,7 @@
                     主演：{{vod.actors.join(' / ')}}
                 </p>
                 <p class="my-1">
-                    类型：{{vod.genres.map(v=>movieGenres[v]).join(' / ')}}
+                    类型：{{vod.genres.map(v=>genres[v]).join(' / ')}}
                 </p>
                 <p class="my-1">地区：{{vod.countries.join(' / ')}}</p>
                 <p class="my-1">语言：{{vod.languages.join(' / ')}}</p>
@@ -26,7 +26,7 @@
                     <span>{{vod.plot}}</span>
                 </p>
                 <p class="my-1 pl-12 mt-4">
-                    <v-btn :to="`/video/play/${vod.id}`" target="_blank" color="primary">立即播放</v-btn>
+                    <v-btn :to="`/${vod.type}/play/${vod.id}`" target="_blank" color="primary">立即播放</v-btn>
                 </p>
             </v-col>
         </v-row>
@@ -41,12 +41,12 @@
 <script>
 import axios from 'axios';
 import {mapState} from 'vuex';
-import {DICT_TYPES} from '@/plugins/store-types';
 import {API} from '@/shared';
-import {VideoPanel} from '@/components/shared';
+import {DICT_TYPES} from '@/plugins/store-types';
+import {VideoPanel} from '@/components/video';
 
 export default {
-    name: 'VideoDetail',
+    name: 'MovieDetail',
     components: {VideoPanel},
     props: {
         vid: {
@@ -59,8 +59,7 @@ export default {
     }),
     computed: {
         ...mapState({
-            movieGenres: state => state[DICT_TYPES.MOVIE_GENRE],
-            seriesGenres: state => state[DICT_TYPES.SERIES_GENRE]
+            genres: (state) => state[DICT_TYPES.MOVIE_GENRE]
         })
     },
     mounted() {

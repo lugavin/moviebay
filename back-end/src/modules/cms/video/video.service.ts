@@ -33,8 +33,8 @@ export class VideoService {
     async search(page: number, pageSize: number, keyword: string): Promise<PageRes<VideoEntity>> {
         return this.videoRepository.findAndCount({
             where: [
-                {name: Like(`%${keyword}%`)},
-                {title: Like(`%${keyword}%`)}
+                {title: Like(`%${keyword}%`)},
+                {altTitle: Like(`%${keyword}%`)}
             ],
             skip: (page - 1) * pageSize,
             take: pageSize,
@@ -45,7 +45,7 @@ export class VideoService {
     async getPage(page: number, pageSize: number, params: VideoDto): Promise<PageRes<VideoEntity>> {
         const queryBuilder = this.videoRepository.createQueryBuilder();
         if (params.type) {
-            queryBuilder.where('type = :type', {type: params.type});
+            queryBuilder.andWhere('type = :type', {type: params.type});
         }
         if (params.genre) {
             queryBuilder.andWhere(':genre = ANY(genres)', {genre: params.genre});

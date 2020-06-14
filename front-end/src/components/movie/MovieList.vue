@@ -42,14 +42,13 @@
 import axios from 'axios';
 import * as dayjs from 'dayjs';
 import {mapState} from 'vuex';
+import {API, Paging, VodType, Formatter} from '@/shared';
 import {DICT_TYPES} from '@/plugins/store-types';
-import {VideoCard} from '@/components/shared';
-import {Formatter, Paging, API} from '@/shared';
+import {VideoCard} from '@/components/video';
 
 export default {
-    name: 'VideoList',
+    name: 'MovieList',
     components: {VideoCard},
-    props: ['type'],
     data: () => ({
         paging: {
             page: Paging.PAGE,
@@ -75,26 +74,18 @@ export default {
     },
     computed: {
         ...mapState({
-            genres(state) {
-                switch (this.type) {
-                    case 'movie':
-                        return state[DICT_TYPES.MOVIE_GENRE];
-                    case 'series':
-                        return state[DICT_TYPES.SERIES_GENRE];
-                    default:
-                        return [];
-                }
-            }
+            genres: (state) => state[DICT_TYPES.MOVIE_GENRE]
         })
     },
     methods: {
         getPage() {
-            const params = Object.assign({type: this.type}, this.paging, this.filter);
+            const params = Object.assign({type: VodType.MOVIE}, this.paging, this.filter);
             axios.get(API.VIDEOS, {params}).then(res => {
                 this.totalItems = res.data.totalItems;
                 this.totalPages = res.data.totalPages;
                 this.videos = res.data.items.map(item => ({
                     vid: item.id,
+                    type: item.type,
                     poster: item.poster,
                     posterThumb: item.posterThumb,
                     title: item.altTitle,

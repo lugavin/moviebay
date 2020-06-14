@@ -1,7 +1,7 @@
 <template>
     <v-card-text class="text-center py-1">
         <p class="mb-0 subtitle-1 v-card--title">
-            <router-link class="v-link" :to="`/video/detail/${vid}`" :title="title" v-text="title"/>
+            <router-link class="v-link" :to="`/${type}/detail/${vid}`" :title="title" v-text="title"/>
         </p>
         <p class="mb-0 subtitle-2" v-text="subtitle"/>
     </v-card-text>
@@ -13,6 +13,10 @@ export default {
     props: {
         vid: {
             type: [Number, String],
+            required: true
+        },
+        type: {
+            type: String,
             required: true
         },
         title: {

@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import {VideoCard} from '@/components/shared';
-import {Formatter, Paging, API} from '@/shared';
 import axios from 'axios';
 import * as dayjs from 'dayjs';
+import {API, Paging, Formatter} from '@/shared';
+import {VideoCard} from '@/components/video';
 
 export default {
     name: 'VideoSearch',
@@ -39,10 +39,10 @@ export default {
         videos: []
     }),
     methods: {
-        getPage(page) {
+        getPage() {
             axios.get(`${API.VIDEOS}/search`, {
                 params: {
-                    page,
+                    page: this.page,
                     pageSize: this.pageSize,
                     q: this.keyword
                 }
@@ -50,6 +50,7 @@ export default {
                 this.totalPages = res.data.totalPages;
                 this.videos = res.data.items.map(item => ({
                     vid: item.id,
+                    type: item.type,
                     poster: item.poster,
                     posterThumb: item.posterThumb,
                     title: item.altTitle,
@@ -59,7 +60,7 @@ export default {
         }
     },
     mounted() {
-        this.getPage(this.page);
+        this.getPage();
     }
 };
 </script>

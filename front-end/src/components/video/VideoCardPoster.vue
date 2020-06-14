@@ -3,7 +3,7 @@
         <v-img :src="poster" :lazy-src="posterThumb" class="align-end text-center">
             <v-expand-transition>
                 <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal" v-if="hover">
-                    <v-btn icon class="white--text" :to="`/video/play/${vid}`" target="_blank">
+                    <v-btn icon class="white--text" :to="`/${type}/play/${vid}`" target="_blank">
                         <v-icon x-large>play_circle_outline</v-icon>
                     </v-btn>
                 </div>
@@ -19,6 +19,10 @@ export default {
     props: {
         vid: {
             type: [Number, String],
+            required: true
+        },
+        type: {
+            type: String,
             required: true
         },
         poster: {

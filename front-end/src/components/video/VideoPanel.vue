@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import * as dayjs from 'dayjs';
 import axios from 'axios';
+import * as dayjs from 'dayjs';
 import VideoCard from './VideoCard';
 import {Formatter, Paging, API} from '@/shared';
 
@@ -28,11 +28,11 @@ export default {
     name: 'VideoPanel',
     components: {VideoCard},
     props: {
-        title: {
+        type: {
             type: String,
             required: true
         },
-        type: {
+        title: {
             type: String,
             required: true
         }
@@ -49,6 +49,7 @@ export default {
         axios.get(API.VIDEOS, {params}).then(res => {
             this.videos = res.data.items.map(item => ({
                 vid: item.id,
+                type: item.type,
                 poster: item.poster,
                 posterThumb: item.posterThumb,
                 title: item.altTitle,

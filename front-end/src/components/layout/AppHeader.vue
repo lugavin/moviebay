@@ -11,7 +11,7 @@
                     <v-btn text v-for="(menu, i) in menus" :key="i" :to="menu.url" v-text="menu.name"/>
                 </v-toolbar-items>
                 <v-row align="center" class="mx-4">
-                    <v-text-field placeholder="请输入关键字" hide-details single-line v-model.trim="keyword">
+                    <v-text-field placeholder="请输入片名..." hide-details single-line v-model.trim="keyword">
                         <template v-slot:append>
                             <v-btn text icon small :to="`/video/search?q=${keyword}`" :disabled="!keyword" target="_blank">
                                 <v-icon>search</v-icon>

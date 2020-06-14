@@ -2,8 +2,8 @@
     <v-lazy>
         <v-card outlined>
             <slot>
-                <video-card-poster v-bind="{vid, poster, posterThumb}"/>
-                <video-card-title v-bind="{vid, title, subtitle}"/>
+                <video-card-poster v-bind="{vid, type, poster, posterThumb}"/>
+                <video-card-title v-bind="{vid, type, title, subtitle}"/>
             </slot>
         </v-card>
     </v-lazy>
@@ -18,6 +18,7 @@ export default {
     components: {VideoCardPoster, VideoCardTitle},
     props: {
         vid: [Number, String],
+        type: String,
         poster: String,
         posterThumb: String,
         title: String,

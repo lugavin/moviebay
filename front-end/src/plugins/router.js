@@ -3,19 +3,6 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
-const RouterType = {
-    movies: 'movie',
-    series: 'series',
-    cartoons: 'cartoon',
-    shows: 'show',
-    mv: 'mv'
-};
-
-const TypeRouter = Object.keys(RouterType).reduce((obj, key) => {
-    obj[RouterType[key]] = key;
-    return obj;
-}, {});
-
 /**
  * Router Mode
  * - hash: 即URL中的#符号(此hash不是密码学中的散列运算), 比如 http://localhost/#/home 的hash值为#/home,
@@ -36,30 +23,38 @@ export default new Router({
             component: () => import('@/components/home')
         },
         {
-            path: `/(${Object.keys(RouterType).join('|')})`,
-            component: () => import('@/components/video/VideoList'),
-            props: (route) => ({type: RouterType[route.params.pathMatch]})
+            path: '/movies',
+            component: () => import('@/components/movie/MovieList')
         },
         {
-            path: `/(${Object.keys(TypeRouter).join('|')})/more`,
-            component: () => import('@/components/video/VideoList'),
-            props: (route) => ({type: route.params.pathMatch})
+            path: '/movie/more',
+            redirect: '/movies'
         },
         {
-            path: '/video/detail/:vid',
-            component: () => import('@/components/video/VideoDetail'),
+            path: '/movie/play/:vid',
+            component: () => import('@/components/movie/MoviePlay'),
             props: true // 如果props被设置为true, 那么route.params将会被设置为组件属性
         },
         {
-            path: '/video/play/:vid',
-            component: () => import('@/components/video/VideoPlay'),
+            path: '/movie/detail/:vid',
+            component: () => import('@/components/movie/MovieDetail'),
             props: true
         },
         {
             path: '/video/search',
             component: () => import('@/components/video/VideoSearch'),
             props: (route) => ({keyword: route.query.q})
-        },
+        }
+        // {
+        //     path: '/forbidden',
+        //     component: Error,
+        //     meta: {statusCode: 403}
+        // },
+        // {
+        //     path: '/not-found',
+        //     component: Error,
+        //     meta: {statusCode: 404}
+        // },
         // {
         //     path: '/admin/user',
         //     component: () => import('@/components/user'),

@@ -19,16 +19,10 @@
 </template>
 
 <script>
-import {VideoPanel} from '@/components/shared';
+import {VideoPanel} from '@/components/video';
 
-/**
- * @see https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API
- */
 export default {
     name: 'Home',
-    components: {VideoPanel},
-    data: () => ({
-        posters: []
-    })
+    components: {VideoPanel}
 };
 </script>

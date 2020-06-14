@@ -33,7 +33,7 @@
                     <v-tab-item>
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
                             <v-card-text>
-                                <v-btn :to="`/video/play/${video.id}?tag=${video.tag}`" color="primary mx-2">
+                                <v-btn :to="`/${video.type}/play/${video.id}?tag=${video.tag}`" color="primary mx-2">
                                     {{video.tag}}
                                 </v-btn>
                             </v-card-text>
@@ -60,17 +60,17 @@
 
 <script>
 import axios from 'axios';
+import * as dayjs from 'dayjs';
 import {mapState} from 'vuex';
 import {DICT_TYPES} from '@/plugins/store-types';
-import {Formatter, Paging, API} from '@/shared';
-import {VideoCard, VideoCardPoster, VideoPlayer} from '@/components/shared';
-import * as dayjs from 'dayjs';
+import {API, Paging, VodType, Formatter} from '@/shared';
+import {VideoCard, VideoCardPoster, VideoPlayer} from '@/components/video';
 
 /**
  * @see https://docs.videojs.com/tutorial-vue.html
  */
 export default {
-    name: 'VideoPlay',
+    name: 'MoviePlay',
     components: {VideoCard, VideoCardPoster, VideoPlayer},
     props: {
         vid: {
@@ -92,44 +92,36 @@ export default {
     }),
     computed: {
         ...mapState({
-            genres(state) {
-                switch (this.video.type) {
-                    case 'movie':
-                        return state[DICT_TYPES.MOVIE_GENRE];
-                    case 'series':
-                        return state[DICT_TYPES.SERIES_GENRE];
-                    default:
-                        return [];
-                }
-            }
+            genres: (state) => state[DICT_TYPES.MOVIE_GENRE]
         })
     },
     mounted() {
         axios.get(`${API.VIDEOS}/${this.vid}`).then(res => {
             this.video = res.data;
-            const sources = this.video.sources;
-            if (sources.length) {
+            const {sources} = res.data;
+            console.info(sources)
+            if (sources && sources.length) {
                 this.playerOpts.sources = [
                     {src: sources[0].v},
                     {src: sources[0].v, type: 'video/webm'}
                 ];
             }
-            return this.video;
-        }).then(vod => {
-            const params = {
+        });
+        axios.get(API.VIDEOS, {
+            params: {
                 page: Paging.PAGE,
                 pageSize: Paging.PAGE_SIZE,
-                type: vod.type
-            };
-            axios.get(API.VIDEOS, {params}).then(res => {
-                this.videos = res.data.items.map(item => ({
-                    vid: item.id,
-                    poster: item.poster,
-                    posterThumb: item.posterThumb,
-                    title: item.altTitle,
-                    subtitle: dayjs(item.createdAt).format(Formatter.DATE)
-                }));
-            });
+                type: VodType.MOVIE
+            }
+        }).then(res => {
+            this.videos = res.data.items.map(item => ({
+                vid: item.id,
+                type: item.type,
+                poster: item.poster,
+                posterThumb: item.posterThumb,
+                title: item.altTitle,
+                subtitle: dayjs(item.createdAt).format(Formatter.DATE)
+            }));
         });
     }
 }

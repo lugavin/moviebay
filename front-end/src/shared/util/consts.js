@@ -9,6 +9,11 @@ export const Paging = {
     PAGE_SIZE: 12
 };
 
+export const VodType = {
+    MOVIE: 'movie',
+    SERIES: 'series'
+};
+
 export const Formatter = {
     DATE: 'YYYY-MM-DD',
     TIME: 'HH:mm:ss',
