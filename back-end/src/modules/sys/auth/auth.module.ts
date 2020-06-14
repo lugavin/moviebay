@@ -6,10 +6,10 @@ import {AuthService} from './auth.service';
 import {AuthResource} from './auth.resource';
 import {UserModule} from '../user/user.module';
 import {PermModule} from '../perm/perm.module';
-import {jwtConfigFactory} from '../../../config';
+import {ConfigFactory} from '../../../config';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([AuthEntity]), JwtModule.registerAsync({useFactory: jwtConfigFactory}), UserModule, PermModule],
+    imports: [TypeOrmModule.forFeature([AuthEntity]), JwtModule.registerAsync({useFactory: ConfigFactory.createJwtConfig}), UserModule, PermModule],
     providers: [AuthService],
     controllers: [AuthResource]
 })

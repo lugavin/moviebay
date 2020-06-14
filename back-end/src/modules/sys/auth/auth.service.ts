@@ -8,7 +8,7 @@ import {DeleteResult} from 'typeorm/query-builder/result/DeleteResult';
 import {TokenDto} from './dto/token.dto';
 import {AuthEntity} from './auth.entity';
 import {PermService} from '../perm/perm.service';
-import {jwtConfigFactory} from '../../../config';
+import {ConfigFactory, JwtConfig} from '../../../config';
 import {BaseUtil, AuthSubject} from '../../../shared';
 
 /**
@@ -17,27 +17,27 @@ import {BaseUtil, AuthSubject} from '../../../shared';
 @Injectable()
 export class AuthService {
 
-    private readonly jwtConfig: {accessTokenExpires, refreshTokenExpires};
+    private readonly jwtConfig: JwtConfig;
 
     constructor(private readonly redisClient: RedisClient,
                 private readonly jwtService: JwtService,
                 private readonly permService: PermService,
                 @InjectRepository(AuthEntity) private readonly authRepository: Repository<AuthEntity>) {
-        this.jwtConfig = jwtConfigFactory();
+        this.jwtConfig = ConfigFactory.createJwtConfig();
     }
 
     async createToken(subject: AuthSubject): Promise<TokenDto> {
-        return this.jwtService.signAsync(subject, {expiresIn: this.jwtConfig.accessTokenExpires}).then(accessToken => {
+        const {accessTokenExpires, refreshTokenExpires} = this.jwtConfig;
+        return this.jwtService.signAsync(subject, {expiresIn: accessTokenExpires}).then(accessToken => {
             const refreshToken: string = BaseUtil.uuid(); // TODO UUID的无序性会严重影响MySQL索引性能, 可通过Snowflake算法生成唯一ID
-            const expiresIn: number = this.jwtConfig.refreshTokenExpires;
             const createdAt: Date = new Date();
-            const expiredAt: Date = dayjs(createdAt).add(expiresIn, 'second').toDate();
+            const expiredAt: Date = dayjs(createdAt).add(refreshTokenExpires, 'second').toDate();
             return this.authRepository.save({
                 username: subject.username,
                 refreshToken,
                 createdAt,
                 expiredAt
-            }).then(() => ({accessToken, refreshToken, expiresIn}));
+            }).then(() => ({accessToken, refreshToken, expiresIn: accessTokenExpires}));
         });
     }
 
@@ -46,9 +46,10 @@ export class AuthService {
     }
 
     async getAccessToken(refreshToken: string, subject: AuthSubject): Promise<string> {
+        const {accessTokenExpires} = this.jwtConfig;
         return this.authRepository.findOne({refreshToken}).then(entity => {
             if (entity && entity.username === subject.username && dayjs(entity.expiredAt).isAfter(new Date())) {
-                return this.jwtService.signAsync(subject, {expiresIn: this.jwtConfig.accessTokenExpires});
+                return this.jwtService.signAsync(subject, {expiresIn: accessTokenExpires});
             }
             throw new HttpException('The refresh token has expired!', HttpStatus.UNAUTHORIZED);
         });
