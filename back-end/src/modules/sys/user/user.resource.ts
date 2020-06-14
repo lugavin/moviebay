@@ -12,16 +12,19 @@ export class UserResource {
     } // same as constructor(@Inject(UserService) userService: UserService)
 
     @Post()
+    @Auth('user:create')
     async createUser(@Body() dto: UserDto): Promise<UserEntity> {
         return this.userService.createUser(dto);
     }
 
     @Put(':uid')
+    @Auth('user:update')
     async updateUser(@Param('uid') uid: number, @Body() dto: UserDto): Promise<UserEntity> {
         return this.userService.updateUser(uid, dto);
     }
 
     @Delete(':uid')
+    @Auth('user:delete')
     async deleteUser(@Param('uid') uid: number): Promise<DeleteResult> {
         return this.userService.deleteUser(uid);
     }

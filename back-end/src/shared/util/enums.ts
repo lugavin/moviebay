@@ -16,7 +16,7 @@ export enum DictTag {
 }
 
 export enum RedisKey {
-    HKEY_PERMS = 'perms',
+    // HKEY_ROLE_PERMS = 'ROLE_PERMS',
 }
 
 export enum Formatter {

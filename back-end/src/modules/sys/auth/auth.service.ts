@@ -9,10 +9,10 @@ import {TokenDto} from './dto/token.dto';
 import {AuthEntity} from './auth.entity';
 import {PermService} from '../perm/perm.service';
 import {jwtConfigFactory} from '../../../config';
-import {BaseUtil, AuthSubject, RedisKey} from '../../../shared';
+import {BaseUtil, AuthSubject} from '../../../shared';
 
 /**
- * @see <a href="https://solidgeargroup.com/en/refresh-token-with-jwt-authentication-node-js/">Refresh token with JWT authentication in Node.js</a>
+ * @see [Auth with JWT Refresh Token](https://solidgeargroup.com/en/refresh-token-with-jwt-authentication-node-js/)
  */
 @Injectable()
 export class AuthService {
@@ -28,7 +28,7 @@ export class AuthService {
 
     async createToken(subject: AuthSubject): Promise<TokenDto> {
         return this.jwtService.signAsync(subject, {expiresIn: this.jwtConfig.accessTokenExpires}).then(accessToken => {
-            const refreshToken: string = BaseUtil.randomString(); // TODO 通过Snowflake算法生成唯一ID(UUID的无序性会严重影响MySQL索引性能)
+            const refreshToken: string = BaseUtil.uuid(); // TODO UUID的无序性会严重影响MySQL索引性能, 可通过Snowflake算法生成唯一ID
             const expiresIn: number = this.jwtConfig.refreshTokenExpires;
             const createdAt: Date = new Date();
             const expiredAt: Date = dayjs(createdAt).add(expiresIn, 'second').toDate();
@@ -41,15 +41,14 @@ export class AuthService {
         });
     }
 
-    async verifyAccessToken(token: string): Promise<AuthSubject> {
-        return this.jwtService.verifyAsync<AuthSubject>(token);
+    async verifyAccessToken(accessToken: string): Promise<AuthSubject> {
+        return this.jwtService.verifyAsync<AuthSubject>(accessToken);
     }
 
     async getAccessToken(refreshToken: string, subject: AuthSubject): Promise<string> {
-        const expiresIn: number = this.jwtConfig.accessTokenExpires;
         return this.authRepository.findOne({refreshToken}).then(entity => {
             if (entity && entity.username === subject.username && dayjs(entity.expiredAt).isAfter(new Date())) {
-                return this.jwtService.signAsync(subject, {expiresIn});
+                return this.jwtService.signAsync(subject, {expiresIn: this.jwtConfig.accessTokenExpires});
             }
             throw new HttpException('The refresh token has expired!', HttpStatus.UNAUTHORIZED);
         });
@@ -61,13 +60,13 @@ export class AuthService {
 
     async getPerms(role: string): Promise<string[]> {
         // @ts-ignore
-        return this.redisClient.hgetAsync(RedisKey.HKEY_PERMS, role).then(res => {
+        return this.redisClient.getAsync(role).then(res => {
             if (!res) {
-                return this.permService.getPermsByRole(role).then(entities => {
-                    if (entities && entities.length > 0) {
-                        const perms: string[] = entities.map(entity => entity.code);
-                        this.redisClient.hset(RedisKey.HKEY_PERMS, role, JSON.stringify(perms));
-                        return perms;
+                return this.permService.getPermsByRole(role).then(perms => {
+                    if (perms && perms.length > 0) {
+                        const permCodes: string[] = perms.map(perm => perm.code);
+                        this.redisClient.set(role, JSON.stringify(permCodes));
+                        return permCodes;
                     }
                     return [];
                 });

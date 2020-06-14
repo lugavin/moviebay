@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, Index} from 'typeorm';
 
 @Entity('sys_auth')
 export class AuthEntity {
@@ -12,7 +12,8 @@ export class AuthEntity {
     @Column({nullable: true})
     device: string;
 
-    @Column({name: 'refresh_token', unique: true})
+    @Index({unique: true})
+    @Column({name: 'refresh_token'})
     refreshToken: string;
 
     @Column({name: 'created_at'})

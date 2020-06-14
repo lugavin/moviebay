@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     }
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
-        const perms: string[] = this.reflector.get<string[]>(Consts.PERMS_KEY, context.getHandler());
+        const perms: string[] = this.reflector.get<string[]>(Consts.AUTH_KEY, context.getHandler());
         if (!perms) { // 匿名访问地址(无需登录)
             return true;
         }

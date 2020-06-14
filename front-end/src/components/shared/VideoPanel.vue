@@ -19,7 +19,7 @@
 import * as dayjs from 'dayjs';
 import axios from 'axios';
 import VideoCard from './VideoCard';
-import {Formatter, Paging, API} from '@/components/util/consts';
+import {Formatter, Paging, API} from '@/shared';
 
 /**
  * @see https://cn.vuejs.org/v2/guide/components-props.html
@@ -42,11 +42,11 @@ export default {
     }),
     mounted() {
         const params = {
-            page: Paging.page,
-            pageSize: Paging.pageSize,
+            page: Paging.PAGE,
+            pageSize: Paging.PAGE_SIZE,
             type: this.type
         };
-        axios.get(API.videos, {params}).then(res => {
+        axios.get(API.VIDEOS, {params}).then(res => {
             this.videos = res.data.items.map(item => ({
                 vid: item.id,
                 poster: item.poster,

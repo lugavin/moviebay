@@ -1,12 +1,12 @@
 export const API = {
-    login: '/api/login',
-    videos: '/api/videos',
-    dicts: '/api/dicts'
+    LOGIN: '/api/login',
+    VIDEOS: '/api/videos',
+    DICTS: '/api/dicts'
 };
 
 export const Paging = {
-    page: 1,
-    pageSize: 12
+    PAGE: 1,
+    PAGE_SIZE: 12
 };
 
 export const Formatter = {

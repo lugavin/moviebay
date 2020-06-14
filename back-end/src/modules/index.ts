@@ -1,3 +1,3 @@
+export * from './middleware';
 export * from './cms';
-export * from './infra';
 export * from './sys';

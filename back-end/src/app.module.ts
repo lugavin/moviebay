@@ -3,9 +3,14 @@ import {TypeOrmModule} from '@nestjs/typeorm';
 import * as Modules from './modules';
 
 /**
- * Module: 模块是具有 @Module 装饰器的类(@Module装饰器提供了元数据, Nest用它来组织应用程序结构)
- * Controller: 控制器负责处理传入的请求和向客户端返回响应
- * Provider: 提供者只是一个用 @Injectable 装饰器注释的类
+ * 默认情况下, 模块封装提供者, 这意味着如果提供者既不是当前模块的一部分也不是从另外模块(已导入)导出的, 那么它就是无法注入的:
+ *  - Module: 模块是具有 @Module 装饰器的类(@Module装饰器提供了元数据, Nest用它来组织应用程序结构)
+ *  - Imports: 导入其他模块的列表(这些模块导出了本模块中所需提供者)
+ *  - Exports: 由本模块提供在其他模块中可用的提供者
+ *  - Provider: 提供者只是一个用 @Injectable 装饰器注释的类(由Nest注入器实例化的提供者, 并且可以至少在整个模块中共享)
+ *  - Controller: 控制器负责处理传入的请求和向客户端返回响应
+ *
+ * @see [Modules](https://docs.nestjs.cn/7/modules)
  */
 @Module({
     imports: [TypeOrmModule.forRoot(), ...Object.values(Modules)]

@@ -14,9 +14,9 @@ export class UserService {
     async createUser(dto: UserDto): Promise<UserEntity> {
         const salt = BaseUtil.randomString();
         return this.userRepository.save(Object.assign(new UserEntity(), dto, {
-            salt,
             password: BaseUtil.md5Hash(dto.password, salt),
-            activated: true
+            activated: true,
+            salt
         }));
     }
 

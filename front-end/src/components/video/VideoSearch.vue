@@ -19,7 +19,7 @@
 
 <script>
 import {VideoCard} from '@/components/shared';
-import {Formatter, Paging, API} from '@/components/util/consts';
+import {Formatter, Paging, API} from '@/shared';
 import axios from 'axios';
 import * as dayjs from 'dayjs';
 
@@ -33,14 +33,14 @@ export default {
         }
     },
     data: () => ({
-        page: Paging.page,
-        pageSize: Paging.pageSize,
+        page: Paging.PAGE,
+        pageSize: Paging.PAGE_SIZE,
         totalPages: 0,
         videos: []
     }),
     methods: {
         getPage(page) {
-            axios.get(`${API.videos}/search`, {
+            axios.get(`${API.VIDEOS}/search`, {
                 params: {
                     page,
                     pageSize: this.pageSize,

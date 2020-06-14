@@ -27,11 +27,10 @@ export class AuthResource {
         if (!user.activated) {
             throw new HttpException('Account was not activated!', HttpStatus.BAD_REQUEST);
         }
-        const roles: string[] = user.roles.map(r => r.code);
         return this.authService.createToken({
+            roles: user.roles.map(r => r.code),
             username: user.username,
-            clientip,
-            roles
+            clientip
         });
     }
 
@@ -45,8 +44,11 @@ export class AuthResource {
             throw new HttpException('User not found!', HttpStatus.BAD_REQUEST);
         }
         // TODO 在生成新的 Access Token 之前, 需要检查用户是否被禁用或者 Refresh Token 是否已被加入黑名单
-        const roles: string[] = user.roles.map(e => e.code);
-        return this.authService.getAccessToken(refreshToken, {username, clientip, roles});
+        return this.authService.getAccessToken(refreshToken, {
+            roles: user.roles.map(e => e.code),
+            username,
+            clientip
+        });
     }
 
     @Delete('/token/reject/:refreshToken')

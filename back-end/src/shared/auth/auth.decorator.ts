@@ -8,4 +8,4 @@ import {Consts} from '../util';
  *
  * @see https://docs.nestjs.com/custom-decorators
  */
-export const AuthDecorator = (...perms: string[]) => SetMetadata(Consts.PERMS_KEY, perms);
+export const AuthDecorator = (...perms: string[]) => SetMetadata(Consts.AUTH_KEY, perms);

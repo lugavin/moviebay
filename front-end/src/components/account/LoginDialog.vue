@@ -25,7 +25,7 @@
 
 <script>
 import axios from 'axios';
-import {API} from '@/components/util/consts';
+import {API} from '@/shared';
 
 export default {
     name: 'LoginDialog',
@@ -39,7 +39,7 @@ export default {
     }),
     methods: {
         login() {
-            axios.post(API.login, this.formData).then(res => {
+            axios.post(API.LOGIN, this.formData).then(res => {
                 let {accessToken, refreshToken} = res.data;
                 if (this.formData.rememberMe) {
                     localStorage.setItem('accessToken', accessToken);
