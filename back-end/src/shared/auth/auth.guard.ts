@@ -39,13 +39,12 @@ export class AuthGuard implements CanActivate {
     }
 
     private async hasPerms(roles: string[], perms: string[]): Promise<boolean> {
+        let rolesPerms: string[] = [];
         for (const role of roles) {
-            const userPerms: string[] = await this.authService.getPerms(role);
-            if (perms.every(perm => userPerms.includes(perm))) {
-                return true;
-            }
+            rolesPerms = rolesPerms.concat(await this.authService.getPerms(role));
         }
-        return false;
+        const rolePerms: Set<string> = new Set<string>(rolesPerms); // 去重
+        return perms.every(perm => rolePerms.has(perm));
     }
 
     private static resolveToken(bearerToken: string): string {
