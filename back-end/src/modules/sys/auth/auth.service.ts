@@ -61,7 +61,7 @@ export class AuthService {
 
     async getPerms(role: string): Promise<string[]> {
         // @ts-ignore
-        return this.redisClient.getAsync(role).then(res => {
+        return this.redisClient.getAsync(role).then(res => { // TODO 使用MGET代替
             if (!res) {
                 return this.permService.getPermsByRole(role).then(perms => {
                     if (perms && perms.length > 0) {

@@ -43,7 +43,7 @@ export class AuthResource {
         if (!user) {
             throw new HttpException('User not found!', HttpStatus.BAD_REQUEST);
         }
-        // TODO 在生成新的 Access Token 之前, 需要检查用户是否被禁用或者 Refresh Token 是否已被加入黑名单
+        // TODO 在生成新的 AccessToken 之前, 需要检查用户是否被禁用或者 RefreshToken 是否已被加入黑名单
         return this.authService.getAccessToken(refreshToken, {
             roles: user.roles.map(e => e.code),
             username,

@@ -14,14 +14,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
         if (Math.floor(status / 100) === HttpSeries.SERVER_ERROR) {
             Logger.error(error.message, error.stack, HttpExceptionFilter.name);
         }
-        const context = host.switchToHttp();
-        const req = context.getRequest();
-        const res = context.getResponse();
+        const ctx = host.switchToHttp();
+        const req = ctx.getRequest();
+        const res = ctx.getResponse();
         res.code(status).send({
             retCode: status,
             retMsg: error.message,
-            timestamp: Date.now(),
-            path: req.url
+            // path: req.url, // For Express
+            timestamp: new Date().toISOString() // Date.now()
         });
     }
 
