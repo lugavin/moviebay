@@ -12,8 +12,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         drawer: false, // Hide mobile side menu by default,
-        [DICT_TYPES.MOVIE_GENRE]: {},
-        [DICT_TYPES.SERIES_GENRE]: {}
+        [DICT_TYPES.GENRES]: {},
+        [DICT_TYPES.COUNTRIES]: {}
     },
     mutations: {
         [MUTATION_TYPES.SET_STATE]: (state, payload) => Object.assign(state, payload),

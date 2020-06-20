@@ -1,0 +1,35 @@
+{
+  "genres": {
+    "action": "动作",
+    "comedy": "喜剧",
+    "romance": "爱情",
+    "fantasy": "科幻",
+    "horror": "恐怖",
+    "drama": "剧情",
+    "crime": "犯罪",
+    "disaster": "灾难",
+    "adventure": "冒险",
+    "mystery": "悬疑",
+    "war": "战争",
+    "documentary": "纪录",
+    "erotic": "情色"
+  },
+  "countries": {
+    "CN": "中国大陆",
+    "HK": "中国香港",
+    "TW": "中国台湾",
+    "IN": "印度",
+    "JP": "日本",
+    "KR": "韩国",
+    "GB": "英国",
+    "US": "美国",
+    "TH": "泰国",
+    "DE": "德国",
+    "FR": "法国",
+    "RU": "俄罗斯",
+    "CA": "加拿大",
+    "MX": "墨西哥",
+    "IT": "意大利",
+    "AU": "澳大利亚"
+  }
+}

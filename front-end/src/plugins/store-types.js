@@ -3,8 +3,8 @@ export const ACTION_TYPES = {
 };
 
 export const DICT_TYPES = {
-    MOVIE_GENRE: 'movie-genre',
-    SERIES_GENRE: 'series-genre'
+    GENRES: 'genres',
+    COUNTRIES: 'countries'
 };
 
 export const MUTATION_TYPES = {

@@ -1,0 +1,15 @@
+{
+  "countries": [
+    {"label": "大陆", "value": "CN"},
+    {"label": "港台", "value": "HK,TW"},
+    {"label": "日韩", "value": "JP,KR"},
+    {"label": "欧美", "value": "GB,FR,US,DE,CA,IT,AU"},
+    {"label": "印度", "value": "IN"},
+    {"label": "泰国", "value": "TH"},
+    {"label": "俄罗斯", "value": "RU"}
+  ],
+  "sorts": [
+    {"label": "按时间排序", "value": "released"},
+    {"label": "按评分排序", "value": "imdb_rating"}
+  ]
+}

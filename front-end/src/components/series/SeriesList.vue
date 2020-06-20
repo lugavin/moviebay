@@ -11,9 +11,9 @@
                         </a>
                     </v-toolbar>
                     <v-card-text :class="[{'d-none': !expand}, 'py-2']">
-                        <v-chip-group column color="indigo" v-model="filter.genres" @change="getPage">
-                            <v-chip v-for="(v, k) in genres" :key="k" :value="k" label outlined filter>
-                                {{v}}
+                        <v-chip-group column color="indigo" v-model="filter.countries" @change="getPage">
+                            <v-chip v-for="{value, label} in filters.countries" :key="value" :value="value" label outlined filter>
+                                {{label}}
                             </v-chip>
                         </v-chip-group>
                         <v-chip-group column color="indigo" v-model="filter.sort" @change="getPage">
@@ -41,13 +41,11 @@
 <script>
 import axios from 'axios';
 import * as dayjs from 'dayjs';
-import {mapState} from 'vuex';
 import {API, Paging, VodType, Formatter} from '@/shared';
-import {DICT_TYPES} from '@/plugins/store-types';
 import {VideoCard} from '@/components/video';
 
 export default {
-    name: 'MovieList',
+    name: 'SeriesList',
     components: {VideoCard},
     data: () => ({
         paging: {
@@ -60,7 +58,7 @@ export default {
         videos: [],
         filters: require('@/data/filters.json'),
         filter: {
-            genres: null,
+            countries: null,
             sort: null
         }
     }),
@@ -69,12 +67,9 @@ export default {
             this.getPage();
         }
     },
-    computed: {
-        ...mapState(Object.values(DICT_TYPES))
-    },
     methods: {
         getPage() {
-            const params = Object.assign({type: VodType.MOVIE}, this.paging, this.filter);
+            const params = Object.assign({type: VodType.SERIES}, this.paging, this.filter);
             axios.get(API.VIDEOS, {params}).then(res => {
                 this.totalItems = res.data.totalItems;
                 this.totalPages = res.data.totalPages;

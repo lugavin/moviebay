@@ -1,6 +1,6 @@
-import {Column, Entity, ManyToMany, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {RoleEntity} from '../role/role.entity';
-import {BaseEntity} from '../../../shared';
+import {BaseEntity, PermType} from '../../../shared';
 
 /**
  * 权限信息
@@ -18,7 +18,7 @@ export class PermEntity extends BaseEntity {
     name: string;
 
     @Column()
-    type: string;
+    type: PermType;
 
     @Column({nullable: true})
     icon: string;
@@ -27,13 +27,17 @@ export class PermEntity extends BaseEntity {
     url: string;
 
     @Column('int')
-    seq: string;
+    seq: number;
 
     @Column({name: 'is_parent', type: 'bit'})
     isParent: boolean;
 
-    @Column({nullable: true})
-    pid: number;
+    @JoinColumn({name: 'pid'})
+    @ManyToOne(type => PermEntity, parent => parent.children, {nullable: true})
+    parent: PermEntity;
+
+    @OneToMany(type => PermEntity, perm => perm.parent)
+    children: PermEntity[];
 
     @ManyToMany(type => RoleEntity, role => role.perms)
     roles: RoleEntity[];

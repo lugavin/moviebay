@@ -9,7 +9,7 @@ export class CelebrityResource {
     }
 
     @Post()
-    async createCelebrity(@Body() entities: CelebrityEntity[]): Promise<CelebrityEntity[]> {
+    async createCelebrities(@Body() entities: CelebrityEntity[]): Promise<CelebrityEntity[]> {
         return this.celebrityService.createCelebrity(entities);
     }
 

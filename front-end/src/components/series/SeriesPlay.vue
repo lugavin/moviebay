@@ -32,10 +32,13 @@
                     <v-tab>相关推荐</v-tab>
                     <v-tab-item>
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
-                            <v-card-text>
+                            <v-card-text class="text-center">
                                 <ul class="pl-3">
-                                    <li class="d-block float-left">
-                                        <v-btn color="primary">{{video.tag}}</v-btn>
+                                    <li class="d-block float-left" v-for="(ep, i) in episodes" :key="i">
+                                        <v-btn :color="ep.episode===activeEpisode.episode?'primary':''"
+                                               @click="play(ep)" small width="16" class="ma-1">
+                                            {{ep.title}}
+                                        </v-btn>
                                     </li>
                                 </ul>
                             </v-card-text>
@@ -72,7 +75,7 @@ import {VideoCard, VideoCardPoster, VideoPlayer} from '@/components/video';
  * @see https://docs.videojs.com/tutorial-vue.html
  */
 export default {
-    name: 'MoviePlay',
+    name: 'SeriesPlay',
     components: {VideoCard, VideoCardPoster, VideoPlayer},
     props: {
         vid: {
@@ -83,6 +86,8 @@ export default {
     data: () => ({
         video: null,
         videos: [],
+        episodes: [],
+        activeEpisode: null,
         playerOpts: {
             controls: true,
             preload: 'auto',
@@ -90,38 +95,53 @@ export default {
             sources: null
         },
         expand: false,
-        playTimes: 0 // TODO 播放次数待实现
+        playTimes: 0, // TODO 播放次数待实现
     }),
     computed: {
         ...mapState(Object.values(DICT_TYPES))
     },
     mounted() {
         axios.get(`${API.VIDEOS}/${this.vid}`).then(res => {
-            this.video = res.data;
-            const {sources} = res.data;
-            if (sources && sources.length) {
-                this.playerOpts.sources = [
-                    {src: sources[0].v},
-                    {src: sources[0].v, type: 'video/webm'}
-                ];
+            if (res.data) {
+                this.video = res.data;
+                const {imdbId, latestEpisode} = res.data;
+                this.play(latestEpisode);
+                this.getEpisodes(imdbId);
             }
         });
-        axios.get(API.VIDEOS, {
-            params: {
-                page: Paging.PAGE,
-                pageSize: Paging.PAGE_SIZE,
-                type: VodType.MOVIE
-            }
-        }).then(res => {
-            this.videos = res.data.items.map(item => ({
-                vid: item.id,
-                type: item.type,
-                poster: item.poster,
-                posterThumb: item.posterThumb,
-                title: item.altTitle,
-                subtitle: dayjs(item.createdAt).format(Formatter.DATE)
-            }));
-        });
+        this.getVideos();
+    },
+    methods: {
+        play(ep) {
+            this.activeEpisode = ep;
+            this.playerOpts.sources = [
+                {src: ep.sources[0].v},
+                {src: ep.sources[0].v, type: 'video/webm'}
+            ];
+        },
+        getEpisodes(imdbId) {
+            axios.get(API.EPISODES, {params: {imdbId}}).then(res => {
+                this.episodes = res.data;
+            });
+        },
+        getVideos() {
+            axios.get(API.VIDEOS, {
+                params: {
+                    page: Paging.PAGE,
+                    pageSize: Paging.PAGE_SIZE,
+                    type: VodType.SERIES
+                }
+            }).then(res => {
+                this.videos = res.data.items.map(item => ({
+                    vid: item.id,
+                    type: item.type,
+                    poster: item.poster,
+                    posterThumb: item.posterThumb,
+                    title: item.altTitle,
+                    subtitle: dayjs(item.createdAt).format(Formatter.DATE)
+                }));
+            });
+        }
     }
 }
 </script>

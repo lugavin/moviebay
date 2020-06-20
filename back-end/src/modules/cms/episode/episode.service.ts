@@ -21,4 +21,11 @@ export class EpisodeService {
         });
     }
 
+    async getEpisodesByImdbId(imdbId: string): Promise<EpisodeEntity[]> {
+        return this.episodeRepository.find({
+            where: {imdbId},
+            order: {episode: -1}
+        });
+    }
+
 }

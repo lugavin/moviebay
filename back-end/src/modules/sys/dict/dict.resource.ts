@@ -9,12 +9,12 @@ export class DictResource {
     }
 
     @Post()
-    async createDict(@Body() entities: DictEntity[]): Promise<DictEntity[]> {
+    async createDicts(@Body() entities: DictEntity[]): Promise<DictEntity[]> {
         return this.dictService.createDict(entities);
     }
 
     @Get()
-    async getDict(@Query('tags')  tags: string[]): Promise<DictEntity[]> {
+    async getDicts(@Query('tags')  tags: string | string[]): Promise<DictEntity[]> {
         return this.dictService.getDictByTag(tags);
     }
 

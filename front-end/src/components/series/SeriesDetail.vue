@@ -21,7 +21,8 @@
                 <p class="my-1">地区：{{vod.countries.map(v=>countries[v]).join(' / ')}}</p>
                 <p class="my-1">语言：{{vod.languages.join(' / ')}}</p>
                 <p class="my-1">年份：{{vod.year}}</p>
-                <p class="my-1">片长：{{vod.runtime}}分钟</p>
+                <p class="my-1">集数：{{vod.latestEpisode.episodes}}</p>
+                <p class="my-1">片长：{{vod.latestEpisode.episodes}}&times;{{vod.runtime}}分钟</p>
                 <p class="my-1 pl-12">
                     <span class="ml-n12">简介：</span>
                     <span>{{vod.plot}}</span>
@@ -47,7 +48,7 @@ import {DICT_TYPES} from '@/plugins/store-types';
 import {VideoPanel} from '@/components/video';
 
 export default {
-    name: 'MovieDetail',
+    name: 'SeriesDetail',
     components: {VideoPanel},
     props: {
         vid: {

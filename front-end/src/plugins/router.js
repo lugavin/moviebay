@@ -23,6 +23,11 @@ export default new Router({
             component: () => import('@/components/home')
         },
         {
+            path: '/video/search',
+            component: () => import('@/components/video/VideoSearch'),
+            props: (route) => ({keyword: route.query.q})
+        },
+        {
             path: '/movies',
             component: () => import('@/components/movie/MovieList')
         },
@@ -41,9 +46,22 @@ export default new Router({
             props: true
         },
         {
-            path: '/video/search',
-            component: () => import('@/components/video/VideoSearch'),
-            props: (route) => ({keyword: route.query.q})
+            path: '/series',
+            component: () => import('@/components/series/SeriesList')
+        },
+        {
+            path: '/series/more',
+            redirect: '/series'
+        },
+        {
+            path: '/series/play/:vid',
+            component: () => import('@/components/series/SeriesPlay'),
+            props: true // 如果props被设置为true, 那么route.params将会被设置为组件属性
+        },
+        {
+            path: '/series/detail/:vid',
+            component: () => import('@/components/series/SeriesDetail'),
+            props: true
         }
         // {
         //     path: '/forbidden',

@@ -12,7 +12,7 @@ export class VideoResource {
     }
 
     @Post()
-    async createVideo(@Body() entities: VideoEntity[]): Promise<VideoEntity[]> {
+    async createVideos(@Body() entities: VideoEntity[]): Promise<VideoEntity[]> {
         return this.videoService.createVideo(entities);
     }
 

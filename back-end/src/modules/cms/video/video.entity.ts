@@ -27,7 +27,7 @@ export class VideoEntity extends BaseEntity {
     @Column('varchar', {name: 'aka_title', array: true})
     akaTitle: string[];
 
-    // 年代
+    // 年份
     @Column('int4')
     year: number;
 
@@ -39,11 +39,11 @@ export class VideoEntity extends BaseEntity {
     @Column('int4')
     runtime: number;
 
-    // 分辨率标签
+    // 标签
     @Column()
     tag: string;
 
-    // 类型
+    // 分类
     @Column()
     type: VodType;
 
@@ -55,11 +55,11 @@ export class VideoEntity extends BaseEntity {
     @Column('jsonb', {nullable: true})
     sources: string;
 
-    // 影片类型
+    // 类型
     @Column('varchar', {array: true})
     genres: string[];
 
-    // 制片国家
+    // 地区
     @Column('varchar', {array: true})
     countries: string[];
 
@@ -83,7 +83,7 @@ export class VideoEntity extends BaseEntity {
     // @Column('varchar', {array: true, nullable: true})
     // subtitles: string[];
 
-    // 故事情节
+    // 情节
     @Column('text')
     plot: string;
 

@@ -15,7 +15,7 @@
       }
     ],
     "genres": ["drama", "crime"],
-    "countries": ["美国"],
+    "countries": ["US"],
     "languages": ["英语"],
     "directors": ["弗兰克·德拉邦特"],
     "writers": ["弗兰克·德拉邦特", "斯蒂芬·金"],
@@ -42,7 +42,7 @@
       }
     ],
     "genres": ["drama", "crime", "mystery"],
-    "countries": ["印度"],
+    "countries": ["IN"],
     "languages": ["印地语"],
     "directors": ["尼西卡特·卡马特"],
     "writers": ["乌皮德拉·塞德海耶"],
@@ -69,7 +69,7 @@
       }
     ],
     "genres": ["drama", "comedy"],
-    "countries": ["中国大陆"],
+    "countries": ["CN"],
     "languages": ["汉语普通话"],
     "directors": ["肖央"],
     "writers": ["肖央"],
@@ -96,7 +96,7 @@
       }
     ],
     "genres": ["action", "fantasy", "disaster", "adventure"],
-    "countries": ["美国", "加拿大"],
+    "countries": ["US", "CA"],
     "languages": ["英语"],
     "directors": ["罗兰·艾默里奇"],
     "writers": ["罗兰·艾默里奇", "哈洛德·克卢瑟"],
@@ -123,7 +123,7 @@
       }
     ],
     "genres": ["drama", "comedy", "romance"],
-    "countries": ["印度"],
+    "countries": ["IN"],
     "languages": ["印地语"],
     "directors": ["拉吉库马尔·希拉尼"],
     "writers": ["维德胡·维诺德·乔普拉", "拉吉库马尔·希拉尼", "阿希贾特·乔希"],
@@ -150,7 +150,7 @@
       }
     ],
     "genres": ["action", "romance"],
-    "countries": ["中国香港"],
+    "countries": ["HK"],
     "languages": ["粤语"],
     "directors": ["程小东"],
     "writers": ["阮继志"],
@@ -177,7 +177,7 @@
       }
     ],
     "genres": ["action", "romance"],
-    "countries": ["中国香港"],
+    "countries": ["HK"],
     "languages": ["粤语"],
     "directors": ["程小东"],
     "writers": ["梁耀明", "林纪陶", "刘大木"],
@@ -204,7 +204,7 @@
       }
     ],
     "genres": ["action", "romance"],
-    "countries": ["中国香港"],
+    "countries": ["HK"],
     "languages": ["粤语"],
     "directors": ["程小东"],
     "writers": ["徐克", "司徒慧焯"],
@@ -231,7 +231,7 @@
       }
     ],
     "genres": ["action", "adventure"],
-    "countries": ["美国", "英国", "德国", "日本"],
+    "countries": ["US", "GB", "DE", "JP"],
     "languages": ["英语"],
     "directors": ["西蒙·韦斯特"],
     "writers": ["Sara B. Cooper", "麦克·韦柏"],
@@ -258,7 +258,7 @@
       }
     ],
     "genres": ["action", "adventure"],
-    "countries": ["美国", "英国", "德国", "日本"],
+    "countries": ["US", "GB", "DE", "JP"],
     "languages": ["英语"],
     "directors": ["扬·德·邦特"],
     "writers": ["迪恩·乔格瑞斯", "斯蒂芬·E.德·索萨", "詹姆士·V·哈特"],
@@ -285,7 +285,7 @@
       }
     ],
     "genres": ["action", "adventure"],
-    "countries": ["美国"],
+    "countries": ["US"],
     "languages": ["英语"],
     "directors": ["罗阿尔·乌索格"],
     "writers": ["吉内瓦·德沃莱特-罗宾森", "阿拉斯泰尔·西登斯", "埃文·达赫迪"],
@@ -312,7 +312,7 @@
       }
     ],
     "genres": ["comedy", "romance"],
-    "countries": ["中国香港"],
+    "countries": ["HK"],
     "languages": ["粤语"],
     "directors": ["李力持"],
     "writers": ["李力持", "谷德昭", "陈文强"],
@@ -339,7 +339,7 @@
       }
     ],
     "genres": ["action", "adventure", "mystery"],
-    "countries": ["美国"],
+    "countries": ["US"],
     "languages": ["英语"],
     "directors": ["乔·德特杜巴"],
     "writers": ["吉姆·科夫", "科马克·韦伯利", "玛丽安·韦伯利"],
@@ -366,7 +366,7 @@
       }
     ],
     "genres": ["action", "adventure", "mystery"],
-    "countries": ["美国"],
+    "countries": ["US"],
     "languages": ["英语"],
     "directors": ["乔·德特杜巴"],
     "writers": ["吉姆·科夫", "科马克·韦伯利", "玛丽安·韦伯利"],
@@ -393,7 +393,7 @@
       }
     ],
     "genres": ["disaster", "adventure", "fantasy"],
-    "countries": ["美国"],
+    "countries": ["US"],
     "languages": ["英语"],
     "directors": ["乔恩·阿米尔"],
     "writers": ["Cooper Layne", "John Rogers"],
@@ -420,7 +420,7 @@
       }
     ],
     "genres": ["comedy", "romance"],
-    "countries": ["中国大陆"],
+    "countries": ["CN"],
     "languages": ["普通话"],
     "directors": ["闫非", "彭大魔"],
     "writers": ["闫非", "彭大魔"],
@@ -447,7 +447,7 @@
       }
     ],
     "genres": ["action", "adventure"],
-    "countries": ["美国"],
+    "countries": ["US"],
     "languages": ["英语"],
     "directors": ["史蒂文·斯皮尔伯格"],
     "writers": ["劳伦斯·卡斯丹", "乔治·卢卡斯", "菲利普·考夫曼"],
@@ -474,7 +474,7 @@
       }
     ],
     "genres": ["action", "adventure"],
-    "countries": ["美国"],
+    "countries": ["US"],
     "languages": ["英语"],
     "directors": ["史蒂文·斯皮尔伯格"],
     "writers": ["威拉德·赫依克", "乔治·卢卡斯", "格洛丽亚·卡茨"],
@@ -501,7 +501,7 @@
       }
     ],
     "genres": ["action", "adventure"],
-    "countries": ["美国"],
+    "countries": ["US"],
     "languages": ["英语"],
     "directors": ["史蒂文·斯皮尔伯格"],
     "writers": ["杰弗里·鲍姆", "乔治·卢卡斯", "门诺·迈依杰斯", "菲利普·考夫曼"],
@@ -528,7 +528,7 @@
       }
     ],
     "genres": ["action", "adventure"],
-    "countries": ["美国"],
+    "countries": ["US"],
     "languages": ["英语"],
     "directors": ["史蒂文·斯皮尔伯格"],
     "writers": ["大卫·凯普", "乔治·卢卡斯", "杰夫·内桑森"],
@@ -550,7 +550,7 @@
     "type": "series",
     "sources": [],
     "genres": ["romance"],
-    "countries": ["韩国"],
+    "countries": ["KR"],
     "languages": ["韩语"],
     "directors": ["张太维"],
     "writers": ["朴智恩"],

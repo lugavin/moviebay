@@ -1,6 +1,6 @@
-export enum VodStatus {
-    OFFLINE,
-    ONLINE,
+export enum PermType {
+    MENU = 'menu',
+    FUNC = 'func',
 }
 
 export enum VodType {
@@ -8,21 +8,18 @@ export enum VodType {
     SERIES = 'series',
 }
 
+export enum VodStatus {
+    OFFLINE,
+    ONLINE,
+}
+
 export enum DictTag {
-    MOVIE_GENRE = 'movie-genre',
-    SERIES_GENRE = 'series-genre',
-    COUNTRY = 'country',   // https://zh.wikipedia.org/wiki/ISO_3166-1
-    LANGUAGE = 'language', // https://zh.wikipedia.org/wiki/ISO_639-1
+    // GENRES = 'genres',
+    // COUNTRIES = 'countries',   // https://zh.wikipedia.org/wiki/ISO_3166-1
 }
 
 export enum RedisKey {
     // HKEY_ROLE_PERMS = 'ROLE_PERMS',
-}
-
-export enum Formatter {
-    DATE = 'YYYY-MM-DD',
-    TIME = 'HH:mm:ss',
-    DATETIME = 'YYYY-MM-DD HH:mm:ss',
 }
 
 /**

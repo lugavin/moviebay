@@ -14,9 +14,9 @@ export class DictService {
         return this.dictRepository.save(entities.map(entity => Object.assign(new DictEntity(), entity)));
     }
 
-    async getDictByTag(tags: string[]): Promise<DictEntity[]> {
+    async getDictByTag(tags: string | string[]): Promise<DictEntity[]> {
         return this.dictRepository.find({
-            where: {tag: In(tags)},
+            where: {tag: In(Array.isArray(tags) ? tags : tags.split(','))},
             order: {tag: 1, seq: 1},
             cache: true
         });

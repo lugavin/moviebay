@@ -1,4 +1,4 @@
-import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
+import {Entity, Column, PrimaryGeneratedColumn, Index} from 'typeorm';
 import {BaseEntity} from '../../../shared';
 
 /**
@@ -12,6 +12,7 @@ export class EpisodeEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Index()
     @Column({name: 'imdb_id'})
     imdbId: string;
 

@@ -1,7 +1,8 @@
 export const API = {
     LOGIN: '/api/login',
+    DICTS: '/api/dicts',
     VIDEOS: '/api/videos',
-    DICTS: '/api/dicts'
+    EPISODES: '/api/episodes'
 };
 
 export const Paging = {

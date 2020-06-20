@@ -44,15 +44,21 @@ export class VideoService {
 
     async getPage(page: number, pageSize: number, params: VideoDto): Promise<PageRes<VideoEntity>> {
         const queryBuilder = this.videoRepository.createQueryBuilder();
-        if (params.type) {
-            queryBuilder.andWhere('type = :type', {type: params.type});
+        const {type, genres, countries, sort} = params;
+        if (type) {
+            queryBuilder.andWhere('type = :type', {type});
         }
-        if (params.genre) {
-            queryBuilder.andWhere(':genre = ANY(genres)', {genre: params.genre});
+        if (genres) {
+            // SQL: SELECT * FROM table WHERE genres @> ARRAY['action']::varchar[] -- @>: 包含
+            queryBuilder.andWhere('genres @> :genres', {genres: Array.isArray(genres) ? genres : genres.split(',')});
+        }
+        if (countries) {
+            // SQL: SELECT * FROM table WHERE countries && ARRAY['CN']::varchar[] -- &&: 重叠(有共同元素)
+            queryBuilder.andWhere('countries && :countries', {countries: Array.isArray(countries) ? countries : countries.split(',')});
         }
         return queryBuilder.skip((page - 1) * pageSize)
             .take(pageSize)
-            .orderBy(!params.sort ? {created_at: 'DESC'} : {[params.sort]: 'DESC'})
+            .orderBy(!sort ? {created_at: 'DESC'} : {[sort]: 'DESC'})
             .getManyAndCount()
             .then(res => new PageRes<VideoEntity>(page, pageSize, res[0], res[1]));
     }
