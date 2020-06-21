@@ -10,6 +10,9 @@
 <script>
 import videojs from 'video.js';
 
+/**
+ * @see https://docs.videojs.com/tutorial-options.html
+ */
 export default {
     name: 'VideoPlayer',
     props: {
@@ -18,13 +21,29 @@ export default {
             required: true
         }
     },
-    data() {
-        return {
-            player: null
-        };
+    data: () => ({
+        player: null
+    }),
+    computed: {
+        sources() {
+            return this.options.sources;
+        }
+    },
+    watch: {
+        sources(newVal) {
+            if (newVal) {
+                this.player.src(newVal);
+                this.player.play();
+            }
+        }
     },
     mounted() {
-        this.player = videojs(this.$refs.player, this.options, function() {
+        this.player = videojs(this.$refs.player, Object.assign({
+            poster: require('@/assets/poster.png'),
+            preload: 'auto',
+            controls: true
+        }, this.options), () => {
+            // this.player.play();
             console.info('The Player is ready...');
         });
     },

@@ -84,9 +84,6 @@ export default {
         video: null,
         videos: [],
         playerOpts: {
-            controls: true,
-            preload: 'auto',
-            poster: require('@/assets/poster.png'),
             sources: null
         },
         expand: false,
@@ -97,31 +94,38 @@ export default {
     },
     mounted() {
         axios.get(`${API.VIDEOS}/${this.vid}`).then(res => {
-            this.video = res.data;
-            const {sources} = res.data;
-            if (sources && sources.length) {
-                this.playerOpts.sources = [
-                    {src: sources[0].v},
-                    {src: sources[0].v, type: 'video/webm'}
-                ];
+            if (res.data) {
+                this.video = res.data;
+                const {sources} = res.data;
+                if (sources && sources.length) {
+                    this.playerOpts.sources = [
+                        {src: sources[0].v},
+                        {src: sources[0].v, type: 'video/webm'}
+                    ];
+                }
             }
         });
-        axios.get(API.VIDEOS, {
-            params: {
-                page: Paging.PAGE,
-                pageSize: Paging.PAGE_SIZE,
-                type: VodType.MOVIE
-            }
-        }).then(res => {
-            this.videos = res.data.items.map(item => ({
-                vid: item.id,
-                type: item.type,
-                poster: item.poster,
-                posterThumb: item.posterThumb,
-                title: item.altTitle,
-                subtitle: dayjs(item.createdAt).format(Formatter.DATE)
-            }));
-        });
+        this.getVideos();
+    },
+    methods: {
+        getVideos() {
+            axios.get(API.VIDEOS, {
+                params: {
+                    page: Paging.PAGE,
+                    pageSize: Paging.PAGE_SIZE,
+                    type: VodType.MOVIE
+                }
+            }).then(res => {
+                this.videos = res.data.items.map(item => ({
+                    vid: item.id,
+                    type: item.type,
+                    poster: item.poster,
+                    posterThumb: item.posterThumb,
+                    title: item.altTitle,
+                    subtitle: dayjs(item.createdAt).format(Formatter.DATE)
+                }));
+            });
+        }
     }
 }
 </script>

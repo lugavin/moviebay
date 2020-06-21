@@ -89,9 +89,6 @@ export default {
         episodes: [],
         activeEpisode: null,
         playerOpts: {
-            controls: true,
-            preload: 'auto',
-            poster: require('@/assets/poster.png'),
             sources: null
         },
         expand: false,
