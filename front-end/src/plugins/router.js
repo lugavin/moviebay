@@ -62,7 +62,11 @@ export default new Router({
             path: '/series/detail/:vid',
             component: () => import('@/components/series/SeriesDetail'),
             props: true
-        }
+        },
+        {
+            path: '/comments',
+            component: () => import('@/components/comment/CommentList')
+        },
         // {
         //     path: '/forbidden',
         //     component: Error,

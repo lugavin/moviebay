@@ -4,7 +4,7 @@
             <v-expand-transition>
                 <div class="d-flex transition-fast-in-fast-out grey darken-3 v-card--reveal" v-if="hover">
                     <v-btn icon class="white--text" :to="`/${type}/play/${vid}`" target="_blank">
-                        <v-icon x-large>play_circle_outline</v-icon>
+                        <v-icon size="48">play_circle_outline</v-icon>
                     </v-btn>
                 </div>
             </v-expand-transition>

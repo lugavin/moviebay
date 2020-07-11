@@ -7,13 +7,14 @@ import {BaseEntity} from '../../../shared';
 @Entity('cms_comment')
 export class CommentEntity extends BaseEntity {
 
-    // 条目id
     @PrimaryGeneratedColumn()
     id: number;
 
-    // 父评论ID
     @Column()
     pid: number;
+
+    @Column()
+    rid: number;
 
     // 评论者
     @Column()
