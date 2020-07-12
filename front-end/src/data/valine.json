@@ -2,6 +2,5 @@
   "appId": "cwNWWI1iqSvgs6r5BHRFlyIH-gzGzoHsz",
   "appKey": "gXjlvl1kx0jQ0wJ9Dr1fi5LP",
   "meta": ["nick", "mail"],
-  "placeholder": "Type your message here",
-  "pageSize": 10
+  "placeholder": "请输入留言内容..."
 }

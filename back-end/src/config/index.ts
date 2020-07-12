@@ -1,4 +1,5 @@
 import {ClientOpts} from 'redis';
+import {MailerOptions} from '@nestjs-modules/mailer';
 
 export class ConfigFactory {
 
@@ -21,6 +22,22 @@ export class ConfigFactory {
         return {
             host: process.env.REDIS_HOST,
             port: parseInt(process.env.REDIS_PORT, 10)
+        };
+    }
+
+    public static createMailConfig(): MailerOptions {
+        return {
+            transport: {
+                host: process.env.MAIL_HOST,
+                port: process.env.MAIL_PORT,
+                auth: {
+                    user: process.env.MAIL_USER,
+                    pass: process.env.MAIL_PASS
+                }
+            },
+            defaults: {
+                from: `"${process.env.APP_NAME}" <${process.env.MAIL_USER}>`
+            }
         };
     }
 

@@ -6,7 +6,7 @@
 import Valine from 'valine';
 
 export default {
-    name: 'Valine',
+    name: 'CommentValine',
     mounted() {
         new Valine(Object.assign({el: '#comments'}, require('@/data/valine.json')));
     }
@@ -14,7 +14,9 @@ export default {
 </script>
 
 <style>
-#comments > .vpower {
-    display: none;
+#comments > .vpower,
+#comments > .vcount,
+#comments > .vempty {
+    display: none !important;
 }
 </style>

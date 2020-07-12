@@ -1,14 +1,18 @@
 <template>
     <v-container>
-        <valine/>
+        <v-row>
+            <v-col cols="12">
+                <comment-valine/>
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 
 <script>
-import Valine from './Valine';
+import CommentValine from './CommentValine';
 
 export default {
     name: 'CommentList',
-    components: {Valine}
+    components: {CommentValine}
 };
 </script>
