@@ -31,9 +31,10 @@ export class AuthResource {
         if (!user.activated) {
             throw new HttpException('Account was not activated!', HttpStatus.BAD_REQUEST);
         }
-        return this.authService.createToken({
-            roles: user.roles.map(r => r.code),
+        return this.authService.createAuthToken({
+            uid: user.id,
             username: user.username,
+            roles: user.roles.map(r => r.code),
             clientip
         });
     }
@@ -41,16 +42,17 @@ export class AuthResource {
     @Get('/token/:refreshToken')
     @HttpCode(HttpStatus.OK)
     async getAccessToken(@Ip() clientip: string,
-                         @Query('username') username: string,
+                         @Query('uid') uid: number,
                          @Param('refreshToken') refreshToken: string): Promise<string> {
-        const user = await this.userService.getUserByName(username);
+        const user = await this.userService.getUser(uid);
         if (!user) {
             throw new HttpException('User not found!', HttpStatus.BAD_REQUEST);
         }
         // TODO 在生成新的 AccessToken 之前, 需要检查用户是否被禁用或者 RefreshToken 是否已被加入黑名单
         return this.authService.getAccessToken(refreshToken, {
+            uid: user.id,
+            username: user.username,
             roles: user.roles.map(e => e.code),
-            username,
             clientip
         });
     }

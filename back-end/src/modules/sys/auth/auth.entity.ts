@@ -7,10 +7,10 @@ export class AuthEntity {
     id: number;
 
     @Column()
-    username: string;
+    uid: number;
 
-    @Column({nullable: true})
-    device: string;
+    @Column()
+    clientip: string;
 
     @Index({unique: true})
     @Column({name: 'refresh_token'})

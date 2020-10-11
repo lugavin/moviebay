@@ -4,6 +4,7 @@
  * 这就允许我们在实现接口时候只要保证包含了接口要求的结构就可以, 而不必明确地使用Implements语句.
  */
 export interface AuthSubject {
+    readonly uid: number;
     readonly username: string;
     readonly clientip: string;
     readonly roles: string[];

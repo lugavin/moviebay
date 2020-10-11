@@ -26,14 +26,15 @@ export class AuthService {
         this.jwtConfig = ConfigFactory.createJwtConfig();
     }
 
-    async createToken(subject: AuthSubject): Promise<TokenDto> {
+    async createAuthToken(subject: AuthSubject): Promise<TokenDto> {
         const {accessTokenExpires, refreshTokenExpires} = this.jwtConfig;
         return this.jwtService.signAsync(subject, {expiresIn: accessTokenExpires}).then(accessToken => {
             const refreshToken: string = BaseUtil.uuid(); // TODO UUID的无序性会严重影响MySQL索引性能, 可通过Snowflake算法生成唯一ID
             const createdAt: Date = new Date();
             const expiredAt: Date = dayjs(createdAt).add(refreshTokenExpires, 'second').toDate();
             return this.authRepository.save({
-                username: subject.username,
+                uid: subject.uid,
+                clientip: subject.clientip,
                 refreshToken,
                 createdAt,
                 expiredAt
@@ -48,7 +49,7 @@ export class AuthService {
     async getAccessToken(refreshToken: string, subject: AuthSubject): Promise<string> {
         const {accessTokenExpires} = this.jwtConfig;
         return this.authRepository.findOne({refreshToken}).then(entity => {
-            if (entity && entity.username === subject.username && dayjs(entity.expiredAt).isAfter(new Date())) {
+            if (entity && entity.uid === subject.uid && dayjs(entity.expiredAt).isAfter(new Date())) {
                 return this.jwtService.signAsync(subject, {expiresIn: accessTokenExpires});
             }
             throw new HttpException('The refresh token has expired!', HttpStatus.UNAUTHORIZED);
