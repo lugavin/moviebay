@@ -6,7 +6,7 @@ import {UserDto} from './dto/user.dto';
 import {AuthDecorator as Auth} from '../../../shared';
 
 @Controller('users')
-export class UserResource {
+export class UserController {
 
     constructor(private readonly userService: UserService) {
     } // same as constructor(@Inject(UserService) userService: UserService)

@@ -2,12 +2,12 @@ import {Module} from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {DictEntity} from './dict.entity';
 import {DictService} from './dict.service';
-import {DictResource} from './dict.resource';
+import {DictController} from './dict.controller';
 
 @Module({
     imports: [TypeOrmModule.forFeature([DictEntity])],
     providers: [DictService],
-    controllers: [DictResource],
+    controllers: [DictController],
 })
 export class DictModule {
 }

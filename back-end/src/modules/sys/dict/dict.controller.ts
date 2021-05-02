@@ -3,7 +3,7 @@ import {DictService} from './dict.service';
 import {DictEntity} from './dict.entity';
 
 @Controller('dicts')
-export class DictResource {
+export class DictController {
 
     constructor(private readonly dictService: DictService) {
     }

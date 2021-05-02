@@ -11,7 +11,7 @@ import {UserDto} from '../user/dto/user.dto';
 import {BaseUtil} from '../../../shared';
 
 @Controller()
-export class AuthResource {
+export class AuthController {
 
     constructor(private readonly authService: AuthService,
                 private readonly userService: UserService,
@@ -75,9 +75,9 @@ export class AuthResource {
                        <p><a href="${process.env.APP_BASE_URL}/account/activate?key=${u.activationKey}">激活账号</a></p>
                        <p><span>祝您使用愉快, </span><br/><em>${process.env.APP_NAME} 团队.</em></p>`
             }).then(() => {
-                Logger.debug(`账号 ${u.email} 激活邮件发送成功`, AuthResource.name);
+                Logger.debug(`账号 ${u.email} 激活邮件发送成功`, AuthController.name);
             }).catch(e => {
-                Logger.error(`账号 ${u.email} 激活邮件发送失败`, e.stack, AuthResource.name);
+                Logger.error(`账号 ${u.email} 激活邮件发送失败`, e.stack, AuthController.name);
             });
             return u;
         });
@@ -99,9 +99,9 @@ export class AuthResource {
                        <p><a href="${process.env.APP_BASE_URL}/account/reset-password/finish?key=${u.resetKey}">重置密码</a></p>
                        <p><span>祝您使用愉快, </span><br/><em>${process.env.APP_NAME} 团队.</em></p>`
             }).then(() => {
-                Logger.debug(`账号 ${u.email} 重置密码邮件发送成功`, AuthResource.name);
+                Logger.debug(`账号 ${u.email} 重置密码邮件发送成功`, AuthController.name);
             }).catch(e => {
-                Logger.error(`账号 ${u.email} 重置密码邮件发送失败`, e.stack, AuthResource.name);
+                Logger.error(`账号 ${u.email} 重置密码邮件发送失败`, e.stack, AuthController.name);
             });
             return u;
         });

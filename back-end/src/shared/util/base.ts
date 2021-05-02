@@ -19,8 +19,8 @@ export class BaseUtil {
 
     /**
      * 注意: UUID的无序性会严重影响数据库(例如MySQL)索引性能(可通过Snowflake算法生成唯一ID)
-     * @see [Baidu-SnowflakeId](https://github.com/baidu/uid-generator)
-     * @see [Twitter-Snowflake](https://github.com/twitter-archive/snowflake/releases/tag/snowflake-2010)
+     * @see <a href="https://github.com/baidu/uid-generator">Baidu SnowflakeId</a>
+     * @see <a href="https://github.com/twitter-archive/snowflake/releases/tag/snowflake-2010">Twitter Snowflake</a>
      */
     public static uuid(): string {
         return nanoid();
