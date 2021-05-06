@@ -1,5 +1,5 @@
-import {Module} from '@nestjs/common';
-import {TypeOrmModule} from '@nestjs/typeorm';
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import * as Modules from './modules';
 
 /**
@@ -16,4 +16,12 @@ import * as Modules from './modules';
     imports: [TypeOrmModule.forRoot(), ...Object.values(Modules)]
 })
 export class AppModule {
+
+    // static forRoot(): DynamicModule {
+    //     return {
+    //         module: AppModule,
+    //         imports: [TypeOrmModule.forRoot(), ...Object.values(Modules)]
+    //     };
+    // }
+
 }
