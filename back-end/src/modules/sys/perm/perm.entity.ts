@@ -1,6 +1,6 @@
 import {Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
 import {RoleEntity} from '../role/role.entity';
-import {BaseEntity, PermType} from '../../../shared';
+import {BaseEntity, PermType} from 'src/shared';
 
 /**
  * 权限信息

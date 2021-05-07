@@ -6,7 +6,7 @@ import {VideoDto} from './dto/video.dto';
 import {PageRes} from '../../../shared';
 
 @Controller('videos')
-export class VideoResource {
+export class VideoController {
 
     constructor(private readonly videoService: VideoService) {
     }

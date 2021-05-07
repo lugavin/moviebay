@@ -8,7 +8,7 @@ import {AuthService} from './auth.service';
 import {UserEntity} from '../user/user.entity';
 import {UserService} from '../user/user.service';
 import {UserDto} from '../user/dto/user.dto';
-import {BaseUtil} from '../../../shared';
+import {BaseUtil} from 'src/shared';
 
 @Controller()
 export class AuthController {

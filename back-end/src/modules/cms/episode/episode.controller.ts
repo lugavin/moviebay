@@ -3,7 +3,7 @@ import {EpisodeService} from './episode.service';
 import {EpisodeEntity} from './episode.entity';
 
 @Controller('episodes')
-export class EpisodeResource {
+export class EpisodeController {
 
     constructor(private readonly episodeService: EpisodeService) {
     }

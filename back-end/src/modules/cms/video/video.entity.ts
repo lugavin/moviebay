@@ -1,6 +1,6 @@
 import {Column, Entity, Index, JoinColumn, OneToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {EpisodeEntity} from '../episode/episode.entity';
-import {BaseEntity, VodStatus, VodType} from '../../../shared';
+import {BaseEntity, VodStatus, VodType} from 'src/shared';
 
 /**
  * 影视条目信息

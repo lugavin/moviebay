@@ -1,5 +1,5 @@
 import {Entity, Column, PrimaryGeneratedColumn} from 'typeorm';
-import {BaseEntity} from '../../../shared';
+import {BaseEntity} from 'src/shared';
 
 /**
  * 友情链接

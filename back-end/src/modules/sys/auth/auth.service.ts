@@ -8,8 +8,8 @@ import {DeleteResult} from 'typeorm/query-builder/result/DeleteResult';
 import {TokenDto} from './dto/token.dto';
 import {AuthEntity} from './auth.entity';
 import {PermService} from '../perm/perm.service';
-import {ConfigFactory, JwtConfig} from '../../../config';
-import {BaseUtil} from '../../../shared';
+import {ConfigFactory, JwtConfig} from 'src/config';
+import {BaseUtil} from 'src/shared';
 import {AuthSubject} from '../../core/guards/auth.subject';
 
 /**

@@ -1,5 +1,5 @@
 import {Entity, Column, PrimaryGeneratedColumn, Index} from 'typeorm';
-import {BaseEntity} from '../../../shared';
+import {BaseEntity} from 'src/shared';
 
 /**
  * 影视剧集

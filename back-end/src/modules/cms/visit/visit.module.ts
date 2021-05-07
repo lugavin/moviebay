@@ -2,12 +2,12 @@ import {Module} from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {VisitEntity} from './visit.entity';
 import {VisitService} from './visit.service';
-import {VisitResource} from './visit.resource';
+import {VisitController} from './visit.controller';
 
 @Module({
     imports: [TypeOrmModule.forFeature([VisitEntity])],
     providers: [VisitService],
-    controllers: [VisitResource],
+    controllers: [VisitController],
 })
 export class VisitModule {
 }

@@ -3,7 +3,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Like, Repository} from 'typeorm';
 import {VideoEntity} from './video.entity';
 import {VideoDto} from './dto/video.dto';
-import {PageRes, VodStatus} from '../../../shared';
+import {PageRes, VodStatus} from 'src/shared';
 import {EpisodeEntity} from '../episode/episode.entity';
 import {UpdateResult} from 'typeorm/query-builder/result/UpdateResult';
 

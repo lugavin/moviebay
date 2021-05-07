@@ -3,7 +3,7 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {DeleteResult, Repository, Equal} from 'typeorm';
 import {UserEntity} from './user.entity';
 import {UserDto} from './dto/user.dto';
-import {BaseUtil} from '../../../shared';
+import {BaseUtil} from 'src/shared';
 
 @Injectable()
 export class UserService {

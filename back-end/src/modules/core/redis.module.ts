@@ -1,7 +1,7 @@
 import * as Redis from 'redis';
 import * as Bluebird from 'bluebird';
 import {Global, Module} from '@nestjs/common';
-import {ConfigFactory} from '../../config';
+import {ConfigFactory} from 'src/config';
 
 /**
  * 引入异步模块Bluebird来为操作Redis提供全异步的调用方式

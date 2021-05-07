@@ -1,6 +1,6 @@
 import {Global, Module} from '@nestjs/common';
 import {JwtModule as JWT} from '@nestjs/jwt';
-import {ConfigFactory} from '../../config';
+import {ConfigFactory} from 'src/config';
 
 /**
  * Modules can export their internal providers. In addition, they can re-export modules that they import.

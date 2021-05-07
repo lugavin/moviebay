@@ -3,7 +3,7 @@ import {CelebrityService} from './celebrity.service';
 import {CelebrityEntity} from './celebrity.entity';
 
 @Controller('celebrities')
-export class CelebrityResource {
+export class CelebrityController {
 
     constructor(private readonly celebrityService: CelebrityService) {
     }
