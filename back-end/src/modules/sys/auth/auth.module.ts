@@ -8,6 +8,7 @@ import {PermModule} from '../perm/perm.module';
 
 @Module({
     imports: [TypeOrmModule.forFeature([AuthEntity]), UserModule, PermModule],
+    exports: [AuthService],
     providers: [AuthService],
     controllers: [AuthController]
 })

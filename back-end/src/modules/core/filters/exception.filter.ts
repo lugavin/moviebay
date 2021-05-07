@@ -1,5 +1,4 @@
-import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, Logger } from '@nestjs/common';
-import { HttpSeries } from '../util';
+import {ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, Logger} from '@nestjs/common';
 
 /**
  * 统一异常处理: 统一格式返回Client端或进行错误Log处理
@@ -14,12 +13,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const ctx = host.switchToHttp();
         const req = ctx.getRequest();
         const res = ctx.getResponse();
-        if (Math.floor(status / 100) === HttpSeries.SERVER_ERROR) {
-            Logger.error(`${req.method} ${req.url}`, exception.stack, HttpExceptionFilter.name);
-        }
+        Logger.error(`${req.method} ${req.url}`, exception.stack, HttpExceptionFilter.name);
         res.code(status).send({
             retCode: status,
-            retMsg: status !== HttpStatus.INTERNAL_SERVER_ERROR ? exception.message.error || exception.message || null : 'Internal server error',
+            retMsg: exception.message,
             path: req.url,
             method: req.method,
             timestamp: new Date().toISOString() // Date.now()

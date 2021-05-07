@@ -1,8 +1,8 @@
 import {CanActivate, ExecutionContext, UnauthorizedException} from '@nestjs/common';
 import {Reflector} from '@nestjs/core';
 import {AuthSubject} from './auth.subject';
-import {Consts} from '../util';
-import {AuthService} from '../../modules/sys/auth/auth.service';
+import {Consts} from '../../../shared/util';
+import {AuthService} from '../../sys/auth/auth.service';
 
 /**
  * Note that behind the scenes, when a guard returns false, the framework throws a ForbiddenException.
