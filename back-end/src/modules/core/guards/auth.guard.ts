@@ -1,7 +1,6 @@
 import {CanActivate, ExecutionContext, UnauthorizedException} from '@nestjs/common';
 import {Reflector} from '@nestjs/core';
-import {AuthSubject} from './auth.subject';
-import {Consts} from 'src/shared';
+import {AuthSubject, Consts} from 'src/shared';
 import {AuthService} from '../../sys/auth/auth.service';
 
 /**

@@ -1,5 +1,5 @@
 import {SetMetadata} from '@nestjs/common';
-import {Consts} from 'src/shared';
+import {Consts} from '../util';
 
 /**
  * ``` ts

@@ -9,8 +9,7 @@ import {TokenDto} from './dto/token.dto';
 import {AuthEntity} from './auth.entity';
 import {PermService} from '../perm/perm.service';
 import {ConfigFactory, JwtConfig} from 'src/config';
-import {BaseUtil} from 'src/shared';
-import {AuthSubject} from '../../core/guards/auth.subject';
+import {AuthSubject, BaseUtil} from 'src/shared';
 
 /**
  * @see [Auth with JWT Refresh Token](https://solidgeargroup.com/en/refresh-token-with-jwt-authentication-node-js/)
