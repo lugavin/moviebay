@@ -8,16 +8,17 @@ import {ConfigFactory} from './config';
  * @see https://docs.nestjs.com/faq/request-lifecycle
  */
 (async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
-    SwaggerModule.setup(process.env.SWAGGER_API_PATH, app, SwaggerModule.createDocument(app, {
-        openapi: process.env.SWAGGER_API_SPEC,
-        info: {
-            title: process.env.APP_NAME,
-            version: process.env.APP_VERSION
-        }
-    }));
-    const {port, host} = ConfigFactory.createServerConfig();
-    await app.listen(port, host, () => {
-        Logger.log(`App running at => http://${host}:${port}/`);
+    await NestFactory.create(AppModule).then(app => {
+        SwaggerModule.setup(process.env.SWAGGER_API_PATH, app, SwaggerModule.createDocument(app, {
+            openapi: process.env.SWAGGER_API_SPEC,
+            info: {
+                title: process.env.APP_NAME,
+                version: process.env.APP_VERSION
+            }
+        }));
+        const {port, host} = ConfigFactory.createServerConfig();
+        app.listen(port, host, () => {
+            Logger.log(`App running at => http://${host}:${port}/`);
+        });
     });
 })();
