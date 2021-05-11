@@ -1,5 +1,6 @@
 import {ClientOpts} from 'redis';
 import {MailerOptions} from '@nestjs-modules/mailer';
+import {ClientOptions} from '@elastic/elasticsearch';
 
 export class ConfigFactory {
 
@@ -39,6 +40,12 @@ export class ConfigFactory {
                 from: `"${process.env.APP_NAME}" <${process.env.MAIL_USER}>`
             }
         };
+    }
+
+    public static createEsConfig(): ClientOptions {
+        return {
+            node: process.env.ES_NODE
+        }
     }
 
 }
