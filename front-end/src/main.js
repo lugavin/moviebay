@@ -4,26 +4,8 @@ import Plugins from './plugins';
 
 Vue.config.productionTip = false;
 
-/*
-router.beforeEach((to, from, next) => {
-    if (!to.matched.length) {
-        next('/not-found');
-    }
-    if (to.meta && to.meta.roles && to.meta.roles.length > 0) {
-        authService.hasAnyRole(to.meta.roles).then(value => {
-            if (!value) {
-                sessionStorage.setItem('requested-url', to.fullPath);
-                next('/forbidden');
-            } else {
-                next();
-            }
-        });
-    } else {
-        next();
-    }
-});
-*/
-
+// For client addOns
+//window.Vue = Vue;
 
 new Vue({
     ...App,

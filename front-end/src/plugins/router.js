@@ -14,7 +14,7 @@ Vue.use(Router);
  * @see https://github.com/vuejs/vue-router/blob/next/examples/route-matching/app.js
  * @see https://developer.mozilla.org/zh-CN/docs/Web/API/History
  */
-export default new Router({
+const router = new Router({
     mode: 'history',
     linkActiveClass: 'active',
     routes: [
@@ -84,3 +84,23 @@ export default new Router({
         // }
     ]
 });
+
+// router.beforeEach((to, from, next) => {
+//     if (!to.matched.length) {
+//         next('/not-found');
+//     }
+//     if (to.meta && to.meta.roles && to.meta.roles.length > 0) {
+//         authService.hasAnyRole(to.meta.roles).then(value => {
+//             if (!value) {
+//                 sessionStorage.setItem('requested-url', to.fullPath);
+//                 next('/forbidden');
+//             } else {
+//                 next();
+//             }
+//         });
+//     } else {
+//         next();
+//     }
+// });
+
+export default router;
