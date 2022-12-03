@@ -1,6 +1,7 @@
 import {ClientOpts} from 'redis';
 import {MailerOptions} from '@nestjs-modules/mailer';
 import {ClientOptions} from '@elastic/elasticsearch';
+import {TypeOrmModuleOptions} from "@nestjs/typeorm";
 
 export class ConfigFactory {
 
@@ -16,6 +17,22 @@ export class ConfigFactory {
             secret: process.env.JWT_SECRET,
             accessTokenExpires: parseInt(process.env.JWT_ACCESS_TOKEN_EXPIRES, 10),
             refreshTokenExpires: parseInt(process.env.JWT_REFRESH_TOKEN_EXPIRES, 10)
+        };
+    }
+
+    public static createDatasourceConfig(): TypeOrmModuleOptions {
+        return {
+            type: "sqlite",
+            //type: "mysql",
+            //host: process.env.TYPEORM_HOST,
+            //port: parseInt(process.env.TYPEORM_PORT, 10),
+            //username: process.env.TYPEORM_USERNAME,
+            //password: process.env.TYPEORM_PASSWORD,
+            database: process.env.TYPEORM_DATABASE,
+            cache: Boolean(process.env.TYPEORM_CACHE),
+            logging: Boolean(process.env.TYPEORM_LOGGING),
+            synchronize: Boolean(process.env.TYPEORM_SYNCHRONIZE),
+            autoLoadEntities: Boolean(process.env.TYPEORM_AUTO_LOAD_ENTITIES),
         };
     }
 

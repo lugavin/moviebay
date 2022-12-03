@@ -9,13 +9,13 @@ import {ConfigFactory} from './config';
  */
 (async function bootstrap() {
     await NestFactory.create(AppModule).then(app => {
-        // SwaggerModule.setup(process.env.SWAGGER_API_PATH, app, SwaggerModule.createDocument(app, {
-        //     openapi: process.env.SWAGGER_API_SPEC,
-        //     info: {
-        //         title: process.env.APP_NAME,
-        //         version: process.env.APP_VERSION
-        //     }
-        // }));
+        SwaggerModule.setup(process.env.SWAGGER_API_PATH, app, SwaggerModule.createDocument(app, {
+            openapi: process.env.SWAGGER_API_SPEC,
+            info: {
+                title: process.env.APP_NAME,
+                version: process.env.APP_VERSION
+            }
+        }));
         const {port, host} = ConfigFactory.createServerConfig();
         app.listen(port, host, () => {
             Logger.log(`App running at => http://${host}:${port}/`);

@@ -1,6 +1,8 @@
 import {Module} from '@nestjs/common';
+import {ConfigModule} from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import * as Modules from './modules';
+import {ConfigFactory} from "./config";
 
 /**
  * 默认情况下, 模块封装提供者, 这意味着如果提供者既不是当前模块的一部分也不是从另外模块(已导入)导出的, 那么它就是无法注入的:
@@ -13,10 +15,13 @@ import * as Modules from './modules';
  * @see [Modules](https://docs.nestjs.cn/7/modules)
  */
 @Module({
-    imports: [TypeOrmModule.forRoot({
-        type: "sqlite",
-        database: "moviebay"
-    }), ...Object.values(Modules)]
+    imports: [
+        ConfigModule.forRoot(),
+        TypeOrmModule.forRootAsync({
+            useFactory: ConfigFactory.createDatasourceConfig
+        }),
+        ...Object.values(Modules),
+    ]
 })
 export class AppModule {
 

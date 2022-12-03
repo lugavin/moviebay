@@ -28,15 +28,15 @@ export class VideoEntity extends BaseEntity {
     akaTitle: string[];
 
     // 年份
-    @Column('int4')
+    @Column()
     year: number;
 
     // 发布日期
-    @Column('int8')
+    @Column()
     released: number;
 
     // 片长
-    @Column('int4')
+    @Column()
     runtime: number;
 
     // 标签
@@ -48,11 +48,11 @@ export class VideoEntity extends BaseEntity {
     type: VodType;
 
     // 状态(上线|下线)
-    @Column('bit')
+    @Column()
     status: VodStatus;
 
     // 片源: [{k:'onedrive', v:'onedrive_link', {k:'baidudisk', v:'baidudisk_link'}]
-    @Column('jsonb', {nullable: true})
+    @Column({nullable: true})
     sources: string;
 
     // 类型
