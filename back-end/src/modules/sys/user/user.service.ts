@@ -30,7 +30,7 @@ export class UserService {
     }
 
     async updateUser(uid: number, dto: UserDto): Promise<UserEntity> {
-        const user = await this.userRepository.findOne(uid);
+        const user = await this.userRepository.findOneBy({id: uid});
         if (!user) {
             throw new HttpException('User not found!', HttpStatus.BAD_REQUEST);
         }
@@ -42,7 +42,8 @@ export class UserService {
     }
 
     async getUser(uid: number): Promise<UserEntity> {
-        return this.userRepository.findOne(uid, {
+        return this.userRepository.findOne({
+            where: {id: uid},
             relations: ['roles']
         });
     }
@@ -74,7 +75,7 @@ export class UserService {
     }
 
     async activateUser(activationKey: string): Promise<UserEntity> {
-        const user = await this.userRepository.findOne({activationKey});
+        const user = await this.userRepository.findOneBy({activationKey});
         if (!user) {
             throw new HttpException('User not found!', HttpStatus.BAD_REQUEST);
         }
@@ -82,7 +83,7 @@ export class UserService {
     }
 
     async requestPasswordReset(email: string): Promise<UserEntity> {
-        const user = await this.userRepository.findOne({email});
+        const user = await this.userRepository.findOneBy({email});
         if (!user) {
             throw new HttpException('User not found!', HttpStatus.BAD_REQUEST);
         }
@@ -90,7 +91,7 @@ export class UserService {
     }
 
     async finishPasswordReset(resetKey: string, newPassword: string): Promise<UserEntity> {
-        const user = await this.userRepository.findOne({resetKey});
+        const user = await this.userRepository.findOneBy({resetKey});
         if (!user) {
             throw new HttpException('User not found!', HttpStatus.BAD_REQUEST);
         }

@@ -48,7 +48,7 @@ export class AuthService {
 
     async getAccessToken(refreshToken: string, subject: AuthSubject): Promise<string> {
         const {accessTokenExpires} = this.jwtConfig;
-        return this.authRepository.findOne({refreshToken}).then(entity => {
+        return this.authRepository.findOneBy({refreshToken}).then(entity => {
             if (entity && entity.uid === subject.uid && dayjs(entity.expiredAt).isAfter(new Date())) {
                 return this.jwtService.signAsync(subject, {expiresIn: accessTokenExpires});
             }

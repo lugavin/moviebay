@@ -13,7 +13,10 @@ import * as Modules from './modules';
  * @see [Modules](https://docs.nestjs.cn/7/modules)
  */
 @Module({
-    imports: [TypeOrmModule.forRoot(), ...Object.values(Modules)]
+    imports: [TypeOrmModule.forRoot({
+        type: "sqlite",
+        database: "moviebay"
+    }), ...Object.values(Modules)]
 })
 export class AppModule {
 

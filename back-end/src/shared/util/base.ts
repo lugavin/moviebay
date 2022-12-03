@@ -1,5 +1,4 @@
 import * as crypto from 'crypto';
-import {nanoid} from 'nanoid';
 
 export class BaseUtil {
 
@@ -23,7 +22,7 @@ export class BaseUtil {
      * @see <a href="https://github.com/twitter-archive/snowflake/releases/tag/snowflake-2010">Twitter Snowflake</a>
      */
     public static uuid(): string {
-        return nanoid();
+        return crypto.randomUUID()
     }
 
 }

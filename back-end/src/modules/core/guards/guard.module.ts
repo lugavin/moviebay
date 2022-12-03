@@ -9,7 +9,7 @@ import {AuthGuard} from './auth.guard';
     providers: [{
         provide: APP_GUARD,
         useFactory: (reflector: Reflector, authService: AuthService) => {
-            return new AuthGuard(reflector, authService)
+            return new AuthGuard(reflector, authService);
         },
         inject: [Reflector, AuthService]
     }]
