@@ -23,7 +23,7 @@ export class AuthService {
                 private readonly jwtService: JwtService,
                 private readonly permService: PermService,
                 @InjectRepository(AuthEntity) private readonly authRepository: Repository<AuthEntity>) {
-        this.jwtConfig = ConfigFactory.createJwtConfig();
+        this.jwtConfig = ConfigFactory.jwtConfig();
     }
 
     async createAuthToken(subject: AuthSubject): Promise<TokenDto> {

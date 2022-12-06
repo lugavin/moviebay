@@ -6,14 +6,14 @@ import {TypeOrmModuleOptions} from "@nestjs/typeorm";
 
 export class ConfigFactory {
 
-    public static createServerConfig(): ServerConfig {
+    public static serverConfig(): ServerConfig {
         return {
             host: process.env.SERVER_HOST || 'localhost',
             port: parseInt(process.env.SERVER_PORT, 10) || 3000,
         };
     }
 
-    public static createJwtConfig(): JwtConfig {
+    public static jwtConfig(): JwtConfig {
         return {
             secret: process.env.JWT_SECRET,
             accessTokenExpires: parseInt(process.env.JWT_ACCESS_TOKEN_EXPIRES, 10),
@@ -21,7 +21,7 @@ export class ConfigFactory {
         };
     }
 
-    public static createDatasourceConfig(): TypeOrmModuleOptions {
+    public static datasourceConfig(): TypeOrmModuleOptions {
         return {
             type: process.env.TYPEORM_TYPE as DatabaseType,
             url: process.env.TYPEORM_URL,
@@ -33,14 +33,14 @@ export class ConfigFactory {
         };
     }
 
-    public static createRedisConfig(): ClientOpts {
+    public static redisConfig(): ClientOpts {
         return {
             host: process.env.REDIS_HOST || 'localhost',
             port: parseInt(process.env.REDIS_PORT, 10) || 6379,
         };
     }
 
-    public static createMailConfig(): MailerOptions {
+    public static mailConfig(): MailerOptions {
         return {
             transport: {
                 host: process.env.MAIL_HOST,
@@ -56,7 +56,7 @@ export class ConfigFactory {
         };
     }
 
-    public static createEsConfig(): ClientOptions {
+    public static esConfig(): ClientOptions {
         return {
             node: process.env.ES_NODE
         }

@@ -8,7 +8,7 @@ import {ConfigFactory} from 'src/config';
 @Global()
 @Module({
     imports: [
-        MailerModule.forRootAsync({useFactory: ConfigFactory.createMailConfig})
+        MailerModule.forRootAsync({useFactory: ConfigFactory.mailConfig})
     ]
 })
 export class MailModule {

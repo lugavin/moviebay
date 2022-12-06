@@ -18,7 +18,7 @@ import * as Modules from './modules';
     imports: [
         ConfigModule.forRoot(),
         TypeOrmModule.forRootAsync({
-            useFactory: ConfigFactory.createDatasourceConfig
+            useFactory: ConfigFactory.datasourceConfig
         }),
         ...Object.values(Modules),
     ]
