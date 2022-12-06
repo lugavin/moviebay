@@ -1,8 +1,8 @@
 import {Module} from '@nestjs/common';
 import {ConfigModule} from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
+import {ConfigFactory} from './config';
 import * as Modules from './modules';
-import {ConfigFactory} from "./config";
 
 /**
  * 默认情况下, 模块封装提供者, 这意味着如果提供者既不是当前模块的一部分也不是从另外模块(已导入)导出的, 那么它就是无法注入的:
@@ -12,7 +12,7 @@ import {ConfigFactory} from "./config";
  *  - Provider: 提供者只是一个用 @Injectable 装饰器注释的类(由Nest注入器实例化的提供者, 并且可以至少在整个模块中共享)
  *  - Controller: 控制器负责处理传入的请求和向客户端返回响应
  *
- * @see [Modules](https://docs.nestjs.cn/7/modules)
+ * @see [Modules](https://docs.nestjs.cn/9/modules)
  */
 @Module({
     imports: [

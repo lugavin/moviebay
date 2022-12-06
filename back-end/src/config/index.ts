@@ -1,4 +1,5 @@
 import {ClientOpts} from 'redis';
+import {DatabaseType} from "typeorm";
 import {MailerOptions} from '@nestjs-modules/mailer';
 import {ClientOptions} from '@elastic/elasticsearch';
 import {TypeOrmModuleOptions} from "@nestjs/typeorm";
@@ -7,8 +8,8 @@ export class ConfigFactory {
 
     public static createServerConfig(): ServerConfig {
         return {
-            host: process.env.SERVER_HOST,
-            port: parseInt(process.env.SERVER_PORT, 10)
+            host: process.env.SERVER_HOST || 'localhost',
+            port: parseInt(process.env.SERVER_PORT, 10) || 3000,
         };
     }
 
@@ -22,24 +23,20 @@ export class ConfigFactory {
 
     public static createDatasourceConfig(): TypeOrmModuleOptions {
         return {
-            type: "sqlite",
-            //type: "mysql",
-            //host: process.env.TYPEORM_HOST,
-            //port: parseInt(process.env.TYPEORM_PORT, 10),
-            //username: process.env.TYPEORM_USERNAME,
-            //password: process.env.TYPEORM_PASSWORD,
-            database: process.env.TYPEORM_DATABASE,
+            type: process.env.TYPEORM_TYPE as DatabaseType,
+            url: process.env.TYPEORM_URL,
             cache: Boolean(process.env.TYPEORM_CACHE),
             logging: Boolean(process.env.TYPEORM_LOGGING),
             synchronize: Boolean(process.env.TYPEORM_SYNCHRONIZE),
             autoLoadEntities: Boolean(process.env.TYPEORM_AUTO_LOAD_ENTITIES),
+            entities: !process.env.TYPEORM_ENTITIES ? [] : process.env.TYPEORM_ENTITIES.split(','),
         };
     }
 
     public static createRedisConfig(): ClientOpts {
         return {
-            host: process.env.REDIS_HOST,
-            port: parseInt(process.env.REDIS_PORT, 10)
+            host: process.env.REDIS_HOST || 'localhost',
+            port: parseInt(process.env.REDIS_PORT, 10) || 6379,
         };
     }
 

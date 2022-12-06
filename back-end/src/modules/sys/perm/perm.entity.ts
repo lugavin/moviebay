@@ -29,7 +29,7 @@ export class PermEntity extends BaseEntity {
     @Column('int')
     seq: number;
 
-    @Column({name: 'is_parent', type: 'tinyint'})
+    @Column({name: 'is_parent', type: 'bit'})
     isParent: boolean;
 
     @JoinColumn({name: 'pid'})

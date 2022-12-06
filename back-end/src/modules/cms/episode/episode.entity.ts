@@ -36,7 +36,7 @@ export class EpisodeEntity extends BaseEntity {
     episodes: number;
 
     // 片源: [{k:'onedrive', v:'onedrive_link', {k:'baidudisk', v:'baidudisk_link'}]
-    @Column()
+    @Column('jsonb')
     sources: string;
 
     // @Column('varchar', {array: true, nullable: true})
