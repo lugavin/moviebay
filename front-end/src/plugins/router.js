@@ -1,7 +1,4 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-
-Vue.use(Router);
+import {createRouter, createWebHistory} from 'vue-router'
 
 /**
  * Router Mode
@@ -14,8 +11,8 @@ Vue.use(Router);
  * @see https://github.com/vuejs/vue-router/blob/next/examples/route-matching/app.js
  * @see https://developer.mozilla.org/zh-CN/docs/Web/API/History
  */
-const router = new Router({
-    mode: 'history',
+const router = createRouter({
+    history: createWebHistory(),
     linkActiveClass: 'active',
     routes: [
         {

@@ -1,13 +1,11 @@
-import Vue from 'vue'
-import App from './App'
-import Plugins from './plugins';
+import {createApp} from 'vue'
+import App from '@/App.vue'
+import store from "@/plugins/store";
+import router from "@/plugins/router";
+import vuetify from "@/plugins/vuetify";
 
-Vue.config.productionTip = false;
-
-// For client addOns
-//window.Vue = Vue;
-
-new Vue({
-    ...App,
-    ...Plugins
-}).$mount('#app');
+createApp(App)
+    .use(store)
+    .use(router)
+    .use(vuetify)
+    .mount('#app')

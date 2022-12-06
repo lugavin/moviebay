@@ -1,15 +1,12 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import {createStore} from 'vuex';
 import axios from 'axios';
-import {DICT_TYPES, ACTION_TYPES, MUTATION_TYPES} from './store-types';
 import {API} from '@/shared';
-
-Vue.use(Vuex);
+import {DICT_TYPES, ACTION_TYPES, MUTATION_TYPES} from '@/plugins/store-types';
 
 /**
  * @see https://vuex.vuejs.org/zh/guide/
  */
-export default new Vuex.Store({
+export default createStore({
     state: {
         drawer: false, // Hide mobile side menu by default,
         [DICT_TYPES.GENRES]: {},

@@ -22,7 +22,7 @@
 import {VideoPanel} from '@/components/video';
 
 export default {
-    name: 'Home',
+    name: 'HomePage',
     components: {VideoPanel}
 };
 </script>

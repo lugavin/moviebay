@@ -1,10 +1,10 @@
 <template>
-    <v-app>
-        <app-header/>
-        <app-drawer/>
-        <app-main/>
-        <app-footer/>
-    </v-app>
+  <v-app>
+    <app-header/>
+    <app-drawer/>
+    <app-main/>
+    <app-footer/>
+  </v-app>
 </template>
 
 <script>
@@ -14,13 +14,13 @@ import {AppHeader, AppDrawer, AppMain, AppFooter} from '@/components';
  * @see https://cn.vuejs.org/v2/api/#name
  */
 export default {
-    name: 'App',
-    components: {
-        AppHeader,
-        AppDrawer,
-        AppMain,
-        AppFooter
-    }
+  name: 'App',
+  components: {
+    AppHeader,
+    AppDrawer,
+    AppMain,
+    AppFooter
+  }
 }
 </script>
 
@@ -31,19 +31,19 @@ Ref => https://github.com/vuejs/vue-loader/issues/193
 -->
 <style>
 .v-link {
-    color: inherit !important;
-    text-decoration: none;
+  color: inherit !important;
+  text-decoration: none;
 }
 
 .v-link:hover,
 .v-link:focus {
-    color: #337ab7 !important;
-    /*text-decoration: underline;*/
+  color: #337ab7 !important;
+  /*text-decoration: underline;*/
 }
 
 .text-small {
-    font-size: 80%;
-    font-weight: 400;
+  font-size: 80%;
+  font-weight: 400;
 }
 
 /*
