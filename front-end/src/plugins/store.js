@@ -20,7 +20,9 @@ export default createStore({
         [ACTION_TYPES.GET_DICT]: ({commit}, tags) => {
             return axios.get(API.DICTS, {
                 params: {tags},
-                paramsSerializer: params => params.tags.map(tag => `tags=${tag}`).join('&')
+                paramsSerializer: {
+                    serialize: params => params.tags.map(tag => `tags=${tag}`).join('&')
+                }
             }).then(res => {
                 const payload = res.data.reduce((pre, curr) => {
                     pre[curr.tag] = pre[curr.tag] || {};
