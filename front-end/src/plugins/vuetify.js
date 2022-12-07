@@ -1,4 +1,9 @@
+// Styles
+import 'vuetify/styles'
+
 import {createVuetify} from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
 /**
  * @see https://vuetifyjs.com/zh-Hans/getting-started/pre-made-layouts
@@ -6,7 +11,6 @@ import {createVuetify} from 'vuetify'
  * @see https://vuetifyjs.com/zh-Hans/components/grids
  */
 export default createVuetify({
-    icons: {
-        iconfont: 'md', // fa|md|mdi(default)
-    },
+    components,
+    directives,
 });

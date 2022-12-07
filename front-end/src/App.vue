@@ -10,9 +10,6 @@
 <script>
 import {AppHeader, AppDrawer, AppMain, AppFooter} from '@/components';
 
-/**
- * @see https://cn.vuejs.org/v2/api/#name
- */
 export default {
   name: 'App',
   components: {

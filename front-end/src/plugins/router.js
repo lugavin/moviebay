@@ -6,7 +6,7 @@ import {createRouter, createWebHistory} from 'vue-router'
  *         它的特点是hash虽然出现在URL中, 但不会被包括在HTTP请求中, 对后端完全没影响, 因此改变hash不会重新加载页面.
  * - history: 利用了HTML5 History Interface 中新增的 pushState() 和 replaceState() 方法.
  *
- * @see https://router.vuejs.org/zh/api/
+ * @see https://router.vuejs.org/zh/guide/advanced/lazy-loading.html
  * @see https://router.vuejs.org/zh/guide/essentials/passing-props.html
  * @see https://github.com/vuejs/vue-router/blob/next/examples/route-matching/app.js
  * @see https://developer.mozilla.org/zh-CN/docs/Web/API/History
@@ -60,6 +60,18 @@ const router = createRouter({
             component: () => import('@/components/series/SeriesDetail'),
             props: true
         },
+        // {
+        //     path: '/cartoons',
+        //     component: () => import('@/components/movie/CartoonList')
+        // },
+        // {
+        //     path: '/shows',
+        //     component: () => import('@/components/movie/ShowList')
+        // },
+        // {
+        //     path: '/mv',
+        //     component: () => import('@/components/movie/MvList')
+        // },
         {
             path: '/comments',
             component: () => import('@/components/comment/CommentList')

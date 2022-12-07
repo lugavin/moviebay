@@ -10,6 +10,7 @@
                 <v-toolbar-items class="ml-4 hidden-sm-and-down">
                     <v-btn text v-for="(menu, i) in menus" :key="i" :to="menu.url" v-text="menu.name"/>
                 </v-toolbar-items>
+                <!--
                 <v-row align="center" class="mx-4">
                     <v-text-field placeholder="请输入片名..." hide-details single-line v-model.trim="keyword">
                         <template v-slot:append>
@@ -19,6 +20,7 @@
                         </template>
                     </v-text-field>
                 </v-row>
+                -->
                 <v-spacer/>
                 <v-toolbar-items>
                     <v-btn text @click.stop="activeDialog=true">登录 / 注册</v-btn>
