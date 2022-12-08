@@ -1,10 +1,10 @@
 <template>
     <v-container v-if="vod">
         <v-row>
-            <v-col cols="12" md="3">
-                <v-img :src="vod.poster" :lazy-src="vod.posterThumb" max-width="360" max-height="480"/>
+            <v-col cols="12" md="4" lg="2">
+                <v-img :src="vod.poster" :lazy-src="vod.posterThumb" max-width="360" max-height="540"/>
             </v-col>
-            <v-col cols="12" md="9">
+            <v-col cols="12" md="8" lg="10">
                 <h3>{{vod.altTitle}}</h3>
                 <p class="my-1">
                     导演：{{vod.directors.join(' / ')}}

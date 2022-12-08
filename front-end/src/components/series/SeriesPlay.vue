@@ -27,37 +27,37 @@
                 </v-card>
             </v-col>
             <v-col cols="12" lg="3">
-                <v-tabs dark slider-color="orange darken-1">
-                    <v-tab>播放列表</v-tab>
-                    <v-tab>相关推荐</v-tab>
-                    <v-tab-item>
+                <v-tabs v-model="tab" dark slider-color="orange darken-1">
+                    <v-tab value="tab1">播放列表</v-tab>
+                    <v-tab value="tab2">相关推荐</v-tab>
+                </v-tabs>
+                <v-window v-model="tab">
+                    <v-window-item value="tab1">
                         <v-card tile flat dark class="v-card-content hide-scrollbar">
                             <v-card-text class="text-center">
                                 <ul class="pl-3">
                                     <li class="d-block float-left" v-for="(ep, i) in episodes" :key="i">
                                         <v-btn :color="ep.episode===activeEpisode.episode?'primary':''"
-                                               @click="play(ep)" small width="16" class="ma-1">
+                                                @click="play(ep)" small width="16" class="ma-1">
                                             {{ep.title}}
                                         </v-btn>
                                     </li>
                                 </ul>
                             </v-card-text>
                         </v-card>
-                    </v-tab-item>
-                    <v-tab-item>
-                        <v-card tile flat dark class="v-card-content hide-scrollbar">
-                            <v-container>
-                                <v-row dense>
-                                    <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="6">
-                                        <video-card>
-                                            <video-card-poster v-bind="video" :title="video.title"/>
-                                        </video-card>
-                                    </v-col>
-                                </v-row>
-                            </v-container>
-                        </v-card>
-                    </v-tab-item>
-                </v-tabs>
+                    </v-window-item>
+                    <v-window-item value="tab2">
+                        <v-container>
+                            <v-row dense>
+                                <v-col v-for="(video, i) in videos" :key="i" cols="4" md="3" lg="6">
+                                    <video-card>
+                                        <video-card-poster v-bind="video" :title="video.title"/>
+                                    </video-card>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-window-item>
+                </v-window>
             </v-col>
         </v-row>
     </v-container>
@@ -84,6 +84,7 @@ export default {
         }
     },
     data: () => ({
+        tab: null,
         video: null,
         videos: [],
         episodes: [],
