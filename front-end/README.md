@@ -1,25 +1,5 @@
 # MovieBay
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
 ## 数据绑定
 
 ### 单向绑定
@@ -242,8 +222,6 @@ Vue 官方提供的 vue-server-renderer 可以用来进行服务端渲染的工�
 
 ## 参考链接
 
-- [Vue官方教程](https://cn.vuejs.org/v2/guide/)
+- [vue-cli](https://cli.vuejs.org/zh/)
 - [Vue Router](https://router.vuejs.org/zh/)
-- [Vue对比其他框架](https://cn.vuejs.org/v2/guide/comparison.html)
-- [Learn ES2015](https://babeljs.io/docs/en/learn)
-- [Working with Webpack](https://cli.vuejs.org/config/)
+- [Vite](https://cn.vitejs.dev/)

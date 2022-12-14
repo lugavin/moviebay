@@ -1,5 +1,7 @@
 # MovieBay
 
+> Atwood's Law: Any application that can be written in JavaScript, will eventually be written in JavaScript.
+
 ## Project setup
 
 ``` yml
@@ -33,15 +35,21 @@ services:
 $ docker-compose -f postgres/docker-compose.yml -f redis/docker-compose.yml up -d
 
 $ npm install
-$ npm start
+```
 
-# init data
+## Compiles and hot-reloads for development
+``` sh
+$ npm start:dev
+```
+
+## Init data
+``` sh
 $ cd back-end
 $ curl -X POST -H "Content-Type: application/json" -d @src/data/dicts.json  http://127.0.0.1:3000/dicts
 $ curl -X POST -H "Content-Type: application/json" -d @src/data/videos.json http://127.0.0.1:3000/videos
 $ curl -X POST -H "Content-Type: application/json" -d @src/data/series.json http://127.0.0.1:3000/episodes
 ```
 
-## 参考链接
+## Links
 
 - [Nest 中文文档](https://docs.nestjs.cn/)

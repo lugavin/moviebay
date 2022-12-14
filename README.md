@@ -1,26 +1,74 @@
 # MovieBay
 
-Atwood's Law: Any application that can be written in JavaScript, will eventually be written in JavaScript.
+## Back-end
 
-Ending's Law: Any application that can be compiled to WebAssembly, will be compiled to WebAssembly eventually.
+### Project setup
+
+``` yml
+# postgres/docker-compose.yml
+version: '3.7'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+```
+
+``` yml
+#  redis/docker-compose.yml
+version: '3.7'
+services:
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+```
+
+``` sh
+$ docker-compose -f postgres/docker-compose.yml -f redis/docker-compose.yml up -d
+
+$ npm install
+```
+
+### Compiles and hot-reloads for development
+``` sh
+$ npm start:dev
+```
+
+### Init data
+``` sh
+$ cd back-end
+$ curl -X POST -H "Content-Type: application/json" -d @src/data/dicts.json  http://127.0.0.1:3000/dicts
+$ curl -X POST -H "Content-Type: application/json" -d @src/data/videos.json http://127.0.0.1:3000/videos
+$ curl -X POST -H "Content-Type: application/json" -d @src/data/series.json http://127.0.0.1:3000/episodes
+```
+
 
 ## Front-end
 
-- [Vue](https://cn.vuejs.org/v2/guide/)
-- [Vuex](https://vuex.vuejs.org/zh/guide/)
-- [Vue-Router](https://router.vuejs.org/zh/)
-- [Vuetify](https://vuetifyjs.com/zh-Hans/getting-started/quick-start)
+### Project setup
+```
+npm install
+```
 
-> 后续版本将使用轻量级应用框架 [Nuxt](https://zh.nuxtjs.org/) 来实现网页静态化
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-## Back-end
+### Compiles and minifies for production
+```
+npm run build
+```
 
-- [Nest](https://docs.nestjs.cn/)
-- [TypeORM](https://typeorm.io/)
-- [TypeScript](http://www.typescriptlang.org/)
-
-> 后续版本将使用API查询语言 [GraphQL](https://graphql.cn/) 来代替REST
-
-## Links
-
-- [vue-cli-ui](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-ui)
+### Lints and fixes files
+```
+npm run lint
+```
