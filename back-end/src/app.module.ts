@@ -1,5 +1,7 @@
 import {Module} from '@nestjs/common';
+import {ConfigModule} from '@nestjs/config';
 import {TypeOrmModule} from '@nestjs/typeorm';
+import {ConfigFactory} from './config';
 import * as Modules from './modules';
 
 /**
@@ -10,10 +12,16 @@ import * as Modules from './modules';
  *  - Provider: 提供者只是一个用 @Injectable 装饰器注释的类(由Nest注入器实例化的提供者, 并且可以至少在整个模块中共享)
  *  - Controller: 控制器负责处理传入的请求和向客户端返回响应
  *
- * @see [Modules](https://docs.nestjs.cn/7/modules)
+ * @see [Modules](https://docs.nestjs.cn/9/modules)
  */
 @Module({
-    imports: [TypeOrmModule.forRoot(), ...Object.values(Modules)]
+    imports: [
+        ConfigModule.forRoot(),
+        TypeOrmModule.forRootAsync({
+            useFactory: ConfigFactory.datasourceConfig
+        }),
+        ...Object.values(Modules),
+    ]
 })
 export class AppModule {
 

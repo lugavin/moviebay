@@ -47,7 +47,7 @@ export default {
             console.info('The Player is ready...');
         });
     },
-    beforeDestroy() {
+    beforeUnmount() {
         this.player && this.player.dispose();
     }
 };

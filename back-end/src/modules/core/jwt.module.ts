@@ -9,7 +9,7 @@ import {ConfigFactory} from 'src/config';
  */
 @Global()
 @Module({
-    imports: [JWT.registerAsync({useFactory: ConfigFactory.createJwtConfig})],
+    imports: [JWT.registerAsync({useFactory: ConfigFactory.jwtConfig})],
     exports: [JWT]
 })
 export class JwtModule {

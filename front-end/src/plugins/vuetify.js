@@ -1,15 +1,16 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib';
+// Styles
+import 'vuetify/styles'
 
-Vue.use(Vuetify);
+import {createVuetify} from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
 
 /**
  * @see https://vuetifyjs.com/zh-Hans/getting-started/pre-made-layouts
  * @see https://v15.vuetifyjs.com/zh-Hans/framework/grid
  * @see https://vuetifyjs.com/zh-Hans/components/grids
  */
-export default new Vuetify({
-    icons: {
-        iconfont: 'md', // fa|md|mdi(default)
-    },
+export default createVuetify({
+    components,
+    directives,
 });

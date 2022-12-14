@@ -1,62 +1,24 @@
 # MovieBay
 
-近几年兴起的React、Vue、Angular等MVVM框架能帮我们快速实现界面渲染、事件绑定、路由分发等复杂功能，但在一些只需完成数据和模板简单渲染的场合，它们就显得笨重而且学习成本较高了。
-
-在开发实践中，前端经常需要请求后端接口获取数据并将这些数据在同一个样式模板上展现出来，而为了避免做重复的渲染工作，通常会引入第三方模板引擎来完成渲染操作，其中 doT.js 就是一个非常优秀的模板引擎。
-
-``` html
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>doT</title>
-</head>
-<body>
-
-<div id="app"></div>
-
-<template id="tmpl">
-  <h1>{{=it.title}}</h1>
-</template>
-
-<script src="https://cdn.jsdelivr.net/npm/dot/doT.js"></script>
-<script>
-  var tmpl = document.querySelector('#tmpl').innerHTML;
-  var tmplFn = doT.template(tmpl);
-  document.querySelector('#app').innerHTML = tmplFn({title: 'doT'});
-</script>
-</body>
-</html>
+## Project setup
+```
+npm install
 ```
 
-``` vue
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Vue</title>
-</head>
-<body>
-
-<div id="app">
-  {{ message }}
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script>
-  var vm = new Vue({
-    el: '#app',
-    data: {
-      message: 'Vue'
-    }
-  });
-</script>
-</body>
-</html>
+### Compiles and hot-reloads for development
+```
+npm run serve
 ```
 
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
 
 ## 数据绑定
 
@@ -284,3 +246,4 @@ Vue 官方提供的 vue-server-renderer 可以用来进行服务端渲染的工�
 - [Vue Router](https://router.vuejs.org/zh/)
 - [Vue对比其他框架](https://cn.vuejs.org/v2/guide/comparison.html)
 - [Learn ES2015](https://babeljs.io/docs/en/learn)
+- [Working with Webpack](https://cli.vuejs.org/config/)

@@ -23,7 +23,10 @@ export class VideoService {
     }
 
     async getVideo(vid: number): Promise<VideoEntity> {
-        return this.videoRepository.findOne(vid, {relations: ['latestEpisode']});
+        return this.videoRepository.findOne({
+            where: {id: vid},
+            relations: ['latestEpisode'],
+        });
     }
 
     async updateLatestEpisode(imdbId: string, latestEpisode: EpisodeEntity): Promise<UpdateResult> {

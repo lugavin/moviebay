@@ -5,7 +5,7 @@ import {ConfigFactory} from '../../config';
 @Global()
 @Module({
     imports: [
-        ElasticsearchModule.registerAsync({useFactory: ConfigFactory.createEsConfig})
+        ElasticsearchModule.registerAsync({useFactory: ConfigFactory.esConfig})
     ]
 })
 export class EsModule {

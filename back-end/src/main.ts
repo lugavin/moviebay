@@ -16,7 +16,7 @@ import {ConfigFactory} from './config';
                 version: process.env.APP_VERSION
             }
         }));
-        const {port, host} = ConfigFactory.createServerConfig();
+        const {port, host} = ConfigFactory.serverConfig();
         app.listen(port, host, () => {
             Logger.log(`App running at => http://${host}:${port}/`);
         });

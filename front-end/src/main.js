@@ -1,13 +1,9 @@
-import Vue from 'vue'
-import App from './App'
-import Plugins from './plugins';
+import {createApp} from 'vue'
+import App from '@/App.vue'
+import {registerPlugins} from "@/plugins";
 
-Vue.config.productionTip = false;
+const app = createApp(App)
 
-// For client addOns
-//window.Vue = Vue;
+registerPlugins(app)
 
-new Vue({
-    ...App,
-    ...Plugins
-}).$mount('#app');
+app.mount('#app')

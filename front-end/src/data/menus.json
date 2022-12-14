@@ -2,8 +2,5 @@
   {"name": "首页", "url": "/"},
   {"name": "电影", "url": "/movies"},
   {"name": "连续剧", "url": "/series"},
-  {"name": "动漫", "url": "/cartoons"},
-  {"name": "综艺", "url": "/shows"},
-  {"name": "音乐MV", "url": "/mv"},
   {"name": "留言", "url": "/comments"}
 ]

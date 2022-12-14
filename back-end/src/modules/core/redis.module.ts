@@ -14,7 +14,7 @@ import {ConfigFactory} from 'src/config';
     exports: [Redis.RedisClient],
     providers: [{
         provide: Redis.RedisClient,
-        useFactory: () => Bluebird.promisifyAll(Redis.createClient(ConfigFactory.createRedisConfig()))
+        useFactory: () => Bluebird.promisifyAll(Redis.createClient(ConfigFactory.redisConfig()))
     }]
 })
 export class RedisModule {
